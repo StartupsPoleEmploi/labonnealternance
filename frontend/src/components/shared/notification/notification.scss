@@ -1,0 +1,24 @@
+.notification {
+    padding: 10px 30px;
+    margin-bottom: 20px;
+
+    &.info {
+        border: solid 1px blue;
+        background: lightblue;
+    }
+
+    &.warning {
+        border: solid 1px orange;
+        background: lightsalmon;
+    }
+
+    &.error {
+        border: solid 1px red;
+        background: indianred;
+    }
+
+    &.success {
+        border: solid 1px green;
+        background: lightgreen;
+    }
+}

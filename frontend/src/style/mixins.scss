@@ -1,0 +1,277 @@
+@import './constants.scss';
+
+@mixin rotate() {
+    @-webkit-keyframes rotate {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+@mixin magnifier() {
+    @-webkit-keyframes magnifier {
+        0%   { -webkit-transform: translateY(0); }
+        5%   { -webkit-transform: translateY(-10px); }
+        10%  { -webkit-transform: translateY(0); }
+        15%  { -webkit-transform: translateY(-10px); }
+        20%  { -webkit-transform: translateY(0); }
+        100% { -webkit-transform: translateY(0); }
+    }
+
+    @keyframes magnifier {
+        0%   { transform: translateY(0); }
+        5%   { transform: translateY(-10px); }
+        10%  { transform: translateY(0); }
+        15%  { transform: translateY(-10px); }
+        20%  { transform: translateY(0); }
+        100% { transform: translateY(0); }
+    }
+}
+
+@mixin heartbeat() {
+    @-webkit-keyframes heartbeat {
+        0%   { -webkit-transform: scale(1); }
+        25%  { -webkit-transform: scale(.75); }
+        50%  { -webkit-transform: scale(1); }
+        75%  { -webkit-transform: scale(.75); }
+        100% { -webkit-transform: scale(1); }
+    }
+
+    @keyframes heartbeat {
+        0%   { transform: scale(1); }
+        25%  { transform: scale(.75); }
+        50%  { transform: scale(1); }
+        75%  { transform: scale(.75); }
+        100% { transform: scale(1); }
+    }
+}
+
+@mixin mx-loader($size: 20px, $border: 4px, $speed: 1s) {
+    width: $size;
+    height: $size;
+
+    border: $border solid lightgray;
+    border-top: $border solid #3498db;
+
+    border-radius: 50%;
+    -webkit-animation: rotate $speed linear infinite;
+    animation: rotate $speed linear infinite;
+    @include rotate()
+}
+
+
+
+/* Style common between : home, job_search and location search page */
+@mixin mx-home-common {
+    min-height: 100vh;
+    width: 100%;
+    background-color: black;
+    background-attachment: fixed;
+    background-position: center;
+
+    header {
+        padding-top: 30px;
+        padding-left: 40px;
+
+        a {
+            height: 45px;
+            display: inline-block;
+        }
+
+        .logo-lba {
+            padding-right: 20px;
+            border-right: solid 1px white;
+            img { max-width: 100%; }
+        }
+
+        .logo-pe {
+            margin-left: 15px;
+            height: 45px;
+            img { height: 45px; }
+        }
+
+        @media (max-width: $min-width-mobile) { padding-left: 20px; }
+
+        @media (max-width: $min-width-small-mobile) {
+            display: flex;
+            padding-left: 10px;
+            padding-top: 20px;
+            a { font-size: 45px; } /* To center verticaly images */
+            .logo-lba { flex: 4; padding-right: 10px; }
+            .logo-pe { flex: 1; margin-left: 5px; }
+        }
+
+    }
+
+    > div.container {
+        position: relative;
+
+        background-size: cover;
+        background-color: white;
+        background-attachment: fixed;
+        background-position: center;
+        background-image: url('/static/img/fd-desktop.jpg');
+
+        max-width: 83%;
+        min-height: 100vh;
+
+        margin: auto;
+
+        .beta {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 112px;
+            height: 84px;
+            background-image: url('/static/img/BETA.svg');
+            @media(max-width: $min-width-small-mobile) {
+                top: -15px;
+                width: 90px;
+            }
+        }
+
+        main { min-width: 600px; min-height: 350px; }
+
+        @media(max-width: $min-width-mobile) {
+            background-image: url('/static/img/fd-mobile.jpg');
+            max-width: 100%;
+            padding: 10px;
+            main { min-width: inherit; }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-color: white;
+
+            ul { text-align: right; }
+
+            li {
+                padding-top: 10px;
+                margin: 0 20px 0 0;
+                vertical-align: top;
+                width: 90px;
+                &.fse { width: 120px; }
+                &.fse-text { width: auto !important; }
+
+                img { max-width: 100%; }
+
+                @media(max-width: $min-width-mobile) {
+                    margin: 0 10px 0 0;
+                    width: 50px;
+                    &.fse { width: 70px; }
+                    &.fse-text { padding: 1px 0; }
+                }
+            }
+            a { display: inline-block; }
+
+            p {
+                width: 200px;
+                margin-top: 5px;
+                color: blue;
+                font-size: 12px;
+                line-height: 14px;
+                text-align: left;
+
+                @media(max-width: $min-width-mobile) {
+                    width: 120px;
+                    font-size: 9px;
+                    line-height: 11px;
+                }
+            }
+        }
+    }
+}
+
+/* Modal */
+@mixin mx-all-corner() {
+    left: 0; right: 0; bottom: 0; top: 0;
+}
+@mixin mx-modal() {
+
+    position: absolute;
+    @media(max-width: $min-width-mobile) {
+        position: fixed;
+        overflow-y: auto;
+    }
+    z-index: 3500;
+
+    @include mx-all-corner();
+
+    .modal-bg {
+        position: fixed;
+        background: black;
+        opacity: 0.8;
+
+        @include mx-all-corner();
+    }
+
+    .modal-content {
+        position: relative;
+        top: 50px;
+        width: 98%;
+        margin: 0 auto 50px auto;
+        max-width: 1000px;
+        background: white;
+        overflow: hidden;
+    }
+
+    .modal-title {
+        position: relative;
+        min-height: 50px;
+        padding: 45px;
+
+        h1, strong {
+            color: $blue;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        button.close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: black;
+        }
+    }
+
+    .modal-body {
+        padding: 0 45px 40px 45px;
+        min-height: 100px;
+
+        h2 {
+            color: black;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            margin: 0 0 20px 0;
+        }
+
+        h3, h4 {
+            margin: 0;
+        }
+
+        .favorite-button button {
+            border: none;
+            background: none;
+            float: right;
+            &:hover { cursor: pointer; }
+        }
+    }
+
+    // Mobile
+    @media (max-width: $min-width-mobile) {
+        .modal-title {
+            padding: 20px 40px 20px 20px;
+            h1, strong { font-size: 1.3em; }
+        }
+        .modal-body {
+            padding: 0 15px 10px 15px;
+        }
+    }
+}

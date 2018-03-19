@@ -1,0 +1,130 @@
+@import '../../style/mixins.scss';
+
+$input-width: 400px;
+$submit-width: 340px;
+
+#search-form {
+    @include mx-home-common();
+
+    .form-step-container {
+        margin-top: 15vh;
+    }
+
+
+    #job-form-step, #location-form-step {
+        margin: auto;
+        max-width: 850px;
+    }
+
+    #job-form-step, #location-form-step {
+
+        text-align: center;
+        color: white;
+
+        h2 {
+            font-size: 2em;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            @media (max-width: $min-width-mobile) { font-size: 1.5em; }
+        }
+
+        input[type=text] {
+            margin-bottom: 10px;
+            width: $input-width;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        /* Selected options */
+        li.selected {
+            display: inline-block;
+            padding: 10px 40px 10px 20px;
+            margin-right: 15px;
+            margin-bottom: 15px;
+
+            max-width: 100%;
+            background: #066EE7;
+            color: white;
+            border-radius: 30px;
+
+            position: relative;
+
+            > span {
+                overflow: hidden;
+                display: inline-block;
+            }
+
+            > button:hover {
+                cursor: pointer;
+            }
+        }
+
+        /* Suggestions list */
+        ul.suggestions {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+
+            li {
+                text-transform: capitalize;
+                border-bottom: solid 1px darkgray;
+
+                padding: 15px 10px;
+                color: #333;
+
+                &:last-child { border-bottom: none; }
+
+                &:hover {
+                    background-color: lightgrey;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .loader {
+            display: inline-block;
+            margin-right: 15px;
+            vertical-align: middle;
+            @include mx-loader();
+        }
+
+        .location-container {
+            text-align: center;
+            margin-bottom: 25px;
+
+            .marker-cyan { margin-right: 6px; }
+
+            button {
+                width: $input-width;
+                max-width: 100%;
+                padding: 8px 50px;
+                @media (max-width: $min-width-mobile) { padding: 8px 20px; }
+
+                &:disabled {
+                    margin-bottom: 5px;
+                    background-color: gray;
+                    &:hover {
+                        text-decoration: none;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+
+        .or { margin-bottom: 25px; }
+
+        .submit-container {
+            text-align: center;
+            margin-top: 30px;
+
+            button {
+                width: $submit-width;
+                max-width: 100%;
+            }
+            > button:disabled, button[disabled] {
+                display: none;
+            }
+        }
+    }
+
+}

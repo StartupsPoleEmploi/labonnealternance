@@ -1,0 +1,238 @@
+@import '../style/mixins.scss';
+
+// Global styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { font-family: $font; }
+html, body, #root, #app {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+.clearfix {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+
+// Generic classes
+.sr-only { position: absolute !important; left: -10000px !important; top: -10000px !important; }
+ul.list-unstyled {
+    margin: 0; padding: 0; list-style: none;
+    &.inline-list li {
+        display: inline-block;
+        margin-right: 15px;
+    }
+}
+ul.list-no-margin-padding { margin: 0; padding: 0; }
+.text-center { text-align: center; }
+.no-padding { padding: 0 !important; }
+.no-margin { margin: 0 !important; }
+
+/* Shared style */
+p { margin: 0; }
+main { padding: 0; }
+button { font-family: $font; }
+
+button.close {
+    border: none;
+    background: none;
+    color: white;
+    font-size: 1.5em;
+
+    position: absolute;
+    right: 10px;
+    top: 6px;
+
+    &:hover { cursor: pointer; }
+}
+ul.two-columns { columns: 2; }
+ul.three-columns { columns: 3; }
+
+
+// Heartbeat/Favorite animation
+.heartbeat-animation {
+    @include heartbeat();
+    animation: heartbeat 0.75s;
+    -webkit-animation: heartbeat 0.75s;
+}
+
+
+/* Forms */
+    /* Button */
+    .button {
+        background-color: $blue;
+        color: white;
+        border-radius: 20px;
+        padding: 8px 60px;
+        font-weight: bold;
+        font-size: 25px;
+        text-decoration: none;
+        border: none;
+
+        @media (max-width: $min-width-mobile) {
+            padding: 8px 30px;
+            font-size: 1.25em;
+            font-weight: normal;
+        }
+
+        @media (max-width: $min-width-small-mobile) {
+            padding: 8px 20px;
+        }
+
+        &.white {
+            background-color: white;
+            color: $blue;
+        }
+
+        &.small-white {
+            background-color: white;
+            color: $blue;
+            border: solid 1px $blue;
+            border-radius: 30px;
+            font-size: .95em;
+            padding: 5px 10px;
+        }
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            text-decoration: none;
+            background-color: lightgray;
+        }
+    }
+
+
+/* Input */
+input[type=text] {
+    background-color: white;
+    color: #066EE7;
+    border-radius: 20px;
+    padding: 15px 30px;
+    border: none;
+    width: 100%;
+    font-size: 0.85em;
+
+    &:disabled, &[disabled] {
+        cursor: not-allowed;
+        background-color: lightgray;
+    }
+}
+
+/* Magnifier */
+.magnifier {
+    border: 0;
+    width: 37px;
+    height: 37px;
+
+    background-image: url('/static/img/magnifier/magnifier.svg');
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    &.active {
+        background-image: url('/static/img/magnifier/magnifier-hover.svg');
+        cursor: pointer;
+    }
+
+    &:hover {
+        background-image: url('/static/img/magnifier/magnifier-hover.svg');
+        cursor: pointer;
+    }
+
+    @media (max-width: $min-width-mobile) {
+        &.animate {
+            -webkit-animation: magnifier 2s linear infinite;
+            animation: magnifier 2s linear infinite;
+            @include magnifier();
+        }
+    }
+}
+
+/* Icons */
+.icon {
+    display: inline-block;
+    border: none;
+
+    &.marker-cyan { width: 20px; height: 29px; background: url('/static/img/markers/marker-cyan.svg') no-repeat; }
+    &.marker-pink { width: 20px; height: 29px; background: url('/static/img/markers/marker-pink.svg') no-repeat; }
+    &.marker-blue { width: 20px; height: 29px; background: url('/static/img/markers/marker-blue.svg') no-repeat; }
+    &.marker-white { width: 20px; height: 29px; background: url('/static/img/markers/marker-white.svg') no-repeat; }
+
+    &.check-active { width: 30px; height: 23px; background: url('/static/img/icons/check-active.svg') no-repeat; }
+    &.check-inactive { width: 30px; height: 23px; background: url('/static/img/icons/check-inactive.svg') no-repeat; }
+    &.filter-list-icon { width: 30px; height: 23px; background: url('/static/img/icons/filter-list-icon.svg') no-repeat; }
+    &.filter-icon { width: 24px; height: 19px; background: url('/static/img/icons/filter-icon.svg') no-repeat; }
+    &.close-icon { width: 20px; height: 25px; background: url('/static/img/icons/close-button.svg') no-repeat; }
+
+    &.pink-arrow { width: 15px; height: 16px; background: url('/static/img/icons/pink-arrow.svg') no-repeat; }
+    &.phone { width: 15px; height: 15px; background: url('/static/img/icons/phone.svg') no-repeat; }
+    &.email { width: 18px; height: 18px; background: url('/static/img/icons/email.svg') no-repeat; }
+
+    &.heart-active { width: 19px; height: 17px; background: url('/static/img/icons/heart-active.svg') no-repeat; }
+    &.heart-inactive { width: 19px; height: 17px; background: url('/static/img/icons/heart-inactive.svg') no-repeat; }
+}
+
+
+// Mapbox clusters
+.marker-cluster-small { background-color: rgba(181, 226, 140, 0.9); }
+.marker-cluster-small div { background-color: rgba(110, 204, 57, 0.9); }
+
+.marker-cluster-medium { background-color: rgba(241, 211, 87, 0.9); }
+.marker-cluster-medium div { background-color: rgba(240, 194, 12, 0.9); }
+
+.marker-cluster-large {	background-color: rgba(253, 156, 115, 0.9); }
+.marker-cluster-large div {	background-color: rgba(241, 128, 23, 0.9); }
+
+.marker-cluster {
+    background-clip: padding-box;
+	border-radius: 20px;
+}
+
+.marker-cluster div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+
+	text-align: center;
+	border-radius: 15px;
+	font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.marker-cluster span {
+	line-height: 30px;
+}
+
+.leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+	-webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-moz-transition: -moz-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
+	transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+.leaflet-cluster-spider-leg {
+	/* stroke-dashoffset (duration and function) should match with leaflet-marker-icon transform in order to track it exactly */
+	-webkit-transition: -webkit-stroke-dashoffset 0.3s ease-out, -webkit-stroke-opacity 0.3s ease-in;
+	-moz-transition: -moz-stroke-dashoffset 0.3s ease-out, -moz-stroke-opacity 0.3s ease-in;
+	-o-transition: -o-stroke-dashoffset 0.3s ease-out, -o-stroke-opacity 0.3s ease-in;
+	transition: stroke-dashoffset 0.3s ease-out, stroke-opacity 0.3s ease-in;
+}
+
+.leaflet-container img.leaflet-marker-icon {
+    margin-left: -10px !important;
+    margin-top: -29px !important;
+}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+    margin-left: -10px !important;
+    margin-bottom: 29px !important;
+}

@@ -1,0 +1,549 @@
+@import '../../style/mixins.scss';
+
+
+$flex-left: 10;
+$flex-right: 5;
+
+#companies {
+    height: 100vh;
+
+    header {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        z-index: 3000;
+
+        display: flex;
+
+        .offset { flex: $flex-left; }
+        .title-container {
+            flex: $flex-right;
+
+            .title {
+                padding: 20px;
+                display: flex;
+                background: white;
+
+                .logo { flex: 10; }
+            }
+        }
+    }
+
+    #new-search {
+        background: white;
+        padding: 20px 40px 30px 40px;
+        @media (max-width: $min-width-mobile) { padding: 10px 20px 20px 20px; }
+
+        h2 {
+            color: $blue;
+            margin-bottom: 10px;
+            @media (max-width: $min-width-mobile) { font-size: 1.25em; }
+        }
+        input[type=text] { border: solid 1px lightgray; }
+
+
+        #job-form-step, #location-form-step {
+            margin-bottom: 20px;
+        }
+
+        .or {
+            text-align: center;
+            color: $gray;
+            margin-bottom: 15px;
+        }
+
+        .location-container {
+            text-align: center;
+            .loader {
+                display: inline-block;
+                margin-right: 16px;
+                vertical-align: top;
+                margin-top: 5px;
+            }
+            button {
+                border: solid 2px $blue;
+                width: 100%;
+                padding: 8px 30px;
+                margin-bottom: 10px;
+                .marker-cyan { margin-right: 16px; }
+                @media (max-width: $min-width-mobile) { padding: 8px 10px; }
+            }
+        }
+
+        .submit-container {
+            text-align: center;
+        }
+
+        .suggestions {
+            border: solid 1px lightgrey;
+            border-radius: 10px;
+            margin-top: 5px;
+            li {
+                padding: 6px;
+                text-align: center;
+                border-bottom: solid 1px lightgray;
+                &:hover { cursor: pointer; }
+                &:last-child { border-bottom: none; }
+            }
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            background-color: lightgray;
+        }
+    }
+
+    .toggle-view-container {
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 5vh;
+        display: none;
+        text-align: center;
+
+        &.right { text-align: right; right: 30px; }
+
+        .filter-icon { margin-top: 5px; float: left; }
+        .marker-blue { margin-right: 3px; }
+        .heart-active { margin-top: 7px; margin-right: 4px; float: left; }
+
+        > button {
+            line-height: 30px;
+            margin-right: 15px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 2px -2px gray;
+            &:last-child { margin-right: 0; }
+        }
+    }
+
+    .no-result {
+        position: absolute;
+        top: 25%;
+        left: 20%;
+        width: 60%;
+
+        display: block;
+        z-index: 2;
+
+        color: $pink;
+        font-size: 2.5em;
+        background-color: white;
+        padding: 35px 30px;
+
+        > div:first-child {
+            line-height: 1.25em;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: $min-width-mobile) {
+            font-size: 1.5em;
+            padding: 20px 15px;
+            left: 10%;
+            width: 80%;
+        }
+
+        @media (max-width: $min-width-small-mobile) {
+            font-size: 1.2em;
+            padding: 10px;
+        }
+    }
+}
+
+#loader-screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: $gradient-background;
+
+    .loader-content {
+        position: absolute;
+        top: 10px; left: 10px; right: 10px; bottom: 10px;
+        border: 10px transparent;
+        background-color: white;
+    }
+
+    .loader-logo {
+        padding-top: 30vh;
+        @media (max-width: $min-width-small-mobile) { padding-top: 20vh; }
+        margin-bottom: 50px;
+        text-align: center;
+
+        img {
+            -webkit-animation: rotate 5s linear infinite;
+            animation: rotate 5s linear infinite;
+            @include rotate();
+        }
+    }
+
+    .loader-text {
+        margin: auto;
+        width: 400px;
+        max-width: 100%;
+        text-align: center;
+        font-size: 1.3em;
+        img {
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+#map-container {
+
+    #results {
+        display: flex;
+
+        &.loading #map-results {
+            opacity: 0.5;
+        }
+    }
+}
+
+#map-results {
+    height: 100vh;
+    width: 100%;
+    flex: $flex-left;
+    transition: opacity 0.2s ease;
+
+    // Make the center icon move when user move the map
+    .center-icon {
+        transition: all 0.5s ease;
+    }
+
+    .leaflet-control-container > div:first-child {
+        bottom: 25px; right: 10px; top: auto; left: auto;
+        @media (max-width: $min-width-mobile) { display: none; }
+    }
+
+    .popup-content {
+        color: black;
+        &:hover {
+            cursor: pointer;
+        }
+        span {
+            display: block;
+            &.icon { display: inline-block; vertical-align: middle; margin-right: 5px; }
+            &.blue { font-weight: bold; color: $blue; }
+            &.pink { font-weight: bold; color: $pink; }
+        }
+    }
+}
+
+
+#list-results {
+    flex: $flex-right;
+    margin-top: 80px;
+
+    display: flex;
+    flex-direction: column;
+
+    &.loading { opacity: 0.5; }
+
+    .list-results-header {
+        position: relative;
+        padding: 10px 30px 0 30px;
+
+        a.logo {
+            display: block;
+            margin-bottom: 30px;
+            margin-top: 10px;
+        }
+
+        button.toggle-search {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+        }
+    }
+
+    h2 {
+        padding: 10px 20px;
+        @media (max-width: $min-width-mobile) {font-size: 1.2em; }
+    }
+
+    ul.list {
+        margin: 10px 0;
+        height: 70vh;
+        overflow: auto;
+        @media (max-width: $min-width-mobile) { height: inherit; }
+    }
+
+    .company-list-item {
+        display: block;
+        border-bottom: solid 2px #EDEDED;
+        &:last-child { border-bottom: none; }
+
+        .title {
+            font-weight: bold;
+            color: $blue;
+
+            // Favorite button
+            button {
+                border: none;
+                background: none;
+                float: right;
+                &:hover { cursor: pointer; }
+            }
+        }
+
+        > div {
+            min-height: 100px;
+            padding: 15px 20px 10px 20px;
+            border-left: solid 5px transparent;
+        }
+
+        &:hover {
+            cursor: pointer;
+            .title {
+                text-decoration: underline;
+            }
+
+            > div {
+                background-color: lightgray;
+                border-left: solid 5px $pink;
+            }
+        }
+
+        .icon { margin-right: 5px; vertical-align: middle; }
+    }
+
+    .filter-container {
+        font-weight: bolder;
+        font-size: 15px;
+        padding: 10px 20px 0 20px;
+        color: $blue;
+
+        span {
+            font-weight: bolder;
+            font-size: 16px;
+            color: $blue;
+        }
+
+        .filter-icon { float: left; margin-right: 5px; }
+        .close-icon { float: right; }
+
+        button {
+            outline: none;
+            background: none;
+            width: 100%;
+            border: none;
+            display: inline-block;
+            text-align: left;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#filters {
+    padding-bottom: 80px;
+    height: 70vh;
+    overflow: auto;
+
+    h3 { padding: 10px 0 10px 10px}
+    li {
+        display: block;
+        border-bottom: solid 1px $lightgray;
+        &:last-child { border-bottom: none; }
+
+        button {
+            font-size: 1em;
+            display: flex;
+            min-height: 40px;
+            line-height: 40px;
+            width: 100%;
+            padding: 0 20px;
+
+            background: none;
+            border: none;
+            border-left: solid 5px transparent;
+
+            text-align: left;
+            &:hover { cursor: pointer; }
+
+            > span:first-child {
+                width: 90%;
+                min-height: 40px;
+                span {
+                    display: inline-block;
+                    line-height: 20px;
+                    vertical-align: middle;
+                }
+            }
+            .icon { float: right; margin-top: 8px; }
+        }
+
+        &.selected {
+            button { border-left: solid 5px $pink; }
+        }
+
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 70px;
+    }
+}
+
+// MOBILE
+#companies.mobile {
+
+    header { position: fixed; }
+    header .offset { display: none; }
+
+    #new-search { box-shadow: none; }
+    .title-container {
+        box-shadow: 0 4px 2px -2px gray;
+    }
+
+    #map-results, #list-results {
+        position: absolute;
+    }
+
+    #results.map {
+        #map-results { top: 0; left: 0; right: 0; bottom: 0; }
+        #list-results { right: 10000px;}
+    }
+
+    #results.list {
+        #map-results { right: 10000px; }
+        #list-results { top: 0; left: 0; right: 0; bottom: 0; }
+    }
+
+    .toggle-view-container {
+        display: block;
+    }
+}
+
+// Modal
+.loader { @include mx-loader(); }
+.modal { @include mx-modal(); }
+
+.modal {
+    .line {
+        display: flex;
+        margin-bottom: 20px;
+        > div {
+            flex: 1;
+            &.flex-big { flex: 2; }
+        }
+        &.column { flex-direction: column; }
+
+        // Column on mobile
+        &.responsive-column {
+            @media (max-width: $min-width-mobile) {
+                flex-direction: column;
+                > div {
+                    margin-top: 20px;
+                    &:first-child { margin-top: 0; }
+                }
+            }
+        }
+    }
+
+    h2 {
+        position: relative;
+        left: -35px;
+        @media (max-width: $min-width-mobile) {
+            left: 0;
+        }
+
+        .badge {
+            font-size: 14px;
+            border-radius: 50%;
+            background-color: $pink;
+            color: white;
+            padding: 4px;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 11px;
+        }
+    }
+
+    hr {
+        position: relative;
+        left: -45px;
+        width: 130%;
+        margin-top: 5px;
+        margin-bottom: 15px;
+    }
+
+    .prepare-application {
+        p, li {
+            color: $gray-font;
+            font-size: .95em;
+            line-height: 20px;
+        }
+        .soft-skills {
+            h4 { margin-bottom: 5px; }
+        }
+        .application-advices {
+            h5 { margin: 5px 0; }
+            > div { margin-bottom: 25px; }
+        }
+    }
+
+    .contact-mode {
+        font-weight: bold;
+        padding: 10px 30px;
+        font-size: .9em;
+        display: inline-block;
+    }
+
+    .company-coordinates-container {
+        flex: 2 !important;
+    }
+    .company-coordinates {
+        display: flex;
+        > div { flex: 1; padding: 0 30px; }
+        .icon { margin-right: 5px;}
+        @media (max-width: $min-width-mobile) {
+            flex-direction: column;
+            > div { margin-bottom: 20px; }
+        }
+    }
+}
+
+// Popup on the first search
+#mobile-result-popup {
+    .modal-content-bg {
+        position: absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+    }
+
+    .modal-content {
+        position: relative;
+        top: 30%;
+        width: 80%;
+        padding: 2px;
+        margin: 0 auto 50px auto;
+        overflow: hidden;
+        border-radius: 5px;
+
+        background: $gradient-background;
+
+        button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .text {
+            background-color: white;
+            border-radius: 5px;
+            padding: 40px 20px;
+            z-index: 2;
+
+            font-size: 1.25em;
+            color: $blue;
+            text-align: center;
+        }
+    }
+}

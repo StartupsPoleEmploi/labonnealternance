@@ -1,0 +1,21 @@
+# IDE
+.vscode
+
+
+# React frontend
+**/*.css
+frontend/node_modules
+frontend/coverage
+frontend/build
+
+frontend/.DS_Store
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+
+# Django / Server
+**/*.pyc
+db.sqlite3
+config/settings.py
+venv/
