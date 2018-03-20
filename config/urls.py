@@ -20,6 +20,9 @@ urlpatterns = [
     path('api/labonneboite/', include("labonnealternance.api.labonneboite.urls")),
     path('api/match/', include("labonnealternance.api.match.urls")),
     path('api/entreprises/', include("labonnealternance.api.entreprises.urls")),
+
+    path('favorites/', include("labonnealternance.favorites.urls")),
+
     path('admin/', admin.site.urls),
 
     # React application : must be last !

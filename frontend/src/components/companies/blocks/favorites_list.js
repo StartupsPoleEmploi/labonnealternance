@@ -9,7 +9,8 @@ export class FavoritesList extends Component {
         this.favoritesService = new FavoritesService();
 
         this.state = {
-            favorites: []
+            favorites: [],
+            email: this.favoritesService.getEmailFromLocalStorage()
         };
     }
 
@@ -41,21 +42,40 @@ export class FavoritesList extends Component {
         if (siret) this.favoritesService.removeFavorite(siret);
     }
 
+    inputEmail = (event) => { this.setState({ email: event.target.value }); }
+    exportFavorite = (event) => {
+        event.preventDefault();
+    
+        // TODO => check e-mail
+        if(this.state.email) this.favoritesService.sendFavorites(this.state.email);
+    }
+
     // RENDER
     renderFavorite(favorite) {
-        return (<li>
-            <span>
-                {favorite.label}
-                <button data-siret={favorite.siret} className="remove" onClick={this.removeFavorite}>x</button>
-            </span>
+        return (<li key={favorite.siret}>
+            <span className="block">{favorite.label}</span>
+            <span className="block"><span className="icon phone">&nbsp;</span>{ favorite.phone ? favorite.phone:'Non renseigné' }</span>
+            <span className="block"><span className="icon email">&nbsp;</span>{ favorite.email ? favorite.email:'Non renseigné' }</span>
+            <button data-siret={favorite.siret} className="remove" onClick={this.removeFavorite}>x</button>
         </li>);
     }
     render() {
         let plural = this.state.favorites.length > 1;
         return (
-            <div>
-                <h4>Vous avez actuellement {this.state.favorites.length} favori{plural ? 's':''} stocké{plural ? 's':''} sur votre appareil</h4>
-                <ul>
+            <div id="favorites-list">
+                <h4>Vous avez actuellement {this.state.favorites.length === 0 ? 'aucun':this.state.favorites.length} {plural ? 'favoris stockés':'favori stocké'} sur votre appareil</h4>
+                
+                <div className="export-favorites">
+                    <form method="POST" action="#" onSubmit={this.exportFavorite}>
+                        <label htmlFor="export-mail" className="block sr-only">Exportez ces favoris à l'adresse suivante :</label>
+                        <input id="export-mail" type="email" name="email" value={this.state.email} onInput={this.inputEmail} placeholder="Exportez ces favoris à l'adresse suivante" />
+
+                        <button type="submit" title="Envoyez vos favoris">Envoi</button>
+                    </form>
+
+                </div>
+                
+                <ul className="list-unstyled">
                     {this.state.favorites.map(favorite => this.renderFavorite(favorite))}
                 </ul>
             </div>

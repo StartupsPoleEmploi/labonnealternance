@@ -28,13 +28,13 @@ export default class FavoriteButton extends Component {
         // TODO => Remove className
         if (this.isFavorite()) {
             return (<button className="heartbeat-animation" onClick={this.removeFavorite} title={'Retirer ' + this.props.company.label + ' des favoris'}>
-                <span className="icon heart-active">&nbsp;</span>
+                <span className="icon heart heart-active">&nbsp;</span>
             </button>);
         }
 
         return (
             <button className="heart-inactive" onClick={this.addFavorite} title={'Ajouter ' + this.props.company.label + ' aux favoris'}>
-                <span className="icon heart-inactive">&nbsp;</span>
+                <span className="icon heart heart-inactive">&nbsp;</span>
             </button>
         );
     }

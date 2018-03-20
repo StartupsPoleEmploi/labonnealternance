@@ -19,3 +19,4 @@ frontend/yarn-error.log*
 db.sqlite3
 config/settings.py
 venv/
+**/__init__.py

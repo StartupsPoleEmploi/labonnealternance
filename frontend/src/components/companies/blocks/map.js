@@ -7,11 +7,7 @@ import { COMPANIES_STORE } from '../../../services/companies/companies.store';
 
 import { CompanyListItem } from './company_list_item';
 import { CompanyFilters } from './company_filters';
-
-import { FavoritesList } from './favorites_list';
-
 import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
-import { FavoritesService } from '../../../services/favorites/favorites.service';
 
 export class Map extends Component {
 
@@ -25,7 +21,6 @@ export class Map extends Component {
         );
 
         this.companiesService = new CompaniesService();
-        this.favoritesService = new FavoritesService();
 
         this.state = {
             loading: true,
@@ -33,9 +28,6 @@ export class Map extends Component {
             count: 0,
 
             showFilters: false,
-            showFavorites: false,
-            favoritesNumber: 0,
-
             modalNoResult: false,
 
             // Mobile
@@ -81,35 +73,25 @@ export class Map extends Component {
 
         // When a favorite is added/deleted => force update of the list
         this.favoritesStore = FAVORITES_STORE.subscribe(() => {
-            this.setState({ favoritesNumber: FAVORITES_STORE.getState().size });
+            this.forceUpdate();
         });
     }
 
     componentDidMount() {
         // Create map when the component is ready
-        if (!this.state.inputError) {
-            this.mapBoxService.createMap(this.props.longitude, this.props.latitude);
+        this.mapBoxService.createMap(this.props.longitude, this.props.latitude);
 
-            let response = this.companiesService.getCompanies(this.props.rome, this.props.longitude, this.props.latitude, { distance: this.mapBoxService.getMapMinDistance() });
-            response.then(companiesCount => this.handleCompaniesCount(companiesCount));
-        }
+        let response = this.companiesService.getCompanies(this.props.rome, this.props.longitude, this.props.latitude, { distance: this.mapBoxService.getMapMinDistance() });
+        response.then(companiesCount => this.handleCompaniesCount(companiesCount));
     }
 
     componentWillUnmount() {
         // Unsubscribe
         this.companiesStore();
-        this.favoritesStore();
-    }
-
-    // FAVORITES
-    showFavorites = () => { this.setState({ showFilters: false, showFavorites: true }); }
-    hideFavorites = () => {
-        // For mobile => show map on close
-        this.setState({ showFavorites: false, currentView: 'map'  });
     }
 
     // FILTERS
-    showFilters = () => { this.setState({ showFilters: true, showFavorites: false }); }
+    showFilters = () => { this.setState({ showFilters: true }); }
     hideFilters = () => {
         // For mobile => show map on close
         this.setState({ showFilters: false, currentView: 'map' });
@@ -135,8 +117,7 @@ export class Map extends Component {
         let view = target.attributes['data-view'].value;
 
         if (view) {
-            if (view === 'filter') this.setState({ showFilters: true, showFavorites: false, currentView: 'list' });
-            else if (view === 'favorites') this.setState({ showFilters: false, showFavorites: true, currentView: 'list' });
+            if (view === 'filter') this.setState({ showFilters: true, currentView: 'list' });
             else this.setState({ currentView: view });
         }
     }
@@ -190,10 +171,6 @@ export class Map extends Component {
             </ul>
         );
     }
-    renderFavoriteNumber() {
-        if (this.state.favoritesNumber === 0) return null;
-        return '(' + this.state.favoritesNumber+ ')';
-    }
     renderResultsAsList() {
         // Show the company list
         return (
@@ -207,29 +184,14 @@ export class Map extends Component {
                     { this.state.showFilters ? <span onClick={this.hideFilters} className="icon close-icon">&nbsp;</span> : null }
                 </div>
 
-
-                <div className="filter-container">
-                    <button onClick={this.showFavorites}>
-                        <span>
-                            <span className="icon heart-active">&nbsp;</span>
-                            Favoris {this.renderFavoriteNumber()}
-                        </span>
-                    </button>
-                    { this.state.showFavorites ? <span onClick={this.hideFavorites} className="icon close-icon">&nbsp;</span> : null }
-                </div>
-
-                {/* When removing CompanyFilters from DOM, it removes the current filters, so we a show property*/}
+                {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
                 <CompanyFilters show={this.state.showFilters} onFilter={this.applyFilters} />
 
-                { this.state.showFavorites ? <FavoritesList /> : null}
-
-                { !this.state.showFilters && !this.state.showFavorites ? this.renderResultList(): null }
+                { !this.state.showFilters ? this.renderResultList(): null }
             </div>
         );
     }
     render() {
-        if (this.state.inputError) return <div>Erreur</div>;
-
         return (
             <div id="map-container">
                 <div id="results" className={this.resultsClasses()}>
@@ -247,7 +209,6 @@ export class Map extends Component {
                     <div className={this.state.currentView === 'list' ? 'toggle-view-container right':'toggle-view-container'}>
                         { this.state.currentView === 'map' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="filter"><span className="icon filter-icon">&nbsp;</span>Filtres</button> : null }
                         { this.state.currentView === 'map' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="list"><span className="icon filter-list-icon">&nbsp;</span>Liste</button> : null }
-                        { this.state.currentView === 'map' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="favorites"><span className="icon heart-active">&nbsp;</span>Favoris</button> : null }
 
                         { this.state.currentView === 'list' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="map"><span className="icon marker-blue">&nbsp;</span>Carte</button> : null }
                     </div>

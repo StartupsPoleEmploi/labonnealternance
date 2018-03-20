@@ -34,11 +34,15 @@ ul.list-no-margin-padding { margin: 0; padding: 0; }
 .text-center { text-align: center; }
 .no-padding { padding: 0 !important; }
 .no-margin { margin: 0 !important; }
+.block { display: block; }
 
 /* Shared style */
 p { margin: 0; }
 main { padding: 0; }
-button { font-family: $font; }
+button {
+    font-family: $font;
+    &:hover { cursor: pointer; }
+}
 
 button.close {
     border: none;
@@ -114,7 +118,7 @@ ul.three-columns { columns: 3; }
 
 
 /* Input */
-input[type=text] {
+input[type=text], input[type=email] {
     background-color: white;
     color: #066EE7;
     border-radius: 20px;
@@ -129,7 +133,7 @@ input[type=text] {
     }
 }
 
-/* Magnifier */
+/* Magnifier AND favorites */
 .magnifier {
     border: 0;
     width: 37px;
@@ -170,7 +174,7 @@ input[type=text] {
 
     &.check-active { width: 30px; height: 23px; background: url('/static/img/icons/check-active.svg') no-repeat; }
     &.check-inactive { width: 30px; height: 23px; background: url('/static/img/icons/check-inactive.svg') no-repeat; }
-    &.filter-list-icon { width: 30px; height: 23px; background: url('/static/img/icons/filter-list-icon.svg') no-repeat; }
+    &.filter-list-icon { width: 24px; height: 23px; background: url('/static/img/icons/filter-list-icon.svg') no-repeat; }
     &.filter-icon { width: 24px; height: 19px; background: url('/static/img/icons/filter-icon.svg') no-repeat; }
     &.close-icon { width: 20px; height: 25px; background: url('/static/img/icons/close-button.svg') no-repeat; }
 
@@ -180,6 +184,7 @@ input[type=text] {
 
     &.heart-active { width: 19px; height: 17px; background: url('/static/img/icons/heart-active.svg') no-repeat; }
     &.heart-inactive { width: 19px; height: 17px; background: url('/static/img/icons/heart-inactive.svg') no-repeat; }
+    &.empty-heart { width: 21px; height: 19px; background: url('/static/img/icons/empty-heart.svg') no-repeat; }
 }
 
 

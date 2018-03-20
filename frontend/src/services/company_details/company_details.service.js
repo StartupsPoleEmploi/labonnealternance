@@ -42,6 +42,18 @@ export class CompanyDetailsService {
             });
     }
 
+    getCompanyDetailsAsPromise(siret) {
+        return new Promise((resolve, reject) => {
+            fetch(environment.GET_COMPANY_DETAILS_LBB_URL + siret)
+                .then(response => {
+                    if (response.status === 200) return response.json();
+                }).then(companyData => {
+                    if (!companyData) return;
+                    resolve(companyData);
+                });
+        });
+    }
+
     getCompanyDetailsFromLBB(siret, allDetails = false)  {
         fetch(environment.GET_COMPANY_DETAILS_LBB_URL + siret)
             .then(response => {

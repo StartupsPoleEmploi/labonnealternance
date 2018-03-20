@@ -33,7 +33,7 @@ export class CompanyListItem extends Component {
     // RENDER
     render() {
         return (
-            <li data-siret={this.props.company.siret} className="company-list-item" onMouseLeave={this.blurItem} onMouseEnter={this.hoverItem}>
+            <li data-siret={this.props.company.siret} className="company-list-item" onClick={this.selectCompany} onMouseLeave={this.blurItem} onMouseEnter={this.hoverItem}>
                 <div>
                     <div><span className="icon pink-arrow">&nbsp;</span>{this.props.company.distance} km(s) du lieu de recherche</div>
                     <div className="title">

@@ -223,6 +223,6 @@ export class MapBoxService {
         this.cyanIcon = window.L.icon({ iconUrl: '/static/img/markers/marker-cyan.svg', className: 'center-icon sr-only', iconSize: [20, 29], shadowSize: [20, 29], iconAnchor: [0, 0], shadowAnchor: [0, 0], popupAnchor: [10, 0] });
         this.grayIcon = window.L.icon({ iconUrl: '/static/img/markers/marker-gray.svg', iconSize: [20, 29], shadowSize: [20, 29], iconAnchor: [0, 0], shadowAnchor: [0, 0], popupAnchor: [10, 0] });
         this.pinkIcon = window.L.icon({ iconUrl: '/static/img/markers/marker-pink.svg', iconSize: [20, 29], shadowSize: [20, 29], iconAnchor: [0, 0], shadowAnchor: [0, 0], popupAnchor: [10, 0] });
-        this.favoriteIcon = window.L.icon({ iconUrl: '/static/img/markers/marker-yellow.svg', iconSize: [20, 29], shadowSize: [20, 29], iconAnchor: [0, 0], shadowAnchor: [0, 0], popupAnchor: [10, 0] });
+        this.favoriteIcon = window.L.icon({ iconUrl: '/static/img/markers/favorite-marker.svg', iconSize: [20, 29], shadowSize: [20, 29], iconAnchor: [0, 0], shadowAnchor: [0, 0], popupAnchor: [10, 0] });
     }
 }

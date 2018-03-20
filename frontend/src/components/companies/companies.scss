@@ -12,30 +12,76 @@ $flex-right: 5;
         top: 0;
         right: 0;
         left: 0;
-        height: 1px;
+        min-height: 1px;
         z-index: 3000;
 
         display: flex;
 
         .offset { flex: $flex-left; }
+
+        .title button {
+            position: relative;
+            background-position: center;
+            width: 50px;
+            height: 37px;
+
+            span {
+                position: absolute;
+                bottom: -13px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 11px;
+                white-space: nowrap;
+                color: $blue;
+                font-weight: bold;
+            }
+
+            &.large-favorite {
+                background-size: 80% !important;
+                margin-right: 15px;
+            }
+
+        }
+
+        @media (max-width: $min-width-mobile) {
+            .title {
+                padding: 20px 10px 20px 15px !important;
+                button {
+                    width: 41px;
+                    &.large-favorite {
+                        background-size: 90%;
+                        margin-right: 0;
+                    }
+                    > span { display: none; }
+                }
+            }
+        }
+
         .title-container {
             flex: $flex-right;
-
+            &.open { box-shadow: 0 4px 2px -2px gray; }
             .title {
                 padding: 20px;
                 display: flex;
                 background: white;
 
-                .logo { flex: 10; }
+                .logo {
+                    flex: 10;
+                    img { height: 100%; }
+                }
             }
+
         }
     }
 
-    #new-search {
+    #new-search, #favorites-list {
         background: white;
         padding: 20px 40px 30px 40px;
         @media (max-width: $min-width-mobile) { padding: 10px 20px 20px 20px; }
+    }
 
+    #new-search {
         h2 {
             color: $blue;
             margin-bottom: 10px;
@@ -95,6 +141,32 @@ $flex-right: 5;
         }
     }
 
+    #favorites-list {
+        form { margin-top: 10px; }
+        .export-favorites {
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        input {
+            border: solid 1px lightgray;
+            margin-bottom: 5px;
+        }
+
+        li {
+            position: relative;
+            padding: 0 20px;
+            margin-top: 20px;
+
+            .icon { margin-right: 5px; }
+            button {
+                position: absolute;
+                right: 5px;
+                top: 5px;
+            }
+        }
+    }
+
     .toggle-view-container {
         position: fixed;
         right: 0;
@@ -106,6 +178,7 @@ $flex-right: 5;
         &.right { text-align: right; right: 30px; }
 
         .filter-icon { margin-top: 5px; float: left; }
+        .filter-list-icon { margin-top: 7px; float: left; }
         .marker-blue { margin-right: 3px; }
         .heart-active { margin-top: 7px; margin-right: 4px; float: left; }
 
@@ -284,7 +357,6 @@ $flex-right: 5;
                 border: none;
                 background: none;
                 float: right;
-                &:hover { cursor: pointer; }
             }
         }
 
@@ -331,10 +403,6 @@ $flex-right: 5;
             border: none;
             display: inline-block;
             text-align: left;
-
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
 }
@@ -363,7 +431,6 @@ $flex-right: 5;
             border-left: solid 5px transparent;
 
             text-align: left;
-            &:hover { cursor: pointer; }
 
             > span:first-child {
                 width: 90%;
@@ -446,6 +513,12 @@ $flex-right: 5;
         }
     }
 
+    .heart {
+        width: 32px !important;
+        background-size: 100% !important;
+        height: 27px;
+    }
+
     h2 {
         position: relative;
         left: -35px;
@@ -507,43 +580,6 @@ $flex-right: 5;
         @media (max-width: $min-width-mobile) {
             flex-direction: column;
             > div { margin-bottom: 20px; }
-        }
-    }
-}
-
-// Popup on the first search
-#mobile-result-popup {
-    .modal-content-bg {
-        position: absolute;
-        top: 0; bottom: 0; left: 0; right: 0;
-    }
-
-    .modal-content {
-        position: relative;
-        top: 30%;
-        width: 80%;
-        padding: 2px;
-        margin: 0 auto 50px auto;
-        overflow: hidden;
-        border-radius: 5px;
-
-        background: $gradient-background;
-
-        button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-
-        .text {
-            background-color: white;
-            border-radius: 5px;
-            padding: 40px 20px;
-            z-index: 2;
-
-            font-size: 1.25em;
-            color: $blue;
-            text-align: center;
         }
     }
 }

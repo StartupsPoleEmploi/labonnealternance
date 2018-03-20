@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-import { environment } from '../../environment';
-
+// Components
 import { Map } from './blocks/map';
 import { CompanyModal } from './blocks/company_modal';
 import { LoaderScreen } from './blocks/loader_screen';
-import { MobileResultPopup } from './blocks/mobile_result_popup';
-
-import { SEOService } from '../../services/seo.service';
-import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
-import { CompaniesService } from '../../services/companies/companies.service';
-import { CompanyDetailsService } from '../../services/company_details/company_details.service';
-import { formatString } from '../../services/helpers';
-import { FavoritesService } from '../../services/favorites/favorites.service';
-
+import { NotificationModal } from '../shared/notification_modal/notification_modal';
+import { FavoritesList } from './blocks/favorites_list';
 import SearchForm from '../shared/search_form/search_form';
 
+// Services
+import { SEOService } from '../../services/seo.service';
+import { CompaniesService } from '../../services/companies/companies.service';
+import { CompanyDetailsService } from '../../services/company_details/company_details.service';
+import { FavoritesService } from '../../services/favorites/favorites.service';
+import { NotificationService } from '../../services/notification/notification.service';
+import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
+import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
+
+import { formatString } from '../../services/helpers';
 
 require('./companies.css');
 
+// Constants
 const SHOW_RESULT_POPUP_KEY = 'SHOW_RESULT_POPUP_KEY';
+const MOBILE_MAX_WIDTH = 768; // Use mobile mode at 768px
+const LOADING_DURATION = 4000; // In milliseconds
 
 class Companies extends Component {
 
@@ -32,14 +37,7 @@ class Companies extends Component {
         this.companiesService = new CompaniesService();
         this.companyDetailsService = new CompanyDetailsService();
         this.favoritesService = new FavoritesService();
-
-        this.companiesUrl = environment.GET_COMPANIES_URL;
-
-        // Use mobile mode at 768px
-        this.mobileVersionBreakPoint = 768;
-
-        // Loading page duration (in millisecond)
-        this.loadingPageDuration = 4000;
+        this.notificationService = new NotificationService();
 
         this.state = {
             baseUrl: this.props.match.url,
@@ -57,27 +55,34 @@ class Companies extends Component {
             rome: this.props.match.params.rome,
             jobName: undefined,
 
-            mobileVersion: window.innerWidth < this.mobileVersionBreakPoint,
+            mobileVersion: window.innerWidth < MOBILE_MAX_WIDTH,
             showSearchForm: false,
+            showFavoritesList: false,
+            hasFavorites: false,
             animateMagnifier: false,
-
-            showMobileResultPopup: false,
-            mobileResultPopupMessage: '',
         };
     }
 
+
     // Trigger when user resize the browser window
     updateDimensions() {
-        if (window.innerWidth < this.mobileVersionBreakPoint) {
+        if (window.innerWidth < this.MOBILE_MAX_WIDTH) {
             if (this.state.mobileVersion === false) this.setState({ mobileVersion: true });
         } else {
             if (this.state.mobileVersion === true) this.setState({ mobileVersion: false });
         }
     }
 
+    // SEARCH_FORM
     toggleSearchForm = () => {
         let newValue = !this.state.showSearchForm;
-        this.setState({ showSearchForm: newValue, animateMagnifier: false });
+        this.setState({ showSearchForm: newValue, showFavoritesList: false, animateMagnifier: false });
+    }
+
+    // FAVORITES
+    toggleFavorites = () => {
+        let newValue = !this.state.showFavoritesList;
+        this.setState({ showFavoritesList: newValue, showSearchForm: false, animateMagnifier: false });
     }
 
     // Trigger by the map component to get companies number
@@ -90,16 +95,15 @@ class Companies extends Component {
 
             if (this.state.citySlug) { this.SEOService.displayNoFollow(true); }
         } else {
-            let newState = { showSearchForm: false, animateMagnifier: false };
 
             // On mobile, on first result page ever : display the number of results
             let showMobileResultPopup = this.state.mobileVersion && localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null;
             if (showMobileResultPopup) {
-                newState.showMobileResultPopup = showMobileResultPopup;
-                newState.mobileResultPopupMessage = this.companiesService.computeResultTitle(companyCount, this.state.jobName, this.state.cityName);
+                let message = this.companiesService.computeResultTitle(companyCount, this.state.jobName, this.state.cityName);
+                this.notificationService.createInfo(message, SHOW_RESULT_POPUP_KEY);
             }
 
-            this.setState(newState);
+            this.setState({ showSearchForm: false, animateMagnifier: false });
             if (this.state.citySlug) { this.SEOService.displayNoFollow(false); }
         }
     }
@@ -163,6 +167,12 @@ class Companies extends Component {
                 this.setState({ company: undefined });
             }
         });
+
+        // When a favorite is added/remove
+        FAVORITES_STORE.subscribe(() => {
+            let favorites = FAVORITES_STORE.getState() || [];
+            this.setState({ hasFavorites: favorites.size > 0 });
+        });
     }
 
     componentDidMount() {
@@ -216,18 +226,12 @@ class Companies extends Component {
         this.favoritesService.getFavoritesFromLocalStorage();
 
         // Fake loader page (goal : make the user read the message !)
-        setInterval(() => this.setState({ loading: false }), this.loadingPageDuration);
+        setInterval(() => this.setState({ loading: false }), LOADING_DURATION);
 
         // SEO values
         this.seoService = this.SEOService.setSeoValues({
             title: this.computeTitle()
         });
-    }
-
-    closeMobileResultPopup = () => {
-        // Create a key in localStorage to ensure that the popup will never be display again
-        this.setState({ showMobileResultPopup: false });
-        localStorage.setItem(SHOW_RESULT_POPUP_KEY,'');
     }
 
     computeTitle() {
@@ -236,12 +240,25 @@ class Companies extends Component {
 
         return formatString(title, { jobName: this.state.jobName, cityName: this.state.cityName });
     }
+    computeFavoriteClasses() {
+        let classes = 'icon large-favorite';
+
+        if (this.state.hasFavorites) classes = classes.concat(' heart-active');
+        else classes = classes.concat(' empty-heart');
+
+        return classes;
+    }
     computeMagnifierClasses() {
         let classes = 'magnifier';
 
         if (this.state.showSearchForm) classes = classes.concat(' active');
         if (this.state.animateMagnifier && !this.state.loading) classes = classes.concat(' animate');
 
+        return classes;
+    }
+    computeTitleContainerClasses() {
+        let classes = "title-container";
+        if (this.state.showSearchForm || this.state.showFavoritesList) classes = classes.concat(' open');
         return classes;
     }
 
@@ -257,20 +274,29 @@ class Companies extends Component {
         return (
             <div id="companies" className={this.state.mobileVersion ? 'mobile': ''}>
 
+                {/* TODO => Export header to a separate component */}
                 <header className="header">
                     <div className="offset">&nbsp;</div>
-                    <div className="title-container">
+                    <div className={this.computeTitleContainerClasses()}>
                         <div className="title">
                             <Link className="logo" to="/"><img src="/static/img/logo/logo-bleu-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>
-                            <button className={this.computeMagnifierClasses()} onClick={this.toggleSearchForm} title={this.state.showSearchForm ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>&nbsp;</button>
+
+                            <button className={this.computeFavoriteClasses()} onClick={this.toggleFavorites} title={this.state.toggleFavorites ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
+                                <span>Mes favoris</span>
+                            </button>
+
+                            <button className={this.computeMagnifierClasses()} onClick={this.toggleSearchForm} title={this.state.showSearchForm ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>
+                                <span>Recherche</span>
+                            </button>
                         </div>
-                        <div className="search-form">
-                            {this.state.showSearchForm ? <SearchForm />: null}
-                        </div>
+                        {this.state.showSearchForm ? <div className="search-form"><SearchForm /></div>: null}
+                        {this.state.showFavoritesList ? <div className="favorites"><FavoritesList /></div> : null}
+
                     </div>
                 </header>
+
                 <main>
-                    { this.state.showMobileResultPopup ? <MobileResultPopup onClose={this.closeMobileResultPopup} message={this.state.mobileResultPopupMessage} /> : null }
+                    <NotificationModal />
                     <Map longitude={this.state.longitude} latitude={this.state.latitude} rome={this.state.rome} jobName={this.state.jobName} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
                     { this.state.company ? <CompanyModal rome={this.state.rome} jobName={this.state.jobName} /> : null }
                 </main>

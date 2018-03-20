@@ -176,12 +176,14 @@ export class CompanyModal extends Component {
                     <div className="modal-title">
                         <h1>{ company.label } a recruté en alternance dans le secteur {this.props.jobName} en 2017.</h1>
                         <strong>Tentez votre chance, postulez avant que l'offre ne soit publiée !</strong>
-                        <button className="close" onClick={this.closeModal}><span className="icon close-icon">&nbsp;</span></button>
+
+                        <div className="actions-zone">
+                            <FavoriteButton company={company} />
+                            <button onClick={this.closeModal}><span className="icon close-icon">&nbsp;</span></button>
+                        </div>
                     </div>
 
                     <div className="modal-body">
-                        <div className="clearfix favorite-button"><FavoriteButton company={company} /></div>
-
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
                         {this.renderCompanyDetails()}
                         <hr />
