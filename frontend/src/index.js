@@ -27,8 +27,8 @@ export default class App extends Component {
                         <Route component={Home} exact path="/" />
                         <Route component={AsyncForm} exact path="/recherche" />
 
-                        <Route component={AsyncCompanies} path="/entreprises/:citySlug/:jobSlug" />
-                        <Route component={AsyncCompanies} path="/entreprises/:jobSlug/:longitude/:latitude" />
+                        <Route component={AsyncCompanies} exact path="/entreprises/:citySlug/:jobSlug" />
+                        <Route component={AsyncCompanies} exact path="/entreprises/:jobSlug/:longitude/:latitude" />
 
                         <Route component={AsyncCompanyDetails} path="/details-entreprises/:companySiret" />
 
