@@ -153,3 +153,7 @@ ESD_CLIENT_SECRET='XXX'
 - Modify the `settings.py` file with your values : `LBB_URL`, `LBB_API_KEY`, `ESD_CLIENT_ID`, `ESD_CLIENT_SECRET`
 - To start the environnement `make dev`
 - See `frontend/README.md` for the frontend installation
+
+## Pip librairies
+ - Django 2.0.1 : https://www.djangoproject.com/
+ - mandrill : https://mandrillapp.com/api/docs/index.python.html
