@@ -187,7 +187,7 @@ export class CompanyFilters extends Component {
 
                 <h3 className="filter-title">Secteurs d'activité</h3>
                 <ul className="list-unstyled">
-                    {/* this.state.nafValues.map((text, index) => this.renderNaf(text, index)) */}
+                    {this.state.nafValues.map((text, index) => this.renderNaf(text, index))}
                 </ul>
 
                 <div className="button-container">
