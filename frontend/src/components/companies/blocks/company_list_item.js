@@ -40,8 +40,8 @@ export class CompanyListItem extends Component {
                         <span className="title" aria-level="3">{this.props.company.label}</span>
                         <FavoriteButton company={this.props.company} />
                     </div>
-
                     <div>{ this.props.company.nafText ? <p>{this.props.company.nafText}</p>:'' }</div>
+                    <button className="see-more">En savoir plus</button>
                 </div>
             </li>
         );

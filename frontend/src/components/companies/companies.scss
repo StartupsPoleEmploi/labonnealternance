@@ -353,7 +353,7 @@ $flex-right: 5;
             color: $blue;
 
             // Favorite button
-            button {
+            button.favorite-button {
                 border: none;
                 background: none;
                 float: right;
@@ -368,7 +368,7 @@ $flex-right: 5;
 
         &:hover {
             cursor: pointer;
-            .title {
+            .title, .see-more {
                 text-decoration: underline;
             }
 
@@ -379,6 +379,13 @@ $flex-right: 5;
         }
 
         .icon { margin-right: 5px; vertical-align: middle; }
+
+        .see-more {
+            border: none;
+            background: transparent;
+            margin-top: 5px;
+            color: $pink;
+        }
     }
 
     .filter-container {
