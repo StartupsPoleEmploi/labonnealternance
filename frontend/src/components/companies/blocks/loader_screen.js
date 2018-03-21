@@ -21,7 +21,7 @@ export class LoaderScreen extends Component {
                     <div className="loader-logo"><img src="/static/img/loader.svg" alt="" /></div>
                     <div className="loader-text">
                         <img src="/static/img/logo/logo-bleu-lba.svg" alt="La Bonne Alternance" />
-                        recherche parmi 110 000 entreprises qui recrutent régulièrement en alternance.
+                        recherche parmi 410 000 entreprises qui recrutent régulièrement en alternance.
                     </div>
                 </div>
             </div>
