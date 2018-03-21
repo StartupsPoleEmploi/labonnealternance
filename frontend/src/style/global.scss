@@ -9,7 +9,7 @@
 
 html { font-family: $font; }
 html, body, #root, #app {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     margin: 0;
 }
@@ -183,7 +183,6 @@ input[type=text], input[type=email] {
     &.email { width: 18px; height: 18px; background: url('/static/img/icons/email.svg') no-repeat; }
 
     &.heart-active { width: 19px; height: 17px; background: url('/static/img/icons/heart-active.svg') no-repeat; }
-    &.heart-inactive { width: 19px; height: 17px; background: url('/static/img/icons/heart-inactive.svg') no-repeat; }
     &.empty-heart { width: 21px; height: 19px; background: url('/static/img/icons/empty-heart.svg') no-repeat; }
 }
 

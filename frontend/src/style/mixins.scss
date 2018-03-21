@@ -67,7 +67,7 @@
 
 /* Style common between : home, job_search and location search page */
 @mixin mx-home-common {
-    min-height: 100vh;
+    min-height: 99vh;
     width: 100%;
     background-color: black;
     background-attachment: fixed;
@@ -116,7 +116,8 @@
         background-position: center;
         background-image: url('/static/img/fd-desktop.jpg');
 
-        min-height: 100vh;
+        height: 100vh;
+        @media(max-width: $min-width-small-mobile) { height: auto; min-height: 100vh; }
 
         margin: auto;
 
