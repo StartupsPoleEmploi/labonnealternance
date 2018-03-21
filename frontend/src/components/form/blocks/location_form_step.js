@@ -11,6 +11,7 @@ import { SearchFormService } from '../../../services/search_form/search_form.ser
 
 import { Loader } from '../../shared/loader/loader';
 
+const PLACEHOLDER_TEXT = "Ecrivez le nom de votre ville";
 
 export class LocationFormStep extends Component {
 
@@ -51,7 +52,8 @@ export class LocationFormStep extends Component {
 
             autocompleteLocation,
             suggestions: [],
-            term
+            term,
+            placeholder: PLACEHOLDER_TEXT
         };
     }
 
@@ -95,6 +97,10 @@ export class LocationFormStep extends Component {
         this.autocompleteLocationStore();
     }
 
+
+    // Remove/Add placeholder
+    removePlaceholder = () => { this.setState({ placeholder: '' }); }
+    setPlaceholder = () => { this.setState({ placeholder: PLACEHOLDER_TEXT }); }
 
     // Trigger when the user is typing a city's name
     autocompleteCity = (event) => {
@@ -231,7 +237,7 @@ export class LocationFormStep extends Component {
 
                 <div className="or">ou</div>
 
-                <input id="location-input" type="text" placeholder="Ecrivez le nom de votre ville" value={this.state.term} onInput={this.autocompleteCity} />
+                <input id="location-input" type="text" onBlur={this.setPlaceholder} onFocus={this.removePlaceholder} placeholder={this.state.placeholder} value={this.state.term} onInput={this.autocompleteCity} />
                 { this.renderSuggestions()}
 
                 {this.renderSubmitBlock()}

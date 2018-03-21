@@ -8,6 +8,8 @@ import { AutocompleteJobService } from '../../../services/autocomplete_job/autoc
 import { AUTOCOMPLETE_JOB_STORE } from '../../../services/autocomplete_job/autocomplete_job.store';
 import { SearchFormService } from '../../../services/search_form/search_form.service';
 
+const PLACEHOLDER_TEXT = "Graphiste, maçon, second de cuisine...";
+
 export class JobFormStep extends Component {
 
     constructor(props) {
@@ -27,7 +29,8 @@ export class JobFormStep extends Component {
         this.state = {
             suggestions: [],
             job,
-            term
+            term,
+            placeholder: PLACEHOLDER_TEXT
         };
     }
 
@@ -65,6 +68,10 @@ export class JobFormStep extends Component {
         if (!this.props.searchForm.job) return false;
         return this.props.searchForm.job.isValid();
     }
+
+    // Remove/Add placeholder
+    removePlaceholder = () => { this.setState({ placeholder: '' }); }
+    setPlaceholder = () => { this.setState({ placeholder: PLACEHOLDER_TEXT }); }
 
     // Trigger when clicking on 'validate'
     validateStep = () => {
@@ -164,7 +171,7 @@ export class JobFormStep extends Component {
                 */}
 
                 {/* TEMPORARY */}
-                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} placeholder="Graphiste, maçon, second de cuisine..." />
+                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onFocus={this.removePlaceholder} onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
                 {/* END TEMPORARY */}
 
                 {/* TEMPORARY : <ul className="suggestions list-unstyled">{ this.renderSuggestions()}</ul> END TEMPORARY */}
