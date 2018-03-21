@@ -18,9 +18,11 @@ def suggest_romes(request):
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
-    # Remove the alternance word
-    no_alternance = re.compile(re.escape('alternance'), re.IGNORECASE)
-    text = no_alternance.sub('', text)
+    # Remove some cursus words
+    escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap']
+    for word in escape_words:
+        escape = re.compile(re.escape(word), re.IGNORECASE)
+        text = escape.sub('', text)
 
     response = lbb_client.autocomplete_job(text)
     return HttpResponse(response.read())
