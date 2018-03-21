@@ -57,6 +57,7 @@ export class MapBoxService {
         this.newCompaniesFn = debounce(this.getNewCompanies, 300);
 
         this.companiesService = new CompaniesService();
+        this.companyDetailsService = new CompanyDetailsService();
 
         // Markers store and clusters
         this.markers = new Map();
@@ -97,9 +98,16 @@ export class MapBoxService {
 
         // Change color on click
         marker.on('click', (event) => {
+            console.log(event);
             let siret = event.target.options.company.siret;
-            if (siret) this.setPinkMarker(siret);
+            if (siret) {
+                this.companyDetailsService.setCompanySiret(siret);
+                this.setPinkMarker(siret);
+            }
         });
+
+        marker.on('mouseover', (event) => { marker.openPopup() });
+        marker.on('mouseout', (event) => {  marker.closePopup() });
 
         // Add popup
         let popupContent = formatString(popupTemplate, {
@@ -109,6 +117,7 @@ export class MapBoxService {
             distance: company.distance,
             siret: company.siret,
         });
+
         let popup = window.L.popup({ siret: company.siret }).setContent(popupContent);
         marker.bindPopup(popup);
 
