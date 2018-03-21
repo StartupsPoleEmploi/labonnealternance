@@ -12,12 +12,17 @@ $flex-right: 5;
         top: 0;
         right: 0;
         left: 0;
-        min-height: 1px;
         z-index: 3000;
+
+        // We set the height to 1px to avoid superposition between the map and the header
+        // (when new search form or favorites are visible)
+        height: 1px;
 
         display: flex;
 
-        .offset { flex: $flex-left; }
+        .offset {
+            flex: $flex-left;
+        }
 
         .title button {
             position: relative;
@@ -60,7 +65,9 @@ $flex-right: 5;
 
         .title-container {
             flex: $flex-right;
-            &.open { box-shadow: 0 4px 2px -2px gray; }
+            &.open {
+                #new-search, #favorites-list { box-shadow: 0 4px 2px -2px gray; }
+            }
             .title {
                 padding: 20px;
                 display: flex;
