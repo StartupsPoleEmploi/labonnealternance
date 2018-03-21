@@ -33,8 +33,8 @@ export default class FavoriteButton extends Component {
         }
 
         return (
-            <button className="heart-inactive" onClick={this.addFavorite} title={'Ajouter ' + this.props.company.label + ' aux favoris'}>
-                <span className="icon heart heart-inactive">&nbsp;</span>
+            <button onClick={this.addFavorite} title={'Ajouter ' + this.props.company.label + ' aux favoris'}>
+                <span className="icon heart empty-heart">&nbsp;</span>
             </button>
         );
     }
