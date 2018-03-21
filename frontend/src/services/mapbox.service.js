@@ -22,16 +22,6 @@ window.selectSiret = (el) => {
     }
 };
 
-const popupTemplate = `
-    <div class='popup-content' data-siret='{siret}' onClick='selectSiret(this)'>
-        <span><span class='icon pink-arrow'></span>{distance} km(s) du lieu de recherche</span>
-        <span class='blue'>{companyName}</span>
-        <span class='blue'>{address}</span>
-        <span>{nafText}</span>
-        <span class='pink'>Ça m'intéresse !</span>
-    </div>
-`;
-
 
 export class MapBoxService {
 
@@ -98,7 +88,6 @@ export class MapBoxService {
 
         // Change color on click
         marker.on('click', (event) => {
-            console.log(event);
             let siret = event.target.options.company.siret;
             if (siret) {
                 this.companyDetailsService.setCompanySiret(siret);
@@ -108,18 +97,6 @@ export class MapBoxService {
 
         marker.on('mouseover', (event) => { marker.openPopup() });
         marker.on('mouseout', (event) => {  marker.closePopup() });
-
-        // Add popup
-        let popupContent = formatString(popupTemplate, {
-            companyName: company.label,
-            address: company.city || '',
-            nafText: company.nafText,
-            distance: company.distance,
-            siret: company.siret,
-        });
-
-        let popup = window.L.popup({ siret: company.siret }).setContent(popupContent);
-        marker.bindPopup(popup);
 
         // Save the marker
         this.markers.set(company.siret, marker);
