@@ -243,8 +243,12 @@ $flex-right: 5;
         background-color: white;
     }
 
+    img.lba-logo {
+        padding-top: 30px;
+        padding-left: 30px;
+    }
     .loader-logo {
-        padding-top: 30vh;
+        padding-top: 25vh;
         @media (max-width: $min-width-small-mobile) { padding-top: 20vh; }
         margin-bottom: 50px;
         text-align: center;
@@ -258,15 +262,15 @@ $flex-right: 5;
 
     .loader-text {
         margin: auto;
-        width: 400px;
+        width: 700px;
         max-width: 100%;
         text-align: center;
-        font-size: 1.3em;
-        img {
-            display: block;
-            margin: auto;
-            margin-bottom: 10px;
-        }
+        font-size: 2em;
+        @media (max-width: $min-width-mobile) { font-size: 1.75em; }
+        @media (max-width: $min-width-small-mobile) { font-size: 1.5em; }
+
+        p.intro { margin-bottom: 15px; }
+
     }
 }
 
