@@ -97,9 +97,9 @@ class Companies extends Component {
         } else {
 
             // On mobile, on first result page ever : display the number of results
-            let showMobileResultPopup = this.state.mobileVersion && localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null;
+            let showMobileResultPopup = localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null;
             if (showMobileResultPopup) {
-                let message = this.companiesService.computeResultTitle(companyCount, this.state.jobName, this.state.cityName);
+                let message = '7 entreprises sur 10 recrutent sans déposer d\'offres d\'emploi... N\'hésitez pas à proposer votre candidature !';
                 this.notificationService.createInfo(message, SHOW_RESULT_POPUP_KEY);
             }
 
