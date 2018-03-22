@@ -118,6 +118,10 @@ export class LocationFormStep extends Component {
         let city = event.target.innerText;
 
         // Save location
+        this.saveLocation(city, zipcode, citySlug, longitude, latitude);
+    }
+    // Save a location (not geolocated)
+    saveLocation(city, zipcode, citySlug, longitude, latitude, validateCallback = false) {
         this.props.searchForm.setLocation(
             new Location(city, zipcode, citySlug, longitude, latitude, false)
         );
@@ -128,7 +132,11 @@ export class LocationFormStep extends Component {
             suggestions: [],
             term: city,
             autocompleteLocation: { address: city, slug: citySlug, zipcode, longitude, latitude }
-        });
+        },
+            () => { if(validateCallback) this.validateStep(); }
+        );
+
+
     }
 
     // Trigger when cliking on my current position
@@ -161,6 +169,20 @@ export class LocationFormStep extends Component {
         let latitude = location.latitude || undefined;
 
         return zipcode && longitude && latitude;
+    }
+
+    nextIfEnter = (event) => {
+        if (event.key === 'Enter') {
+            // We take the first element in auto-complete (if possible)
+            if (this.state.suggestions.length > 0) {
+                let firstSuggestion = this.state.suggestions[0];
+
+                // Save (and validateSetp by using true at the end of the function call)
+                let city = firstSuggestion.city + ' (' + firstSuggestion.zipcode + ')';
+                let citySlug = firstSuggestion.city + '-' + firstSuggestion.zipcode;
+                this.saveLocation(city, firstSuggestion.zipcode, citySlug, firstSuggestion.longitude, firstSuggestion.latitude, true);
+            }
+        }
     }
 
     validateStep = () => {
@@ -237,7 +259,7 @@ export class LocationFormStep extends Component {
 
                 <div className="or">ou</div>
 
-                <input id="location-input" type="text" onBlur={this.setPlaceholder} onFocus={this.removePlaceholder} placeholder={this.state.placeholder} value={this.state.term} onInput={this.autocompleteCity} />
+                <input id="location-input" type="text" onBlur={this.setPlaceholder}  onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder} value={this.state.term} onInput={this.autocompleteCity} />
                 { this.renderSuggestions()}
 
                 {this.renderSubmitBlock()}

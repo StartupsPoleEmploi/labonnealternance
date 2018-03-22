@@ -38,7 +38,7 @@ export class JobFormStep extends Component {
         this.notificationService.deleteNotification();
 
         this.jobStoreUnsubscribeFn = AUTOCOMPLETE_JOB_STORE.subscribe(() => {
-            // TEMPORARY => Save the premier résultats
+
             let suggestions =  AUTOCOMPLETE_JOB_STORE.getState();
             if (suggestions.length === 0) this.removeJob();
             else {
@@ -50,7 +50,6 @@ export class JobFormStep extends Component {
                 // Save new job and reset form
                 this.setState({ job });
             }
-            // END TEMPORARY
 
             this.setState({ suggestions });
         });
@@ -123,6 +122,10 @@ export class JobFormStep extends Component {
     }
 
 
+    nextIfEnter = (event) => {
+        if (event.key === 'Enter') this.validateStep();
+    }
+
     // RENDER PART
     renderSelectedJob() {
         if (!this.state.job) return null;
@@ -165,16 +168,7 @@ export class JobFormStep extends Component {
             <div id="job-form-step">
                 <h2><label htmlFor="job_input">Quel métier cherchez-vous ?</label></h2>
 
-                {/* this.state.job ?
-                    this.renderSelectedJob() :
-                    <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} placeholder="Graphiste, maçon, second de cuisine..." />
-                */}
-
-                {/* TEMPORARY */}
-                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onFocus={this.removePlaceholder} onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
-                {/* END TEMPORARY */}
-
-                {/* TEMPORARY : <ul className="suggestions list-unstyled">{ this.renderSuggestions()}</ul> END TEMPORARY */}
+                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
 
                 {this.renderSubmitBlock()}
             </div>
