@@ -15,7 +15,7 @@ export default class Home extends Component {
 
                     <main className="container max-size-1000">
                         <h2 className="introduction">
-                            <span>Trouvez ici les <strong>410 000 entreprises</strong></span><br />
+                            <span>Trouvez ici les <strong><span className="no-break-word bold">410 000</span> entreprises</strong></span><br />
                             <span>qui <strong>vont</strong> recruter en alternance</span>
                         </h2>
 
