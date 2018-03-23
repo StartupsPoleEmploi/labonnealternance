@@ -116,7 +116,7 @@
         background-position: center;
         background-image: url('/static/img/fd-desktop.jpg');
 
-        height: 100vh;
+        min-height: 100vh;
         @media(max-width: $min-width-small-mobile) { height: auto; min-height: 100vh; }
 
         margin: auto;
@@ -138,9 +138,16 @@
 
         @media(max-width: $min-width-mobile) {
             background-image: url('/static/img/fd-mobile.jpg');
+            background-attachment: fixed;
+            background-position: center;
+
             max-width: 100%;
             padding: 10px;
-            main { min-width: inherit; }
+            main {
+                min-width: inherit;
+                // Make Action button visible on scroll
+                margin-bottom: 80px;
+            }
         }
 
         footer {
