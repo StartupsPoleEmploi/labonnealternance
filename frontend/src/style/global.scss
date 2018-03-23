@@ -61,6 +61,28 @@ button.close {
 ul.two-columns { columns: 2; }
 ul.three-columns { columns: 3; }
 
+// Loading animation
+.loading:after {
+    display: inline-block;
+    animation: dotty steps(1,end) 1s infinite;
+    content: '';
+  }
+
+@-webkit-keyframes dotty {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+}
+@keyframes dotty {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+}
+
 
 // Heartbeat/Favorite animation
 .heartbeat-animation {

@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-// Pages
-import asyncComponent from './components/shared/asyncComponent';
+// Main pages (no async)
 import Home from './components/home/home';
+import Form from './components/form/form';
+import Companies from './components/companies/companies';
+import NotFound from './components/not_found/not_found';
+import CompanyDetails from './components/company_details/company_details';
+
 import registerServiceWorker from './registerServiceWorker';
 
-const AsyncForm = asyncComponent(() => import('./components/form/form'));
-const AsyncCompanies = asyncComponent(() => import('./components/companies/companies'));
-const AsyncCompanyDetails = asyncComponent(() => import('./components/company_details/company_details'));
+// Async component
+import asyncComponent from './components/shared/asyncComponent';
 const AsyncMentionsLegales = asyncComponent(() => import('./components/mentions_legales/mentions_legales'));
-const AsyncNotFound = asyncComponent(() => import('./components/not_found/not_found'));
 
 require('./style/global.css');
 
@@ -25,17 +27,17 @@ export default class App extends Component {
                 <BrowserRouter>
                     <Switch>
                         <Route component={Home} exact path="/" />
-                        <Route component={AsyncForm} exact path="/recherche" />
+                        <Route component={Form} exact path="/recherche" />
 
-                        <Route component={AsyncCompanies} exact path="/entreprises/:citySlug/:jobSlug" />
-                        <Route component={AsyncCompanies} exact path="/entreprises/:jobSlug/:longitude/:latitude" />
+                        <Route component={Companies} exact path="/entreprises/:citySlug/:jobSlug" />
+                        <Route component={Companies} exact path="/entreprises/:jobSlug/:longitude/:latitude" />
 
-                        <Route component={AsyncCompanyDetails} path="/details-entreprises/:companySiret" />
+                        <Route component={CompanyDetails} path="/details-entreprises/:companySiret" />
 
                         <Route component={AsyncMentionsLegales} exact path="/mentions-legales" />
 
                         {/* Not found route */}
-                        <Route component={AsyncNotFound} />
+                        <Route component={NotFound} />
                     </Switch>
                 </BrowserRouter>
             </div>

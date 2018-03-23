@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
 
-    <!-- SEO Values -->
-    <meta name="keywords" content="contrat offres alternance">
-    <meta name="description" content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance !">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
 
-    <!--
+  <link href="./home.css" rel="stylesheet">
+  <link href="./global.css" rel="stylesheet">
+
+  <!-- SEO Values -->
+  <meta name="keywords" content="contrat offres alternance">
+  <meta name="description" content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance !">
+
+  <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/static/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/static/favicon.png">
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/static/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/static/favicon.png">
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -27,12 +31,69 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>La Bonne Alternance</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  <title>La Bonne Alternance</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+
+    <!-- Loading template -->
+    <div id="app">
+      <div id="home">
+        <div class="container">
+          <div class="beta">&nbsp;</div>
+          <header>
+            <a class="logo-lba" href="/">
+              <img src="/static/img/logo/logo-blanc-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil">
+            </a>
+            <a class="logo-pe" href="https://www.pole-emploi.fr/">
+              <img src="/static/img/logo/logo-pe-NB.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi">
+            </a>
+          </header>
+          <main class="container max-size-1000">
+            <h2 class="introduction">
+              <span>Trouvez ici les
+                <strong>
+                  <span class="no-break-word bold">410 000</span> entreprises</strong>
+              </span>
+              <br>
+              <span>qui
+                <strong>vont</strong> recruter en alternance</span>
+            </h2>
+            <div class="button-container">
+              <div class="loading">Chargement en cours</div>
+            </div>
+          </main>
+          <footer>
+            <ul class="list-unstyled inline-list">
+              <li class="fse">
+                <a href="#">
+                  <img src="/static/img/logo/logo-FSE-color.svg" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="/static/img/logo/logo-ue.svg" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="/static/img/logo/pole-emploi-couleur.svg" alt="">
+                </a>
+              </li>
+              <li class="fse-text">
+                <p>Ce dispositif est cofinancé par le Fond Social Européen dans le cadre du Programme opérationnel national
+                  "emploi et inclusion" 2014-2020</p>
+              </li>
+            </ul>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- Fin template -->
+  </div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -42,5 +103,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>

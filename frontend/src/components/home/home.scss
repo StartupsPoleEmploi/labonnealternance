@@ -45,6 +45,9 @@
         letter-spacing: 1px;
         font-size: 1.2em;
 
+        .loading {
+            color: white;
+        }
         @media(max-width: $min-width-mobile) {
             margin-top: 10vh;
         }
