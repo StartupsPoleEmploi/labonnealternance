@@ -62,7 +62,7 @@ ul.two-columns { columns: 2; }
 ul.three-columns { columns: 3; }
 
 // Loading animation
-.loading:after {
+.loading-dotted:after {
     display: inline-block;
     animation: dotty steps(1,end) 1s infinite;
     content: '';
