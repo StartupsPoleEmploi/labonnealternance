@@ -9,6 +9,8 @@ import { CompanyListItem } from './company_list_item';
 import { CompanyFilters } from './company_filters';
 import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 
+import { Loader } from '../../shared/loader/loader';
+
 export class Map extends Component {
 
     constructor(props) {
@@ -28,6 +30,8 @@ export class Map extends Component {
             count: 0,
 
             showFilters: false,
+            isFiltering: false,
+
             modalNoResult: false,
 
             // Mobile
@@ -38,17 +42,24 @@ export class Map extends Component {
     componentWillMount() {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
+
+            // Detect if a filter is active
+            let filterActive = false;
+
             let companiesStored = COMPANIES_STORE.getState();
             let companies = this.state.companies;
 
             companiesStored.forEach(company => {
                 // Is company filtered ?
-                if (company.visible === false) return;
+                if (company.visible === false) {
+                    // Save the fact that, at least, one company is filtered
+                    if(!filterActive) filterActive = true;
+                    return;
+                }
 
                 // Avoid duplicates
                 let exists = companies.find(companySaved => companySaved.siret === company.siret);
                 if (exists) return;
-
                 companies.push(company);
 
                 // Wait between 0..1 second to add a marker (to create a little delay)
@@ -59,16 +70,18 @@ export class Map extends Component {
                 }, delay * 1000); // x1000 to get in second instead of milliseconds
             });
 
-            // Sort by distance
+            // Sort comapnies by distance
             companies = companies.sort((a,b) => a.distance - b.distance);
 
             // Register companies and display no-result if needed
             this.setState({ companies });
-            // Wait before display markers
-            setTimeout(() => { this.setState({ loading: false }); }, 1000);
+            // Wait before remove loading
+            setTimeout(() => {
+                this.setState({ loading: false, isFiltering: false });
+            }, 1000);
 
             // Call parent to show or hide the search form or filters
-            this.props.handleCompanyCount(companies.length);
+            if(!filterActive) this.props.handleCompanyCount(companies.length);
         });
 
         // When a favorite is added/deleted => force update of the list
@@ -103,7 +116,7 @@ export class Map extends Component {
         // Clear datas
         this.mapBoxService.removeAllMakers();
         this.setState(
-            { companies: [], count: 0, loading: true },
+            { companies: [], count: 0, isFiltering: true },
             () => this.companiesService.applyFilters(filters)
         );
 
@@ -181,7 +194,8 @@ export class Map extends Component {
                     <button onClick={this.showFilters}>
                         <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
                     </button>
-                    { this.state.showFilters ? <button onClick={this.hideFilters} className="icon close-icon">&nbsp;</button> : null }
+                    { this.state.isFiltering ? <Loader cssClass="loader"/>: null }
+                    { this.state.showFilters ? <button onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
                 </div>
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}

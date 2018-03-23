@@ -31,6 +31,7 @@ export class CompanyFilters extends Component {
     componentWillMount() {
         // FILTERS : Extract NAF text when we get companies
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
+
             let companies = COMPANIES_STORE.getState();
 
             // No companies : clear filters
@@ -68,14 +69,15 @@ export class CompanyFilters extends Component {
     }
 
     // Select/Deselect
-    deselectedAllNaf = (event) => { this.setState({ nafSelectedIndex: [] }); }
+    deselectedAllNaf = (event) => { this.setState({ nafSelectedIndex: [] }, () => this.filterCompanies()); }
+    deselectedAllHeadcount = (event) => { this.setState({ headcountSelectedIndex: [] }, () => this.filterCompanies());  }
+
+    selectAllHeadcount = (event) => { this.setState({ headcountSelectedIndex: HEADCOUNT_SELECTED_INDEX }, () => this.filterCompanies()); }
     selectAllNaf = (event) => {
         let nafSelectedIndex = [];
         for (let i = 0; i < this.state.nafValues.length; i++) nafSelectedIndex.push(i);
-        this.setState({ nafSelectedIndex });
+        this.setState({ nafSelectedIndex }, () => this.filterCompanies());
     }
-    deselectedAllHeadcount = (event) => {  this.setState({ headcountSelectedIndex: [] });  }
-    selectAllHeadcount = (event) => { this.setState({ headcountSelectedIndex: HEADCOUNT_SELECTED_INDEX }); }
 
     // HEADCOUNT
     toggleHeadcount = (event) => {
@@ -92,7 +94,7 @@ export class CompanyFilters extends Component {
         if (index !== -1) headcounts = headcounts.filter(filterValue => filterValue !== value);
         else headcounts.push(value);
 
-        this.setState({ headcountSelectedIndex: headcounts });
+        this.setState({ headcountSelectedIndex: headcounts }, () => this.filterCompanies());
 
     }
 
@@ -136,7 +138,7 @@ export class CompanyFilters extends Component {
         if (index !== -1) nafs = nafs.filter(filterValue => filterValue !== value);
         else nafs.push(value);
 
-        this.setState({ nafSelectedIndex: nafs });
+        this.setState({ nafSelectedIndex: nafs }, () => this.filterCompanies());
     }
 
     filterCompanies = () => {

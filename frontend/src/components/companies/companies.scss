@@ -407,6 +407,13 @@ $flex-right: 5;
         font-size: 15px;
         padding: 10px 20px 5px 20px;
         color: $blue;
+        display: flex;
+
+        .loader {
+            margin-right: 20px;
+            margin-top: 10px;
+            @include mx-loader();
+        }
 
         span {
             font-weight: bolder;
@@ -414,14 +421,14 @@ $flex-right: 5;
             color: $blue;
         }
 
-        .filter-icon { float: left; margin-right: 5px; }
-        .close-icon { float: right; }
-
-        button:first-child {
+        button {
             outline: none;
             background: none;
-            width: 95%;
             border: none;
+        }
+
+        button:first-child {
+            flex: 10;
             display: inline-block;
             text-align: left;
         }
