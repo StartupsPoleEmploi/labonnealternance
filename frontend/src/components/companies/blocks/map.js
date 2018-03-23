@@ -181,7 +181,7 @@ export class Map extends Component {
                     <button onClick={this.showFilters}>
                         <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
                     </button>
-                    { this.state.showFilters ? <span onClick={this.hideFilters} className="icon close-icon">&nbsp;</span> : null }
+                    { this.state.showFilters ? <button onClick={this.hideFilters} className="icon close-icon">&nbsp;</button> : null }
                 </div>
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}

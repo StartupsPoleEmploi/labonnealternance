@@ -10,6 +10,8 @@ const HEADCOUNT_VALUES = [
     ['500 à 999','1 000 à 1 999','2 000 à 4 999','5 000 à 9 999','10 000']
 ];
 
+const HEADCOUNT_SELECTED_INDEX = [0,1,2,3,4];
+
 export class CompanyFilters extends Component {
 
     constructor(props) {
@@ -18,7 +20,7 @@ export class CompanyFilters extends Component {
         this.state = {
             showFilter: false,
 
-            headcountSelectedIndex: [0,1,2,3,4],
+            headcountSelectedIndex: HEADCOUNT_SELECTED_INDEX,
 
             nafValues: [],
             nafSelectedIndex: [],
@@ -64,6 +66,16 @@ export class CompanyFilters extends Component {
         let exists = filtersCollections.find(value => value === index);
         return Number.isInteger(exists);
     }
+
+    // Select/Deselect
+    deselectedAllNaf = (event) => { this.setState({ nafSelectedIndex: [] }); }
+    selectAllNaf = (event) => {
+        let nafSelectedIndex = [];
+        for (let i = 0; i < this.state.nafValues.length; i++) nafSelectedIndex.push(i);
+        this.setState({ nafSelectedIndex });
+    }
+    deselectedAllHeadcount = (event) => {  this.setState({ headcountSelectedIndex: [] });  }
+    selectAllHeadcount = (event) => { this.setState({ headcountSelectedIndex: HEADCOUNT_SELECTED_INDEX }); }
 
     // HEADCOUNT
     toggleHeadcount = (event) => {
@@ -176,7 +188,13 @@ export class CompanyFilters extends Component {
         return (
             <div id="filters" className={this.props.show ? 'no-padding':'sr-only no-padding'}>
 
-                <h3 className="filter-title">Taille de l'entreprise</h3>
+                <div className="filter-title">
+                    <h3>Taille de l'entreprise</h3>
+                    { this.state.headcountSelectedIndex.length > 0 ?
+                        <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.deselectedAllHeadcount}>Tout déselectionner</button>:
+                        <button title="Sélectionner toutes les tailles d'entreprise" onClick={this.selectAllHeadcount}>Tout sélectionner</button>
+                    }
+                </div>
                 <ul className="list-unstyled">
                     { this.renderHeadcount('- de 10 salariés', 0)}
                     { this.renderHeadcount('de 10 à 50 salariés', 1)}
@@ -185,7 +203,13 @@ export class CompanyFilters extends Component {
                     { this.renderHeadcount('+ de 500 salariés', 4)}
                 </ul>
 
-                <h3 className="filter-title">Secteurs d'activité</h3>
+                <div className="filter-title">
+                    <h3>Secteurs d'activité</h3>
+                    { this.state.nafSelectedIndex.length > 0 ?
+                        <button title="Désélectionner tous les secteurs d'activités" onClick={this.deselectedAllNaf}>Tout déselectionner</button>:
+                        <button title="Sélectionner tous les secteurs d'activités" onClick={this.selectAllNaf}>Tout sélectionner</button>
+                    }
+                </div>
                 <ul className="list-unstyled">
                     {this.state.nafValues.map((text, index) => this.renderNaf(text, index))}
                 </ul>

@@ -405,7 +405,7 @@ $flex-right: 5;
     .filter-container {
         font-weight: bolder;
         font-size: 15px;
-        padding: 10px 20px 0 20px;
+        padding: 10px 20px 5px 20px;
         color: $blue;
 
         span {
@@ -417,10 +417,10 @@ $flex-right: 5;
         .filter-icon { float: left; margin-right: 5px; }
         .close-icon { float: right; }
 
-        button {
+        button:first-child {
             outline: none;
             background: none;
-            width: 100%;
+            width: 95%;
             border: none;
             display: inline-block;
             text-align: left;
@@ -433,7 +433,21 @@ $flex-right: 5;
     height: 70vh;
     overflow: auto;
 
-    h3 { padding: 10px 0 10px 10px}
+    .filter-title {
+        h3, button {
+            display: inline-block;
+        }
+        h3 { padding: 10px 0 10px 10px; }
+        button {
+            float: right;
+            padding: 10px;
+            background: none;
+            border: none;
+            text-decoration: underline;
+            font-size: 10.5px;
+        }
+    }
+
     li {
         display: block;
         border-bottom: solid 1px $lightgray;
