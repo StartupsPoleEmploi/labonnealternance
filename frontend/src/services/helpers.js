@@ -5,7 +5,8 @@ export function cleanTerm(term) {
 }
 
 export function slug(str) {
-    return cleanTerm(str);
+    str = cleanTerm(str);
+    return str.replace(/ /g,'-');
 }
 
 // Small string format : http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/

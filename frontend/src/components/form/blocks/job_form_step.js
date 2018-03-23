@@ -20,15 +20,15 @@ export class JobFormStep extends Component {
         this.notificationService = new NotificationService();
 
         // Get search form register values
-        let term = ''; let job;
-        if (this.props.searchForm && this.props.searchForm.job) {
-            job = this.props.searchForm.job;
-            term = this.props.searchForm.job.searchTerm;
+        let term = ''; let jobs = [];
+        if (this.props.searchForm && this.props.searchForm.jobs) {
+            jobs = this.props.searchForm.jobs;
+            term = this.props.searchForm.term;
         }
 
         this.state = {
             suggestions: [],
-            job,
+            jobs,
             term,
             placeholder: PLACEHOLDER_TEXT
         };
@@ -42,13 +42,19 @@ export class JobFormStep extends Component {
             let suggestions =  AUTOCOMPLETE_JOB_STORE.getState();
             if (suggestions.length === 0) this.removeJob();
             else {
-                // Save the first job
-                let job = new Job(suggestions[0].rome, suggestions[0].label, suggestions[0].slug, this.state.term);
-                this.props.searchForm.setJob(job);
+                // Save all the jobs
+                let jobs = [];
+                suggestions.forEach(suggest => {
+                    jobs.push(new Job(suggest.rome, suggest.label, suggest.slug));
+                });
+                
+                this.props.searchForm.setJobs(jobs);
+                this.props.searchForm.setTerm(this.state.term);
+        
                 if (this.props.onChange) this.props.onChange(); // Notifify parent
 
                 // Save new job and reset form
-                this.setState({ job });
+                this.setState({ jobs });
             }
 
             this.setState({ suggestions });
@@ -64,8 +70,9 @@ export class JobFormStep extends Component {
     }
 
     isValid = () => {
-        if (!this.props.searchForm.job) return false;
-        return this.props.searchForm.job.isValid();
+        if (!this.props.searchForm.jobs) return false;
+        if (this.props.searchForm.jobs.length === 0) return false;
+        return this.props.searchForm.areJobsValid();
     }
 
     // Remove/Add placeholder
@@ -74,11 +81,11 @@ export class JobFormStep extends Component {
 
     // Trigger when clicking on 'validate'
     validateStep = () => {
-        if (!this.props.searchForm.job) {
+        if (!this.props.searchForm.jobs.length === 0) {
             this.notificationService.createError('Le métier renseigné nous est inconnu');
             return;
         }
-        if (!this.props.searchForm.job.isValid()) {
+        if (!this.props.searchForm.areJobsValid()) {
             this.notificationService.createError('Erreur avec le métier renseigné');
             return;
         }
@@ -86,31 +93,6 @@ export class JobFormStep extends Component {
         // Save values and called next step
         this.props.next();
     }
-
-    // Trigger when clicking on a job selected
-    removeJob = (event) => {
-        this.setState({ job: undefined });
-    }
-
-    // Trigger when clicking on a job suggestion
-    addJob = (event) => {
-        let rome = event.target.attributes['data-rome'].value;
-        let label = event.target.attributes['data-label'].value;
-        let slug = event.target.attributes['data-slug'].value;
-
-        let job = new Job(rome, label, slug, '');
-        this.props.searchForm.setJob(job);
-        if (this.props.onChange) this.props.onChange(); // Notifify parent
-
-        // Save new job and reset form
-        this.setState({
-            job,
-            suggestions: [],
-            term: ''
-        });
-
-    }
-
 
     // Trigger when filling the job input
     autocompleteJobs = (event) => {
@@ -121,37 +103,11 @@ export class JobFormStep extends Component {
         if (term && term.length > 2) this.autocompleteJobService.getJobs(term);
     }
 
-
     nextIfEnter = (event) => {
         if (event.key === 'Enter') this.validateStep();
     }
 
     // RENDER PART
-    renderSelectedJob() {
-        if (!this.state.job) return null;
-
-        return (
-            <ul className="list-unstyled">
-                <li className="selected">
-                    <span>{ this.state.job.label}</span>
-                    <button className="close" onClick={this.removeJob}>X</button>
-                </li>
-            </ul>
-        );
-    }
-
-    renderSuggestions() {
-        if (this.state.suggestions.length === 0) return null;
-
-        return (
-            this.state.suggestions.map(occupation =>
-                (<li key={occupation.rome} onClick={this.addJob} data-rome={occupation.rome} data-slug={occupation.slug} data-label={occupation.label}>
-                    { occupation.label}
-                </li>)
-            )
-        );
-    }
-
     renderSubmitBlock() {
         if (!this.props.next) return null;
 

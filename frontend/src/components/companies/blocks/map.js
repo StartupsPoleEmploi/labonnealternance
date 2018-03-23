@@ -94,8 +94,9 @@ export class Map extends Component {
         // Create map when the component is ready
         this.mapBoxService.createMap(this.props.longitude, this.props.latitude);
 
-        let response = this.companiesService.getCompanies(this.props.rome, this.props.longitude, this.props.latitude, { distance: this.mapBoxService.getMapMinDistance() });
-        response.then(companiesCount => this.handleCompaniesCount(companiesCount));
+        // For each jobs, get companies
+        let distance = this.mapBoxService.getMapMinDistance();
+        this.props.jobs.map(job => this.companiesService.getCompanies(job, this.props.longitude, this.props.latitude, { distance }));
     }
 
     componentWillUnmount() {
@@ -142,8 +143,9 @@ export class Map extends Component {
         this.setState({ companies: [], count: 0, loading: true });
         this.companiesService.clearCompanies();
 
-        let response = this.companiesService.getCompanies(this.props.rome, newLongitude, newLatitude, { distance: newDistance });
-        response.then(companiesCount => this.handleCompaniesCount(companiesCount));
+        // For each jobs, get companies
+        let distance = this.mapBoxService.getMapMinDistance();
+        this.props.jobs.map(job => this.companiesService.getCompanies(job, this.props.longitude, this.props.latitude, { distance }));
     }
     handleCompaniesCount = (companiesCount) => {
         if (companiesCount === 0) {
@@ -173,14 +175,13 @@ export class Map extends Component {
     }
     renderResultTitle() {
         if (this.state.companies.length === 0) return null;
-        return (<div><h2>{this.companiesService.computeResultTitle(this.state.companies.length, this.props.jobName, this.props.cityName)}</h2></div>);
+        return (<div><h2>{this.companiesService.computeResultTitle(this.state.companies.length, this.props.searchTerm, this.props.cityName)}</h2></div>);
     }
     renderResultList() {
         if (this.state.companies.length === 0) return null;
         return (
             <ul className="list-unstyled list">
                 {this.state.companies.map((company, index) => <CompanyListItem key={index} company={company} hoverFn={this.listItemHover} />)}
-                {/* <Pagination companiesCount={this.state.companies.length} applyPagination={this.applyPagination}/> */}
             </ul>
         );
     }

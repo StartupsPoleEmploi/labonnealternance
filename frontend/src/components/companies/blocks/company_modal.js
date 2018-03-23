@@ -22,17 +22,14 @@ export class CompanyModal extends Component {
     componentWillMount() {
         this.companyDetailsStore = COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
-            if (company) this.setState({ company });
+            if (company) {
+                this.setState({ company });
+                if(company.job && company.job.rome) {
+                    this.companyDetailsService.getSoftSkills(company.job.rome);
+                    this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
+                }
+            } else this.setState({ company: undefined });
         });
-
-        let company = this.companyDetailsService.getCompany();
-        if (company) {
-            this.setState({ company });
-
-            // Get more informations about the company
-            this.companyDetailsService.getSoftSkills(this.props.rome);
-            this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
-        }
 
         // When a favorite is added/deleted => force update if needed
         this.favoritesStore = FAVORITES_STORE.subscribe(() => {
@@ -48,7 +45,7 @@ export class CompanyModal extends Component {
     }
 
     closeModal = (event) => {
-        // This event will catched in comapnies.js (method : handleBackForwardEvent)
+        // This event will catched in companies.js (method : handleBackForwardEvent)
         window.history.back();
     }
 
@@ -93,7 +90,7 @@ export class CompanyModal extends Component {
             <div className="prepare-application">
                 <div className="line responsive-column">
                     <div className="soft-skills">
-                        <h4>Connaissez-vous les qualités requises pour les métiers en {this.props.jobName} ?</h4>
+                        <h4>Connaissez-vous les qualités requises pour les métiers en {this.state.company.job.label} ?</h4>
                         <ul className="list-unstyled two-columns">
                             { softSkills.map((skill, index) => <li key={index}>- {skill}</li>)}
                         </ul>
@@ -174,7 +171,7 @@ export class CompanyModal extends Component {
                 <div className="modal-content">
 
                     <div className="modal-title">
-                        <h1>{ company.label } a recruté en alternance dans le secteur {this.props.jobName} en 2017.</h1>
+                    <h1>{ company.label } a recruté en alternance dans le secteur {this.state.company.job.label} en 2017.</h1>
                         <strong>Tentez votre chance, postulez avant que l'offre ne soit publiée !</strong>
 
                         <div className="actions-zone">

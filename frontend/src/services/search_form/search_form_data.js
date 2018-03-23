@@ -4,12 +4,22 @@ import { formatString } from '../../services/helpers';
 export class SearchFormData {
 
     constructor() {
-        this.job = undefined;
+        this.term = '';
+        this.jobs = undefined;
         this.location = undefined;
     }
 
-    setJob(job) { this.job = job; }
-    hasJob() { return this.job !== undefined; }
+    setTerm(term) { this.term = term; }
+    getTerm() { return this.term; }
+
+    setJobs(jobs) { this.jobs = jobs; }
+    hasJobs() { return this.jobs !== undefined; }
+    areJobsValid() {
+        for(let i = 0; i < this.jobs.length; i++) {
+            if(!this.jobs[i].isValid()) return false;
+        }
+        return true;
+    }
 
     setLocation(location) { this.location = location; }
     getLocation() { return this.location; }
@@ -17,13 +27,16 @@ export class SearchFormData {
     hasLocation() { return this.location !== undefined; }
 
     callSearch(historyContext) {
+        let urlJobs = this.jobs.map(job => job.slug).join('&');
+
         // If user use geolocalisation
         if (this.location.isGeolocated) {
             historyContext.push(
-                formatString('/entreprises/{jobSlug}/{longitude}/{latitude}', {
+                formatString('/entreprises/{jobSlug}/{longitude}/{latitude}/{term}', {
                     longitude: this.location.longitude,
                     latitude: this.location.latitude,
-                    jobSlug: this.job.slug,
+                    jobSlug: urlJobs,
+                    term: encodeURIComponent(this.term)
                 })
             );
             return;
@@ -31,9 +44,10 @@ export class SearchFormData {
 
         // If use the city auto-complete form
         historyContext.push(
-            formatString('/entreprises/{citySlug}/{jobSlug}', {
+            formatString('/entreprises/{jobSlug}/{citySlug}/{term}', {
                 citySlug: this.location.slug,
-                jobSlug: this.job.slug,
+                jobSlug: urlJobs,
+                term: encodeURIComponent(this.term)
             })
         );
 

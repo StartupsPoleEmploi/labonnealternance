@@ -87,9 +87,9 @@ export class MapBoxService {
 
         // Change color on click
         marker.on('click', (event) => {
-            let siret = event.target.options.company.siret;
+            let siret = event.target.options.company;
             if (siret) {
-                this.companyDetailsService.setCompanySiret(siret);
+                this.companyDetailsService.setCompany(company);
                 this.setPinkMarker(siret);
             }
         });

@@ -18,6 +18,7 @@ import { NotificationService } from '../../services/notification/notification.se
 import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 
+import { Job } from '../../services/search_form/job';
 import { formatString } from '../../services/helpers';
 
 require('./companies.css');
@@ -51,9 +52,9 @@ class Companies extends Component {
             latitude: this.props.match.params.latitude,
             cityName: undefined,
 
-            jobSlug: this.props.match.params.jobSlug,
-            rome: this.props.match.params.rome,
-            jobName: undefined,
+            jobSlugs: this.props.match.params.jobSlugs,
+            jobs: [],
+            searchTerm: this.props.match.params.term || '',
 
             mobileVersion: window.innerWidth < MOBILE_MAX_WIDTH,
             showSearchForm: false,
@@ -147,8 +148,7 @@ class Companies extends Component {
         }
 
         // Check job
-        let jobOk = this.state.jobSlug !== undefined;
-
+        let jobOk = this.state.jobSlugs !== undefined;
         if (!jobOk && !locationOk) {
             this.setState({ inputError: true });
             return;
@@ -190,33 +190,42 @@ class Companies extends Component {
         // TODO => Get datas from localStorage if match between city/job Slugs
 
         // Get Job from slug
-        if (this.state.jobSlug) {
-            let response = this.companiesService.getJobFromSlug(this.state.jobSlug);
-            response.then(response => {
-                // Set Job Values
-                this.setState({
-                    rome: response.job.rome_code,
-                    jobName: response.job.label,
-                    loading: this.state.citySlug,
-                });
+        if (this.state.jobSlugs) {
+            let jobSlugs = this.state.jobSlugs.split('&');
 
-                // Get location value (if needed) either init the map
-                if (!this.state.citySlug) {
-                    this.initPageContent();
-                } else {
-                    // Get coordinates and city
-                    let response = this.companiesService.getCityFromSlug(this.state.citySlug);
-                    response.then(response => {
-                        this.setState({
-                            latitude: response.city.latitude,
-                            longitude: response.city.longitude,
-                            cityName: response.city.name,
-                        },
-                        // Show the map and begin to search
-                        () => this.initPageContent());
+            Promise
+                .all(jobSlugs.map(slug => this.companiesService.getJobFromSlug(slug)))
+                .then(responses => {
+                    let jobs = [];
+
+                    responses.forEach(response => {
+                        jobs.push(new Job(response.job.rome_code, response.job.label, '')); // No slug needed
                     });
-                }
-            });
+
+                    // Save values
+                    this.setState({
+                        jobs,
+                        loading: this.state.citySlug
+                    });
+
+                    // Get location value (if needed) or init the map
+                    if (!this.state.citySlug) {
+                        this.initPageContent();
+                    } else {
+                        // Get coordinates and city
+                        let response = this.companiesService.getCityFromSlug(this.state.citySlug);
+                        response.then(response => {
+                            this.setState({
+                                latitude: response.city.latitude,
+                                longitude: response.city.longitude,
+                                cityName: response.city.name,
+                            },
+                            // Show the map and begin to search
+                            () => this.initPageContent());
+                        });
+                    }
+
+                });
         }
     }
 
@@ -298,8 +307,8 @@ class Companies extends Component {
 
                 <main>
                     <NotificationModal />
-                    <Map longitude={this.state.longitude} latitude={this.state.latitude} rome={this.state.rome} jobName={this.state.jobName} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
-                    { this.state.company ? <CompanyModal rome={this.state.rome} jobName={this.state.jobName} /> : null }
+                    <Map longitude={this.state.longitude} latitude={this.state.latitude} jobs={this.state.jobs} searchTerm={this.state.searchTerm} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
+                    <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
             </div>
         );

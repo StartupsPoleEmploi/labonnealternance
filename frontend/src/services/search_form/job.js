@@ -3,7 +3,6 @@ export class Job {
         this.rome = rome;
         this.label = label;
         this.slug = slug;
-        this.searchTerm = searchTerm;
     }
 
     isValid() {

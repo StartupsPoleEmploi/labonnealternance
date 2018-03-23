@@ -27,8 +27,8 @@ export default class App extends Component {
                         <Route component={Home} exact path="/" />
                         <Route component={Form} exact path="/recherche" />
 
-                        <Route component={Companies} exact path="/entreprises/:citySlug/:jobSlug" />
-                        <Route component={Companies} exact path="/entreprises/:jobSlug/:longitude/:latitude" />
+                        <Route component={Companies} exact path="/entreprises/:jobSlugs/:citySlug/:term" />
+                        <Route component={Companies} exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
 
                         <Route component={CompanyDetails} path="/details-entreprises/:companySiret" />
 

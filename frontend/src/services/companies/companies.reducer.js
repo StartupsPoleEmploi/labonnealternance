@@ -1,4 +1,5 @@
 import { Company } from './company';
+import { slug } from '../helpers';
 
 export const COMPANIES_ACTIONS = {
     ADD_COMPANIES: 'ADD_COMPANIES',
@@ -14,9 +15,10 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
 
         case COMPANIES_ACTIONS.ADD_COMPANIES: {
             if (action.data === undefined) return state;
+
             let companies = state.slice();
-            action.data.forEach(company => {
-                companies.push(new Company(company.siret, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text));
+            action.data.companies.forEach(company => {
+                companies.push(new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text));
             });
 
             return companies;
@@ -63,9 +65,21 @@ function computeFilters(filters, company) {
         if (!company.nafText) visible = false;
 
         // Note : filters.naf are already in lowercase
-        let indexNaf = filters.naf.indexOf(company.nafText.toLowerCase());
+        let indexNaf = filters.naf.indexOf(slug(company.nafText));
         if (indexNaf === -1) visible = false;
     }
+
+    // By Rome
+    if (filters.rome !== 'all' && visible) {
+        if (!company.job) visible = false;
+        if (!company.job.rome) visible = false;
+
+
+        // Note : filters.naf are already in lowercase
+        let indexRome = filters.rome.indexOf(company.job.rome);
+        if (indexRome === -1) visible = false;
+    }
+
 
     return visible;
 }

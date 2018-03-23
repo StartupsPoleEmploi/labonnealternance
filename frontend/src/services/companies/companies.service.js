@@ -8,7 +8,7 @@ import { NotificationService } from '../notification/notification.service';
 export class CompaniesService {
 
     constructor() {
-        this.PAGE_SIZE = 50;
+        this.PAGE_SIZE = 10;
         this.MAX_PAGE = 1; // Get only the first page
 
         this.notificationService = new NotificationService();
@@ -21,7 +21,7 @@ export class CompaniesService {
         });
     }
 
-    computeResultTitle(companyCount, jobName, cityName) {
+    computeResultTitle(companyCount, searchTerm, cityName) {
         let text = 'Voici ';
 
         // Company count
@@ -29,7 +29,7 @@ export class CompaniesService {
         else text = text.concat('la seule entrprise ');
 
         // Job name
-        text = text.concat('qui recrutent le plus en Alternance dans les métiers de '+ jobName);
+        text = text.concat('qui recrutent le plus en Alternance dans le métier/domaine "'+ searchTerm +'"');
 
         // City name (if possible)
         if (cityName) text = text.concat(', à ').concat(cityName).concat('.');
@@ -66,12 +66,12 @@ export class CompaniesService {
     }
 
 
-    getCompanies(rome, longitude, latitude, opts) {
+    getCompanies(job, longitude, latitude, opts) {
         let options = opts || {};
 
         // Create URL for LBB
         let url = environment.GET_COMPANIES_URL;
-        url = url.concat('rome=', rome)
+        url = url.concat('rome=', job.rome)
             .concat('&longitude=', longitude)
             .concat('&latitude=', latitude);
 
@@ -82,32 +82,26 @@ export class CompaniesService {
         if (distance) { url = url.concat('&distance=', distance); }
 
         // Fetch result from LBB
-        return new Promise((resolve, reject) => {
-            fetch(url)
-                .then((response) => {
-                    if (response.status === 200) return response.json();
+        fetch(url)
+            .then((response) => {
+                if (response.status === 200) return response.json();
 
-                    this.notificationService.createError('Erreur lors de communication avec le serveur');
-                    reject();
-                })
-                .then((response) => {
-                    if (!response) return;
+                this.notificationService.createError('Erreur lors de communication avec le serveur');
+            })
+            .then((response) => {
+                if (!response) return;
 
-                    // Inform parent of the company_count
-                    if (page === 1) resolve(response.companies_count);
-
-                    // Extra-request if we don't have all the companies yet
-                    if (this.moreRequestsNeeded(page, response.companies_count)) {
-                        this.getCompanies(rome, longitude, latitude, { page: page+1, distance });
-                    }
+                // Extra-request if we don't have all the companies yet
+                if (this.moreRequestsNeeded(page, response.companies_count)) {
+                    this.getCompanies(job, longitude, latitude, { page: page+1, distance });
+                }
 
 
-                    COMPANIES_STORE.dispatch({
-                        type: COMPANIES_ACTIONS.ADD_COMPANIES,
-                        data: response.companies
-                    });
+                COMPANIES_STORE.dispatch({
+                    type: COMPANIES_ACTIONS.ADD_COMPANIES,
+                    data: { companies: response.companies, job }
                 });
-        });
+            });
     }
 
     clearCompanies() {

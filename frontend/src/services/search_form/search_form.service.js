@@ -17,7 +17,15 @@ export class SearchFormService {
         try {
             let values = JSON.parse(rawValues);
             let searchForm = new SearchFormData();
-            searchForm.setJob(new Job(values.job.rome, values.job.label, values.job.slug, values.job.searchTerm));
+
+            searchForm.setTerm(values.term);
+            
+            let jobs = [];
+            values.jobs.forEach(job => {
+                jobs.push(new Job(job.rome, job.label, job.slug));
+            });
+            searchForm.setJobs(jobs);
+
             searchForm.setLocation(new Location(values.location.label, values.location.zipcode, values.location.slug, values.location.longitude, values.location.latitude, values.location.isGeolocated));
             return searchForm;
         } catch (e) {

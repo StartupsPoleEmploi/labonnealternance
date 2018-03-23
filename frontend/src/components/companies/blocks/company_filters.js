@@ -20,11 +20,13 @@ export class CompanyFilters extends Component {
         this.state = {
             showFilter: false,
 
-            headcountSelectedIndex: HEADCOUNT_SELECTED_INDEX,
+            headcountsSelected: HEADCOUNT_SELECTED_INDEX,
 
-            nafValues: [],
-            nafSelectedIndex: [],
+            nafValues: new Map(),
+            nafsSelected: [],
 
+            romeValues: new Map(),
+            romesSelected: []
         };
     }
 
@@ -37,23 +39,31 @@ export class CompanyFilters extends Component {
             // No companies : clear filters
             if (companies.length === 0) {
                 this.setState({
-                    nafValues: [],
-                    nafSelectedIndex: []
+                    nafValues: new Map(),
+                    nafsSelected: []
                 });
                 return;
             }
 
             // Companies : populate filters
-            let newNafValues = [];
+            let newNafValues = new Map();
+            let newRomeValues = new Map();
             companies.forEach(company => {
-                let exits = newNafValues.find(nafText => company.nafText.toLowerCase() === nafText.toLowerCase());
-                if (!exits) newNafValues.push(company.nafText);
+                // Naf
+                let nafSlug = slug(company.nafText);
+                if(!newNafValues.has(nafSlug)) newNafValues.set(nafSlug, company.nafText);
+
+                // Job
+                if(!newRomeValues.has(company.job.rome)) newRomeValues.set(company.job.rome, company.job.label);
             });
 
             // Update NAF selected
             this.setState({
                 nafValues: newNafValues,
-                nafSelectedIndex: this.updateNafSelected(newNafValues),
+                nafsSelected: this.updatenafsSelected(newNafValues),
+
+                romeValues: newRomeValues,
+                romesSelected: this.updateromesSelected(newRomeValues),
             });
         });
     }
@@ -65,18 +75,20 @@ export class CompanyFilters extends Component {
 
     isSelected(filtersCollections, index) {
         let exists = filtersCollections.find(value => value === index);
-        return Number.isInteger(exists);
+        return exists;
     }
 
     // Select/Deselect
-    deselectedAllNaf = (event) => { this.setState({ nafSelectedIndex: [] }, () => this.filterCompanies()); }
-    deselectedAllHeadcount = (event) => { this.setState({ headcountSelectedIndex: [] }, () => this.filterCompanies());  }
+    unselectedAllNaf = (event) => { this.setState({ nafsSelected: [] }, () => this.filterCompanies()); }
+    unselectedAllHeadcount = (event) => { this.setState({ headcountsSelected: [] }, () => this.filterCompanies());  }
+    unselectedAllRome = (event) => { this.setState({ romesSelected: [] }, () => this.filterCompanies());  }
 
-    selectAllHeadcount = (event) => { this.setState({ headcountSelectedIndex: HEADCOUNT_SELECTED_INDEX }, () => this.filterCompanies()); }
+    selectAllHeadcount = (event) => { this.setState({ headcountsSelected: HEADCOUNT_SELECTED_INDEX }, () => this.filterCompanies()); }
     selectAllNaf = (event) => {
-        let nafSelectedIndex = [];
-        for (let i = 0; i < this.state.nafValues.length; i++) nafSelectedIndex.push(i);
-        this.setState({ nafSelectedIndex }, () => this.filterCompanies());
+        this.setState({ nafsSelected: Array.from(this.state.nafValues.keys()) }, () => this.filterCompanies());
+    }
+    selectAllRome = (event) => {
+        this.setState({ romesSelected: Array.from(this.state.romeValues.keys()) }, () => this.filterCompanies());
     }
 
     // HEADCOUNT
@@ -87,85 +99,135 @@ export class CompanyFilters extends Component {
 
         let value = +target.attributes['data-value'].value;
 
-        let headcounts = this.state.headcountSelectedIndex;
+        let headcounts = this.state.headcountsSelected;
 
         // Add or remove value
         let index = headcounts.indexOf(value);
         if (index !== -1) headcounts = headcounts.filter(filterValue => filterValue !== value);
         else headcounts.push(value);
 
-        this.setState({ headcountSelectedIndex: headcounts }, () => this.filterCompanies());
+        this.setState({ headcountsSelected: headcounts }, () => this.filterCompanies());
 
     }
 
     // NAF
-    updateNafSelected(newNafValues) {
+    updatenafsSelected(newNafValues) {
         // Detect if all NAF are selected
-        let allNafSelected = this.state.nafValues.length === this.state.nafSelectedIndex.length;
+        let allnafsSelected = this.state.nafValues.size === this.state.nafsSelected.length;
 
-        let newNafSelectedIndex = [];
+        let newnafsSelected = [];
 
         // All the NAF were selected, so we need to select all the new NAFs
-        if (!allNafSelected) {
+        if (!allnafsSelected) {
             // Some NAF were selected, we remove only the one not present in newNafAvailable
-            this.state.nafSelectedIndex.forEach(indexSelected => {
-                let nafSelected = this.state.nafValues[indexSelected];
-
+            this.state.nafsSelected.forEach(index => {
                 // Check presence in newNafAvaible and store is new index if necessary
-                let indexInNewNaf = newNafValues.indexOf(nafSelected);
-                if (indexInNewNaf !== -1) newNafSelectedIndex.push(indexInNewNaf);
+                if (newNafValues.has(index)) newnafsSelected.push(index);
             });
+        } else {
+            newnafsSelected = Array.from(newNafValues.keys())
         }
 
-        // If no NAF selected, we select all the NAF
-        if (newNafSelectedIndex.length === 0) {
-            for (let i = 0; i < newNafValues.length; i++) newNafSelectedIndex.push(i);
-        }
-
-        return newNafSelectedIndex;
+        return newnafsSelected;
     }
+
     toggleNafFilter = (event) => {
         // If we hover a child element, we have to get the <button> parent
         let target = event.target;
         while (target.nodeName.toLowerCase() !== 'button') target = target.parentNode;
 
-        let value = +target.attributes['data-value'].value;
+        let value = target.attributes['data-value'].value;
 
-        let nafs = this.state.nafSelectedIndex;
+        let nafs = this.state.nafsSelected;
 
         // Add or remove value
         let index = nafs.indexOf(value);
         if (index !== -1) nafs = nafs.filter(filterValue => filterValue !== value);
         else nafs.push(value);
 
-        this.setState({ nafSelectedIndex: nafs }, () => this.filterCompanies());
+        this.setState({ nafsSelected: nafs }, () => this.filterCompanies());
     }
 
+    // ROME
+    updateromesSelected(newRomeValues) {
+        // Detect if all NAF are selected
+        let allromesSelected = this.state.romeValues.size === this.state.romesSelected.length;
+
+        let newromesSelected = [];
+
+        // All the NAF were selected, so we need to select all the new NAFs
+        if (!allromesSelected) {
+            // Some rome code were selected, we remove only the one not present in newromesSelected
+            this.state.romesSelected.forEach(index => {
+                // Check presence in newNafAvaible and store is new index if necessary
+                if (newRomeValues.has(index)) newromesSelected.push(index);
+            });
+        } else {
+            newromesSelected = Array.from(newRomeValues.keys())
+        }
+
+        return newromesSelected;
+    }
+    toggleRomeFilter = (event) => {
+        // If we hover a child element, we have to get the <button> parent
+        let target = event.target;
+        while (target.nodeName.toLowerCase() !== 'button') target = target.parentNode;
+
+        let value = target.attributes['data-value'].value;
+
+        let romes = this.state.romesSelected;
+
+        // Add or remove value
+        let index = romes.indexOf(value);
+        if (index !== -1) romes = romes.filter(filterValue => filterValue !== value);
+        else romes.push(value);
+
+        this.setState({ romesSelected: romes }, () => this.filterCompanies());
+    }
+
+    // APPLY FILTERS
     filterCompanies = () => {
-        let filters = { headcount: 'all', naf: 'all' };
+        let filters = { headcount: 'all', naf: 'all', rome: 'all' };
 
         // Headcount
         let headcountFilters = [];
-        if (this.state.headcountSelectedIndex.length < HEADCOUNT_VALUES.length) {
-            this.state.headcountSelectedIndex.forEach(index => { headcountFilters = headcountFilters.concat(HEADCOUNT_VALUES[index]); });
+        if (this.state.headcountsSelected.length < HEADCOUNT_VALUES.length) {
+            this.state.headcountsSelected.forEach(index => { headcountFilters = headcountFilters.concat(HEADCOUNT_VALUES[index]); });
             filters.headcount = headcountFilters;
         }
 
         // NAF
-        let nafFilters = [];
-        if (this.state.nafSelectedIndex.length < this.state.nafValues.length) {
-            this.state.nafSelectedIndex.forEach(index => { nafFilters = nafFilters.concat(this.state.nafValues[index].toLowerCase()); });
-            filters.naf = nafFilters;
+        if (this.state.nafsSelected.length < this.state.nafValues.size) {
+            filters.naf = this.state.nafsSelected;
+        }
+
+        // ROME
+        if (this.state.romesSelected.length < this.state.romeValues.size) {
+            filters.rome = this.state.romesSelected;
         }
 
         this.props.onFilter(filters);
     }
 
     // RENDER
-    renderNaf(text, index) {
-        let selected = this.isSelected(this.state.nafSelectedIndex, index);
+    renderRome(text, rome) {
+        let selected = this.isSelected(this.state.romesSelected, rome);
+
         return (
-            <li className={selected ? 'selected': ''} key={slug(text)}>
+            <li className={selected ? 'selected': ''} key={rome}>
+                <button data-value={rome} onClick={this.toggleRomeFilter}>
+                    <span><span>{text}</span></span>
+                    <span className="sr-only">{selected ? 'Activez ce filtre': 'Désactivez ce filtre'}</span>
+                    <span className={selected ? 'icon check-active': 'icon check-inactive'}>&nbsp;</span>
+                </button>
+            </li>
+        );
+    }
+    renderNaf(text, index) {
+        let selected = this.isSelected(this.state.nafsSelected, index);
+
+        return (
+            <li className={selected ? 'selected': ''} key={slug(index)}>
                 <button data-value={index} onClick={this.toggleNafFilter}>
                     <span><span>{text}</span></span>
                     <span className="sr-only">{selected ? 'Activez ce filtre': 'Désactivez ce filtre'}</span>
@@ -175,7 +237,7 @@ export class CompanyFilters extends Component {
         );
     }
     renderHeadcount(text, index) {
-        let selected = this.isSelected(this.state.headcountSelectedIndex, index);
+        let selected = this.isSelected(this.state.headcountsSelected, index);
         return (
             <li className={selected ? 'selected': ''}>
                 <button data-value={index} onClick={this.toggleHeadcount}>
@@ -192,8 +254,8 @@ export class CompanyFilters extends Component {
 
                 <div className="filter-title">
                     <h3>Taille de l'entreprise</h3>
-                    { this.state.headcountSelectedIndex.length > 0 ?
-                        <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.deselectedAllHeadcount}>Tout déselectionner</button>:
+                    { this.state.headcountsSelected.length > 0 ?
+                        <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button>:
                         <button title="Sélectionner toutes les tailles d'entreprise" onClick={this.selectAllHeadcount}>Tout sélectionner</button>
                     }
                 </div>
@@ -206,14 +268,25 @@ export class CompanyFilters extends Component {
                 </ul>
 
                 <div className="filter-title">
+                    <h3>Métiers</h3>
+                    { this.state.romesSelected.length > 0 ?
+                        <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>:
+                        <button title="Sélectionner tous les métiers" onClick={this.selectAllRome}>Tout sélectionner</button>
+                    }
+                </div>
+                <ul className="list-unstyled">
+                    {Array.from(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
+                </ul>
+
+                <div className="filter-title">
                     <h3>Secteurs d'activité</h3>
-                    { this.state.nafSelectedIndex.length > 0 ?
-                        <button title="Désélectionner tous les secteurs d'activités" onClick={this.deselectedAllNaf}>Tout déselectionner</button>:
+                    { this.state.nafsSelected.length > 0 ?
+                        <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>:
                         <button title="Sélectionner tous les secteurs d'activités" onClick={this.selectAllNaf}>Tout sélectionner</button>
                     }
                 </div>
                 <ul className="list-unstyled">
-                    {this.state.nafValues.map((text, index) => this.renderNaf(text, index))}
+                    {Array.from(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
                 </ul>
 
                 <div className="button-container">

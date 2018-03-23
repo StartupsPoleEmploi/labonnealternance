@@ -19,8 +19,8 @@ class SearchForm extends Component {
     }
 
     isValid = () => {
-        if (this.state.searchForm.hasJob() && this.state.searchForm.hasLocation()) {
-            return this.state.searchForm.location.isValid() && this.state.searchForm.job.isValid();
+        if (this.state.searchForm.hasJobs() && this.state.searchForm.hasLocation()) {
+            return this.state.searchForm.location.isValid() && this.state.searchForm.areJobsValid();
         }
         return false;
     }

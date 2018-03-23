@@ -29,7 +29,7 @@ export const COMPANY_DETAILS_REDUCER = (state = undefined, action) => {
         }
 
         case COMPANY_DETAILS_ACTIONS.ADD_ALL_COMPANY_DETAILS: {
-            let company = new Company(action.data.siret, action.data.label, action.data.longitude, action.data.latitude, action.data.address.city, action.data.distance, action.data.nafText, action.data.headcount);
+            let company = new Company(action.data.siret, action.data.job, action.data.label, action.data.longitude, action.data.latitude, action.data.address.city, action.data.distance, action.data.nafText, action.data.headcount);
             company.setExtraInfos(
                 action.data.address,
                 action.data.email,
