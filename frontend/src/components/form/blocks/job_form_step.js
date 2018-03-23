@@ -166,7 +166,7 @@ export class JobFormStep extends Component {
 
         return (
             <div id="job-form-step">
-                <h2><label htmlFor="job_input">Quel métier cherchez-vous ?</label></h2>
+                <h2><label htmlFor="job_input">Dans quel métier/domaine cherchez-vous ?</label></h2>
 
                 <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
 
