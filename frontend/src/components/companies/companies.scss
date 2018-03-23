@@ -61,7 +61,7 @@ $flex-right: 5;
                         background-size: 90%;
                         margin-right: 0;
                     }
-                    > span { display: none; }
+                    > span.sub { display: none; }
                 }
             }
         }
@@ -408,6 +408,7 @@ $flex-right: 5;
         padding: 10px 20px 5px 20px;
         color: $blue;
         display: flex;
+        @media (max-width: $min-width-mobile) { display: block; }
 
         .loader {
             margin-right: 20px;
@@ -558,7 +559,7 @@ $flex-right: 5;
     .heart {
         width: 32px !important;
         background-size: 100% !important;
-        height: 27px;
+        height: 27px !important;
     }
 
     h2 {
