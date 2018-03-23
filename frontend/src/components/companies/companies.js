@@ -257,7 +257,7 @@ class Companies extends Component {
         return classes;
     }
     computeTitleContainerClasses() {
-        let classes = "title-container";
+        let classes = 'title-container';
         if (this.state.showSearchForm || this.state.showFavoritesList) classes = classes.concat(' open');
         return classes;
     }

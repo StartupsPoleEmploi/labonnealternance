@@ -105,7 +105,7 @@ export class FavoritesService {
     }
 
     getEmailFromLocalStorage() {
-        let email = localStorage.getItem(EMAIL_STORAGE_KEY)
+        let email = localStorage.getItem(EMAIL_STORAGE_KEY);
         return email || '';
     }
 

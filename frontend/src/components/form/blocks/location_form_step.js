@@ -11,7 +11,7 @@ import { SearchFormService } from '../../../services/search_form/search_form.ser
 
 import { Loader } from '../../shared/loader/loader';
 
-const PLACEHOLDER_TEXT = "Ecrivez le nom de votre ville";
+const PLACEHOLDER_TEXT = 'Ecrivez le nom de votre ville';
 
 export class LocationFormStep extends Component {
 
@@ -132,9 +132,7 @@ export class LocationFormStep extends Component {
             suggestions: [],
             term: city,
             autocompleteLocation: { address: city, slug: citySlug, zipcode, longitude, latitude }
-        },
-            () => { if(validateCallback) this.validateStep(); }
-        );
+        }, () => { if (validateCallback) this.validateStep(); } );
 
 
     }
@@ -259,7 +257,9 @@ export class LocationFormStep extends Component {
 
                 <div className="or">ou</div>
 
-                <input id="location-input" type="text" onBlur={this.setPlaceholder}  onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder} value={this.state.term} onInput={this.autocompleteCity} />
+                <input id="location-input" type="text" onBlur={this.setPlaceholder} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder}
+                    value={this.state.term} onInput={this.autocompleteCity} />
+                
                 { this.renderSuggestions()}
 
                 {this.renderSubmitBlock()}

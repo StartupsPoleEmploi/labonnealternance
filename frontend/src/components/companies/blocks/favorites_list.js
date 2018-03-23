@@ -45,9 +45,9 @@ export class FavoritesList extends Component {
     inputEmail = (event) => { this.setState({ email: event.target.value }); }
     exportFavorite = (event) => {
         event.preventDefault();
-    
+
         // TODO => check e-mail
-        if(this.state.email) this.favoritesService.sendFavorites(this.state.email);
+        if (this.state.email) this.favoritesService.sendFavorites(this.state.email);
     }
 
     // RENDER
@@ -64,7 +64,7 @@ export class FavoritesList extends Component {
         return (
             <div id="favorites-list">
                 <h4>Vous avez actuellement {this.state.favorites.length === 0 ? 'aucun':this.state.favorites.length} {plural ? 'favoris stockés':'favori stocké'} sur votre appareil</h4>
-                
+
                 <div className="export-favorites">
                     <form method="POST" action="#" onSubmit={this.exportFavorite}>
                         <label htmlFor="export-mail" className="block sr-only">Exportez ces favoris à l'adresse suivante :</label>
@@ -74,7 +74,7 @@ export class FavoritesList extends Component {
                     </form>
 
                 </div>
-                
+
                 <ul className="list-unstyled">
                     {this.state.favorites.map(favorite => this.renderFavorite(favorite))}
                 </ul>

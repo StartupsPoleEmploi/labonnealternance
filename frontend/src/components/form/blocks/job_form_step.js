@@ -8,7 +8,7 @@ import { AutocompleteJobService } from '../../../services/autocomplete_job/autoc
 import { AUTOCOMPLETE_JOB_STORE } from '../../../services/autocomplete_job/autocomplete_job.store';
 import { SearchFormService } from '../../../services/search_form/search_form.service';
 
-const PLACEHOLDER_TEXT = "Graphiste, maçon, second de cuisine...";
+const PLACEHOLDER_TEXT = 'Graphiste, maçon, second de cuisine...';
 
 export class JobFormStep extends Component {
 
@@ -168,7 +168,8 @@ export class JobFormStep extends Component {
             <div id="job-form-step">
                 <h2><label htmlFor="job_input">Dans quel métier/domaine cherchez-vous ?</label></h2>
 
-                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
+                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
+                    onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
 
                 {this.renderSubmitBlock()}
             </div>

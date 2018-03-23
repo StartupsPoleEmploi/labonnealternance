@@ -53,7 +53,7 @@ export class Map extends Component {
                 // Is company filtered ?
                 if (company.visible === false) {
                     // Save the fact that, at least, one company is filtered
-                    if(!filterActive) filterActive = true;
+                    if (!filterActive) filterActive = true;
                     return;
                 }
 
@@ -81,7 +81,7 @@ export class Map extends Component {
             }, 1000);
 
             // Call parent to show or hide the search form or filters
-            if(!filterActive) this.props.handleCompanyCount(companies.length);
+            if (!filterActive) this.props.handleCompanyCount(companies.length);
         });
 
         // When a favorite is added/deleted => force update of the list
@@ -194,7 +194,7 @@ export class Map extends Component {
                     <button onClick={this.showFilters}>
                         <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
                     </button>
-                    { this.state.isFiltering ? <Loader cssClass="loader"/>: null }
+                    { this.state.isFiltering ? <Loader cssClass="loader" />: null }
                     { this.state.showFilters ? <button onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
                 </div>
 

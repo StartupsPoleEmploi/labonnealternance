@@ -3,7 +3,6 @@ import debounce from 'lodash/debounce';
 // Initiate the window.L variable
 import { leaflet } from 'mapbox.js';
 import { MarkerClusterGroup } from 'leaflet.markercluster';
-import { formatString } from '../services/helpers';
 
 import { CompaniesService } from './companies/companies.service';
 import { CompanyDetailsService } from './company_details/company_details.service';
@@ -95,8 +94,8 @@ export class MapBoxService {
             }
         });
 
-        marker.on('mouseover', (event) => { marker.openPopup() });
-        marker.on('mouseout', (event) => {  marker.closePopup() });
+        marker.on('mouseover', (event) => { marker.openPopup(); });
+        marker.on('mouseout', (event) => {  marker.closePopup(); });
 
         // Save the marker
         this.markers.set(company.siret, marker);

@@ -17,8 +17,6 @@ const AsyncMentionsLegales = asyncComponent(() => import('./components/mentions_
 
 require('./style/global.css');
 
-
-
 export default class App extends Component {
 
     render() {
