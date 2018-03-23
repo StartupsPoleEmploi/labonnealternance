@@ -30,7 +30,10 @@ $flex-right: 5;
             width: 50px;
             height: 37px;
 
-            span {
+            span.empty { color: $blue; }
+            span.not-empty { color: white; }
+
+            span.sub {
                 position: absolute;
                 bottom: -13px;
                 left: 0;

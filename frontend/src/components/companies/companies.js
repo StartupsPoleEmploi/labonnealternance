@@ -58,7 +58,7 @@ class Companies extends Component {
             mobileVersion: window.innerWidth < MOBILE_MAX_WIDTH,
             showSearchForm: false,
             showFavoritesList: false,
-            hasFavorites: false,
+            favoritesNumber: 0,
             animateMagnifier: false,
         };
     }
@@ -171,7 +171,7 @@ class Companies extends Component {
         // When a favorite is added/remove
         FAVORITES_STORE.subscribe(() => {
             let favorites = FAVORITES_STORE.getState() || [];
-            this.setState({ hasFavorites: favorites.size > 0 });
+            this.setState({ favoritesNumber: favorites.size });
         });
     }
 
@@ -243,7 +243,7 @@ class Companies extends Component {
     computeFavoriteClasses() {
         let classes = 'icon large-favorite';
 
-        if (this.state.hasFavorites) classes = classes.concat(' heart-active');
+        if (this.state.favoritesNumber) classes = classes.concat(' heart-active');
         else classes = classes.concat(' empty-heart');
 
         return classes;
@@ -282,11 +282,12 @@ class Companies extends Component {
                             <Link className="logo" to="/"><img src="/static/img/logo/logo-bleu-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>
 
                             <button className={this.computeFavoriteClasses()} onClick={this.toggleFavorites} title={this.state.toggleFavorites ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
-                                <span>Mes favoris</span>
+                                <span className={this.state.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.state.favoritesNumber}</span>
+                                <span className="sub">Mes favoris</span>
                             </button>
 
                             <button className={this.computeMagnifierClasses()} onClick={this.toggleSearchForm} title={this.state.showSearchForm ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>
-                                <span>Recherche</span>
+                                <span className="sub">Recherche</span>
                             </button>
                         </div>
                         {this.state.showSearchForm ? <div className="search-form"><SearchForm /></div>: null}
