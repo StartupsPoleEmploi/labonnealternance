@@ -191,7 +191,7 @@ export class Results extends Component {
 
                 {this.renderResultTitle()}
                 <div className="filter-container">
-                    <button onClick={this.showFilters}>
+                    <button onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
                         <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
                     </button>
                     { this.state.isFiltering ? <Loader cssClass="loader" />: null }

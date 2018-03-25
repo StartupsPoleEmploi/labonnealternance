@@ -201,8 +201,8 @@
     left: 0; right: 0; bottom: 0; top: 0;
 }
 @mixin mx-modal() {
-
     position: absolute;
+
     @media(max-width: $min-width-mobile) {
         position: fixed;
         overflow-y: auto;
@@ -210,6 +210,22 @@
     z-index: 3500;
 
     @include mx-all-corner();
+
+    .actions-zone {
+        position: sticky;
+        top: 0;
+        text-align: right;
+        color: black;
+        padding: 10px 10px 5px 10px;
+        background-color: white;
+        z-index: 2;
+
+        > button {
+            border: none;
+            background: transparent;
+            margin-left: 10px;
+        }
+    }
 
     .modal-bg {
         position: fixed;
@@ -226,13 +242,15 @@
         margin: 0 auto 50px auto;
         max-width: 1000px;
         background: white;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 90vh;
     }
 
     .modal-title {
         position: relative;
         min-height: 50px;
-        padding: 45px;
+        padding: 20px 45px 45px 45px;
 
         h1, strong {
             color: $blue;
@@ -241,27 +259,14 @@
         }
         strong {
             display: block;
-            margin-top: 35px;
-        }
-
-        .actions-zone {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: black;
-
-
-            > button {
-                border: none;
-                background: transparent;
-                margin-left: 10px;
-            }
+            margin-top: 30px;
         }
     }
 
     .modal-body {
         padding: 0 45px 40px 45px;
         min-height: 100px;
+        overflow: hidden;
 
         h2 {
             color: black;
@@ -284,8 +289,12 @@
 
     // Mobile
     @media (max-width: $min-width-mobile) {
+        .modal-content {
+            top: 1vh;
+            max-height: 98vh;
+        }
         .modal-title {
-            padding: 50px 40px 20px 20px;
+            padding: 20px 40px 20px 20px;
             h1, strong { font-size: 1.3em; }
         }
         .modal-body {
