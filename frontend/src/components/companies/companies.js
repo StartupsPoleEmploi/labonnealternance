@@ -240,10 +240,10 @@ class Companies extends Component {
     }
 
     computeTitle() {
-        let title = 'Contrats d\'alternance probables pour un métier de {jobName}, à {cityName}';
-        if (!this.state.citySlug) title = 'Contrats d\'alternance probables pour un métier de {jobName}, près de votre localisation';
+        let title = 'Contrats/Offres d\'alternance probables pour un métier/domaine {searchTerm}, à {cityName}';
+        if (!this.state.citySlug) title = 'Contrats/Offres d\'alternance probables pour un métier/domaine {searchTerm}, près de votre localisation';
 
-        return formatString(title, { jobName: this.state.jobName, cityName: this.state.cityName });
+        return formatString(title, { searchTerm: this.state.searchTerm, cityName: this.state.cityName });
     }
     computeFavoriteClasses() {
         let classes = 'icon large-favorite';
