@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { COMPANIES_STORE } from '../../../services/companies/companies.store';
 import { slug } from '../../../services/helpers';
+import { FiltersService } from '../../../services/filters/filters.service';
 
 const HEADCOUNT_VALUES = [
     ['0', '1 ou 2', '3 à 5', '6 à 9', '10 à 19'],
@@ -16,6 +17,8 @@ export class CompanyFilters extends Component {
 
     constructor(props) {
         super(props);
+
+        this.filtersService = new FiltersService();
 
         this.state = {
             showFilter: false,
@@ -52,10 +55,10 @@ export class CompanyFilters extends Component {
             companies.forEach((company, siret) => {
                 // Naf
                 let nafSlug = slug(company.nafText);
-                if(!newNafValues.has(nafSlug)) newNafValues.set(nafSlug, company.nafText);
+                if (!newNafValues.has(nafSlug)) newNafValues.set(nafSlug, company.nafText);
 
                 // Job
-                if(!newRomeValues.has(company.job.rome)) newRomeValues.set(company.job.rome, company.job.label);
+                if (!newRomeValues.has(company.job.rome)) newRomeValues.set(company.job.rome, company.job.label);
             });
 
             // Update NAF selected
@@ -126,7 +129,7 @@ export class CompanyFilters extends Component {
                 if (newNafValues.has(index)) newNafsSelected.push(index);
             });
         } else {
-            newNafsSelected = Array.from(newNafValues.keys())
+            newNafsSelected = Array.from(newNafValues.keys());
         }
 
         return newNafsSelected;
@@ -164,7 +167,7 @@ export class CompanyFilters extends Component {
                 if (newRomeValues.has(index)) newromesSelected.push(index);
             });
         } else {
-            newromesSelected = Array.from(newRomeValues.keys())
+            newromesSelected = Array.from(newRomeValues.keys());
         }
 
         return newromesSelected;
@@ -207,7 +210,7 @@ export class CompanyFilters extends Component {
             filters.rome = this.state.romesSelected;
         }
 
-        this.props.onFilter(filters);
+        this.filtersService.saveFilters(filters);
     }
 
     // RENDER

@@ -15,6 +15,8 @@ import { CompaniesService } from '../../services/companies/companies.service';
 import { CompanyDetailsService } from '../../services/company_details/company_details.service';
 import { FavoritesService } from '../../services/favorites/favorites.service';
 import { NotificationService } from '../../services/notification/notification.service';
+import { FiltersService } from '../../services/filters/filters.service';
+
 import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 
@@ -39,6 +41,7 @@ class Companies extends Component {
         this.companyDetailsService = new CompanyDetailsService();
         this.favoritesService = new FavoritesService();
         this.notificationService = new NotificationService();
+        this.filtersService = new FiltersService();
 
         this.state = {
             baseUrl: this.props.match.url,
@@ -88,10 +91,13 @@ class Companies extends Component {
     // Trigger by the map component to get companies number
     handleCompanyCount = (companyCount) => {
         if (companyCount === 0) {
-            // Show form on desktop
-            if (!this.state.mobileVersion) this.setState({ showSearchForm: true });
             // Animate magnifier on mobile
-            else this.setState({ animateMagnifier: true });
+            if (this.state.mobileVersion) {
+                this.setState({ animateMagnifier: true });
+            } else if (this.filtersService.isFiltersActive()) {
+                // Show form on desktop (if no filter)
+                this.setState({ showSearchForm: true });
+            }
 
             if (this.state.citySlug) { this.SEOService.displayNoFollow(true); }
         } else {

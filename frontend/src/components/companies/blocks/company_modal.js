@@ -24,7 +24,7 @@ export class CompanyModal extends Component {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
                 this.setState({ company });
-                if(company.job && company.job.rome) {
+                if (company.job && company.job.rome) {
                     if (!company.hasSoftSkills()) this.companyDetailsService.getSoftSkills(company.job.rome);
                     if (!company.hasExtraInfos()) this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
                 }
@@ -171,7 +171,7 @@ export class CompanyModal extends Component {
                 <div className="modal-content">
 
                     <div className="modal-title">
-                    <h1>{ company.label } a recruté en alternance dans le secteur {this.state.company.job.label} en 2017.</h1>
+                        <h1>{ company.label } a recruté en alternance dans le secteur {this.state.company.job.label} en 2017.</h1>
                         <strong>Tentez votre chance, postulez avant que l'offre ne soit publiée !</strong>
 
                         <div className="actions-zone">

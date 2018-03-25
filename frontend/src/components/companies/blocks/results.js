@@ -10,6 +10,8 @@ import { CompanyFilters } from './company_filters';
 import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 
 import { Loader } from '../../shared/loader/loader';
+import { FILTERS_STORE } from '../../../services/filters/filters.store';
+import { FiltersService } from '../../../services/filters/filters.service';
 
 export class Results extends Component {
 
@@ -23,6 +25,7 @@ export class Results extends Component {
         );
 
         this.companiesService = new CompaniesService();
+        this.filtersService = new FiltersService();
 
         this.state = {
             loading: true,
@@ -43,25 +46,22 @@ export class Results extends Component {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
             // Detect if a filter is active
-            let filterActive = false;
+            let filterActive = this.filtersService.isFiltersActive();
 
             let companiesStored = COMPANIES_STORE.getState();
             let companies = this.state.companies;
 
             companiesStored.forEach((company, siret) => {
-                // Is company filtered ?
-                if (company.visible === false) {
-                    // Save the fact that, at least, one company is filtered
-                    if (!filterActive) filterActive = true;
-                    return;
-                }
-                if(!companies.has(siret)) companies.set(siret, company);
+                // Not display if filtered ?
+                if (company.visible === false) return;
+
+                if (!companies.has(siret)) companies.set(siret, company);
 
                 // Wait between 0..1 second to add a marker (to create a little delay)
-                let delay = Math.random() * 1;
+                let delay = Math.random();
                 setTimeout(() => {
+                    // Note : no setState({}) here => to avoid a lot of component update
                     this.mapBoxService.addMarker(company);
-                    this.setState({ count: this.state.count + 1 });
                 }, delay * 1000); // x1000 to get in second instead of milliseconds
             });
 
@@ -69,23 +69,29 @@ export class Results extends Component {
             companies = new Map(Array.from(companies.entries()).sort((a,b) => a[1].distance - b[1].distance));
 
             // Register companies and display no-result if needed
-            this.setState({ companies });
+            this.setState({ companies, count: this.state.count + companies.size  });
 
             // Wait before remove loading
             setTimeout(() => {
                 this.setState({ loading: false, isFiltering: false });
             }, 1000);
 
+            // Hide or show the no-result modal
+            if (companies.size === 0 && filterActive) this.setState({ modalNoResult: true });
+            else this.setState({ modalNoResult: false });
+
             // Call parent to show or hide the search form or filters
-            if (!filterActive) {
-                if(companies.size === 0) this.setState({ modalNoResult: true });
-                this.props.handleCompanyCount(companies.size);
-            }
+            this.props.handleCompanyCount(companies.size);
         });
 
         // When a favorite is added/deleted => force update of the list
         this.favoritesStore = FAVORITES_STORE.subscribe(() => {
             this.forceUpdate();
+        });
+
+        // When filters are saved, filter result
+        this.filterStore = FILTERS_STORE.subscribe(() => {
+            this.applyFilters(FILTERS_STORE.getState());
         });
     }
 
@@ -101,6 +107,8 @@ export class Results extends Component {
     componentWillUnmount() {
         // Unsubscribe
         this.companiesStore();
+        this.favoritesStore();
+        this.filterStore();
     }
 
     // FILTERS
@@ -144,17 +152,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-        this.props.jobs.map(job => this.companiesService.getCompanies(job, this.props.longitude, this.props.latitude, { distance }));
-    }
-    handleCompaniesCount = (companiesCount) => {
-        if (companiesCount === 0) {
-            if (this.state.modalNoResult === false) this.setState({ modalNoResult: true });
-        } else {
-            if (this.state.modalNoResult === true) this.setState({ modalNoResult: false });
-        }
-
-        // Call parent to show or hide the search form
-        this.props.handleCompanyCount(companiesCount);
+        this.props.jobs.map(job => this.companiesService.getCompanies(job, newLongitude, newLatitude, { distance }));
     }
 
     // COMPANY LIST
@@ -201,7 +199,7 @@ export class Results extends Component {
                 </div>
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
-                <CompanyFilters show={this.state.showFilters} onFilter={this.applyFilters} />
+                <CompanyFilters show={this.state.showFilters} />
 
                 { !this.state.showFilters ? this.renderResultList(): null }
             </div>

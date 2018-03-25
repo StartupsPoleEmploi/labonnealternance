@@ -1,5 +1,6 @@
 import { Company } from './company';
 import { slug } from '../helpers';
+import { FILTERS_STORE } from '../filters/filters.store';
 
 export const COMPANIES_ACTIONS = {
     ADD_COMPANIES: 'ADD_COMPANIES',
@@ -16,11 +17,18 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
         case COMPANIES_ACTIONS.ADD_COMPANIES: {
             if (action.data === undefined) return state;
 
-            // Avoid duplicates
+            // Filters
+            let filters = FILTERS_STORE.getState();
+            let filtersActive = isFiltersActive(filters);
+
+            // Note : to not check duplicates here (because distance can change)
             let companies = new Map(state);
             action.data.companies.forEach(company => {
                 if (!companies.has(company.siret)) {
-                    companies.set(company.siret, new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text));
+                    let companyTemp = new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text);
+
+                    if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
+                    companies.set(company.siret, companyTemp);
                 }
             });
 
@@ -36,6 +44,7 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
             companies.forEach((company, siret) => {
                 company.visible = computeFilters(action.data.filters, company);
             });
+
             return companies;
         }
 
@@ -44,6 +53,13 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
     }
 };
 
+
+function isFiltersActive(filters) {
+    for (let filter in filters) {
+        if (filters[filter] !== 'all') return true;
+    }
+    return false;
+}
 
 function computeFilters(filters, company) {
     let visible = true;
