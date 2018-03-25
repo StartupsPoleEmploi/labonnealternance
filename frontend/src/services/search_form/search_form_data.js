@@ -15,11 +15,11 @@ export class SearchFormData {
     setJobs(jobs) { this.jobs = jobs; }
     hasJobs() { return this.jobs !== undefined; }
     areJobsValid() {
-        if(!this.jobs) return false;
-        if(!this.jobs.length === 0) return false;
+        if (!this.jobs) return false;
+        if (!this.jobs.length === 0) return false;
 
-        for(let i = 0; i < this.jobs.length; i++) {
-            if(!this.jobs[i].isValid()) return false;
+        for (let i = 0; i < this.jobs.length; i++) {
+            if (!this.jobs[i].isValid()) return false;
         }
         return true;
     }

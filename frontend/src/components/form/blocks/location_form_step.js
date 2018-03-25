@@ -239,7 +239,7 @@ export class LocationFormStep extends Component {
     }
     renderSubmitBlock() {
         let showSubmit = true;
-        if(this.props.showSubmit !== undefined) showSubmit = this.props.showSubmit;
+        if (this.props.showSubmit !== undefined) showSubmit = this.props.showSubmit;
         if (!showSubmit) return null;
 
         return (

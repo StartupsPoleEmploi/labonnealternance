@@ -23,7 +23,7 @@ export class JobFormStep extends Component {
         let term = '';
         if (this.props.searchForm && this.props.searchForm.jobs) {
             term = this.props.searchForm.term;
-            if(term.length > 2) this.autocompleteJobService.getJobs(term);
+            if (term.length > 2) this.autocompleteJobService.getJobs(term);
         }
 
         this.state = {
@@ -106,7 +106,6 @@ export class JobFormStep extends Component {
     renderSubmitBlock() {
         let showSubmit = true;
         if (this.props.showSubmit !== undefined) showSubmit = this.props.showSubmit;
-        console.log(showSubmit)
         if (!showSubmit) return null;
 
         return (
