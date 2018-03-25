@@ -351,7 +351,7 @@ $flex-right: 5;
     }
 
     ul.list {
-        margin: 10px 0;
+        padding: 10px 0;
         height: 70vh;
         overflow: auto;
         @media (max-width: $min-width-mobile) { height: inherit; }
