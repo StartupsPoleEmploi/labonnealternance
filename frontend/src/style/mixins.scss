@@ -205,7 +205,7 @@
 
     @media(max-width: $min-width-mobile) {
         position: fixed;
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     z-index: 3500;
 
@@ -245,6 +245,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 90vh;
+        z-index: 1;
     }
 
     .modal-title {
