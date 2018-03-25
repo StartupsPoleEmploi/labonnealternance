@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 // Components
-import { Map } from './blocks/map';
+import { Results } from './blocks/results';
 import { CompanyModal } from './blocks/company_modal';
 import { LoaderScreen } from './blocks/loader_screen';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
@@ -43,7 +43,6 @@ class Companies extends Component {
         this.state = {
             baseUrl: this.props.match.url,
 
-            company: undefined,
             inputError: undefined,
             loading: true,
 
@@ -203,10 +202,7 @@ class Companies extends Component {
                     });
 
                     // Save values
-                    this.setState({
-                        jobs,
-                        loading: this.state.citySlug
-                    });
+                    this.setState({ jobs });
 
                     // Get location value (if needed) or init the map
                     if (!this.state.citySlug) {
@@ -307,7 +303,7 @@ class Companies extends Component {
 
                 <main>
                     <NotificationModal />
-                    <Map longitude={this.state.longitude} latitude={this.state.latitude} jobs={this.state.jobs} searchTerm={this.state.searchTerm} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
+                    <Results longitude={this.state.longitude} latitude={this.state.latitude} jobs={this.state.jobs} searchTerm={this.state.searchTerm} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
                     <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
             </div>

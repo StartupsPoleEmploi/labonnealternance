@@ -20,15 +20,13 @@ export class JobFormStep extends Component {
         this.notificationService = new NotificationService();
 
         // Get search form register values
-        let term = ''; let jobs = [];
+        let term = '';
         if (this.props.searchForm && this.props.searchForm.jobs) {
-            jobs = this.props.searchForm.jobs;
             term = this.props.searchForm.term;
+            if(term.length > 2) this.autocompleteJobService.getJobs(term);
         }
 
         this.state = {
-            suggestions: [],
-            jobs,
             term,
             placeholder: PLACEHOLDER_TEXT
         };
@@ -40,24 +38,21 @@ export class JobFormStep extends Component {
         this.jobStoreUnsubscribeFn = AUTOCOMPLETE_JOB_STORE.subscribe(() => {
 
             let suggestions =  AUTOCOMPLETE_JOB_STORE.getState();
-            if (suggestions.length === 0) this.removeJob();
-            else {
+            if (suggestions.length === 0) {
+                this.props.searchForm.setJobs([]);
+                this.props.searchForm.setTerm('');
+            } else {
                 // Save all the jobs
                 let jobs = [];
                 suggestions.forEach(suggest => {
                     jobs.push(new Job(suggest.rome, suggest.label, suggest.slug));
                 });
-                
+
                 this.props.searchForm.setJobs(jobs);
                 this.props.searchForm.setTerm(this.state.term);
-        
-                if (this.props.onChange) this.props.onChange(); // Notifify parent
-
-                // Save new job and reset form
-                this.setState({ jobs });
             }
 
-            this.setState({ suggestions });
+            if (this.props.onChange) this.props.onChange(); // Notifify parent
         });
     }
 
@@ -109,7 +104,10 @@ export class JobFormStep extends Component {
 
     // RENDER PART
     renderSubmitBlock() {
-        if (!this.props.next) return null;
+        let showSubmit = true;
+        if (this.props.showSubmit !== undefined) showSubmit = this.props.showSubmit;
+        console.log(showSubmit)
+        if (!showSubmit) return null;
 
         return (
             <div className="submit-container">
@@ -124,7 +122,7 @@ export class JobFormStep extends Component {
             <div id="job-form-step">
                 <h2><label htmlFor="job_input">Dans quel métier/domaine cherchez-vous ?</label></h2>
 
-                <input id="job-input" type="text" value={this.state.term} onInput={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
+                <input id="job-input" type="text" value={this.state.term} onChange={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
                     onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
 
                 {this.renderSubmitBlock()}

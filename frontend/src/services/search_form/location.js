@@ -9,6 +9,6 @@ export class Location {
     }
 
     isValid() {
-        return this.zipcode && this.longitude && this.latitude;
+        return this.zipcode !== undefined && this.longitude !== undefined && this.latitude !== undefined;
     }
 }

@@ -238,7 +238,9 @@ export class LocationFormStep extends Component {
         );
     }
     renderSubmitBlock() {
-        if (!this.props.next) return null;
+        let showSubmit = true;
+        if(this.props.showSubmit !== undefined) showSubmit = this.props.showSubmit;
+        if (!showSubmit) return null;
 
         return (
             <div className="submit-container">
@@ -258,8 +260,8 @@ export class LocationFormStep extends Component {
                 <div className="or">ou</div>
 
                 <input id="location-input" type="text" onBlur={this.setPlaceholder} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder}
-                    value={this.state.term} onInput={this.autocompleteCity} />
-                
+                    value={this.state.term} onChange={this.autocompleteCity} />
+
                 { this.renderSuggestions()}
 
                 {this.renderSubmitBlock()}

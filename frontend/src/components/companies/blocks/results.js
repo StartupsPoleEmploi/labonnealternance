@@ -11,7 +11,7 @@ import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 
 import { Loader } from '../../shared/loader/loader';
 
-export class Map extends Component {
+export class Results extends Component {
 
     constructor(props) {
         super(props);
@@ -26,7 +26,7 @@ export class Map extends Component {
 
         this.state = {
             loading: true,
-            companies: [],
+            companies: new Map(),
             count: 0,
 
             showFilters: false,
@@ -42,25 +42,20 @@ export class Map extends Component {
     componentWillMount() {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
-
             // Detect if a filter is active
             let filterActive = false;
 
             let companiesStored = COMPANIES_STORE.getState();
             let companies = this.state.companies;
 
-            companiesStored.forEach(company => {
+            companiesStored.forEach((company, siret) => {
                 // Is company filtered ?
                 if (company.visible === false) {
                     // Save the fact that, at least, one company is filtered
                     if (!filterActive) filterActive = true;
                     return;
                 }
-
-                // Avoid duplicates
-                let exists = companies.find(companySaved => companySaved.siret === company.siret);
-                if (exists) return;
-                companies.push(company);
+                if(!companies.has(siret)) companies.set(siret, company);
 
                 // Wait between 0..1 second to add a marker (to create a little delay)
                 let delay = Math.random() * 1;
@@ -70,18 +65,22 @@ export class Map extends Component {
                 }, delay * 1000); // x1000 to get in second instead of milliseconds
             });
 
-            // Sort comapnies by distance
-            companies = companies.sort((a,b) => a.distance - b.distance);
+            // Sort companies by distance
+            companies = new Map(Array.from(companies.entries()).sort((a,b) => a[1].distance - b[1].distance));
 
             // Register companies and display no-result if needed
             this.setState({ companies });
+
             // Wait before remove loading
             setTimeout(() => {
                 this.setState({ loading: false, isFiltering: false });
             }, 1000);
 
             // Call parent to show or hide the search form or filters
-            if (!filterActive) this.props.handleCompanyCount(companies.length);
+            if (!filterActive) {
+                if(companies.size === 0) this.setState({ modalNoResult: true });
+                this.props.handleCompanyCount(companies.size);
+            }
         });
 
         // When a favorite is added/deleted => force update of the list
@@ -117,7 +116,7 @@ export class Map extends Component {
         // Clear datas
         this.mapBoxService.removeAllMakers();
         this.setState(
-            { companies: [], count: 0, isFiltering: true },
+            { companies: new Map(), count: 0, isFiltering: true },
             () => this.companiesService.applyFilters(filters)
         );
 
@@ -140,7 +139,7 @@ export class Map extends Component {
     getNewCompanies(newLongitude, newLatitude, newDistance) {
         // Clear datas
         this.mapBoxService.removeAllMakers();
-        this.setState({ companies: [], count: 0, loading: true });
+        this.setState({ companies: new Map(), count: 0, loading: true });
         this.companiesService.clearCompanies();
 
         // For each jobs, get companies
@@ -174,14 +173,16 @@ export class Map extends Component {
         return classes.join(' ');
     }
     renderResultTitle() {
-        if (this.state.companies.length === 0) return null;
-        return (<div><h2>{this.companiesService.computeResultTitle(this.state.companies.length, this.props.searchTerm, this.props.cityName)}</h2></div>);
+        if (this.state.companies.size === 0) return null;
+        return (<div><h2>{this.companiesService.computeResultTitle(this.state.companies.size, this.props.searchTerm, this.props.cityName)}</h2></div>);
     }
     renderResultList() {
-        if (this.state.companies.length === 0) return null;
+        if (this.state.companies.size === 0) return null;
+
         return (
             <ul className="list-unstyled list">
-                {this.state.companies.map((company, index) => <CompanyListItem key={index} company={company} hoverFn={this.listItemHover} />)}
+                {/* Entry : [siret, Company object] */}
+                {Array.from(this.state.companies.entries()).map(entry => <CompanyListItem key={entry[0]} company={entry[1]} hoverFn={this.listItemHover} />)}
             </ul>
         );
     }

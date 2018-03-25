@@ -19,14 +19,14 @@ export class CompanyModal extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.companyDetailsStore = COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
                 this.setState({ company });
                 if(company.job && company.job.rome) {
-                    this.companyDetailsService.getSoftSkills(company.job.rome);
-                    this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
+                    if (!company.hasSoftSkills()) this.companyDetailsService.getSoftSkills(company.job.rome);
+                    if (!company.hasExtraInfos()) this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
                 }
             } else this.setState({ company: undefined });
         });

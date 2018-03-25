@@ -50,12 +50,12 @@ class SearchForm extends Component {
     render() {
         return (
             <div id="new-search">
-                <JobFormStep searchForm={this.state.searchForm} onChange={this.handleChange} show />
-                <LocationFormStep searchForm={this.state.searchForm} onChange={this.handleChange} show />
+                <JobFormStep searchForm={this.state.searchForm} next={this.callNewSearch} onChange={this.handleChange} showSubmit={false} show />
+                <LocationFormStep searchForm={this.state.searchForm} next={this.callNewSearch} onChange={this.handleChange} showSubmit={false} show />
 
 
                 <div className="submit-container">
-                    <button className="button go-button" disabled={!this.isValid()} onClick={this.callNewSearch}>C'est parti !</button>
+                    <button className="button go-button"  disabled={!this.isValid()} onClick={this.callNewSearch}>C'est parti !</button>
                 </div>
             </div>
         );

@@ -37,7 +37,7 @@ export class CompanyFilters extends Component {
             let companies = COMPANIES_STORE.getState();
 
             // No companies : clear filters
-            if (companies.length === 0) {
+            if (companies.size === 0) {
                 this.setState({
                     nafValues: new Map(),
                     nafsSelected: []
@@ -48,7 +48,8 @@ export class CompanyFilters extends Component {
             // Companies : populate filters
             let newNafValues = new Map();
             let newRomeValues = new Map();
-            companies.forEach(company => {
+
+            companies.forEach((company, siret) => {
                 // Naf
                 let nafSlug = slug(company.nafText);
                 if(!newNafValues.has(nafSlug)) newNafValues.set(nafSlug, company.nafText);
@@ -60,10 +61,10 @@ export class CompanyFilters extends Component {
             // Update NAF selected
             this.setState({
                 nafValues: newNafValues,
-                nafsSelected: this.updatenafsSelected(newNafValues),
+                nafsSelected: this.updateNafsSelected(newNafValues),
 
                 romeValues: newRomeValues,
-                romesSelected: this.updateromesSelected(newRomeValues),
+                romesSelected: this.updateRomesSelected(newRomeValues),
             });
         });
     }
@@ -75,7 +76,7 @@ export class CompanyFilters extends Component {
 
     isSelected(filtersCollections, index) {
         let exists = filtersCollections.find(value => value === index);
-        return exists;
+        return exists !== undefined;
     }
 
     // Select/Deselect
@@ -111,24 +112,24 @@ export class CompanyFilters extends Component {
     }
 
     // NAF
-    updatenafsSelected(newNafValues) {
+    updateNafsSelected(newNafValues) {
         // Detect if all NAF are selected
-        let allnafsSelected = this.state.nafValues.size === this.state.nafsSelected.length;
+        let allNafsSelected = this.state.nafValues.size === this.state.nafsSelected.length;
 
-        let newnafsSelected = [];
+        let newNafsSelected = [];
 
         // All the NAF were selected, so we need to select all the new NAFs
-        if (!allnafsSelected) {
+        if (!allNafsSelected) {
             // Some NAF were selected, we remove only the one not present in newNafAvailable
             this.state.nafsSelected.forEach(index => {
                 // Check presence in newNafAvaible and store is new index if necessary
-                if (newNafValues.has(index)) newnafsSelected.push(index);
+                if (newNafValues.has(index)) newNafsSelected.push(index);
             });
         } else {
-            newnafsSelected = Array.from(newNafValues.keys())
+            newNafsSelected = Array.from(newNafValues.keys())
         }
 
-        return newnafsSelected;
+        return newNafsSelected;
     }
 
     toggleNafFilter = (event) => {
@@ -149,7 +150,7 @@ export class CompanyFilters extends Component {
     }
 
     // ROME
-    updateromesSelected(newRomeValues) {
+    updateRomesSelected(newRomeValues) {
         // Detect if all NAF are selected
         let allromesSelected = this.state.romeValues.size === this.state.romesSelected.length;
 
@@ -238,6 +239,7 @@ export class CompanyFilters extends Component {
     }
     renderHeadcount(text, index) {
         let selected = this.isSelected(this.state.headcountsSelected, index);
+
         return (
             <li className={selected ? 'selected': ''}>
                 <button data-value={index} onClick={this.toggleHeadcount}>

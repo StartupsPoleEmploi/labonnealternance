@@ -8,7 +8,7 @@ export const COMPANIES_ACTIONS = {
     APPLY_FILTERS: 'APPLY_FILTERS',
 };
 
-let initialState = [];
+let initialState = new Map();
 export const COMPANIES_REDUCER = (state = initialState, action) => {
 
     switch (action.type) {
@@ -16,23 +16,27 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
         case COMPANIES_ACTIONS.ADD_COMPANIES: {
             if (action.data === undefined) return state;
 
-            let companies = state.slice();
+            // Avoid duplicates
+            let companies = new Map(state);
             action.data.companies.forEach(company => {
-                companies.push(new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text));
+                if (!companies.has(company.siret)) {
+                    companies.set(company.siret, new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text));
+                }
             });
 
             return companies;
         }
 
         case COMPANIES_ACTIONS.CLEAR_COMPANIES:
-            return [];
+            return new Map();
 
         case COMPANIES_ACTIONS.APPLY_FILTERS: {
-            let copy = state.slice();
-            copy.forEach(company => {
+            let companies = new Map(state);
+
+            companies.forEach((company, siret) => {
                 company.visible = computeFilters(action.data.filters, company);
             });
-            return copy;
+            return companies;
         }
 
         default:
