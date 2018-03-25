@@ -54,8 +54,9 @@ export class Results extends Component {
             companiesStored.forEach((company, siret) => {
                 // Not display if filtered ?
                 if (company.visible === false) return;
+                if (companies.has(company.siret)) return;
 
-                if (!companies.has(siret)) companies.set(siret, company);
+                companies.set(siret, company);
 
                 // Wait between 0..1 second to add a marker (to create a little delay)
                 let delay = Math.random();
