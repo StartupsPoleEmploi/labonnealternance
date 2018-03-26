@@ -10,7 +10,7 @@ export class LoaderScreen extends Component {
                     <div className="loader-logo"><img src="/static/img/loader.svg" alt="" /></div>
                     <div className="loader-text">
                         <p className="intro">N'attendez pas qu'une offre soit publiée !</p>
-                        <p>Choississez votre entreprise en Alternance !</p>
+                        <p>Choisissez votre entreprise en Alternance !</p>
                     </div>
                 </div>
             </div>
