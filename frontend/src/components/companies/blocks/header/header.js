@@ -26,6 +26,8 @@ export class Header extends Component {
     componentWillReceiveProps(nextProps, nextContent) {
         if(nextProps.animateMagnifier === true && this.state.animateMagnifier === false) {
             this.setState({ animateMagnifier: true });
+        } else if(nextProps.animateMagnifier === false && this.state.animateMagnifier === true) {
+            this.setState({ animateMagnifier: false });
         }
 
         // Show/hide new form
