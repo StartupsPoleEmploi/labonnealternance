@@ -26,8 +26,10 @@ export class JobFormStep extends Component {
             if (term.length > 2) this.autocompleteJobService.getJobs(term);
         }
 
+        this.enterPressed = false;
         this.state = {
             term,
+            requestNumber: 0,
             placeholder: PLACEHOLDER_TEXT
         };
     }
@@ -39,6 +41,7 @@ export class JobFormStep extends Component {
 
             let suggestions =  AUTOCOMPLETE_JOB_STORE.getState();
             if (suggestions.length === 0) {
+                this.setState({ requestNumber: this.state.requestNumber - 1 });
                 this.props.searchForm.setJobs([]);
                 this.props.searchForm.setTerm('');
             } else {
@@ -50,9 +53,21 @@ export class JobFormStep extends Component {
 
                 this.props.searchForm.setJobs(jobs);
                 this.props.searchForm.setTerm(this.state.term);
+
+
+                // We decrease the number of request occuring
+                let requestNumber =  this.state.requestNumber - 1;
+                // When we load the data from localStorage (on first display), we don't want to decrease request occuring
+                if (this.state.requestNumber !== 0) this.setState({ requestNumber });
+
+                // If no request occuring and 'enter' pressed, we validate the step automatically
+                if(this.state.requestNumber === 0 && this.enterPressed) {
+                    this.validateStep();
+                }
             }
 
             if (this.props.onChange) this.props.onChange(); // Notifify parent
+            this.forceUpdate();
         });
     }
 
@@ -95,18 +110,31 @@ export class JobFormStep extends Component {
 
         let term = event.target.value;
         this.setState({ term });
-        if (term && term.length > 2) this.autocompleteJobService.getJobs(term);
+        if (term && term.length > 2) {
+            this.setState({ requestNumber: this.state.requestNumber + 1 });
+            this.autocompleteJobService.getJobs(term);
+        } else {
+            this.props.searchForm.setJobs([]);
+            this.props.searchForm.setTerm('');
+        }
     }
 
     nextIfEnter = (event) => {
-        if (event.key === 'Enter') this.validateStep();
+        if (event.key === 'Enter') {
+            // A request for suggestions is occuring, so the step will be validate after the last request
+            if (this.state.requestNumber > 0) {
+                this.enterPressed = true;
+            } else {
+                this.validateStep();
+            }
+        }
     }
 
     // RENDER PART
     renderSubmitBlock() {
         let showSubmit = true;
         if (this.props.showSubmit !== undefined) showSubmit = this.props.showSubmit;
-        if (!showSubmit) return null;
+        if (!showSubmit || this.state.requestNumber > 0) return null;
 
         return (
             <div className="submit-container">
