@@ -33,8 +33,6 @@ export class Header extends Component {
         // Show/hide new form
         if(nextProps.showForm === true && this.state.showSearchForm === false) {
             this.setState({ showSearchForm: true });
-        } else if(nextProps.showForm === false && this.state.showSearchForm === true) {
-            this.setState({ showSearchForm: false });
         }
     }
 
