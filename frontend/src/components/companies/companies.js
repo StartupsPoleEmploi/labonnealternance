@@ -59,6 +59,7 @@ class Companies extends Component {
             jobs: [],
             searchTerm: this.props.match.params.term || '',
 
+            // Some Javascript action depend on the mobile
             mobileVersion: window.innerWidth < MOBILE_MAX_WIDTH,
             animateMagnifier: false,
             showForm: false,
@@ -68,10 +69,14 @@ class Companies extends Component {
 
     // Trigger when user resize the browser window
     updateDimensions() {
-        if (window.innerWidth < this.MOBILE_MAX_WIDTH) {
-            if (this.state.mobileVersion === false) this.setState({ mobileVersion: true });
+        if (window.innerWidth < MOBILE_MAX_WIDTH) {
+            if (this.state.mobileVersion === false) {
+                this.setState({ mobileVersion: true });
+            }
         } else {
-            if (this.state.mobileVersion === true) this.setState({ mobileVersion: false });
+            if (this.state.mobileVersion === true) {
+                this.setState({ mobileVersion: false });
+            }
         }
     }
 
@@ -249,7 +254,7 @@ class Companies extends Component {
         }
 
         return (
-            <div id="companies" className={this.state.mobileVersion ? 'mobile': ''}>
+            <div id="companies">
 
                 <Header animateMagnifier={this.state.animateMagnifier && !this.state.loading} showForm={this.state.showForm}/>
 

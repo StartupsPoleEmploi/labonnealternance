@@ -218,12 +218,13 @@
         color: black;
         padding: 10px 10px 5px 10px;
         background-color: white;
-        z-index: 2;
+        z-index: 4000;
 
         > button {
             border: none;
             background: transparent;
             margin-left: 10px;
+            z-index: 4000;
         }
     }
 
@@ -245,7 +246,6 @@
         overflow-y: auto;
         overflow-x: hidden;
         max-height: 90vh;
-        z-index: 1;
     }
 
     .modal-title {

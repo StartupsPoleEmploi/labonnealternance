@@ -321,7 +321,8 @@ $flex-right: 5;
 
 #list-results {
     flex: $flex-right;
-    margin-top: 80px;
+    padding-top: 80px;
+    z-index: 2;
 
     display: flex;
     flex-direction: column;
@@ -507,32 +508,34 @@ $flex-right: 5;
 }
 
 // MOBILE
-#companies.mobile {
+@media (max-width: $min-width-mobile) {
+    #companies {
 
-    header { position: fixed; }
-    header .offset { display: none; }
+        header { position: fixed; }
+        header .offset { display: none; }
 
-    #new-search { box-shadow: none; }
-    .title-container {
-        box-shadow: 0 4px 2px -2px gray;
-    }
+        #new-search { box-shadow: none; }
+        .title-container {
+            box-shadow: 0 4px 2px -2px gray;
+        }
 
-    #map-results, #list-results {
-        position: absolute;
-    }
+        #map-results, #list-results {
+            position: absolute;
+        }
 
-    #results.map {
-        #map-results { top: 0; left: 0; right: 0; bottom: 0; }
-        #list-results { right: 10000px;}
-    }
+        #results.map {
+            #map-results { top: 0; left: 0; right: 0; bottom: 0; }
+            #list-results { display: none;}
+        }
 
-    #results.list {
-        #map-results { right: 10000px; }
-        #list-results { top: 0; left: 0; right: 0; bottom: 0; }
-    }
+        #results.list {
+            #map-results { display: none; }
+            #list-results { top: 0; left: 0; right: 0; bottom: 0; }
+        }
 
-    .toggle-view-container {
-        display: block;
+        .toggle-view-container {
+            display: block;
+        }
     }
 }
 
@@ -611,6 +614,13 @@ $flex-right: 5;
         .application-advices {
             h5 { margin: 5px 0; }
             > div { margin-bottom: 25px; }
+        }
+    }
+
+    .how-to-apply {
+        button {
+            // Ensure that this button is visible on mobile
+            margin-bottom: 50px;
         }
     }
 
