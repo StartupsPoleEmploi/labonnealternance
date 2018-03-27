@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { COMPANIES_STORE } from '../../../services/companies/companies.store';
-import { slug } from '../../../services/helpers';
+
 import { FiltersService } from '../../../services/filters/filters.service';
+import { ViewsService } from '../../../services/view/views.service';
+
+import { COMPANIES_STORE } from '../../../services/companies/companies.store';
+import { VIEWS_STORE } from '../../../services/view/views.store';
+
+import { slug } from '../../../services/helpers';
+import { VIEWS } from '../../../services/view/views.reducers';
+import { Loader } from '../../shared/loader/loader';
+
 
 const HEADCOUNT_VALUES = [
     ['0', '1 ou 2', '3 à 5', '6 à 9', '10 à 19'],
@@ -19,9 +27,11 @@ export class CompanyFilters extends Component {
         super(props);
 
         this.filtersService = new FiltersService();
+        this.viewsService = new ViewsService();
 
+        // TODO : use store to get filters values
         this.state = {
-            showFilter: false,
+            showFilters: false,
 
             headcountsSelected: HEADCOUNT_SELECTED_INDEX,
 
@@ -70,16 +80,28 @@ export class CompanyFilters extends Component {
                 romesSelected: this.updateRomesSelected(newRomeValues),
             });
         });
+
+        this.viewStore = VIEWS_STORE.subscribe(() => {
+            if(VIEWS_STORE.getState() === VIEWS.FILTERS) this.setState({ showFilters: true });
+            else this.setState({ showFilters: false });
+        });
     }
 
     componentWillUnmount() {
         // Unsubscribe to listeners
         this.companiesStore();
+        this.viewStore();
     }
 
     isSelected(filtersCollections, index) {
         let exists = filtersCollections.find(value => value === index);
         return exists !== undefined;
+    }
+
+    showFilters = () => { this.viewsService.setFiltersView() }
+    hideFilters = () => {
+        // For mobile => show map on close
+        this.viewsService.setMapView();
     }
 
     // Select/Deselect
@@ -255,49 +277,60 @@ export class CompanyFilters extends Component {
     }
     render() {
         return (
-            <div id="filters" className={this.props.show ? 'no-padding':'sr-only no-padding'}>
-
-                <div className="filter-title">
-                    <h3>Taille de l'entreprise</h3>
-                    { this.state.headcountsSelected.length > 0 ?
-                        <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button>:
-                        <button title="Sélectionner toutes les tailles d'entreprise" onClick={this.selectAllHeadcount}>Tout sélectionner</button>
-                    }
-                </div>
-                <ul className="list-unstyled">
-                    { this.renderHeadcount('- de 10 salariés', 0)}
-                    { this.renderHeadcount('de 10 à 50 salariés', 1)}
-                    { this.renderHeadcount('de 50 à 200 salariés', 2)}
-                    { this.renderHeadcount('de 200 à 500 salariés', 3)}
-                    { this.renderHeadcount('+ de 500 salariés', 4)}
-                </ul>
-
-                <div className="filter-title">
-                    <h3>Métiers</h3>
-                    { this.state.romesSelected.length > 0 ?
-                        <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>:
-                        <button title="Sélectionner tous les métiers" onClick={this.selectAllRome}>Tout sélectionner</button>
-                    }
-                </div>
-                <ul className="list-unstyled">
-                    {Array.from(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
-                </ul>
-
-                <div className="filter-title">
-                    <h3>Secteurs d'activité</h3>
-                    { this.state.nafsSelected.length > 0 ?
-                        <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>:
-                        <button title="Sélectionner tous les secteurs d'activités" onClick={this.selectAllNaf}>Tout sélectionner</button>
-                    }
-                </div>
-                <ul className="list-unstyled">
-                    {Array.from(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
-                </ul>
-
+            <div id="filters">
                 <div className="button-container">
-                    <button className="button" onClick={this.filterCompanies}>Affichez les entreprises</button>
+                    <button onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
+                        <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
+                    </button>
+                    { this.state.showFilters ? <button className="close-container" onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
+                    { this.props.isFiltering ? <Loader cssClass="loader" />: null }
+                </div>
+
+                <div className={this.state.showFilters ? 'results no-padding':'results sr-only no-padding'}>
+
+                    <div className="filter-title">
+                        <h3>Taille de l'entreprise</h3>
+                        { this.state.headcountsSelected.length > 0 ?
+                            <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button>:
+                            <button title="Sélectionner toutes les tailles d'entreprise" onClick={this.selectAllHeadcount}>Tout sélectionner</button>
+                        }
+                    </div>
+                    <ul className="list-unstyled">
+                        { this.renderHeadcount('- de 10 salariés', 0)}
+                        { this.renderHeadcount('de 10 à 50 salariés', 1)}
+                        { this.renderHeadcount('de 50 à 200 salariés', 2)}
+                        { this.renderHeadcount('de 200 à 500 salariés', 3)}
+                        { this.renderHeadcount('+ de 500 salariés', 4)}
+                    </ul>
+
+                    <div className="filter-title">
+                        <h3>Métiers</h3>
+                        { this.state.romesSelected.length > 0 ?
+                            <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>:
+                            <button title="Sélectionner tous les métiers" onClick={this.selectAllRome}>Tout sélectionner</button>
+                        }
+                    </div>
+                    <ul className="list-unstyled">
+                        {Array.from(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
+                    </ul>
+
+                    <div className="filter-title">
+                        <h3>Secteurs d'activité</h3>
+                        { this.state.nafsSelected.length > 0 ?
+                            <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>:
+                            <button title="Sélectionner tous les secteurs d'activités" onClick={this.selectAllNaf}>Tout sélectionner</button>
+                        }
+                    </div>
+                    <ul className="list-unstyled">
+                        {Array.from(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
+                    </ul>
+
+                    <div className="button-container">
+                        <button className="button" onClick={this.filterCompanies}>Affichez les entreprises</button>
+                    </div>
                 </div>
             </div>
+
         );
     }
 }

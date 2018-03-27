@@ -58,8 +58,8 @@ $flex-right: 5;
                 button {
                     width: 41px;
                     &.large-favorite {
-                        background-size: 90%;
-                        margin-right: 0;
+                        background-size: 100% !important;
+                        margin-right: 5px;
                     }
                     > span.sub { display: none; }
                 }
@@ -402,7 +402,10 @@ $flex-right: 5;
         }
     }
 
-    .filter-container {
+}
+
+#filters {
+    .button-container {
         font-weight: bolder;
         font-size: 15px;
         padding: 10px 20px 5px 20px;
@@ -411,8 +414,9 @@ $flex-right: 5;
         @media (max-width: $min-width-mobile) { display: block; }
 
         .loader {
-            margin-right: 20px;
-            margin-top: 10px;
+            margin-right: 10px;
+            margin-top: 2px;
+            float: right;
             @include mx-loader();
         }
 
@@ -428,75 +432,77 @@ $flex-right: 5;
             border: none;
         }
 
+        button.close-container { float: right; }
+
         button:first-child {
             flex: 10;
             display: inline-block;
             text-align: left;
         }
     }
-}
 
-#filters {
-    padding-bottom: 80px;
-    height: 70vh;
-    overflow: auto;
+    .results {
+        padding-bottom: 80px;
+        height: 70vh;
+        overflow: auto;
 
-    .filter-title {
-        h3, button {
-            display: inline-block;
-        }
-        h3 { padding: 10px 0 10px 10px; }
-        button {
-            float: right;
-            padding: 10px;
-            background: none;
-            border: none;
-            text-decoration: underline;
-            font-size: 10.5px;
-        }
-    }
-
-    li {
-        display: block;
-        border-bottom: solid 1px $lightgray;
-        &:last-child { border-bottom: none; }
-
-        button {
-            font-size: 1em;
-            display: flex;
-            min-height: 40px;
-            line-height: 40px;
-            width: 100%;
-            padding: 0 20px;
-
-            background: none;
-            border: none;
-            border-left: solid 5px transparent;
-
-            text-align: left;
-
-            > span:first-child {
-                width: 90%;
-                min-height: 40px;
-                span {
-                    display: inline-block;
-                    line-height: 20px;
-                    vertical-align: middle;
-                }
+        .filter-title {
+            h3, button {
+                display: inline-block;
             }
-            .icon { float: right; margin-top: 8px; }
+            h3 { padding: 10px 0 10px 10px; }
+            button {
+                float: right;
+                padding: 10px;
+                background: none;
+                border: none;
+                text-decoration: underline;
+                font-size: 10.5px;
+            }
         }
 
-        &.selected {
-            button { border-left: solid 5px $pink; }
+        li {
+            display: block;
+            border-bottom: solid 1px $lightgray;
+            &:last-child { border-bottom: none; }
+
+            button {
+                font-size: 1em;
+                display: flex;
+                min-height: 40px;
+                line-height: 40px;
+                width: 100%;
+                padding: 0 20px;
+
+                background: none;
+                border: none;
+                border-left: solid 5px transparent;
+
+                text-align: left;
+
+                > span:first-child {
+                    width: 90%;
+                    min-height: 40px;
+                    span {
+                        display: inline-block;
+                        line-height: 20px;
+                        vertical-align: middle;
+                    }
+                }
+                .icon { float: right; margin-top: 8px; }
+            }
+
+            &.selected {
+                button { border-left: solid 5px $pink; }
+            }
+
         }
 
-    }
-
-    .button-container {
-        text-align: center;
-        margin-top: 30px;
-        margin-bottom: 70px;
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 70px;
+        }
     }
 }
 

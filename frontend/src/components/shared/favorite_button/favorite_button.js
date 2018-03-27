@@ -25,7 +25,6 @@ export default class FavoriteButton extends Component {
 
     // RENDER
     render() {
-        // TODO => Remove className
         if (this.isFavorite()) {
             return (<button className="favorite-button heartbeat-animation" onClick={this.removeFavorite} title={'Retirer ' + this.props.company.label + ' des favoris'}>
                 <span className="icon heart heart-active">&nbsp;</span>

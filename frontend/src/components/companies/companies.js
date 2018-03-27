@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 // Components
 import { Results } from './blocks/results';
 import { CompanyModal } from './blocks/company_modal';
 import { LoaderScreen } from './blocks/loader_screen';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
-import { FavoritesList } from './blocks/favorites_list';
-import SearchForm from '../shared/search_form/search_form';
 
 // Services
 import { SEOService } from '../../services/seo.service';
@@ -17,11 +15,13 @@ import { FavoritesService } from '../../services/favorites/favorites.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { FiltersService } from '../../services/filters/filters.service';
 
-import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 
 import { Job } from '../../services/search_form/job';
 import { formatString } from '../../services/helpers';
+import { Header } from './blocks/header/header';
+import { VIEWS_STORE } from '../../services/view/views.store';
+import { ViewsService } from '../../services/view/views.service';
 
 require('./companies.css');
 
@@ -42,6 +42,7 @@ class Companies extends Component {
         this.favoritesService = new FavoritesService();
         this.notificationService = new NotificationService();
         this.filtersService = new FiltersService();
+        this.viewService = new ViewsService();
 
         this.state = {
             baseUrl: this.props.match.url,
@@ -59,10 +60,8 @@ class Companies extends Component {
             searchTerm: this.props.match.params.term || '',
 
             mobileVersion: window.innerWidth < MOBILE_MAX_WIDTH,
-            showSearchForm: false,
-            showFavoritesList: false,
-            favoritesNumber: 0,
             animateMagnifier: false,
+            showForm: false,
         };
     }
 
@@ -76,27 +75,15 @@ class Companies extends Component {
         }
     }
 
-    // SEARCH_FORM
-    toggleSearchForm = () => {
-        let newValue = !this.state.showSearchForm;
-        this.setState({ showSearchForm: newValue, showFavoritesList: false, animateMagnifier: false });
-    }
-
-    // FAVORITES
-    toggleFavorites = () => {
-        let newValue = !this.state.showFavoritesList;
-        this.setState({ showFavoritesList: newValue, showSearchForm: false, animateMagnifier: false });
-    }
-
     // Trigger by the map component to get companies number
     handleCompanyCount = (companyCount) => {
         if (companyCount === 0) {
             // Animate magnifier on mobile
             if (this.state.mobileVersion) {
                 this.setState({ animateMagnifier: true });
-            } else if (this.filtersService.isFiltersActive()) {
+            } else if (!this.filtersService.isFiltersActive()) {
                 // Show form on desktop (if no filter)
-                this.setState({ showSearchForm: true });
+                this.setState({ showForm: true });
             }
 
             if (this.state.citySlug) { this.SEOService.displayNoFollow(true); }
@@ -109,7 +96,7 @@ class Companies extends Component {
                 this.notificationService.createInfo(message, SHOW_RESULT_POPUP_KEY);
             }
 
-            this.setState({ showSearchForm: false, animateMagnifier: false });
+            this.setState({ animateMagnifier: false, showForm: false });
             if (this.state.citySlug) { this.SEOService.displayNoFollow(false); }
         }
     }
@@ -173,10 +160,9 @@ class Companies extends Component {
             }
         });
 
-        // When a favorite is added/remove
-        FAVORITES_STORE.subscribe(() => {
-            let favorites = FAVORITES_STORE.getState() || [];
-            this.setState({ favoritesNumber: favorites.size });
+        // When a view is selected
+        this.viewsStore = VIEWS_STORE.subscribe(() => {
+            this.setState({ animateMagnifier: false });
         });
     }
 
@@ -189,6 +175,7 @@ class Companies extends Component {
 
         // Unsubscribe to listeners
         this.companyDetailsStore();
+        this.viewsStore();
     }
 
     makeSearch() {
@@ -251,27 +238,6 @@ class Companies extends Component {
 
         return formatString(title, { searchTerm: this.state.searchTerm, cityName: this.state.cityName });
     }
-    computeFavoriteClasses() {
-        let classes = 'icon large-favorite';
-
-        if (this.state.favoritesNumber) classes = classes.concat(' heart-active');
-        else classes = classes.concat(' empty-heart');
-
-        return classes;
-    }
-    computeMagnifierClasses() {
-        let classes = 'magnifier';
-
-        if (this.state.showSearchForm) classes = classes.concat(' active');
-        if (this.state.animateMagnifier && !this.state.loading) classes = classes.concat(' animate');
-
-        return classes;
-    }
-    computeTitleContainerClasses() {
-        let classes = 'title-container';
-        if (this.state.showSearchForm || this.state.showFavoritesList) classes = classes.concat(' open');
-        return classes;
-    }
 
     render() {
         if (this.state.inputError) {
@@ -285,27 +251,7 @@ class Companies extends Component {
         return (
             <div id="companies" className={this.state.mobileVersion ? 'mobile': ''}>
 
-                {/* TODO => Export header to a separate component */}
-                <header className="header">
-                    <div className="offset">&nbsp;</div>
-                    <div className={this.computeTitleContainerClasses()}>
-                        <div className="title">
-                            <Link className="logo" to="/"><img src="/static/img/logo/logo-bleu-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>
-
-                            <button className={this.computeFavoriteClasses()} onClick={this.toggleFavorites} title={this.state.toggleFavorites ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
-                                <span className={this.state.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.state.favoritesNumber}</span>
-                                <span className="sub">Mes favoris</span>
-                            </button>
-
-                            <button className={this.computeMagnifierClasses()} onClick={this.toggleSearchForm} title={this.state.showSearchForm ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>
-                                <span className="sub">Recherche</span>
-                            </button>
-                        </div>
-                        {this.state.showSearchForm ? <div className="search-form"><SearchForm /></div>: null}
-                        {this.state.showFavoritesList ? <div className="favorites"><FavoritesList /></div> : null}
-
-                    </div>
-                </header>
+                <Header animateMagnifier={this.state.animateMagnifier && !this.state.loading} showForm={this.state.showForm}/>
 
                 <main>
                     <NotificationModal />

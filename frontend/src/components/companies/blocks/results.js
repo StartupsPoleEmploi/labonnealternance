@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 
 import { MapBoxService } from '../../../services/mapbox.service';
 import { CompaniesService } from '../../../services/companies/companies.service';
-
-import { COMPANIES_STORE } from '../../../services/companies/companies.store';
+import { FiltersService } from '../../../services/filters/filters.service';
+import { ViewsService } from '../../../services/view/views.service';
 
 import { CompanyListItem } from './company_list_item';
 import { CompanyFilters } from './company_filters';
-import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
+import { ViewChooser } from './view-chooser';
 
-import { Loader } from '../../shared/loader/loader';
+import { COMPANIES_STORE } from '../../../services/companies/companies.store';
+import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 import { FILTERS_STORE } from '../../../services/filters/filters.store';
-import { FiltersService } from '../../../services/filters/filters.service';
+
+import { VIEWS } from '../../../services/view/views.reducers';
+import { VIEWS_STORE } from '../../../services/view/views.store';
 
 export class Results extends Component {
 
@@ -26,6 +29,7 @@ export class Results extends Component {
 
         this.companiesService = new CompaniesService();
         this.filtersService = new FiltersService();
+        this.viewsService = new ViewsService();
 
         this.state = {
             loading: true,
@@ -38,7 +42,7 @@ export class Results extends Component {
             modalNoResult: false,
 
             // Mobile
-            currentView: this.props.view || 'map',
+            currentView: VIEWS.MAP,
         };
     }
 
@@ -90,10 +94,12 @@ export class Results extends Component {
             this.forceUpdate();
         });
 
-        // When filters are saved, filter result
+        // When filters are saved, automatically filter results
         this.filterStore = FILTERS_STORE.subscribe(() => {
             this.applyFilters(FILTERS_STORE.getState());
         });
+
+        // When view change
     }
 
     componentDidMount() {
@@ -113,15 +119,7 @@ export class Results extends Component {
     }
 
     // FILTERS
-    showFilters = () => { this.setState({ showFilters: true }); }
-    hideFilters = () => {
-        // For mobile => show map on close
-        this.setState({ showFilters: false, currentView: 'map' });
-    }
     applyFilters = (filters) => {
-        // For mobile => show map
-        this.setState({ currentView: 'map' });
-
         // Clear datas
         this.mapBoxService.removeAllMakers();
         this.setState(
@@ -129,19 +127,6 @@ export class Results extends Component {
             () => this.companiesService.applyFilters(filters)
         );
 
-    }
-
-    // VIEWS IN MOBILE
-    toggleCurrentView = (event) => {
-        // Note : hide/show display in handle by CSS ==> @see resultsClasses() and companies.scss
-        let target = event.target;
-        while (target.nodeName.toLowerCase() !== 'button') target = target.parentNode;
-        let view = target.attributes['data-view'].value;
-
-        if (view) {
-            if (view === 'filter') this.setState({ showFilters: true, currentView: 'list' });
-            else this.setState({ currentView: view });
-        }
     }
 
     // SEARCH
@@ -167,7 +152,10 @@ export class Results extends Component {
 
     // RENDER PART
     resultsClasses = () => {
-        let classes = [this.state.currentView];
+        let view = VIEWS_STORE.getState() || VIEWS.MAP;
+        if(view === VIEWS.FILTERS) view = VIEWS.LIST;
+
+        let classes = [view];
         if (this.state.loading) classes.push('loading');
         return classes.join(' ');
     }
@@ -191,18 +179,11 @@ export class Results extends Component {
             <div id="list-results" className={this.state.loading ? 'loading':''} >
 
                 {this.renderResultTitle()}
-                <div className="filter-container">
-                    <button onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
-                        <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
-                    </button>
-                    { this.state.isFiltering ? <Loader cssClass="loader" />: null }
-                    { this.state.showFilters ? <button onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
-                </div>
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
-                <CompanyFilters show={this.state.showFilters} />
+                <CompanyFilters isFiltering={this.state.isFiltering} />
 
-                { !this.state.showFilters ? this.renderResultList(): null }
+                { this.state.currentView !== VIEWS.FILTERS && this.state.currentView !== VIEWS.FORM ? this.renderResultList(): null }
             </div>
         );
     }
@@ -221,12 +202,7 @@ export class Results extends Component {
                     </div>
                     {this.renderResultsAsList()}
 
-                    <div className={this.state.currentView === 'list' ? 'toggle-view-container right':'toggle-view-container'}>
-                        { this.state.currentView === 'map' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="filter"><span className="icon filter-icon">&nbsp;</span>Filtres</button> : null }
-                        { this.state.currentView === 'map' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="list"><span className="icon filter-list-icon">&nbsp;</span>Liste</button> : null }
-
-                        { this.state.currentView === 'list' ? <button className="button small-white" onClick={this.toggleCurrentView} data-view="map"><span className="icon marker-blue">&nbsp;</span>Carte</button> : null }
-                    </div>
+                    <ViewChooser />
                 </div>
             </div>
         );

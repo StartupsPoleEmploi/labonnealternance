@@ -38,7 +38,6 @@ export class CompanyModal extends Component {
     }
 
     componentWillUnmount() {
-        // TODO => Save company + Remove from store
         // Unsubscribe to listeners
         this.companyDetailsStore();
         this.favoritesStore();

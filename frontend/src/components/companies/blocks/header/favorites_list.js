@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FavoritesService } from '../../../services/favorites/favorites.service';
-import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
+import { FavoritesService } from '../../../../services/favorites/favorites.service';
+import { FAVORITES_STORE } from '../../../../services/favorites/favorites.store';
 
 export class FavoritesList extends Component {
     constructor(props) {
