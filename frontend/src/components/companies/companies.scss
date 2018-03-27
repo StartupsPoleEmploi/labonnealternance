@@ -52,20 +52,6 @@ $flex-right: 5;
 
         }
 
-        @media (max-width: $min-width-mobile) {
-            .title {
-                padding: 20px 10px 20px 15px !important;
-                button {
-                    width: 41px;
-                    &.large-favorite {
-                        background-size: 100% !important;
-                        margin-right: 5px;
-                    }
-                    > span.sub { display: none; }
-                }
-            }
-        }
-
         .title-container {
             flex: $flex-right;
             &.open {
@@ -82,6 +68,36 @@ $flex-right: 5;
                 }
             }
 
+            // Special behavior from 768px to 950px
+            @media (min-width: $min-width-mobile) and (max-width: 1000px) {
+                .title {
+                    padding: 20px 5px;
+                    button.large-favorite {
+                        margin-right: 7px;
+                    }
+                    .logo {
+                        text-align: left;
+                        padding-left: 15px;
+                        img {
+                            max-height: 90%;
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: $min-width-mobile) {
+                .title {
+                    padding: 20px 10px 20px 15px !important;
+                    button {
+                        width: 41px;
+                        &.large-favorite {
+                            background-size: 100% !important;
+                            margin-right: 5px;
+                        }
+                        > span.sub { display: none; }
+                    }
+                }
+            }
         }
     }
 
