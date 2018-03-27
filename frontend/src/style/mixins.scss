@@ -116,7 +116,7 @@
         background-position: center;
         background-image: url('/static/img/fd-desktop.jpg');
 
-        min-height: 100vh;
+        min-height: 99vh;
         @media(max-width: $min-width-small-mobile) { height: auto; min-height: 100vh; }
 
         margin: auto;
