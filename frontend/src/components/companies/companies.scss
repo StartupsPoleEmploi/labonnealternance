@@ -339,6 +339,7 @@ $flex-right: 5;
     flex: $flex-right;
     padding-top: 80px;
     z-index: 2;
+    background-color: white;
 
     display: flex;
     flex-direction: column;
@@ -422,13 +423,14 @@ $flex-right: 5;
 }
 
 #filters {
-    .button-container {
+    background-color: white;
+
+    .button-container-header {
         font-weight: bolder;
         font-size: 15px;
         padding: 10px 20px 5px 20px;
         color: $blue;
         display: flex;
-        @media (max-width: $min-width-mobile) { display: block; }
 
         .loader {
             margin-right: 10px;
@@ -462,6 +464,8 @@ $flex-right: 5;
         padding-bottom: 80px;
         height: 70vh;
         overflow: auto;
+        @media (max-width: $min-width-mobile) { height: 80vh; }
+
 
         .filter-title {
             h3, button {
