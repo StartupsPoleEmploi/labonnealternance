@@ -188,7 +188,7 @@ class Companies extends Component {
 
         // Get Job from slug
         if (this.state.jobSlugs) {
-            let jobSlugs = this.state.jobSlugs.split('&');
+            let jobSlugs = this.state.jobSlugs.split(',');
 
             Promise
                 .all(jobSlugs.map(slug => this.companiesService.getJobFromSlug(slug)))

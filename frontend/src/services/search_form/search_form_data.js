@@ -30,7 +30,7 @@ export class SearchFormData {
     hasLocation() { return this.location !== undefined; }
 
     callSearch(historyContext) {
-        let urlJobs = this.jobs.map(job => job.slug).join('&');
+        let urlJobs = this.jobs.map(job => job.slug).join(',');
 
         // If user use geolocalisation
         if (this.location.isGeolocated) {

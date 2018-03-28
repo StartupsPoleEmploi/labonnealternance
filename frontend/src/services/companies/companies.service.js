@@ -52,7 +52,7 @@ export class CompaniesService {
     }
 
     getJobFromSlug(jobSlug) {
-        let url = environment.GET_JOB_SLUG_INFORMATIONS.concat('job-slug=', jobSlug);
+        let url = environment.GET_JOB_SLUG_INFORMATIONS.concat('job-slug=', jobSlug.trim());
 
         return new Promise((resolve, reject) => {
             fetch(url)
