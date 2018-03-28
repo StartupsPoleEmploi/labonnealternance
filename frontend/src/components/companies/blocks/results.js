@@ -100,6 +100,10 @@ export class Results extends Component {
         });
 
         // When view change
+        VIEWS_STORE.subscribe(() => {
+            let view = VIEWS_STORE.getState() || VIEWS.MAP;
+            this.setState({ currentView: view });
+        })
     }
 
     componentDidMount() {
@@ -152,8 +156,7 @@ export class Results extends Component {
 
     // RENDER PART
     resultsClasses = () => {
-        let view = VIEWS_STORE.getState() || VIEWS.MAP;
-        if(view === VIEWS.FILTERS) view = VIEWS.LIST;
+        let view = this.state.currentView;
 
         let classes = [view];
         if (this.state.loading) classes.push('loading');
@@ -182,8 +185,7 @@ export class Results extends Component {
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
                 <CompanyFilters isFiltering={this.state.isFiltering} />
-
-                { this.state.currentView !== VIEWS.FILTERS && this.state.currentView !== VIEWS.FORM ? this.renderResultList(): null }
+                { this.state.currentView !== VIEWS.FILTERS ? this.renderResultList(): null }
             </div>
         );
     }
