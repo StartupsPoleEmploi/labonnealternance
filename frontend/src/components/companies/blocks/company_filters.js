@@ -33,7 +33,7 @@ export class CompanyFilters extends Component {
         this.state = {
             showFilters: false,
 
-            headcountsSelected: HEADCOUNT_SELECTED_INDEX,
+            headcountsSelected: [],
 
             nafValues: new Map(),
             nafsSelected: [],
@@ -94,6 +94,8 @@ export class CompanyFilters extends Component {
     }
 
     isSelected(filtersCollections, index) {
+        if(filtersCollections.length === 0) return false;
+
         let exists = filtersCollections.find(value => value === index);
         return exists !== undefined;
     }
@@ -109,13 +111,6 @@ export class CompanyFilters extends Component {
     unselectedAllHeadcount = (event) => { this.setState({ headcountsSelected: [] }, () => this.filterCompanies());  }
     unselectedAllRome = (event) => { this.setState({ romesSelected: [] }, () => this.filterCompanies());  }
 
-    selectAllHeadcount = (event) => { this.setState({ headcountsSelected: HEADCOUNT_SELECTED_INDEX }, () => this.filterCompanies()); }
-    selectAllNaf = (event) => {
-        this.setState({ nafsSelected: Array.from(this.state.nafValues.keys()) }, () => this.filterCompanies());
-    }
-    selectAllRome = (event) => {
-        this.setState({ romesSelected: Array.from(this.state.romeValues.keys()) }, () => this.filterCompanies());
-    }
 
     // HEADCOUNT
     toggleHeadcount = (event) => {
@@ -139,7 +134,7 @@ export class CompanyFilters extends Component {
     // NAF
     updateNafsSelected(newNafValues) {
         // Detect if all NAF are selected
-        let allNafsSelected = this.state.nafValues.size === this.state.nafsSelected.length;
+        let allNafsSelected = this.state.nafValues.size === this.state.nafsSelected.length || this.state.nafsSelected.length === 0;
 
         let newNafsSelected = [];
 
@@ -150,8 +145,6 @@ export class CompanyFilters extends Component {
                 // Check presence in newNafAvaible and store is new index if necessary
                 if (newNafValues.has(index)) newNafsSelected.push(index);
             });
-        } else {
-            newNafsSelected = Array.from(newNafValues.keys());
         }
 
         return newNafsSelected;
@@ -177,7 +170,7 @@ export class CompanyFilters extends Component {
     // ROME
     updateRomesSelected(newRomeValues) {
         // Detect if all NAF are selected
-        let allromesSelected = this.state.romeValues.size === this.state.romesSelected.length;
+        let allromesSelected = this.state.romeValues.size === this.state.romesSelected.length  || this.state.romesSelected.length === 0;
 
         let newromesSelected = [];
 
@@ -188,8 +181,6 @@ export class CompanyFilters extends Component {
                 // Check presence in newNafAvaible and store is new index if necessary
                 if (newRomeValues.has(index)) newromesSelected.push(index);
             });
-        } else {
-            newromesSelected = Array.from(newRomeValues.keys());
         }
 
         return newromesSelected;
@@ -217,18 +208,18 @@ export class CompanyFilters extends Component {
 
         // Headcount
         let headcountFilters = [];
-        if (this.state.headcountsSelected.length < HEADCOUNT_VALUES.length) {
+        if (this.state.headcountsSelected.length < HEADCOUNT_VALUES.length && this.state.headcountsSelected.length !== 0) {
             this.state.headcountsSelected.forEach(index => { headcountFilters = headcountFilters.concat(HEADCOUNT_VALUES[index]); });
             filters.headcount = headcountFilters;
         }
 
         // NAF
-        if (this.state.nafsSelected.length < this.state.nafValues.size) {
+        if (this.state.nafsSelected.length < this.state.nafValues.size && this.state.nafsSelected.length !== 0) {
             filters.naf = this.state.nafsSelected;
         }
 
         // ROME
-        if (this.state.romesSelected.length < this.state.romeValues.size) {
+        if (this.state.romesSelected.length < this.state.romeValues.size && this.state.romesSelected.length !== 0) {
             filters.rome = this.state.romesSelected;
         }
 
@@ -278,22 +269,19 @@ export class CompanyFilters extends Component {
     render() {
         return (
             <div id="filters">
-                <div className="button-container">
+                <div className="button-container-header">
                     <button onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
                         <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
                     </button>
-                    { this.state.showFilters ? <button className="close-container" onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
                     { this.props.isFiltering ? <Loader cssClass="loader" />: null }
+                    { this.state.showFilters ? <button className="close-container" onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
                 </div>
 
                 <div className={this.state.showFilters ? 'results no-padding':'results sr-only no-padding'}>
 
                     <div className="filter-title">
                         <h3>Taille de l'entreprise</h3>
-                        { this.state.headcountsSelected.length > 0 ?
-                            <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button>:
-                            <button title="Sélectionner toutes les tailles d'entreprise" onClick={this.selectAllHeadcount}>Tout sélectionner</button>
-                        }
+                        { this.state.headcountsSelected.length > 0 ? <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button>: null }
                     </div>
                     <ul className="list-unstyled">
                         { this.renderHeadcount('- de 10 salariés', 0)}
@@ -305,10 +293,7 @@ export class CompanyFilters extends Component {
 
                     <div className="filter-title">
                         <h3>Métiers</h3>
-                        { this.state.romesSelected.length > 0 ?
-                            <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>:
-                            <button title="Sélectionner tous les métiers" onClick={this.selectAllRome}>Tout sélectionner</button>
-                        }
+                        { this.state.romesSelected.length > 0 ? <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>: null }
                     </div>
                     <ul className="list-unstyled">
                         {Array.from(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
@@ -316,10 +301,7 @@ export class CompanyFilters extends Component {
 
                     <div className="filter-title">
                         <h3>Secteurs d'activité</h3>
-                        { this.state.nafsSelected.length > 0 ?
-                            <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>:
-                            <button title="Sélectionner tous les secteurs d'activités" onClick={this.selectAllNaf}>Tout sélectionner</button>
-                        }
+                        { this.state.nafsSelected.length > 0 ? <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>: null }
                     </div>
                     <ul className="list-unstyled">
                         {Array.from(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
