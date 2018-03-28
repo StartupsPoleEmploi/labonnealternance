@@ -19,8 +19,6 @@ const HEADCOUNT_VALUES = [
     ['500 à 999','1 000 à 1 999','2 000 à 4 999','5 000 à 9 999','10 000']
 ];
 
-const HEADCOUNT_SELECTED_INDEX = [0,1,2,3,4];
-
 export class CompanyFilters extends Component {
 
     constructor(props) {

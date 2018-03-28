@@ -24,6 +24,9 @@ export class Header extends Component {
 
 
     componentWillReceiveProps(nextProps, nextContent) {
+        // No changes ? Do nothing !
+        if(this.animateMagnifier === nextProps.animateMagnifier && this.showForm === nextProps.showForm) return;
+
         if(nextProps.animateMagnifier === true && this.state.animateMagnifier === false) {
             this.setState({ animateMagnifier: true });
         } else if(nextProps.animateMagnifier === false && this.state.animateMagnifier === true) {
@@ -33,6 +36,8 @@ export class Header extends Component {
         // Show/hide new form
         if(nextProps.showForm === true && this.state.showSearchForm === false) {
             this.setState({ showSearchForm: true });
+        } else if (nextProps.showForm === false && this.state.showSearchForm === true) {
+            this.setState({ showSearchForm: false });
         }
     }
 

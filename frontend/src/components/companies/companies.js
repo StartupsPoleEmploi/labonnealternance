@@ -255,8 +255,7 @@ class Companies extends Component {
 
         return (
             <div id="companies">
-
-                <Header animateMagnifier={this.state.animateMagnifier && !this.state.loading} showForm={this.state.showForm}/>
+                <Header animateMagnifier={this.state.animateMagnifier} showForm={this.state.showForm} />
 
                 <main>
                     <NotificationModal />

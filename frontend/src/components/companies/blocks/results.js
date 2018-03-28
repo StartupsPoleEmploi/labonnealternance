@@ -27,6 +27,8 @@ export class Results extends Component {
             this
         );
 
+        this.requestOccuring = 0;
+
         this.companiesService = new CompaniesService();
         this.filtersService = new FiltersService();
         this.viewsService = new ViewsService();
@@ -49,6 +51,9 @@ export class Results extends Component {
     componentWillMount() {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
+            // Decrease the number of request occuring
+            this.requestOccuring = this.requestOccuring - 1;
+
             // Detect if a filter is active
             let filterActive = this.filtersService.isFiltersActive();
 
@@ -78,15 +83,19 @@ export class Results extends Component {
 
             // Wait before remove loading
             setTimeout(() => {
-                this.setState({ loading: false, isFiltering: false });
+                this.setState({ loading: false, isFiltering: false })
             }, 1000);
 
-            // Hide or show the no-result modal
-            if (companies.size === 0 && filterActive) this.setState({ modalNoResult: true });
-            else this.setState({ modalNoResult: false });
-
-            // Call parent to show or hide the search form or filters
-            this.props.handleCompanyCount(companies.size);
+            
+            // If we don't expect other request result)
+            if(this.requestOccuring === 0) {
+                // Hide or show the no-result modal
+                if (companies.size === 0 && !filterActive) this.setState({ modalNoResult: true });
+                else this.setState({ modalNoResult: false });
+            
+                // Call parent to show or hide the search form or filters
+                this.props.handleCompanyCount(companies.size);
+            }
         });
 
         // When a favorite is added/deleted => force update of the list
@@ -142,6 +151,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
+        this.requestOccuring = this.props.jobs.length; // 1 request per job
         this.props.jobs.map(job => this.companiesService.getCompanies(job, newLongitude, newLatitude, { distance }));
     }
 
