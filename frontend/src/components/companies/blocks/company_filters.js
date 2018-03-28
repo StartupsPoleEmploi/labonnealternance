@@ -268,8 +268,8 @@ export class CompanyFilters extends Component {
         return (
             <div id="filters">
                 <div className="button-container-header">
-                    <button onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
-                        <span><span className="icon filter-icon">&nbsp;</span>Filtres</span>
+                    <button className="button small-white" onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
+                        <span className="icon filter-icon">&nbsp;</span>Filtres
                     </button>
                     { this.props.isFiltering ? <Loader cssClass="loader" />: null }
                     { this.state.showFilters ? <button className="close-container" onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }

@@ -426,37 +426,39 @@ $flex-right: 5;
     background-color: white;
 
     .button-container-header {
+        position: relative;
         font-weight: bolder;
         font-size: 15px;
         padding: 10px 20px 5px 20px;
         color: $blue;
         display: flex;
 
+        .small-white {
+            line-height: 30px;
+            font-size: 16px;
+            .icon {
+                margin-top: 7px;
+                float: left;
+            }
+        }
+
         .loader {
-            margin-right: 10px;
-            margin-top: 2px;
-            float: right;
+            position: absolute;
+            right: 55px;
+            top: 23px;
             @include mx-loader();
         }
 
-        span {
-            font-weight: bolder;
-            font-size: 16px;
-            color: $blue;
-        }
-
-        button {
+        button:not(.small-white) {
             outline: none;
             background: none;
             border: none;
         }
 
-        button.close-container { float: right; }
-
-        button:first-child {
-            flex: 10;
-            display: inline-block;
-            text-align: left;
+        button.close-container {
+            position: absolute;
+            right: 20px;
+            top: 20px;
         }
     }
 
