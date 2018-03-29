@@ -61,9 +61,10 @@ export class FavoritesList extends Component {
     }
     render() {
         let plural = this.state.favorites.length > 1;
+        let zeroFavorite = this.state.favorites.length === 0;
         return (
             <div id="favorites-list">
-                <h4>Vous avez actuellement {this.state.favorites.length === 0 ? 'aucun':this.state.favorites.length} {plural ? 'favoris stockés':'favori stocké'} sur votre appareil</h4>
+                <h4>Vous {zeroFavorite ? 'n\'':''}avez actuellement {zeroFavorite ? 'aucun':this.state.favorites.length} {plural ? 'favoris stockés':'favori stocké'} sur votre appareil</h4>
 
                 <div className="export-favorites">
                     <form method="POST" action="#" onSubmit={this.exportFavorite}>
