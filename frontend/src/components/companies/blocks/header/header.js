@@ -13,6 +13,7 @@ export class Header extends Component {
 
         this.viewsService = new ViewsService();
 
+
         this.state = ({
             favoritesNumber: 0,
 
@@ -47,6 +48,12 @@ export class Header extends Component {
             let favorites = FAVORITES_STORE.getState() || [];
             this.setState({ favoritesNumber: favorites.size });
         });
+    }
+
+    componentDidMount() {
+        // On mount, we init the number of favorites
+        let favorites = FAVORITES_STORE.getState() || [];
+        this.setState({ favoritesNumber: favorites.size });
     }
 
     componentWillUnmount() {

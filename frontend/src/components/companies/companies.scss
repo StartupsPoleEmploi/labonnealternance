@@ -101,13 +101,11 @@ $flex-right: 5;
         }
     }
 
-    #new-search, #favorites-list {
+    #new-search {
         background: white;
         padding: 20px 40px 30px 40px;
         @media (max-width: $min-width-mobile) { padding: 10px 20px 20px 20px; }
-    }
 
-    #new-search {
         h2 {
             color: $blue;
             margin-bottom: 10px;
@@ -168,27 +166,63 @@ $flex-right: 5;
     }
 
     #favorites-list {
-        form { margin-top: 10px; }
-        .export-favorites {
-            margin-top: 5px;
-            text-align: center;
+        background: white;
+
+        h2 {
+            padding: 5px 20px;
+            &.empty { padding: 30px 20px; }
+        }
+        .naf { padding: 2px 0; }
+
+        .favorites {
+            max-height: 65vh;
+            overflow-y: auto;
+
         }
 
-        input {
-            border: solid 1px lightgray;
-            margin-bottom: 5px;
-        }
+        .favorite-item {
+            padding: 5px 20px 15px 20px;
 
-        li {
+            font-size: .9em;
             position: relative;
-            padding: 0 20px;
-            margin-top: 20px;
 
-            .icon { margin-right: 5px; }
-            button {
+            h3 {
+                padding: 5px 0 0 0;
+                color: $blue;
+                font-weight: normal;
+            }
+            h4 { margin: 5px 0 2px 0; }
+
+            .close-icon {
                 position: absolute;
-                right: 5px;
-                top: 5px;
+                right: 20px;
+                top: 15px;
+                background-size: 80%;
+            }
+
+            .contact .icon {
+                margin-right: 10px;
+            }
+            border-bottom: solid 1px $lightgray;
+            &:last-child { border-bottom: none; }
+        }
+
+        .export-favorites {
+            padding: 15px 20px;
+            text-align: center;
+            border-top: solid 1px $lightgray;
+            input {
+                border: solid 1px darkgray;
+                padding: 13px 20px 10px 20px;
+                margin-bottom: 15px;
+            }
+            button {
+                font-weight: normal;
+                font-size: 18px;
+                padding: 8px 20px;
+            }
+            input, button {
+                width: 90%;
             }
         }
     }

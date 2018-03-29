@@ -40,8 +40,8 @@ export class FavoritesService {
                         label: companyData.name,
                         longitude: companyData.lon,
                         latitude: companyData.lat,
-                        city: companyData.address.city,
                         nafText: companyData.naf_text,
+                        address: companyData.address,
                         email: companyData.email,
                         phone: companyData.phone,
                         website: companyData.website
@@ -68,6 +68,7 @@ export class FavoritesService {
         // Recreate favorites
         try {
             let values = JSON.parse(rawValues);
+
             values.forEach(data => {
                 favorites.push(
                     new Favorite(
@@ -75,7 +76,6 @@ export class FavoritesService {
                         data.label,
                         data.longitude,
                         data.latitude,
-                        data.city,
                         data.nafText,
                         data.address,
                         data.email,

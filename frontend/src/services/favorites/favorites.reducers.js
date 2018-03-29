@@ -12,19 +12,23 @@ export const FAVORITES_REDUCERS = (state = new Map(), action) => {
     switch (action.type) {
         case FAVORITES_ACTIONS.ADD_FAVORITE: {
             let favorites = new Map(state);
+            let company = action.data.company;
 
-            favorites.set(action.data.company.siret,
+            favorites.set(company.siret,
                 new Favorite(
-                    action.data.company.siret,
-                    action.data.company.label,
-                    action.data.company.longitude,
-                    action.data.company.latitude,
-                    action.data.company.city,
-                    action.data.company.nafText,
-                    action.data.company.address,
-                    action.data.company.email,
-                    action.data.company.phone,
-                    action.data.company.website
+                    company.siret,
+                    company.label,
+                    company.longitude,
+                    company.latitude,
+                    company.nafText,
+                    // Address
+                    {
+                        street: ''.concat(company.address.street_number,' ', company.address.street_name),
+                        city: ''.concat(company.address.zipcode, ' ', company.address.city)
+                    },
+                    company.email,
+                    company.phone,
+                    company.website
                 )
             );
 
@@ -42,9 +46,11 @@ export const FAVORITES_REDUCERS = (state = new Map(), action) => {
 
         case FAVORITES_ACTIONS.ADD_ALL_FAVORITES: {
             let favorites = new Map();
+            console.log(action.data.favorites)
             action.data.favorites.forEach(favorite => {
                 favorites.set(favorite.siret, favorite);
             });
+            console.log('favorites', favorites)
             return favorites;
         }
 

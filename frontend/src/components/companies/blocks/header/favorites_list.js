@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { FavoritesService } from '../../../../services/favorites/favorites.service';
 import { FAVORITES_STORE } from '../../../../services/favorites/favorites.store';
 
+const PLACEHOLDER_TEXT = "Votre adresse e-mail";
+
 export class FavoritesList extends Component {
     constructor(props) {
         super(props);
@@ -10,6 +12,7 @@ export class FavoritesList extends Component {
 
         this.state = {
             favorites: [],
+            placeholder: PLACEHOLDER_TEXT,
             email: this.favoritesService.getEmailFromLocalStorage()
         };
     }
@@ -50,34 +53,62 @@ export class FavoritesList extends Component {
         if (this.state.email) this.favoritesService.sendFavorites(this.state.email);
     }
 
+
+    // Remove/Add placeholder
+    removePlaceholder = () => { this.setState({ placeholder: '' }); }
+    setPlaceholder = () => { this.setState({ placeholder: PLACEHOLDER_TEXT }); }
+
     // RENDER
+    removeTitle(favorite) {
+        return "Supprimer " + favorite.label + " de vos favoris";
+    }
     renderFavorite(favorite) {
-        return (<li key={favorite.siret}>
-            <span className="block">{favorite.label}</span>
-            <span className="block"><span className="icon phone">&nbsp;</span>{ favorite.phone ? favorite.phone:'Non renseigné' }</span>
-            <span className="block"><span className="icon email">&nbsp;</span>{ favorite.email ? favorite.email:'Non renseigné' }</span>
-            <button data-siret={favorite.siret} className="remove" onClick={this.removeFavorite}>x</button>
-        </li>);
+        return (
+            <div key={favorite.siret} className="favorite-item">
+                <button data-siret={favorite.siret} className="icon close-icon" title={this.removeTitle(favorite)} onClick={this.removeFavorite}>&nbsp;</button>
+
+                <h3>{favorite.label}</h3>
+                <div className="naf">{favorite.nafText}</div>
+
+                <div className="address">
+                    <h4>Adresse</h4>
+                    <ul className="list-unstyled">
+                        <li>{favorite.address.street}</li>
+                        <li>{favorite.address.city}</li>
+                    </ul>
+                </div>
+                <div className="contact">
+                    <h4>Contact</h4>
+                    <ul className="list-unstyled">
+                        <li><span className="icon phone">&nbsp;</span>{favorite.phone ? favorite.phone:'Non renseigné'}</li>
+                        <li><span className="icon email">&nbsp;</span>{favorite.email ? favorite.email:'Non renseigné'}</li>
+                    </ul>
+                </div>
+            </div>
+        );
     }
     render() {
-        let plural = this.state.favorites.length > 1;
+        if(this.state.favorites.length === 0) {
+            return(<div id="favorites-list"><h2 className="empty">Vous n'avez aucune entreprise en favori :-(</h2></div>);
+        }
+
         return (
             <div id="favorites-list">
-                <h4>Vous avez actuellement {this.state.favorites.length === 0 ? 'aucun':this.state.favorites.length} {plural ? 'favoris stockés':'favori stocké'} sur votre appareil</h4>
+                <h2>Votre sélection d'entreprises</h2>
+
+                <div className="favorites">
+                    {this.state.favorites.map(favorite => this.renderFavorite(favorite))}
+                </div>
 
                 <div className="export-favorites">
                     <form method="POST" action="#" onSubmit={this.exportFavorite}>
-                        <label htmlFor="export-mail" className="block sr-only">Exportez ces favoris à l'adresse suivante :</label>
-                        <input id="export-mail" type="email" name="email" value={this.state.email} onInput={this.inputEmail} placeholder="Exportez ces favoris à l'adresse suivante" />
+                        <label htmlFor="export-mail" className="block sr-only">Exportez vos favoris à l'adresse suivante :</label>
+                        <input id="export-mail" type="email" name="email" value={this.state.email} onInput={this.inputEmail} placeholder={this.state.placeholder} />
 
-                        <button type="submit" title="Envoyez vos favoris">Envoi</button>
+                        <button type="submit" className="button" title="Envoyez vos favoris">Récupérez ma liste de favoris</button>
                     </form>
-
                 </div>
 
-                <ul className="list-unstyled">
-                    {this.state.favorites.map(favorite => this.renderFavorite(favorite))}
-                </ul>
             </div>
         );
     }
