@@ -95,7 +95,7 @@ export class CompanyModal extends Component {
                         </ul>
                     </div>
                     <div className="application-advices">
-                        <h4>Faîtes une candidature spontanée efficace</h4>
+                        <h4>Faites une candidature spontanée efficace</h4>
                         <div>
                             <h5>1. Faites la différence</h5>
                             <p>Montrez au recruteur que vous vous intéressez à l’entreprise en faisant des recherche sur l’entreprise.</p>
@@ -103,7 +103,7 @@ export class CompanyModal extends Component {
                         <div>
                             <h5>2. Préparez votre candidature</h5>
                             <ul className="list-unstyled">
-                                <li>- Utiliser les informations recueillies sur l’entreprise</li>
+                                <li>- Utilisez les informations recueillies sur l’entreprise</li>
                                 <li>- Mettez en avant vos compétences et les qualités attendues pour ce poste</li>
                                 <li>- Parlez de vous : vous faites un sport collectif (foot / basket..) ? Mettez en avant votre esprit d’équipe ! Vous êtes passionné d’art ? Parlez de votre créativité !</li>
                             </ul>
@@ -113,8 +113,8 @@ export class CompanyModal extends Component {
                             <ul className="list-unstyled">
                                 <li>- Aucune offre n’a été déposée, donc soyez clair sur ce que vous cherchez et votre projet</li>
                                 <li>- Objet de mail clair : candidature au poste de (…) en alternance</li>
-                                <li>- Présentez vous et parlez de votre projet et expliquer à l’employeur pourquoi vous avez choisi SON entreprise</li>
-                                <li>- Vérifiez que vous n’avez pas fait de fautes ! </li>
+                                <li>- Présentez-vous et parlez de votre projet et expliquez à l’employeur pourquoi vous avez choisi SON entreprise</li>
+                                <li>- Vérifiez que vous n’avez pas fait de faute ! </li>
                             </ul>
                         </div>
                     </div>
