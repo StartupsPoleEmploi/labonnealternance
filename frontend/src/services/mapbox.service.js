@@ -32,6 +32,7 @@ export class MapBoxService {
         // Default value
         this.MAX_DISTANCE = 3000;
         this.DEFAULT_DISTANCE = 50;
+        this.DEFAULT_ZOOM = 11;
         this.DISTANCE_GAP_FOR_RELOAD = 5; // Minimum distance for reload
         this.currentCenter = undefined;
 
@@ -68,7 +69,7 @@ export class MapBoxService {
 
     createMap(longitude, latitude) {
         window.L.mapbox.accessToken = this.accessToken;
-        this.map = window.L.mapbox.map(this.id, 'mapbox.streets').setView([latitude, longitude], 11).setMinZoom(7);
+        this.map = window.L.mapbox.map(this.id, 'mapbox.streets').setView([latitude, longitude], this.DEFAULT_ZOOM).setMinZoom(7);
 
         // Add the search center
         this.currentCenter = { lat: latitude, lng: longitude };
