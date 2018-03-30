@@ -17,6 +17,10 @@ import registerServiceWorker from './registerServiceWorker';
 // Async component
 import asyncComponent from './components/shared/asyncComponent';
 import { environment } from './environment';
+const AsyncRecruiterForm = asyncComponent(() => import('./components/recruiter_form/recruiter_form'));
+const AsyncCGU = asyncComponent(() => import('./components/cgu/cgu'));
+const AsyncWhoWeAre = asyncComponent(() => import('./components/who_we_are/who_we_are'));
+const AsyncFAQ = asyncComponent(() => import('./components/faq/faq'));
 
 require('./style/global.css');
 
@@ -39,6 +43,10 @@ export default class App extends Component {
 
                             <Route component={CompanyDetails} path="/details-entreprises/:companySiret" />
 
+                            <Route component={AsyncRecruiterForm} exact path="/acces-recruteur" />
+                            <Route component={AsyncCGU} exact path="/conditions-generales-utilisation" />
+                            <Route component={AsyncWhoWeAre} exact path="/qui-sommes-nous" />
+                            <Route component={AsyncFAQ} exact path="/faq" />
 
                             {/* Not found route */}
                             <Route component={NotFound} status={404}/>

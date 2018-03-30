@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { Header } from '../shared/header/header';
+import { Footer } from '../shared/footer/footer';
 
 import { JobFormStep } from './blocks/job_form_step';
 import { LocationFormStep } from './blocks/location_form_step';
@@ -41,12 +42,14 @@ class Form extends Component {
             <div id="search-form">
                 <div className="container">
                     <div className="beta">&nbsp;</div>
-                    <Header />
+                    <Header showOffset={false} />
                     <div className="form-step-container">
                         <Notification />
                         <JobFormStep searchForm={this.state.searchForm} next={this.nextStep} show={this.state.step === 0} />
                         <LocationFormStep searchForm={this.state.searchForm} next={this.sendForm} show={this.state.step === 1} />
                     </div>
+
+                    <Footer />
                 </div>
             </div>
         );

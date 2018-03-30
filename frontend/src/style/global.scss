@@ -37,6 +37,7 @@ ul.list-no-margin-padding { margin: 0; padding: 0; }
 .block { display: block; }
 .no-break-word { white-space: nowrap; }
 .bold { font-weight: bold !important; }
+.max-size-1000 { max-width: 1000px; margin: auto; }
 
 /* Shared style */
 p { margin: 0; }
@@ -268,4 +269,139 @@ input[type=text], input[type=email] {
 .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
     margin-left: -10px !important;
     margin-bottom: 29px !important;
+}
+
+
+// Header and Footer : visible in most of the page (so we put in global.scss)
+header#global-header {
+    display: flex;
+
+    .offset {
+        flex: $flex-left;
+    }
+
+    .title button {
+        position: relative;
+        background-position: center;
+        width: 50px;
+        height: 37px;
+
+        span.empty { color: $blue; }
+        span.not-empty { color: white; }
+
+        span.sub {
+            position: absolute;
+            bottom: -13px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 11px;
+            white-space: nowrap;
+            color: $blue;
+            font-weight: bold;
+        }
+
+        &.large-favorite {
+            background-size: 80% !important;
+            margin-right: 15px;
+        }
+
+    }
+
+    .title-container {
+        flex: $flex-right;
+        &.open {
+            #new-search, #favorites-list { box-shadow: 0 4px 2px -2px gray; }
+        }
+        .title {
+            padding: 20px;
+            display: flex;
+            background: white;
+
+            .logo {
+                flex: 10;
+                img { height: 100%; }
+            }
+        }
+
+        // Special behavior from 768px to 950px
+        @media (min-width: $min-width-mobile) and (max-width: 1000px) {
+            .title {
+                padding: 20px 5px;
+                button.large-favorite {
+                    margin-right: 7px;
+                }
+                .logo {
+                    text-align: left;
+                    padding-left: 15px;
+                    img {
+                        max-height: 90%;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: $min-width-mobile) {
+            .title {
+                padding: 20px 10px 20px 15px !important;
+                button {
+                    width: 41px;
+                    &.large-favorite {
+                        background-size: 100% !important;
+                        margin-right: 5px;
+                    }
+                    > span.sub { display: none; }
+                }
+            }
+        }
+    }
+}
+
+footer#global-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 4vh;
+    background-color: black;
+
+    z-index: 2;
+    font-size: .95em;
+
+    ul {
+        width: 100%;
+        display: flex;
+    }
+    li {
+        flex: 1;
+        vertical-align: text-top;
+        text-align: center;
+        margin: 0;
+
+        padding-top: 10px;
+        &.has-img {
+            padding-top: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            &:hover { text-decoration: underline; }
+        }
+        img { height: 35px; }
+    }
+
+    @media (max-width: $min-width-mobile) {
+        ul {
+            font-size: .9em;
+
+            li {
+                margin: 0;
+                &.small {
+                    flex: inherit;
+                    width: 50px;
+                }
+            }
+        }
+    }
 }

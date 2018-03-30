@@ -93,9 +93,11 @@ export class Header extends Component {
 
     // RENDER
     render() {
+        let showOffset = this.props.showOffset === false ? false : true;
+
         return (
-            <header className="header">
-                <div className="offset">&nbsp;</div>
+            <header id="global-header">
+                {showOffset ? <div className="offset">&nbsp;</div> : null}
                 <div className={this.computeTitleContainerClasses()}>
                     <div className="title">
                         <Link className="logo" to="/"><img src="/static/img/logo/logo-bleu-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>

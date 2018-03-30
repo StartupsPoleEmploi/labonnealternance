@@ -6,6 +6,8 @@ import { Results } from './blocks/results';
 import { CompanyModal } from './blocks/company_modal';
 import { LoaderScreen } from './blocks/loader_screen';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
+import { Footer } from '../shared/footer/footer';
+import { Header } from './blocks/header/header';
 
 // Services
 import { SEOService } from '../../services/seo.service';
@@ -14,14 +16,13 @@ import { CompanyDetailsService } from '../../services/company_details/company_de
 import { FavoritesService } from '../../services/favorites/favorites.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { FiltersService } from '../../services/filters/filters.service';
+import { ViewsService } from '../../services/view/views.service';
 
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
+import { VIEWS_STORE } from '../../services/view/views.store';
 
 import { Job } from '../../services/search_form/job';
 import { formatString } from '../../services/helpers';
-import { Header } from './blocks/header/header';
-import { VIEWS_STORE } from '../../services/view/views.store';
-import { ViewsService } from '../../services/view/views.service';
 
 require('./companies.css');
 
@@ -262,6 +263,8 @@ class Companies extends Component {
                     <Results longitude={this.state.longitude} latitude={this.state.latitude} jobs={this.state.jobs} searchTerm={this.state.searchTerm} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
                     <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
+
+                <Footer />
             </div>
         );
     }

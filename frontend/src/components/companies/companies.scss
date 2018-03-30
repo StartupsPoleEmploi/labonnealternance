@@ -1,13 +1,9 @@
 @import '../../style/mixins.scss';
 
-
-$flex-left: 10;
-$flex-right: 5;
-
 #companies {
     height: 100vh;
 
-    header {
+    #global-header {
         position: absolute;
         top: 0;
         right: 0;
@@ -17,88 +13,6 @@ $flex-right: 5;
         // We set the height to 1px to avoid superposition between the map and the header
         // (when new search form or favorites are visible)
         height: 1px;
-
-        display: flex;
-
-        .offset {
-            flex: $flex-left;
-        }
-
-        .title button {
-            position: relative;
-            background-position: center;
-            width: 50px;
-            height: 37px;
-
-            span.empty { color: $blue; }
-            span.not-empty { color: white; }
-
-            span.sub {
-                position: absolute;
-                bottom: -13px;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 11px;
-                white-space: nowrap;
-                color: $blue;
-                font-weight: bold;
-            }
-
-            &.large-favorite {
-                background-size: 80% !important;
-                margin-right: 15px;
-            }
-
-        }
-
-        .title-container {
-            flex: $flex-right;
-            &.open {
-                #new-search, #favorites-list { box-shadow: 0 4px 2px -2px gray; }
-            }
-            .title {
-                padding: 20px;
-                display: flex;
-                background: white;
-
-                .logo {
-                    flex: 10;
-                    img { height: 100%; }
-                }
-            }
-
-            // Special behavior from 768px to 950px
-            @media (min-width: $min-width-mobile) and (max-width: 1000px) {
-                .title {
-                    padding: 20px 5px;
-                    button.large-favorite {
-                        margin-right: 7px;
-                    }
-                    .logo {
-                        text-align: left;
-                        padding-left: 15px;
-                        img {
-                            max-height: 90%;
-                        }
-                    }
-                }
-            }
-
-            @media (max-width: $min-width-mobile) {
-                .title {
-                    padding: 20px 10px 20px 15px !important;
-                    button {
-                        width: 41px;
-                        &.large-favorite {
-                            background-size: 100% !important;
-                            margin-right: 5px;
-                        }
-                        > span.sub { display: none; }
-                    }
-                }
-            }
-        }
     }
 
     #new-search {
@@ -350,7 +264,7 @@ $flex-right: 5;
     }
 
     .leaflet-control-container > div:first-child {
-        bottom: 25px; right: 10px; top: auto; left: auto;
+        bottom: 50px; right: 10px; top: auto; left: auto;
         @media (max-width: $min-width-mobile) { display: none; }
     }
 
@@ -365,6 +279,12 @@ $flex-right: 5;
             &.blue { font-weight: bold; color: $blue; }
             &.pink { font-weight: bold; color: $pink; }
         }
+    }
+
+    .leaflet-control-attribution {
+        position: absolute;
+        left: -10000px;
+        top: -10000px;
     }
 }
 

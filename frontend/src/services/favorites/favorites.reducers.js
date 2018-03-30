@@ -46,11 +46,9 @@ export const FAVORITES_REDUCERS = (state = new Map(), action) => {
 
         case FAVORITES_ACTIONS.ADD_ALL_FAVORITES: {
             let favorites = new Map();
-            console.log(action.data.favorites)
             action.data.favorites.forEach(favorite => {
                 favorites.set(favorite.siret, favorite);
             });
-            console.log('favorites', favorites)
             return favorites;
         }
 
