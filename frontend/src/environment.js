@@ -14,5 +14,8 @@ export const environment = {
     GET_SOFTSKILLS_URL: '/api/match/get_soft_skills?rome=',
 
     // Api-adresse : get address from longitude/latitude
-    API_ADRESSE_URL: 'https://api-adresse.data.gouv.fr/reverse/?lon={longitude}&lat={latitude}&type=street'
+    API_ADRESSE_URL: 'https://api-adresse.data.gouv.fr/reverse/?lon={longitude}&lat={latitude}&type=street',
+
+    // Google Analytics ID
+    GA_ID: ''
 };
