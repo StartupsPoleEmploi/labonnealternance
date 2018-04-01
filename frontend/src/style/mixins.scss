@@ -169,8 +169,7 @@
     @include mx-all-corner();
 
     .actions-zone {
-        position: sticky;
-        top: 0;
+        // position: sticky; top: 0; // Not working on mobile !
         text-align: right;
         color: black;
         padding: 10px 10px 5px 10px;
