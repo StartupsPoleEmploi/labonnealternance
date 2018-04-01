@@ -45,9 +45,9 @@ class Companies extends Component {
         this.filtersService = new FiltersService();
         this.viewService = new ViewsService();
 
-        this.state = {
-            baseUrl: this.props.match.url,
+        this.baseUrl = this.props.match.url;
 
+        this.state = {
             inputError: undefined,
             loading: true,
 
@@ -157,7 +157,8 @@ class Companies extends Component {
             let company = COMPANY_DETAILS_STORE.getState();
 
             if (company) {
-                let newUrl = '/details-entreprises/' + company.siret;
+                let referer = escape(window.location.origin.concat(this.baseUrl));
+                let newUrl = '/details-entreprises/' + company.siret + "?referer=" + referer;
                 if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl);
                 this.setState({ company });
             } else {
