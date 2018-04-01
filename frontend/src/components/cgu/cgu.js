@@ -9,7 +9,7 @@ export default class CGU extends Component {
                 <Header showOffset={false} />
 
                 <main>
-                    <a href="https://adresse.data.gouv.fr/" target="_blank" title="Ouverture dans une nouvelle fenêtre">https://adresse.data.gouv.fr/</a>
+                    <a href="https://adresse.data.gouv.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">https://adresse.data.gouv.fr/</a>
                 </main>
 
                 <Footer />

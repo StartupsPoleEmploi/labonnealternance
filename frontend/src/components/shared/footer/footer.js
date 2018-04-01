@@ -14,7 +14,7 @@ export class Footer extends Component {
                     <li className="small"><Link to="/faq">FAQ</Link></li>
                     <li className="small"><Link to="/conditions-generales-utilisation">CGU</Link></li>
                     <li className="small has-img">
-                        <a href="https://europa.eu/european-union/index_fr" target="_blank" title="Ouverture dans une nouvelle fenêtre">
+                        <a href="https://europa.eu/european-union/index_fr" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
                             <img src="/static/img/logo/logo-ue.svg" alt="Visiter le site officiel de l'Union européenne" />
                         </a>
                     </li>
