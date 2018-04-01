@@ -67,7 +67,7 @@ ul.three-columns { columns: 3; }
     display: inline-block;
     animation: dotty steps(1,end) 1s infinite;
     content: '';
-  }
+}
 
 @-webkit-keyframes dotty {
     0%   { content: ''; }
@@ -272,7 +272,7 @@ input[type=text], input[type=email] {
 }
 
 
-// Header and Footer : visible in most of the page (so we put in global.scss)
+// Header, content and Footer : visible in most of the page (so we put in global.scss)
 header#global-header {
     display: flex;
 
@@ -354,6 +354,31 @@ header#global-header {
                 }
             }
         }
+    }
+}
+
+.content {
+    padding: 0 20px;
+
+    h1 {
+        color: $blue;
+        font-size: 1.5em;
+        margin: 20px 0;
+    }
+
+    h2 {
+        color: black;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+        margin: 20px 0;
+    }
+
+    h3, h4 {
+        margin: 10px 0;
+    }
+
+    ul, ol {
+        padding-left: 40px;
     }
 }
 

@@ -9,7 +9,7 @@ export default class FAQ extends Component {
                 <Header showOffset={false} />
 
                 <main>
-                    Welcome to the who we are page :)
+                    Une équipe motivée :)
                 </main>
 
                 <Footer />

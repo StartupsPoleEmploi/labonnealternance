@@ -8,8 +8,42 @@ export default class FAQ extends Component {
             <div id="faq" className="max-size-1000">
                 <Header showOffset={false} />
 
-                <main>
-                    Welcome to the FAQ :)
+                <main className="content">
+                    <h1>Questions fréquemment posées (FAQ)</h1>
+
+
+                    <h2>Il manque des entreprises dans la liste.</h2>
+                    <p>La Bonne Alternance est bien plus qu’un simple annuaire. La Bonne Alternance effectue un ciblage spécifique des entreprises à fort potentiel d’embauche afin de vous faire gagner du temps dans la sélection des entreprises à démarcher. Toutes les entreprises ne sont donc pas indiquées.</p>
+
+                    <h2>Il n’est pas précisé si les entreprises embauchent.</h2>
+                    <p>La Bonne Alternance ne propose pas d’offres d’emploi. Nous ciblons spécifiquement les entreprises ayant un fort potentiel d’embauche et vous mettons à disposition une liste par métier. Vous devez utiliser cette liste dans le cadre de candidatures spontanées. En effet, 75 % des recrutements ne sont jamais diffusés.</p>
+
+                    <h2>Pourquoi certains secteurs d’activité ne sont pas proposés ?</h2>
+                    <p>La Bonne Alternance vous indique uniquement les entreprises à fort potentiel d’embauche en fonction du métier sélectionné. Le tri par secteurs d’activité est donc uniquement possible sur les secteurs d’activité de ces entreprises. La recherche par secteur d’activité n’est actuellement pas disponible.</p>
+
+                    <h2>La distance indiquée est erronée.</h2>
+                    <p>Les distances indiquées sont les distances à vol d’oiseau. Si vous constatez tout de même une erreur, merci de nous contacter par l’intermédiaire du formulaire “Donner votre avis” (à droite de l’écran).</p>
+
+                    <h2>J’ai indiqué un métier précis, et les entreprises présentées ne correspondent pas à mes attentes.</h2>
+                    <p>La Bonne Alternance vous indique uniquement les entreprises à fort potentiel d’embauche en fonction du métier sélectionné. Il est donc possible que certains secteurs d’activité vous surprennent, ou que vous pensiez qu’il en manque. Si malgré tout vous pensez que des entreprises différentes devraient figurer pour votre recherche vous pouvez nous contacter par l’intermédiaire du formulaire “donner votre avis”.</p>
+
+                    <h2>Le métier que je recherche n’est pas présent.</h2>
+                    <p>La Bonne Alternance utilise le Répertoire Opérationnel des Métiers et des Emplois (ROME). Seuls les métiers et appellations présents dans ce répertoire sont disponibles.</p>
+
+                    <h2>Il n’y a pas de précisions sur les profils recherchés.</h2>
+                    <p>La Bonne Alternance vous indique uniquement les entreprises à fort potentiel d’embauche. Il n’y a donc pas d’offres d’emploi. Il s’agit d’entreprises ciblées auprès desquelles vous pouvez envoyer des candidatures spontanées.</p>
+
+                    <h2>Il manque des coordonnées : courriel, téléphone…</h2>
+                    <p>La Bonne Alternance vous indique uniquement les coordonnées portées à notre connaissance par les entreprises.</p>
+
+                    <h2>Les coordonnées des entreprises sont erronées.</h2>
+                    <p>La Bonne Alternance vous indique uniquement les coordonnées portées à notre connaissance par les entreprises. La mise à jour des coordonnées est également réalisée par les entreprises qui peuvent omettre de nous prévenir.</p>
+
+                    <h2>Comment rechercher sur un département entier ?</h2>
+                    <p>Cette fonctionnalité n’est actuellement pas disponible.</p>
+
+                    <h2>J’ai une suggestion d’amélioration de La Bonne Alternance, comment puis-je vous la transmettre ?</h2>
+                    <p>Laissez un message en cliquant sur "Donner votre avis" à droite de l’écran.</p>
                 </main>
 
                 <Footer />
