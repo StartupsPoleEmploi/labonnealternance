@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { Footer } from '../shared/footer/footer';
 import { Header } from '../companies/blocks/header/header';
+import { SEOService } from '../../services/seo.service';
 
 export default class CGU extends Component {
+
+    constructor(props) {
+        super(props);
+        this.SEOService = new SEOService();
+    }
+
+    componentDidMount() {
+        this.SEOService.setTitle("Conditions Générales d'utilisation");
+    }
+
     render() {
         return (
             <div id="who-we-are" className="max-size-1000">

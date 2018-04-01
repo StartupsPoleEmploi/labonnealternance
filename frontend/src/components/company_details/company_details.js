@@ -22,7 +22,10 @@ export default class CompanyDetails extends Component {
     componentWillMount() {
         COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
-            if (company) this.setState({ company });
+            if (company) {
+                this.SEOService.setTitle(company.label + " - Détails de l'entreprise");
+                this.setState({ company });
+            }
         });
 
 
