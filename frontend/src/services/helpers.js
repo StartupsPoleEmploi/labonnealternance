@@ -18,3 +18,14 @@ export function formatString(string, data) {
     }
     return result;
 }
+
+export function isSiret(str) {
+    let pattern = new RegExp("^[0-9]{14}$");
+    return pattern.test(str);
+}
+
+export function isEmail(email) {
+    // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}

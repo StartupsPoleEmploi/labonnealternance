@@ -143,7 +143,7 @@ ul.three-columns { columns: 3; }
 
 
 /* Input */
-input[type=text], input[type=email] {
+input[type=text], input[type=email], input[type=tel] {
     background-color: white;
     color: #066EE7;
     border-radius: 20px;
@@ -156,6 +156,12 @@ input[type=text], input[type=email] {
         cursor: not-allowed;
         background-color: lightgray;
     }
+}
+textarea {
+    display: block;
+    width: 100%;
+    min-height: 75px;
+    padding: 5px;
 }
 
 /* Magnifier AND favorites */
@@ -360,25 +366,15 @@ header#global-header {
 .content {
     padding: 0 20px;
 
-    h1 {
-        color: $blue;
-        font-size: 1.5em;
-        margin: 20px 0;
-    }
+    h1 { color: $blue; font-size: 1.5em; margin: 20px 0; }
+    h2 { color: black; margin-bottom: 10px; font-size: 1.2em; margin: 20px 0; }
+    h3, h4 { margin: 10px 0; }
+    ul, ol { padding-left: 40px; }
 
-    h2 {
-        color: black;
-        margin-bottom: 10px;
-        font-size: 1.2em;
-        margin: 20px 0;
-    }
-
-    h3, h4 {
-        margin: 10px 0;
-    }
-
-    ul, ol {
-        padding-left: 40px;
+    form {
+        > div { margin: 20px 0; }
+        input[type=text], input[type=tel], input[type=email] { display: inline-block; border: solid 1px darkgray; padding: 10px 20px; margin: 3px 0; color: black; }
+        .form-help-text { font-size: .8em; }
     }
 }
 
