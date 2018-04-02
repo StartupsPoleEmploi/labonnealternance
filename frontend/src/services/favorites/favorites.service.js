@@ -4,6 +4,8 @@ import { Favorite } from './favorite';
 
 import { CompanyDetailsService } from '../company_details/company_details.service';
 import { NotificationService } from '../notification/notification.service';
+import { environment } from '../../environment';
+import { getCookie } from '../helpers';
 
 const FAVORITES_STORAGE_KEY = 'FAVORITES';
 const EMAIL_STORAGE_KEY = 'EMAIL';
@@ -98,10 +100,21 @@ export class FavoritesService {
         return favorites;
     }
 
-    sendFavorites(email) {
+    sendFavorites(email, favoriteSiret) {
         // Save email to localStorage
         localStorage.setItem(EMAIL_STORAGE_KEY, email);
-        console.log(email);
+
+        return new Promise((resolve, reject) => {
+            fetch(environment.SEND_FAVORITES_URL, {
+                method: "POST",
+                body: JSON.stringify({
+                    email,
+                    favorites : favoriteSiret,
+                    'X-CSRFToken': getCookie('csrftoken')
+                })
+            }).then(response => console.log(response))
+        });
+
     }
 
     getEmailFromLocalStorage() {

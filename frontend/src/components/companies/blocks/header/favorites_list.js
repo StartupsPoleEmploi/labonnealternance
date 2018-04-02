@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FavoritesService } from '../../../../services/favorites/favorites.service';
 import { FAVORITES_STORE } from '../../../../services/favorites/favorites.store';
+import { isEmail } from '../../../../services/helpers';
+import { NotificationService } from '../../../../services/notification/notification.service';
 
 const PLACEHOLDER_TEXT = "Votre adresse e-mail";
 
@@ -9,11 +11,12 @@ export class FavoritesList extends Component {
         super(props);
 
         this.favoritesService = new FavoritesService();
+        this.notificationService = new NotificationService();
 
         this.state = {
             favorites: [],
             placeholder: PLACEHOLDER_TEXT,
-            email: this.favoritesService.getEmailFromLocalStorage()
+            email: this.favoritesService.getEmailFromLocalStorage(),
         };
     }
 
@@ -48,9 +51,17 @@ export class FavoritesList extends Component {
     inputEmail = (event) => { this.setState({ email: event.target.value }); }
     exportFavorite = (event) => {
         event.preventDefault();
+        this.notificationService.deleteNotification();
 
-        // TODO => check e-mail
-        if (this.state.email) this.favoritesService.sendFavorites(this.state.email);
+        if(!this.state.email || !isEmail(this.state.email)) {
+            this.notificationService.createError("Votre e-mail n'est pas valide");
+            return;
+        }
+
+        let promise = this.favoritesService.sendFavorites(this.state.email, this.state.favorites.map(favorite => favorite.siret));
+        promise
+            .then(() => this.notificationService.createSuccess("Vos favoris ont été envoyé"))
+            .catch(() => this.notificationService.createError("Erreur lors de l'envoi de vos favoris. Veuillez réessayer ultérieurement."))
     }
 
 
@@ -103,7 +114,7 @@ export class FavoritesList extends Component {
                 <div className="export-favorites">
                     <form method="POST" action="#" onSubmit={this.exportFavorite}>
                         <label htmlFor="export-mail" className="block sr-only">Exportez vos favoris à l'adresse suivante :</label>
-                        <input id="export-mail" type="email" name="email" value={this.state.email} onInput={this.inputEmail} placeholder={this.state.placeholder} />
+                        <input id="export-mail" type="email" name="email" value={this.state.email} onChange={this.inputEmail} placeholder={this.state.placeholder} />
 
                         <button type="submit" className="button" title="Envoyez vos favoris">Récupérez ma liste de favoris</button>
                     </form>
