@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 // Components
 import { Results } from './blocks/results';
@@ -157,12 +158,21 @@ class Companies extends Component {
             let company = COMPANY_DETAILS_STORE.getState();
 
             if (company) {
+                // Update URL in browser
                 let referer = escape(window.location.origin.concat(this.baseUrl));
-                let newUrl = '/details-entreprises/' + company.siret + "?referer=" + referer;
-                if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl);
+                let newUrl = '/details-entreprises/' + company.siret;
+                if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + referer);
+
+                // Register event in GA
+                ReactGA.pageview(newUrl);
+
                 this.setState({ company });
             } else {
                 window.history.pushState({}, '', this.baseUrl);
+
+                // Register event in GA
+                ReactGA.pageview(this.baseUrl);
+
                 this.setState({ company: undefined });
             }
         });

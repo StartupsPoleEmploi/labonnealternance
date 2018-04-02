@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 
 import { Loader } from '../../shared/loader/loader';
 
@@ -50,6 +51,9 @@ export class CompanyModal extends Component {
 
     // When user click on "Show coordinates"
     showCoordinates = () => {
+        // Recording event in GA
+        ReactGA.event({ category: 'Search', action: 'Open coordinates block' });
+
         this.setState({ showCoordinates: true });
     }
 
