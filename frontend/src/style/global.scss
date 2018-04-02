@@ -374,6 +374,7 @@ header#global-header {
     form {
         margin-bottom: 70px;
         > div { margin: 20px 0; }
+        select { background: white; padding: 5px 10px; margin-left: 10px; }
         input[type=text], input[type=tel], input[type=email] { display: inline-block; border: solid 1px darkgray; padding: 10px 20px; margin: 3px 0; color: black; }
         .form-help-text { font-size: .8em; }
     }
