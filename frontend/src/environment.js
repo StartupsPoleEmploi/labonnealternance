@@ -10,6 +10,12 @@ export const environment = {
     // Entreprises
     GET_COMPANY_DETAILS_ENTREPRISES_API_URL: '/api/entreprises/get_details?siret=',
 
+    // Favorites
+    SEND_FAVORITES_URL: '/favorites/send_by_email',
+
+    // Recruiter access
+    CONTACT_FORM_URL: '/recruiter_contact',
+
     // Match
     GET_SOFTSKILLS_URL: '/api/match/get_soft_skills?rome=',
 

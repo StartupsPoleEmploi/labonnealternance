@@ -6,6 +6,7 @@ import { NotificationService } from '../../services/notification/notification.se
 import { Notification } from '../shared/notification/notification';
 import { isEmail, isSiret } from '../../services/helpers';
 import { SEOService } from '../../services/seo.service';
+import { RecruiterFormService } from '../../services/recruiter_form.service';
 
 
 export default class RecruiterForm extends Component {
@@ -15,6 +16,7 @@ export default class RecruiterForm extends Component {
 
         this.notificationService = new NotificationService();
         this.SEOService = new SEOService();
+        this.recruiterService = new RecruiterFormService();
 
         this.state = {
             action: "promote",
@@ -58,14 +60,22 @@ export default class RecruiterForm extends Component {
     sendForm = (event) => {
         event.preventDefault();
         let messages = this.validateForm();
+        this.notificationService.deleteNotification();
 
         if (messages.length !== 0) {
-            this.notificationService.deleteNotification();
             this.notificationService.createError(messages);
             return;
         }
 
-        // this.contactService.sendForm({ });
+        this.recruiterService.sendForm({
+            action: this.state.action,
+            siret: this.state.siret,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            phone: this.state.phone,
+            comment: this.state.comment,
+        });
     }
 
     render() {
