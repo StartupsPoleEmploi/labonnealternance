@@ -4,7 +4,7 @@ import { Header } from '../companies/blocks/header/header';
 
 import { NotificationService } from '../../services/notification/notification.service';
 import { Notification } from '../shared/notification/notification';
-import { isEmail, isSiret } from '../../services/helpers';
+import { isEmail, isSiret, getParameterByName } from '../../services/helpers';
 import { SEOService } from '../../services/seo.service';
 import { RecruiterFormService } from '../../services/recruiter_form.service';
 
@@ -20,7 +20,7 @@ export default class RecruiterForm extends Component {
 
         this.state = {
             action: "promote",
-            siret: "",
+            siret: getParameterByName('siret') || "",
             firstName: "",
             lastName: "",
             email: "",
@@ -31,6 +31,7 @@ export default class RecruiterForm extends Component {
 
     componentWillMount() {
         this.SEOService.setTitle("Accès recruteurs");
+        this.SEOService.setCanonical(window.location.origin.concat(window.location.pathname));
     }
 
 

@@ -244,6 +244,18 @@
         }
     }
 
+    .modal-footer {
+        background: black;
+        text-align: center;
+        padding: 10px 0;
+        a {
+            color: white;
+            text-decoration: none;
+            font-size: .85em;
+            &:hover { text-decoration: underline; }
+        }
+    }
+
     // Mobile
     @media (max-width: $min-width-mobile) {
         .modal-content {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 import { Loader } from '../../shared/loader/loader';
@@ -195,7 +196,12 @@ export class CompanyModal extends Component {
                         <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
                         {this.renderHowToApply()}
                     </div>
+
+                    <div className="modal-footer">
+                        <Link to={'/acces-recruteur?siret=' + company.siret}>C'est mon entreprise et je souhaite en modifier les informations</Link>
+                    </div>
                 </div>
+
             </div>
         );
     }

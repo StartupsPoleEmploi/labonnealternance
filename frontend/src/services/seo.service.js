@@ -35,7 +35,7 @@ export class SEOService {
         if (canonicalUrl) {
             let canonical = document.createElement('link');
             canonical.rel = 'canonical';
-            canonical.href = canonical;
+            canonical.href = canonicalUrl;
 
             document.head.appendChild(canonical);
         }
