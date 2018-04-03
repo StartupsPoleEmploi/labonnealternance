@@ -17,7 +17,7 @@ export default class Home extends Component {
                         <h2 className="introduction">
                             <span>Trouvez ici les <strong><span className="no-break-word bold">42 000</span> entreprises</strong></span><br />
                             <span>qui <strong>vont</strong> recruter en alternance</span>
-                        </h2>zoo
+                        </h2>
 
                         <div className="button-container">
                             <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
