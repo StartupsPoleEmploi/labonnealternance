@@ -100,7 +100,7 @@ export class Header extends Component {
                 {showOffset ? <div className="offset">&nbsp;</div> : null}
                 <div className={this.computeTitleContainerClasses()}>
                     <div className="title">
-                        <Link className="logo" to="/"><img src="/static/img/logo/logo-bleu-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>
+                        <Link className="logo" to="/"><img src="/static/img/logo/logo-noir-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>
 
                         <button className={this.computeFavoriteClasses()} onClick={this.state.showFavorites ? this.closeFavorites:this.openFavorites} title={this.state.showSearchForm ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
                             <span className={this.state.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.state.favoritesNumber}</span>
