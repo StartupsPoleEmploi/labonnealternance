@@ -38,6 +38,7 @@ ul.list-no-margin-padding { margin: 0; padding: 0; }
 .no-break-word { white-space: nowrap; }
 .bold { font-weight: bold !important; }
 .max-size-1000 { max-width: 1000px; margin: auto; }
+.img-responsive { max-width: 100%;}
 
 /* Shared style */
 p { margin: 0; }
@@ -385,7 +386,7 @@ footer#global-footer {
     bottom: 0;
     right: 0;
     left: 0;
-    height: 4vh;
+    min-height: 4vh;
     background-color: black;
 
     z-index: 2;
