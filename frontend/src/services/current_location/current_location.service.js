@@ -1,4 +1,4 @@
-import { environment } from '../../environment';
+import { constants } from '../../constants';
 
 import { NotificationService } from '../notification/notification.service';
 
@@ -19,7 +19,7 @@ export class CurrentLocationService {
             return;
         }
 
-        let url = formatString(environment.API_ADRESSE_URL, { longitude, latitude });
+        let url = formatString(constants.API_ADRESSE_URL, { longitude, latitude });
         fetch(url)
             .then(response => {
                 if (response.status === 200) return response.json();

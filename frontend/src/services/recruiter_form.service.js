@@ -1,11 +1,11 @@
 import { getCookie } from "./helpers";
-import { environment } from "../environment";
+import { constants } from "../constants";
 
 export class RecruiterFormService {
 
     sendForm(formValues) {
         return new Promise((resolve, reject) => {
-            fetch(environment.CONTACT_FORM_URL, {
+            fetch(constants.CONTACT_FORM_URL, {
                 method: "POST",
                 headers: {
                     'Accept':'application/json',

@@ -1,4 +1,4 @@
-import { environment } from '../../environment';
+import { constants } from '../../constants';
 
 import { COMPANY_DETAILS_STORE } from './company_details.store';
 import { COMPANY_DETAILS_ACTIONS } from './company_details.reducer';
@@ -18,7 +18,7 @@ export class CompanyDetailsService {
 
 
     getSoftSkills(rome) {
-        fetch(environment.GET_SOFTSKILLS_URL + rome)
+        fetch(constants.GET_SOFTSKILLS_URL + rome)
             .then((response) => {
                 if (response.status === 200) return response.json();
                 return;
@@ -44,7 +44,7 @@ export class CompanyDetailsService {
 
     getCompanyDetailsAsPromise(siret) {
         return new Promise((resolve, reject) => {
-            fetch(environment.GET_COMPANY_DETAILS_LBB_URL + siret)
+            fetch(constants.GET_COMPANY_DETAILS_LBB_URL + siret)
                 .then(response => {
                     if (response.status === 200) return response.json();
                 }).then(companyData => {
@@ -55,7 +55,7 @@ export class CompanyDetailsService {
     }
 
     getCompanyDetailsFromLBB(siret, allDetails = false)  {
-        fetch(environment.GET_COMPANY_DETAILS_LBB_URL + siret)
+        fetch(constants.GET_COMPANY_DETAILS_LBB_URL + siret)
             .then(response => {
                 if (response.status === 200) return response.json();
             }).then(companyData => {

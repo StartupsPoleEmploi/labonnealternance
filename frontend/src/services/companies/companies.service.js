@@ -1,4 +1,4 @@
-import { environment } from '../../environment';
+import { constants } from '../../constants';
 
 import { COMPANIES_STORE } from './companies.store';
 import { COMPANIES_ACTIONS } from './companies.reducer';
@@ -38,7 +38,7 @@ export class CompaniesService {
     }
 
     getCityFromSlug(citySlug) {
-        let url = environment.GET_CITY_SLUG_INFORMATIONS.concat('city-slug=', citySlug);
+        let url = constants.GET_CITY_SLUG_INFORMATIONS.concat('city-slug=', citySlug);
 
         return new Promise((resolve, reject) => {
             fetch(url)
@@ -52,7 +52,7 @@ export class CompaniesService {
     }
 
     getJobFromSlug(jobSlug) {
-        let url = environment.GET_JOB_SLUG_INFORMATIONS.concat('job-slug=', jobSlug.trim());
+        let url = constants.GET_JOB_SLUG_INFORMATIONS.concat('job-slug=', jobSlug.trim());
 
         return new Promise((resolve, reject) => {
             fetch(url)
@@ -70,7 +70,7 @@ export class CompaniesService {
         let options = opts || {};
 
         // Create URL for LBB
-        let url = environment.GET_COMPANIES_URL;
+        let url = constants.GET_COMPANIES_URL;
         url = url.concat('rome=', job.rome)
             .concat('&longitude=', longitude)
             .concat('&latitude=', latitude);

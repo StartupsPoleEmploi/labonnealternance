@@ -1,4 +1,4 @@
-import { environment } from '../../environment';
+import { constants } from '../../constants';
 
 import { NotificationService } from '../notification/notification.service';
 
@@ -14,7 +14,7 @@ export class AutocompleteJobService {
     }
 
     getJobs(term) {
-        fetch(environment.SUGGEST_JOBS_URL + cleanTerm(term))
+        fetch(constants.SUGGEST_JOBS_URL + cleanTerm(term))
             .then(response => {
                 if (response.status === 200) return response.json();
 
