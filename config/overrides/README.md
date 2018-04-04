@@ -1,0 +1,1 @@
+You can create here a file called `settings.py` in which you can override values in `../settings.py`.

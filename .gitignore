@@ -17,6 +17,6 @@ frontend/yarn-error.log*
 # Django / Server
 **/*.pyc
 db.sqlite3
-config/settings.py
+config/overrides/settings.py
 venv/
 **/__init__.py
