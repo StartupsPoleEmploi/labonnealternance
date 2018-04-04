@@ -14,7 +14,7 @@ export const environment = {
     SEND_FAVORITES_URL: '/favorites/send_by_email',
 
     // Recruiter access
-    CONTACT_FORM_URL: '/recruiter_contact',
+    CONTACT_FORM_URL: 'recruiter/send_form',
 
     // Match
     GET_SOFTSKILLS_URL: '/api/match/get_soft_skills?rome=',

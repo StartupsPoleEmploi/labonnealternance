@@ -68,7 +68,7 @@ export default class RecruiterForm extends Component {
             return;
         }
 
-        this.recruiterService.sendForm({
+        let promise = this.recruiterService.sendForm({
             action: this.state.action,
             siret: this.state.siret,
             firstName: this.state.firstName,
@@ -77,6 +77,13 @@ export default class RecruiterForm extends Component {
             phone: this.state.phone,
             comment: this.state.comment,
         });
+        promise
+            .then(() => {
+                this.notificationService.createSuccess("Merci pour votre message, nous reviendrons vers vous dès que possible.");
+                // Reset form
+                this.setState({ action: "promote", siret: getParameterByName('siret') || "", firstName: "", lastName: "", email: "", phone: "", comment: "" });
+            })
+            .catch(() => this.notificationService.createSuccess("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"))
     }
 
     render() {
@@ -127,7 +134,7 @@ export default class RecruiterForm extends Component {
                         </div>
 
                         <div>
-                            <label htmlFor="comment">Commentaires</label>
+                            <label htmlFor="comment">Commentaire</label>
                             <textarea id="comment" name="comment" maxLength="15000"></textarea>
 
                             <p className="form-help-text">15 000 caractères maximum</p>

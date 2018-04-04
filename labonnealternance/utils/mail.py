@@ -2,17 +2,22 @@ import logging, mandrill, re
 
 from django.conf import settings
 
-EMAIL_REGEX = re.compile(r'/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/')
-
 def is_email(email):
-    return EMAIL_REGEX.match(email)
+    # Use of Django EmailValidator : https://stackoverflow.com/questions/3217682/checking-validity-of-email-in-django-python
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email(email)
+        return True
+    except ValidationError:
+        return False
 
 
 def send_mail(message):
     if settings.EMAIL_ACTIVATED:
         mandrill_client = mandrill.Mandrill(settings.MANDRILL_API_KEY)
 
-        email = message.get('mail')
+        email = message.get('email')
         if settings.MANDRILL_REDIRECT_ALL_EMAIL_TO:
             email = settings.MANDRILL_REDIRECT_ALL_EMAIL_TO
 

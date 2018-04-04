@@ -7,12 +7,28 @@ export class RecruiterFormService {
         return new Promise((resolve, reject) => {
             fetch(environment.CONTACT_FORM_URL, {
                 method: "POST",
+                headers: {
+                    'Accept':'application/json',
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                credentials: 'include',
                 body: JSON.stringify({
                     email: formValues.email,
-                    form : JSON.stringify({ formValues }),
-                    'X-CSRFToken': getCookie('csrftoken')
+                    form: {
+                        action: formValues.action,
+                        siret: formValues.siret,
+                        firstName: formValues.firstName,
+                        lastName: formValues.lastName,
+                        phone: formValues.phone,
+                        comment: formValues.comment,
+                    }
                 })
-            }).then(response => console.log(response))
+            }).then(response => {
+                if(response.status === 200) { resolve(); return; }
+                reject()
+            });
         });
     }
 
