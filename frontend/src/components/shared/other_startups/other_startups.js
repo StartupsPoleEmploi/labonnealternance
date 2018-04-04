@@ -23,7 +23,7 @@ export class OtherStartups extends Component {
                     </a>
                     <a href="https://memo.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" className="memo">
                         <img src="/static/img/startups/memo.png" alt="Memo"/>
-                        <span>Maintenant ! Trouver le bon job en moins de 5mn <strong>Pas de CV.</strong></span>
+                        <span>Mes candidatures en un clin d'oeil</span>
                     </a>
                     <a href="https://avril.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" className="avril">
                         <img src="/static/img/startups/avril.svg" alt="Avril"/>
