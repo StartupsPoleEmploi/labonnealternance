@@ -1,16 +1,52 @@
 import React, { Component } from 'react';
-import { Header } from '../companies/blocks/header/header';
-import { Footer } from '../shared/footer/footer';
+import { Link } from 'react-router-dom';
+
+import { SEOService } from '../../services/seo.service';
+
+require('./not_found.css');
 
 export default class NotFound extends Component {
+    constructor(props) {
+        super(props);
+        this.SEOService = new SEOService();
+    }
+
+    componentDidMount() {
+        this.SEOService.setTitle("Page non trouvée");
+    }
+
     render() {
         return (
-            <div id="not-found"  className="max-size-1000">
-                <Header showOffset={false} />
+            <div id="not-found">
+                <main className="not-found-content">
+                    <Link to="/">
+                        <img className="lba-logo" src="/static/img/logo/logo-noir-lba.svg" alt="La Bonne Alternance" />
+                    </Link>
+                    <h1 className="sr-only">Page non trouvé</h1>
 
-                <main><h1>404 Not Found</h1></main>
+                    <div className="text-container">
+                        <div className="images">
+                            <h1>
+                                <span>Erreur</span><br/>
+                                <span className="text-404">404</span>
+                            </h1>
 
-                <Footer />
+                            <img className="img-responsive" src="/static/img/not_found/404-illustration.svg" alt="" />
+                        </div>
+                        <div className="text">
+                            <p>Oups, nous n'avons pas trouvé la page que vous avez demandé.</p>
+                            <p>Faites une nouvelle recherche !</p>
+                            <div className="button-container">
+                                <Link className="button blue-button" to="/">Aller à la page d'accueil</Link>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="button-container-footer">
+                        <Link className="button blue-button" to="/">Aller à la page d'accueil</Link>
+                    </div>
+
+                </main>
             </div>
         );
     }

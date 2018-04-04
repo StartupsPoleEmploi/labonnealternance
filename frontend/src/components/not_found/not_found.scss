@@ -1,0 +1,98 @@
+@import '../../style/mixins.scss';
+
+#not-found {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: $gradient-background;
+
+    .not-found-content {
+        position: absolute;
+        top: 10px; left: 10px; right: 10px; bottom: 10px;
+        border: 10px transparent;
+        background-color: white;
+        padding: 15px;
+
+        .lba-logo { height: 45px; }
+    }
+
+    .text-container {
+        display: flex;
+        margin-top: 10vh;
+        color: $blue;
+
+        .images {
+            flex: 1;
+            padding: 0 20px;
+            font-size: 1em;
+            text-align: center;
+
+            h1 {
+                text-align: left;
+                display: inline-block;
+                line-height: 2.2em;
+                margin-bottom: 20px;
+
+                span:first-child { padding-left: 30px; }
+                span.text-404 { font-size: 4em; }
+            }
+        }
+
+        .text {
+            flex: 2;
+            font-size: 1.25em;
+
+            div {
+                margin-top: 50px;
+                text-align: center;
+                font-size: 1em;
+            }
+
+            p { font-size: 1.75em; }
+            p:first-child {
+                margin-bottom: 5vh;
+            }
+        }
+
+        @media (max-width: $min-width-mobile) {
+            .images {
+                h1 {
+                    line-height: 1.2em;
+                    span:first-child {
+                        padding-left: 15px;
+                        font-size: .8em;
+                    }
+                    span.text-404 { font-size: 2em; }
+                }
+            }
+
+            .text {
+                flex: 3;
+                font-size: .8em;
+            }
+        }
+    }
+
+    @media (max-width: $min-width-small-mobile) {
+        .not-found-content {
+            padding: 10px;
+        }
+        .text-container .images {
+            padding: 0 20px 0 15px;
+        }
+    }
+
+
+    // Hide/show buttons depending on media query
+    .button-container, .button-container-footer {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 1em;
+    }
+    .button-container { display: block; }
+    .button-container-footer { display: none; }
+
+    @media (max-width: $min-width-mobile) {
+        .button-container { display: none; }
+        .button-container-footer { display: block; }
+    }
+}
