@@ -382,7 +382,7 @@ header#global-header {
 }
 
 footer#global-footer {
-    position: fixed;
+    &:not(.not-fixed) { position: fixed; }
     bottom: 0;
     right: 0;
     left: 0;
