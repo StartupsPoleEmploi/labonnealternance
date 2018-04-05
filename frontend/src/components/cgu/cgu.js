@@ -20,8 +20,6 @@ export default class CGU extends Component {
                 <Header showOffset={false} />
 
                 <main className="content">
-                    <a href="https://adresse.data.gouv.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">https://adresse.data.gouv.fr/</a>
-
                     <h1>Conditions d'utilisation</h1>
 
                     <h2>1. Informations légales</h2>
@@ -46,6 +44,7 @@ export default class CGU extends Component {
 
                     <h2>2. Object du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a></h2>
                     <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les démarches de candidatures spontanée de l’utilisateur en l’aidant à identifier des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et un secteur géographique donnés.</p>
+                    <p>La détermination de l'adresse en fonction de la position actuelle est réalisée via le site : <a href="https://adresse.data.gouv.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">https://adresse.data.gouv.fr/</a></p>
 
                     <h2>3. Données collectées</h2>
                     <p>Les seules données collectées, pour permettre le fonctionnement du service, sont le type d’emploi recherché et le périmètre géographique souhaité. Ces données sont collectées et traitées par Pôle emploi pour la seule finalité définie à l’article 2 et ne sont pas conservées.</p>
