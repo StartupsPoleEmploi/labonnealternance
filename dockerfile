@@ -19,7 +19,7 @@ RUN mkdir /labonnealternance
 # Install Python requirements
 # Note : before ADD . /code/ in order to update requirement only if necessary
 ADD requirements.txt /code/
-RUN pip3 install -r /code/requirements.txt -r /code/additional_requirements.txt
+RUN pip3 install -r /code/requirements.txt
 
 # Copy all the folder
 ADD . /code/

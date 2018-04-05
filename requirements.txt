@@ -2,3 +2,6 @@ Django==2.0.1
 pytz==2017.3
 mandrill==1.0.57
 requests==2.18.4
+
+# Additionnals requirements
+-r additional_requirements.txt

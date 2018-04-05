@@ -16,7 +16,7 @@
 ## Install a new development environment
 
 - Create a new virtualenvwrapper for Python 3.5.2
-- Install the python requirements: `pip install -r requirements.txt -r additional_requirements.txt`
+- Install the python requirements: `pip install -r requirements.txt`
 - Create `settings.py` in the `config` folder :
 
 ```
