@@ -1,0 +1,10 @@
+"""
+Here are present librairies only useful for dev_environment
+"""
+
+# Django application
+django-cors-headers==2.1.0
+
+# Others librairies
+pylint==1.8
+ipdb==0.10.3
