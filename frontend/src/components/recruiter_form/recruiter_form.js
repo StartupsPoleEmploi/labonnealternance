@@ -99,7 +99,7 @@ export default class RecruiterForm extends Component {
 
                     <form className="" method="post" onSubmit={this.sendForm}>
                         <div>
-                            <label htmlFor="action">Je souhaite *</label>
+                            <label className="select-label" htmlFor="action">Je souhaite *</label>
                             <select id="action" onChange={this.setAction} value={this.state.action} required>
                                 <option value="promote">Promouvoir mon entreprise sur le site</option>
                                 <option value="remove">Retirer mon entreprise du site</option>

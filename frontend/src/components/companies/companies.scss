@@ -15,132 +15,6 @@
         height: 1px;
     }
 
-    #new-search {
-        background: white;
-        padding: 20px 40px 30px 40px;
-        @media (max-width: $min-width-mobile) { padding: 10px 20px 20px 20px; }
-
-        h2 {
-            color: $blue;
-            margin-bottom: 10px;
-            @media (max-width: $min-width-mobile) { font-size: 1.25em; }
-        }
-        input[type=text] { border: solid 1px lightgray; }
-
-
-        #job-form-step, #location-form-step {
-            margin-bottom: 20px;
-        }
-
-        .or {
-            text-align: center;
-            color: $gray;
-            margin-bottom: 15px;
-        }
-
-        .location-container {
-            text-align: center;
-            .loader {
-                display: inline-block;
-                margin-right: 16px;
-                vertical-align: top;
-                margin-top: 5px;
-            }
-            button {
-                border: solid 2px $blue;
-                width: 100%;
-                padding: 8px 30px;
-                margin-bottom: 10px;
-                .marker-cyan { margin-right: 16px; }
-                @media (max-width: $min-width-mobile) { padding: 8px 10px; }
-            }
-        }
-
-        .submit-container {
-            text-align: center;
-        }
-
-        .suggestions {
-            border: solid 1px lightgrey;
-            border-radius: 10px;
-            margin-top: 5px;
-            li {
-                padding: 6px;
-                text-align: center;
-                border-bottom: solid 1px lightgray;
-                &:hover { cursor: pointer; }
-                &:last-child { border-bottom: none; }
-            }
-        }
-
-        button:disabled {
-            cursor: not-allowed;
-            background-color: lightgray;
-        }
-    }
-
-    #favorites-list {
-        background: white;
-
-        h2 {
-            padding: 5px 20px;
-            &.empty { padding: 30px 20px; }
-        }
-        .naf { padding: 2px 0; }
-
-        .favorites {
-            max-height: 65vh;
-            overflow-y: auto;
-
-        }
-
-        .favorite-item {
-            padding: 5px 20px 15px 20px;
-
-            font-size: .9em;
-            position: relative;
-
-            h3 {
-                padding: 5px 0 0 0;
-                color: $blue;
-                font-weight: normal;
-            }
-            h4 { margin: 5px 0 2px 0; }
-
-            .close-icon {
-                position: absolute;
-                right: 20px;
-                top: 15px;
-                background-size: 80%;
-            }
-
-            .contact .icon {
-                margin-right: 10px;
-            }
-            border-bottom: solid 1px $lightgray;
-            &:last-child { border-bottom: none; }
-        }
-
-        .export-favorites {
-            padding: 15px 20px;
-            text-align: center;
-            border-top: solid 1px $lightgray;
-            input {
-                border: solid 1px darkgray;
-                padding: 13px 20px 10px 20px;
-                margin-bottom: 15px;
-            }
-            button {
-                font-weight: normal;
-                font-size: 18px;
-                padding: 8px 20px;
-            }
-            input, button {
-                width: 90%;
-            }
-        }
-    }
-
     .toggle-view-container {
         position: fixed;
         right: 0;
@@ -233,6 +107,7 @@
         max-width: 100%;
         text-align: center;
         font-size: 2em;
+        color: black;
         @media (max-width: $min-width-mobile) { font-size: 1.75em; }
         @media (max-width: $min-width-small-mobile) { font-size: 1.5em; }
 
@@ -319,6 +194,7 @@
 
     h2 {
         padding: 10px 20px;
+        color: black;
         @media (max-width: $min-width-mobile) {font-size: 1.2em; }
     }
 
@@ -334,8 +210,12 @@
         border-bottom: solid 2px #EDEDED;
         &:last-child { border-bottom: none; }
 
+        .distance {
+            font-size: .8em;
+            margin-bottom: 5px;
+        }
+
         .title {
-            font-weight: bold;
             color: $blue;
 
             // Favorite button
@@ -388,8 +268,9 @@
         display: flex;
 
         .small-white {
-            line-height: 30px;
-            font-size: 16px;
+            line-height: 31px;
+            font-weight: normal;
+            padding: 3px 8px;
             .icon {
                 margin-top: 7px;
                 float: left;
@@ -424,10 +305,14 @@
 
 
         .filter-title {
+            margin-top: 20px;
+            &:first-child { margin-top: 5px; }
+            font-size: .8em;
+
             h3, button {
                 display: inline-block;
             }
-            h3 { padding: 10px 0 10px 10px; }
+            h3 { padding: 10px 0 5px 10px; }
             button {
                 float: right;
                 padding: 10px;
@@ -444,6 +329,7 @@
             &:last-child { border-bottom: none; }
 
             button {
+                color: $gray-font;
                 font-size: 1em;
                 display: flex;
                 min-height: 40px;
@@ -554,19 +440,6 @@
         @media (max-width: $min-width-mobile) {
             left: 0;
         }
-
-        .badge {
-            font-size: 14px;
-            border-radius: 50%;
-            background-color: $pink;
-            color: white;
-            padding: 4px;
-            width: 24px;
-            height: 24px;
-            text-align: center;
-            display: inline-block;
-            margin-right: 11px;
-        }
     }
 
     hr {
@@ -579,7 +452,6 @@
 
     .prepare-application {
         p, li {
-            color: $gray-font;
             font-size: .95em;
             line-height: 20px;
         }

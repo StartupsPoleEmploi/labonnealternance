@@ -191,7 +191,7 @@ export class Results extends Component {
         return (
             <div id="list-results" className={this.state.loading ? 'loading':''} >
 
-                {this.renderResultTitle()}
+                { this.state.currentView !== VIEWS.FILTERS  ? this.renderResultTitle() : null }
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
                 <CompanyFilters isFiltering={this.state.isFiltering} />
