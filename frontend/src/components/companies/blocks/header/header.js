@@ -95,8 +95,24 @@ export class Header extends Component {
     }
 
     // RENDER
+    renderNewSearchButton() {
+        return(
+            <button className={this.computeMagnifierClasses()} onClick={this.state.showSearchForm ? this.closeSearchForm:this.openSearchForm} title={this.state.showFavorites ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>
+                <span className="sub">Recherche</span>
+            </button>
+        );
+    }
+    renderFavoriteButton() {
+        return(
+            <button className={this.computeFavoriteClasses()} onClick={this.state.showFavorites ? this.closeFavorites:this.openFavorites} title={this.state.showSearchForm ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
+                <span className={this.state.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.state.favoritesNumber}</span>
+                <span className="sub">Mes favoris</span>
+            </button>
+        );
+    }
     render() {
         let showOffset = this.props.showOffset === false ? false : true;
+        let showButtons = this.props.showButtons === false ? false : true;
 
         return (
             <header id="global-header">
@@ -104,15 +120,8 @@ export class Header extends Component {
                 <div className={this.computeTitleContainerClasses()}>
                     <div className="title">
                         <Link className="logo" to="/"><img src="/static/img/logo/logo-noir-lba.svg" alt="Retour à l'accueil" title="Retour à l'accueil" /></Link>
-
-                        <button className={this.computeFavoriteClasses()} onClick={this.state.showFavorites ? this.closeFavorites:this.openFavorites} title={this.state.showSearchForm ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
-                            <span className={this.state.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.state.favoritesNumber}</span>
-                            <span className="sub">Mes favoris</span>
-                        </button>
-
-                        <button className={this.computeMagnifierClasses()} onClick={this.state.showSearchForm ? this.closeSearchForm:this.openSearchForm} title={this.state.showFavorites ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>
-                            <span className="sub">Recherche</span>
-                        </button>
+                        { showButtons ? this.renderFavoriteButton()  : null }
+                        { showButtons ? this.renderNewSearchButton() : null }
                     </div>
                     {this.state.showSearchForm ? <div className="search-form"><SearchForm /></div>: null}
                     {this.state.showFavorites ? <div className="favorites"><FavoritesList /></div> : null}

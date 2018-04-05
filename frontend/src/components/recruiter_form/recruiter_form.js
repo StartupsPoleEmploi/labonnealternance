@@ -89,7 +89,7 @@ export default class RecruiterForm extends Component {
     render() {
         return (
             <div id="recruiter-form" className="max-size-1000">
-                <Header showOffset={false} />
+                <Header showOffset={false} showButtons={false} />
 
                 <main className="content">
                     <h2>Demande de modification des informations de mon entreprise</h2>
