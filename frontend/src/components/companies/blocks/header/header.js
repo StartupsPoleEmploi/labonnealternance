@@ -17,6 +17,9 @@ export class Header extends Component {
         this.state = ({
             favoritesNumber: 0,
 
+            // Avoid auto-close of search form
+            showFormClicked: false,
+
             showSearchForm: false,
             showFavorites: false,
             animateMagnifier: false,
@@ -37,7 +40,7 @@ export class Header extends Component {
         // Show/hide new form
         if(nextProps.showForm === true && this.state.showSearchForm === false) {
             this.setState({ showSearchForm: true });
-        } else if (nextProps.showForm === false && this.state.showSearchForm === true) {
+        } else if (nextProps.showForm === false && this.state.showSearchForm === true && this.state.showFormClicked === false) {
             this.setState({ showSearchForm: false });
         }
     }
@@ -62,10 +65,10 @@ export class Header extends Component {
     }
 
     // CLOSE/OPEN
-    closeSearchForm = (event) => { this.setState({ showSearchForm: false, showFavorites: false, animateMagnifier: false }); }
-    openSearchForm  = (event) => { this.setState({ showSearchForm: true, showFavorites: false, animateMagnifier: false }); }
-    closeFavorites  = (event) => { this.setState({ showSearchForm: false, showFavorites: false }); }
-    openFavorites   = (event) => { this.setState({ showSearchForm: false, showFavorites: true }); }
+    closeSearchForm = (event) => { this.setState({ showSearchForm: false, showFavorites: false, animateMagnifier: false, showFormClicked: false }); }
+    openSearchForm  = (event) => { this.setState({ showSearchForm: true, showFavorites: false, animateMagnifier: false, showFormClicked: true }); }
+    closeFavorites  = (event) => { this.setState({ showSearchForm: false, showFavorites: false, showFormClicked: false }); }
+    openFavorites   = (event) => { this.setState({ showSearchForm: false, showFavorites: true, showFormClicked: false }); }
 
 
     // CLASSES
