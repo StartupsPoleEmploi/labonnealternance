@@ -19,7 +19,7 @@ export class SearchFormService {
             let searchForm = new SearchFormData();
 
             searchForm.setTerm(values.term);
-            
+
             let jobs = [];
             values.jobs.forEach(job => {
                 jobs.push(new Job(job.rome, job.label, job.slug));

@@ -60,7 +60,7 @@ export class FavoritesList extends Component {
 
         let promise = this.favoritesService.sendFavorites(this.state.email, this.state.favorites.map(favorite => favorite.siret));
         promise
-            .then(() => this.notificationService.createSuccess("Vos favoris ont été envoyé"))
+            .then(() => { this.notificationService.createSuccess("Vos favoris ont été envoyés à l'adresse : " + this.state.email); this.setState({ 'email': "" }); })
             .catch(() => this.notificationService.createError("Erreur lors de l'envoi de vos favoris. Veuillez réessayer ultérieurement."))
     }
 

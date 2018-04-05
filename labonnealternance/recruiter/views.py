@@ -1,7 +1,7 @@
 import json, logging
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 from django.views.decorators.csrf import csrf_protect
 
 from labonnealternance.utils.mail import is_email, send_mail
@@ -46,10 +46,14 @@ def send_form(request):
             form.get('comment')
     )
 
-    send_mail({
-        'subject' : "[LBA] Prise de contact",
-        'email': 'labonneboite@pole-emploi.fr',
-        'html': html_message
-    })
+    # Send e-mail
+    try:
+        send_mail({
+            'subject' : "[LBA] Prise de contact",
+            'email': 'labonneboite@pole-emploi.fr',
+            'html': html_message
+        })
+    except Exception:
+        return HttpResponseServerError('Error while send email')
 
     return HttpResponse('SUCCESSFULL')

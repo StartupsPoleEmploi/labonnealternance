@@ -4,7 +4,7 @@ import { Favorite } from './favorite';
 
 import { CompanyDetailsService } from '../company_details/company_details.service';
 import { NotificationService } from '../notification/notification.service';
-import { environment } from '../../environment';
+import { constants } from '../../constants';
 import { getCookie } from '../helpers';
 
 const FAVORITES_STORAGE_KEY = 'FAVORITES';
@@ -105,14 +105,23 @@ export class FavoritesService {
         localStorage.setItem(EMAIL_STORAGE_KEY, email);
 
         return new Promise((resolve, reject) => {
-            fetch(environment.SEND_FAVORITES_URL, {
+            fetch(constants.SEND_FAVORITES_URL, {
                 method: "POST",
+                headers: {
+                    'Accept':'application/json',
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                credentials: 'include',
                 body: JSON.stringify({
                     email,
                     favorites : favoriteSiret,
-                    'X-CSRFToken': getCookie('csrftoken')
                 })
-            }).then(response => console.log(response))
+            }).then(response => {
+                if(response.status === 200) { resolve(); return; }
+                reject();
+            })
         });
 
     }

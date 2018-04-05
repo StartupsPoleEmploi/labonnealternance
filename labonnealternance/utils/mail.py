@@ -33,3 +33,4 @@ def send_mail(message):
             mandrill_client.messages.send(message)
         except Exception as e:
             logging.error("Cannot send email {} - {}".format(str(e), message))
+            raise e
