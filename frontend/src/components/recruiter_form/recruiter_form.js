@@ -83,7 +83,7 @@ export default class RecruiterForm extends Component {
                 // Reset form
                 this.setState({ action: "promote", siret: getParameterByName('siret') || "", firstName: "", lastName: "", email: "", phone: "", comment: "" });
             })
-            .catch(() => this.notificationService.createSuccess("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"))
+            .catch(() => this.notificationService.createError("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"))
     }
 
     render() {
