@@ -8,6 +8,8 @@ logger = logging.getLogger(__name__)
 
 API_USER = 'labonnealternance'
 
+PAGE_SIZE = 10
+
 LBB_COMPANY_DETAILS_URL = '{}/api/v1/office/{}/details?{}'
 LBB_COMPANIES_URL = '{}/api/v1/company/?{}'
 LBB_JOB_SLUG_DETAILS_URL = '{}/job_slug_details?job-slug={}'
@@ -100,7 +102,7 @@ def get_companies(longitude, latitude, rome, page=1, distance=50):
         'user': API_USER,
         'distance': distance,
         'page': page,
-        'page_size': 100,
+        'page_size': PAGE_SIZE,
         'contract': 'alternance',
     }
 
