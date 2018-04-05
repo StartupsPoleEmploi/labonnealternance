@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 
 # CRSF cookie
 CSRF_COOKIE_NAME = "csrftoken"
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 # LBB API
 LBB_URL = '<set it>'

@@ -1,14 +1,17 @@
 import logging, os
 
 from django.conf import settings
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.shortcuts import render
 from django.views.generic import View
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
 
 class ReactProxyAppView(View):
     """
     Serves the compiled frontend entry point (only works if you have run `npm run build`).
     """
+    @method_decorator(ensure_csrf_cookie)
     def get(self, request):
         try:
             with open(os.path.join(settings.REACT_APP_DIR, 'build', 'index.html'), encoding='utf-8') as f:
