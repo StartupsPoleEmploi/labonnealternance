@@ -7,7 +7,6 @@ import { Results } from './blocks/results';
 import { CompanyModal } from './blocks/company_modal';
 import { LoaderScreen } from './blocks/loader_screen';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
-import { Footer } from '../shared/footer/footer';
 import { Header } from './blocks/header/header';
 
 // Services
@@ -274,8 +273,6 @@ class Companies extends Component {
                     <Results longitude={this.state.longitude} latitude={this.state.latitude} jobs={this.state.jobs} searchTerm={this.state.searchTerm} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
                     <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
-
-                <Footer />
             </div>
         );
     }
