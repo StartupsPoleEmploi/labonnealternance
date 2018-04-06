@@ -59,10 +59,10 @@ export default class Home extends Component {
                                             <p>Pour utiliser La Bonne Alternance, il suffit d'entrer le métier recherché et votre ville. Ensuite, on s'occupe du reste !</p>
                                         </div>
                                         <div className="images">
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-1.png" alt="" />
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-2.png" alt="" />
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-3.png" alt="" />
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-4.png" alt="" />
+                                            <img className="img-responsive" src="/static/img/how-it-works/step-1.jpg" alt="" />
+                                            <img className="img-responsive" src="/static/img/how-it-works/step-2.jpg" alt="" />
+                                            <img className="img-responsive" src="/static/img/how-it-works/step-3.jpg" alt="" />
+                                            <img className="img-responsive" src="/static/img/how-it-works/step-4.jpg" alt="" />
                                         </div>
                                     </div>
                                 </div>
