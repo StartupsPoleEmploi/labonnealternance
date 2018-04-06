@@ -132,12 +132,12 @@ export class CompanyFilters extends Component {
     // NAF
     updateNafsSelected(newNafValues) {
         // Detect if all NAF are selected
-        let allNafsSelected = this.state.nafValues.size === this.state.nafsSelected.length || this.state.nafsSelected.length === 0;
+        let noNafsSelected = this.state.nafsSelected.length === 0;
 
         let newNafsSelected = [];
 
         // All the NAF were selected, so we need to select all the new NAFs
-        if (!allNafsSelected) {
+        if (!noNafsSelected) {
             // Some NAF were selected, we remove only the one not present in newNafAvailable
             this.state.nafsSelected.forEach(index => {
                 // Check presence in newNafAvaible and store is new index if necessary
@@ -168,20 +168,20 @@ export class CompanyFilters extends Component {
     // ROME
     updateRomesSelected(newRomeValues) {
         // Detect if all NAF are selected
-        let allromesSelected = this.state.romeValues.size === this.state.romesSelected.length  || this.state.romesSelected.length === 0;
+        let noRomesSelected = this.state.romesSelected.length === 0;
 
-        let newromesSelected = [];
+        let newRomesSelected = [];
 
         // All the NAF were selected, so we need to select all the new NAFs
-        if (!allromesSelected) {
+        if (!noRomesSelected) {
             // Some rome code were selected, we remove only the one not present in newromesSelected
             this.state.romesSelected.forEach(index => {
                 // Check presence in newNafAvaible and store is new index if necessary
-                if (newRomeValues.has(index)) newromesSelected.push(index);
+                if (newRomeValues.has(index)) newRomesSelected.push(index);
             });
         }
 
-        return newromesSelected;
+        return newRomesSelected;
     }
     toggleRomeFilter = (event) => {
         // If we hover a child element, we have to get the <button> parent
