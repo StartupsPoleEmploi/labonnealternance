@@ -24,7 +24,7 @@ def send_form(request):
         return HttpResponseBadRequest('<h1>Bad request : no form given</h1>')
 
     html_message = """
-        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-blanc-lba.png' alt='' /><br><br><br>
+        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-lba.png' alt='' /><br><br><br>
         Un email a été envoyé par le formulaire de contact de la Bonne Alternance :<br>
         - Action : {}<br>
         - Siret : {},<br>
@@ -36,7 +36,7 @@ def send_form(request):
 
         Cordialement,<br>
         La Bonne Alternance<br>
-        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-blanc-lba.png' alt='' /><br><br>""".format(
+        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-lba.png' alt='' /><br><br>""".format(
             form.get('action'),
             form.get('siret'),
             form.get('firstName'),

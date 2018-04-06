@@ -77,12 +77,12 @@ def send_favorites(request):
 
     # Create HTML global message
     html_message = """
-        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-blanc-lba.png' alt='' /><br><br><br>
+        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-lba.png' alt='' /><br><br><br>
         <div><p>Bonjour, <br>Vous trouverez ci-dessous la liste de vos favoris :</p></div>
         {}<hr><br><br>
         Cordialement,<br>
         La Bonne Alternance<br>
-        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-blanc-lba.png' alt='' /><br><br>
+        <img src='https://labonnealternance.pole-emploi.fr/static/img/logo/logo-lba.png' alt='' /><br><br>
         <em>Cet e-mail a été généré automatiquement, merci de ne pas y répondre<em>
     """.format(html_company)
 
