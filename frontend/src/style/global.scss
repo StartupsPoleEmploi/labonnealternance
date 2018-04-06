@@ -65,10 +65,13 @@ ul.two-columns { columns: 2; }
 ul.three-columns { columns: 3; }
 
 // Loading animation
-.loading-dotted:after {
-    display: inline-block;
-    animation: dotty steps(1,end) 1s infinite;
-    content: '';
+.loading-dotted {
+    color: black;
+    &:after {
+        display: inline-block;
+        animation: dotty steps(1,end) 1s infinite;
+        content: '';
+    }
 }
 
 @-webkit-keyframes dotty {
@@ -522,7 +525,7 @@ header#global-header {
 .content {
     padding: 0 20px;
     // Avoid superposition with fixed footer
-    margin-bottom: 100px;
+    margin-bottom: 150px;
 
     h1 { color: $blue; font-size: 1.5em; margin: 20px 0; }
     h2 { color: black; margin-bottom: 10px; font-size: 1.2em; margin: 20px 0; }
