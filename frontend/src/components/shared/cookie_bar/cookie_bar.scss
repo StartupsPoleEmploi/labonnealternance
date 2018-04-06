@@ -1,0 +1,29 @@
+.cookie-banner {
+    text-align: center;
+    background: #000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 32px;  /* Fallback in `px` for browsers that don't support rem. */
+    padding: 2rem;
+    z-index: 2000;
+    width: 100%;
+    color: #fff;
+    font-size: 1em;
+
+    p:first-child {
+        margin-bottom: 10px;
+    }
+
+    a, button {
+        color: white;
+        text-decoration: underline;
+    }
+
+    button {
+        border: none;
+        font-size: 1em;
+        background: none;
+        b { font-weight: bold; }
+    }
+}

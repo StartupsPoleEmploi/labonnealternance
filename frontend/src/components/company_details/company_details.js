@@ -19,7 +19,7 @@ import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_de
 require('./company_details.css');
 
 /*
-FIXME : Ugly component due to some deadline issues... (A lot of copy of company_modal.js)
+FIXME : Ugly component due to some deadline issues... (A lot of duplicate code from company_modal.js)
 */
 export default class CompanyDetails extends Component {
     constructor(props) {

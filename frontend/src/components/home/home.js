@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
+import { CookieBar } from '../shared/cookie_bar/cookie_bar';
 
 require('./home.css');
 
@@ -74,13 +75,14 @@ export default class Home extends Component {
                                         <p>
                                             Pôle Emploi innove et propose un service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance.
                                             La Bonne Alternance est une startup interne de Pôle Emploi créée et développée par des conseillers.<br />
-                                            
+
                                             <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
                                         </p>
                                     </div>
                                 </div>
                                 <OtherStartups />
                                 <Footer cssClass="not-fixed"/>
+                                <CookieBar />
                             </div>
                         </section>
                     </main>
