@@ -6,10 +6,9 @@ import { ViewsService } from '../../../services/view/views.service';
 import { COMPANIES_STORE } from '../../../services/companies/companies.store';
 import { VIEWS_STORE } from '../../../services/view/views.store';
 
-import { slug } from '../../../services/helpers';
 import { VIEWS } from '../../../services/view/views.reducers';
 import { Loader } from '../../shared/loader/loader';
-
+import { getNafSessionLabel } from '../../../services/companies/naf_section';
 
 const HEADCOUNT_VALUES = [
     ['0', '1 ou 2', '3 à 5', '6 à 9', '10 à 19'],
@@ -61,9 +60,10 @@ export class CompanyFilters extends Component {
             let newRomeValues = new Map();
 
             companies.forEach((company, siret) => {
-                // Naf
-                let nafSlug = slug(company.nafText);
-                if (!newNafValues.has(nafSlug)) newNafValues.set(nafSlug, company.nafText);
+                if(company.nafSection) {
+                    let nafSectionValue = getNafSessionLabel(company.nafSection);
+                    if (!newNafValues.has(nafSectionValue)) newNafValues.set(company.nafSection, nafSectionValue);
+                }
 
                 // Job
                 if (!newRomeValues.has(company.job.rome)) newRomeValues.set(company.job.rome, company.job.label);
@@ -242,7 +242,7 @@ export class CompanyFilters extends Component {
         let selected = this.isSelected(this.state.nafsSelected, index);
 
         return (
-            <li className={selected ? 'selected': ''} key={slug(index)}>
+            <li className={selected ? 'selected': ''} key={index}>
                 <button data-value={index} onClick={this.toggleNafFilter}>
                     <span><span>{text}</span></span>
                     <span className="sr-only">{selected ? 'Activez ce filtre': 'Désactivez ce filtre'}</span>

@@ -26,7 +26,7 @@ export class CompaniesService {
 
         // Company count
         if (companyCount > 1) text = text.concat('les ' + companyCount + ' entreprises ');
-        else text = text.concat('la seule entrprise ');
+        else text = text.concat('la seule entreprise ');
 
         // Job name
         text = text.concat('qui recrutent le plus en Alternance dans le métier/domaine "'+ searchTerm +'"');

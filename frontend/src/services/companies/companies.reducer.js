@@ -1,6 +1,7 @@
 import { Company } from './company';
 import { slug } from '../helpers';
 import { FILTERS_STORE } from '../filters/filters.store';
+import { determineNafSection } from './naf_section';
 
 export const COMPANIES_ACTIONS = {
     ADD_COMPANIES: 'ADD_COMPANIES',
@@ -25,7 +26,7 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
             let companies = new Map(state);
             action.data.companies.forEach(company => {
                 if (!companies.has(company.siret)) {
-                    let companyTemp = new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, company.naf_text, company.headcount_text);
+                    let companyTemp = new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
 
                     if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
                     companies.set(company.siret, companyTemp);
@@ -82,11 +83,7 @@ function computeFilters(filters, company) {
 
     // By NAF
     if (filters.naf !== 'all' && visible) {
-        if (!company.nafText) visible = false;
-
-        // Note : filters.naf are already in lowercase
-        let indexNaf = filters.naf.indexOf(slug(company.nafText));
-        if (indexNaf === -1) visible = false;
+        visible = filters.naf.includes(company.nafSection);
     }
 
     // By Rome

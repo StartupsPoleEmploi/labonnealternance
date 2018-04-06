@@ -81,7 +81,7 @@ export class CompanyDetailsService {
                         email: companyData.email,
                         phone: companyData.phone,
                         officeName: companyData.office_name,
-                        naf: companyData.naf_text,
+                        naf: companyData.naf,
                         website: companyData.website
                     }
                 });

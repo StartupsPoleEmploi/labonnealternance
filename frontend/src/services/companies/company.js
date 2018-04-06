@@ -1,5 +1,5 @@
 export class Company {
-    constructor(siret, job, label, longitude, latitude, city, distance, nafText, headcount) {
+    constructor(siret, job, label, longitude, latitude, city, distance, nafSection, nafText, headcount) {
         this.siret = siret;
         this.job = job; // Job(rome+label) associated to the company
         this.label = label;
@@ -7,6 +7,7 @@ export class Company {
         this.latitude = latitude;
         this.city = city;
         this.distance = distance;
+        this.nafSection = nafSection;
         this.nafText = nafText;
         this.headcount = headcount;
 
@@ -17,7 +18,7 @@ export class Company {
 
 
     copy() {
-        let copy = new Company(this.siret, this.job, this.label, this.longitude, this.latitude, this.city, this.distance, this.nafText);
+        let copy = new Company(this.siret, this.job, this.label, this.longitude, this.latitude, this.city, this.distance, this.nafSection, this.nafText);
 
         copy.officeName =  this.officeName;
         copy.headcount = this.headcount;

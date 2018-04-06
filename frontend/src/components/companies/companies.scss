@@ -299,9 +299,9 @@
 
     .results {
         padding-bottom: 80px;
-        height: 70vh;
+        height: 80vh;
         overflow: auto;
-        @media (max-width: $min-width-mobile) { height: 80vh; }
+        @media (max-width: $min-width-mobile) { height: 90vh; }
 
 
         .filter-title {
