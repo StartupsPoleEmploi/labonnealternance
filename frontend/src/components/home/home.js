@@ -49,8 +49,7 @@ export default class Home extends Component {
 
 
                         <section className="more">
-                            <div className="max-size-1000">
-                                <div className="how-it-works">
+                                <div className="how-it-works max-size-1000">
                                     <h2>Comment ça marche ?</h2>
                                     <div>
                                         <div className="sr-only">
@@ -66,7 +65,7 @@ export default class Home extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="who-we-are">
+                                <div className="who-we-are max-size-1000">
                                     <h2>Qui sommes-nous ?</h2>
                                     <div>
                                         <a className="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
@@ -82,10 +81,10 @@ export default class Home extends Component {
                                 </div>
                                 <OtherStartups />
                                 <Footer cssClass="not-fixed"/>
-                                <CookieBar />
-                            </div>
                         </section>
                     </main>
+
+                    <CookieBar />
 
                 </div>
             </div>

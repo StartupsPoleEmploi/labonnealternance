@@ -29,7 +29,6 @@ export class CookieBar extends Component {
     }
 
     render() {
-        console.log(this.state.show)
         if(!this.state.show) return null;
 
         return(
