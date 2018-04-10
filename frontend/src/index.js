@@ -17,6 +17,7 @@ import registerServiceWorker from './registerServiceWorker';
 // Async component
 import asyncComponent from './components/shared/asyncComponent';
 import { environment } from './environment';
+import { GoogleAnalyticsService } from './services/google_analytics.service';
 const AsyncRecruiterForm = asyncComponent(() => import('./components/recruiter_form/recruiter_form'));
 const AsyncCGU = asyncComponent(() => import('./components/cgu/cgu'));
 const AsyncWhoWeAre = asyncComponent(() => import('./components/who_we_are/who_we_are'));
@@ -60,10 +61,25 @@ export default class App extends Component {
 
 
 function GoogleAnalytics(props){
-    if(environment.GA_ID && environment.GA_ID !== '') {
-        ReactGA.set({ page: props.location.pathname + props.location.search });
-        ReactGA.pageview(props.location.pathname + props.location.search);
+
+    let pageView = props.location.pathname + props.location.search;
+
+
+    // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
+    if(props.location.pathname.startsWith('/entreprises')) {
+        pageView = GoogleAnalyticsService.handleCompanyUrl(props.location.pathname);
     }
+    // Format /details-entreprises/xx to /details-entreprises?siret=xx
+    else if(props.location.pathname.startsWith('/details-entreprises')) {
+        pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(props.location.pathname);
+    }
+
+
+    if(environment.GA_ID && environment.GA_ID !== '') {
+        ReactGA.set({ page: pageView });
+        ReactGA.pageview(pageView);
+    }
+
     return null;
 }
 

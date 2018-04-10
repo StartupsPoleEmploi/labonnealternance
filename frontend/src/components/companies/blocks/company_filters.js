@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 
 import { FiltersService } from '../../../services/filters/filters.service';
 import { ViewsService } from '../../../services/view/views.service';
@@ -98,7 +99,10 @@ export class CompanyFilters extends Component {
         return exists !== undefined;
     }
 
-    showFilters = () => { this.viewsService.setFiltersView() }
+    showFilters = () => {
+        ReactGA.event({ category: 'Views', action: 'Select filters view' });
+        this.viewsService.setFiltersView();
+    }
     hideFilters = () => {
         // For mobile => show map on close
         this.viewsService.setMapView();

@@ -23,6 +23,7 @@ import { VIEWS_STORE } from '../../services/view/views.store';
 
 import { Job } from '../../services/search_form/job';
 import { formatString } from '../../services/helpers';
+import { GoogleAnalyticsService } from '../../services/google_analytics.service';
 
 require('./companies.css');
 
@@ -163,7 +164,7 @@ class Companies extends Component {
                 if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + referer + "&rome=" + company.job.rome);
 
                 // Register event in GA
-                ReactGA.pageview(newUrl);
+                ReactGA.pageview(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
 
                 this.setState({ company });
             } else {

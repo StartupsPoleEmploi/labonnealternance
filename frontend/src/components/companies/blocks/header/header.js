@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import { FavoritesList } from './favorites_list';
 import SearchForm from '../../../shared/search_form/search_form';
@@ -66,9 +67,15 @@ export class Header extends Component {
 
     // CLOSE/OPEN
     closeSearchForm = (event) => { this.setState({ showSearchForm: false, showFavorites: false, animateMagnifier: false, showFormClicked: false }); }
-    openSearchForm  = (event) => { this.setState({ showSearchForm: true, showFavorites: false, animateMagnifier: false, showFormClicked: true }); }
+    openSearchForm  = (event) => {
+        ReactGA.event({ category: 'Search', action: 'Open search form' });
+        this.setState({ showSearchForm: true, showFavorites: false, animateMagnifier: false, showFormClicked: true });
+    }
     closeFavorites  = (event) => { this.setState({ showSearchForm: false, showFavorites: false, showFormClicked: false }); }
-    openFavorites   = (event) => { this.setState({ showSearchForm: false, showFavorites: true, showFormClicked: false }); }
+    openFavorites   = (event) => {
+        ReactGA.event({ category: 'Favorites', action: 'Open favorites list' });
+        this.setState({ showSearchForm: false, showFavorites: true, showFormClicked: false });
+    }
 
 
     // CLASSES

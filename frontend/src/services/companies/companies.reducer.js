@@ -1,5 +1,4 @@
 import { Company } from './company';
-import { slug } from '../helpers';
 import { FILTERS_STORE } from '../filters/filters.store';
 import { determineNafSection } from './naf_section';
 

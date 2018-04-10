@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 import { FavoritesService } from '../../../services/favorites/favorites.service';
+import ReactGA from 'react-ga';
 
 export default class FavoriteButton extends Component {
 
@@ -11,6 +12,7 @@ export default class FavoriteButton extends Component {
 
     addFavorite = (event) => {
         event.stopPropagation();
+        ReactGA.event({ category: 'Favorites', action: 'Add favorite' });
         this.favoritesService.addFavorite(this.props.company);
     }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactGA from 'react-ga';
 
 import { ViewsService } from '../../../services/view/views.service';
 import { VIEWS_STORE } from '../../../services/view/views.store';
@@ -28,9 +29,18 @@ export class ViewChooser extends Component {
         this.viewsStore();
     }
 
-    setFiltersView = () => { this.viewService.setFiltersView(); }
-    setMapView = () => { this.viewService.setMapView(); }
-    setListView = () => { this.viewService.setListView(); }
+    setFiltersView = () => {
+        ReactGA.event({ category: 'Views', action: 'Select filters view' });
+        this.viewService.setFiltersView();
+    }
+    setMapView = () => {
+        ReactGA.event({ category: 'Views', action: 'Select map view' });
+        this.viewService.setMapView();
+    }
+    setListView = () => {
+        ReactGA.event({ category: 'Views', action: 'Select list view' });
+        this.viewService.setListView();
+    }
 
 
     renderListViewButtons() {

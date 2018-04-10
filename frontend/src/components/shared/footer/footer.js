@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import ReactGA from 'react-ga';
 
 export class Footer extends Component {
+
+    facebookClick = (event) => {
+        // No e.preventDefault() because we follow the link
+
+        ReactGA.event({ category: 'Social Network', action: 'Click on Facebook icon' });
+    }
 
     render() {
         return (
@@ -11,7 +17,7 @@ export class Footer extends Component {
                 <div className="follow">
                     <p>
                         <span>Suivez-nous sur :<br/></span>
-                        <a href="https://www.facebook.com/labonnealternance/" target="_blank" rel="noopener noreferrer" title="Suivez-nous sur notre page Facebook">
+                        <a onClick={this.facebookClick} href="https://www.facebook.com/labonnealternance/" target="_blank" rel="noopener noreferrer" title="Suivez-nous sur notre page Facebook">
                             <img src="/static/img/logo/facebook.png" alt="" />
                         </a>
                     </p>

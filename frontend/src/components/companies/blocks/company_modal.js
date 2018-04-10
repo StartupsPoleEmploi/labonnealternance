@@ -53,7 +53,7 @@ export class CompanyModal extends Component {
     // When user click on "Show coordinates"
     showCoordinates = () => {
         // Recording event in GA
-        ReactGA.event({ category: 'Search', action: 'Open coordinates block' });
+        ReactGA.event({ category: 'Company', action: 'Open coordinates block' });
 
         this.setState({ showCoordinates: true });
     }
