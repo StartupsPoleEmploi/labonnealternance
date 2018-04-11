@@ -4,24 +4,26 @@ import ReactGA from 'react-ga';
 
 export class Footer extends Component {
 
+    /*
+    // No Facebook for now
     facebookClick = (event) => {
         // No e.preventDefault() because we follow the link
 
         ReactGA.event({ category: 'Social Network', action: 'Click on Facebook icon' });
-    }
+    } */
 
     render() {
         return (
             <footer id="global-footer" className={this.props.cssClass}>
 
-                <div className="follow">
+                {/*<div className="follow">
                     <p>
                         <span>Suivez-nous sur :<br/></span>
-                        <a onClick={this.facebookClick} href="https://www.facebook.com/labonnealternance/" target="_blank" rel="noopener noreferrer" title="Suivez-nous sur notre page Facebook">
+                        <a onClick={this.facebookClick} href="#" target="_blank" rel="noopener noreferrer" title="Suivez-nous sur notre page Facebook">
                             <img src="/static/img/logo/facebook.png" alt="" />
                         </a>
                     </p>
-                </div>
+                </div>*/}
 
                 <div className="links">
                     <ul className="list-unstyled inline-list">
