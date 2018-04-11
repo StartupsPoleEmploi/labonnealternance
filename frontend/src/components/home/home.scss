@@ -49,6 +49,9 @@
         .loading {
             color: white;
         }
+        @media(min-width: 1000px) and (max-width: 1250px) {
+            margin-top: 20px;
+        }
         @media(max-width: $min-width-mobile) {
             margin-top: 10vh;
         }

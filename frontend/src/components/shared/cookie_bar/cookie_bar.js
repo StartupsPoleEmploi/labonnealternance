@@ -32,7 +32,7 @@ export class CookieBar extends Component {
         if(!this.state.show) return null;
 
         return(
-            <div class="cookie-banner">
+            <div className="cookie-banner">
                 <p>Les cookies assurent le bon fonctionnement de nos services. En utilisant ces derniers, vous acceptez l'utilisation des cookies.</p>
                 <p><Link to="/conditions-generales-utilisation">En savoir plus</Link> - <button onClick={this.closeBanner}><b>J'ai compris</b></button>
                 </p>

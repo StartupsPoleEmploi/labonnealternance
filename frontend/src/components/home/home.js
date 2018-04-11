@@ -20,7 +20,7 @@ export default class Home extends Component {
                         <section className="main-landing">
                             <h2 className="introduction">
                                 <span>Trouvez ici les <strong><span className="no-break-word bold">42 000</span> entreprises</strong></span><br />
-                                <span>qui <strong>vont</strong> recruter en alternance</span>
+                                <span>qui recrutent <strong>régulièrement</strong> en alternance</span>
                             </h2>
 
                             <div className="button-container">

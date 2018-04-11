@@ -86,13 +86,13 @@ export class Results extends Component {
                 this.setState({ loading: false, isFiltering: false })
             }, 1000);
 
-            
+
             // If we don't expect other request result)
             if(this.requestOccuring === 0) {
                 // Hide or show the no-result modal
                 if (companies.size === 0 && !filterActive) this.setState({ modalNoResult: true });
                 else this.setState({ modalNoResult: false });
-            
+
                 // Call parent to show or hide the search form or filters
                 this.props.handleCompanyCount(companies.size);
             }
@@ -121,6 +121,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
+        this.requestOccuring = this.props.jobs.length;
         this.props.jobs.map(job => this.companiesService.getCompanies(job, this.props.longitude, this.props.latitude, { distance }));
     }
 
