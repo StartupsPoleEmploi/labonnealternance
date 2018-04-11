@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 export class Footer extends Component {
 
