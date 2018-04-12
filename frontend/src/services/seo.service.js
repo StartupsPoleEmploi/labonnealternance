@@ -16,7 +16,7 @@ export class SEOService {
     }
 
     setTitle(title) {
-        document.title = title + ' - ' + this.TITLE_DEFAULT;
+        document.title = title + ' | ' + this.TITLE_DEFAULT;
     }
 
     setKeywords(keywords) {

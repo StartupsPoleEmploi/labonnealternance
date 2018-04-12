@@ -249,8 +249,8 @@ class Companies extends Component {
     }
 
     computeTitle() {
-        let title = 'Contrats/Offres d\'alternance probables pour un métier/domaine {searchTerm}, à {cityName}';
-        if (!this.state.citySlug) title = 'Contrats/Offres d\'alternance probables pour un métier/domaine {searchTerm}, près de votre localisation';
+        let title = 'Offres d\'alternance probables en {searchTerm} - {cityName}';
+        if (!this.state.citySlug) title = 'Offres d\'alternance probables en {searchTerm}';
 
         return formatString(title, { searchTerm: this.state.searchTerm, cityName: this.state.cityName });
     }

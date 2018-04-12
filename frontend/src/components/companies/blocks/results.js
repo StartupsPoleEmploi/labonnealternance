@@ -175,7 +175,7 @@ export class Results extends Component {
     }
     renderResultTitle() {
         if (this.state.companies.size === 0) return null;
-        return (<div><h2>{this.companiesService.computeResultTitle(this.state.companies.size, this.props.searchTerm, this.props.cityName)}</h2></div>);
+        return (<div><h1>{this.companiesService.computeResultTitle(this.state.companies.size, this.props.searchTerm, this.props.cityName)}</h1></div>);
     }
     renderResultList() {
         if (this.state.companies.size === 0) return null;

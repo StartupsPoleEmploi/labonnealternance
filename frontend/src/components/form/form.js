@@ -10,6 +10,7 @@ import { Notification } from '../shared/notification/notification';
 
 import { SearchFormData } from '../../services/search_form/search_form_data';
 import { SearchFormService } from '../../services/search_form/search_form.service';
+import { SEOService } from '../../services/seo.service';
 
 require('./form.css');
 
@@ -19,12 +20,17 @@ class Form extends Component {
         super(props);
 
         this.searchFormService = new SearchFormService();
+        this.SEOService = new SEOService();
 
         this.state = {
             step: 0,
             stepNumber: 2,
             searchForm: this.searchFormService.getSearchFormValues() || new SearchFormData()
         };
+    }
+
+    componentDidMount() {
+        this.SEOService.setTitle("Trouvez votre contrat d'alternance");
     }
 
     sendForm = () => {

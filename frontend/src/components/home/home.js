@@ -5,10 +5,20 @@ import { Header } from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
 import { CookieBar } from '../shared/cookie_bar/cookie_bar';
+import { SEOService } from '../../services/seo.service';
 
 require('./home.css');
 
 export default class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.SEOService = new SEOService();
+    }
+
+    componentWillMount() {
+        this.SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
+    }
+
     render() {
         return (
             <div id="home">
