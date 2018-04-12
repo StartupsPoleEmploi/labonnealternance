@@ -2,29 +2,17 @@ export class SEOService {
 
     constructor() {
         this.TITLE_DEFAULT = 'La Bonne Alternance';
-        this.KEYWORDS_DEFAULT = 'contrat offres alternance';
-        this.DESCRIPTION_DEFAULT = 'Vous ne trouvez pas de contrat ou d\'offres d\'alternance ? Essayez La Bonne Alternance !';
     }
 
     setSeoValues(seoValues) {
         let values = seoValues || {};
 
         this.setTitle(values.title);
-        this.setKeywords(values.keywords);
-        this.setDescription(values.description);
         this.setCanonical(values.canonical);
     }
 
     setTitle(title) {
         document.title = title + ' | ' + this.TITLE_DEFAULT;
-    }
-
-    setKeywords(keywords) {
-        document.querySelector('meta[name=keywords]').setAttribute('content', keywords || this.KEYWORDS_DEFAULT);
-    }
-
-    setDescription(description) {
-        document.querySelector('meta[name=description]').setAttribute('content', description || this.DESCRIPTION_DEFAULT);
     }
 
     setCanonical(canonicalUrl) {
