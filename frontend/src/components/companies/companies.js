@@ -199,15 +199,12 @@ class Companies extends Component {
 
         // Get Job from slug
         if (this.state.jobSlugs) {
-            let jobSlugs = this.state.jobSlugs.split(',');
-
-            Promise
-                .all(jobSlugs.map(slug => this.companiesService.getJobFromSlug(slug)))
-                .then(responses => {
+            this.companiesService.getJobFromSlug(this.state.jobSlugs)
+                .then(responseJobs => {
                     let jobs = [];
 
-                    responses.forEach(response => {
-                        jobs.push(new Job(response[0].rome_code, response[0].label, '')); // No slug needed
+                    responseJobs.forEach(response => {
+                        jobs.push(new Job(response.rome_code, response.label, '')); // No slug needed
                     });
 
                     // Save values
