@@ -207,7 +207,7 @@ class Companies extends Component {
                     let jobs = [];
 
                     responses.forEach(response => {
-                        jobs.push(new Job(response.job.rome_code, response.job.label, '')); // No slug needed
+                        jobs.push(new Job(response[0].rome_code, response[0].label, '')); // No slug needed
                     });
 
                     // Save values
