@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import debounce from 'lodash/debounce';
+
 
 import { AutocompleteLocationService } from '../../../services/autocomplete_location/autocomplete_location.service';
 import { AUTOCOMPLETE_LOCATION_STORE } from '../../../services/autocomplete_location/autocomplete_location.store';
@@ -22,6 +24,8 @@ export class LocationFormStep extends Component {
         this.currentLocationService = new CurrentLocationService();
         this.notificationService = new NotificationService();
         this.searchFormService = new SearchFormService();
+
+        this.callAutocompleteCityFn = debounce(this.callAutocompleteCity, 250)
 
         // Get search form register values
         let term = ''; let autocompleteLocation; let currentLocation;
@@ -106,7 +110,11 @@ export class LocationFormStep extends Component {
     autocompleteCity = (event) => {
         let term = event.target.value;
         this.setState({ term });
-        if (term && term.length > 2)  this.autocompleteLocationService.getCities(term);
+        if (term && term.length > 2) this.callAutocompleteCityFn();
+    }
+    callAutocompleteCity = () => {
+        console.log("callAutocompleteCity");
+        this.autocompleteLocationService.getCities(this.state.term);
     }
 
     // Trigger when an user click on a city suggestion

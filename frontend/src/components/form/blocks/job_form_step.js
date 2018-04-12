@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import debounce from 'lodash/debounce';
 
 import { Job } from '../../../services/search_form/job';
 
@@ -18,6 +19,8 @@ export class JobFormStep extends Component {
         this.autocompleteJobService = new AutocompleteJobService();
         this.searchFormService = new SearchFormService();
         this.notificationService = new NotificationService();
+
+        this.callAutocompleteJobsFn = debounce(this.callAutocompleteJobs, 250)
 
         // Get search form register values
         let term = '';
@@ -111,12 +114,16 @@ export class JobFormStep extends Component {
         let term = event.target.value;
         this.setState({ term });
         if (term && term.length > 2) {
-            this.setState({ requestNumber: this.state.requestNumber + 1 });
-            this.autocompleteJobService.getJobs(term);
+            this.callAutocompleteJobsFn();
         } else {
             this.props.searchForm.setJobs([]);
             this.props.searchForm.setTerm('');
         }
+    }
+    callAutocompleteJobs = () => {
+        console.log("callAutocompleteJobs");
+        this.setState({ requestNumber: this.state.requestNumber + 1 });
+        this.autocompleteJobService.getJobs(this.state.term);
     }
 
     nextIfEnter = (event) => {
