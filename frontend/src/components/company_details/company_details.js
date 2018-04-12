@@ -80,18 +80,17 @@ export default class CompanyDetails extends Component {
         const company = this.state.company;
         const softSkills = company.softSkills;
 
-        if (!softSkills) return <div className="loader"><Loader /></div>;
-        if (softSkills.length === 0) return null;
+        if (!softSkills && this.state.rome) return <div className="loader"><Loader /></div>;
 
         return (
             <div className="prepare-application">
                 <div className="line responsive-column">
-                    <div className="soft-skills">
+                    { softSkills && this.state.rome ? <div className="soft-skills">
                         <h4>Connaissez-vous les qualités requises pour ce métier ?</h4>
                         <ul className="list-unstyled two-columns">
                             { softSkills.map((skill, index) => <li key={index}>- {skill}</li>)}
                         </ul>
-                    </div>
+                    </div> : null }
                     <div className="application-advices">
                         <h4>Faites une candidature spontanée efficace</h4>
                         <div>
@@ -190,6 +189,7 @@ export default class CompanyDetails extends Component {
 
                 <main className="content">
                     <div className="actions-zone">
+                        { this.state.referer ? <Link to={this.state.referer} className="button small-white">Retour à la recherche</Link> : null }
                         <FavoriteButton company={company} />
                     </div>
 

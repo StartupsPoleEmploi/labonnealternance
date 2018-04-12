@@ -158,7 +158,7 @@ class Companies extends Component {
 
             if (company) {
                 // Update URL in browser
-                let referer = escape(window.location.origin.concat(this.baseUrl));
+                let referer = escape(this.baseUrl);
                 let newUrl = '/details-entreprises/' + company.siret;
                 if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + referer + "&rome=" + company.job.rome);
 
