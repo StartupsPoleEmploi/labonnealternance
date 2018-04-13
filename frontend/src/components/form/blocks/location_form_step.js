@@ -113,7 +113,6 @@ export class LocationFormStep extends Component {
         if (term && term.length > 2) this.callAutocompleteCityFn();
     }
     callAutocompleteCity = () => {
-        console.log("callAutocompleteCity");
         this.autocompleteLocationService.getCities(this.state.term);
     }
 

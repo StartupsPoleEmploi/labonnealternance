@@ -121,7 +121,6 @@ export class JobFormStep extends Component {
         }
     }
     callAutocompleteJobs = () => {
-        console.log("callAutocompleteJobs");
         this.setState({ requestNumber: this.state.requestNumber + 1 });
         this.autocompleteJobService.getJobs(this.state.term);
     }
