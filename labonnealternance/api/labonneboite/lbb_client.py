@@ -2,13 +2,13 @@
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
 
-from config.settings import LBB_URL, LBB_API_KEY
+from config.settings import LBB_URL, LBB_API_KEY, LBB_USE_BETA_FLAG
 
 logger = logging.getLogger(__name__)
 
 API_USER = 'labonnealternance'
 
-PAGE_SIZE = 10
+PAGE_SIZE = 100
 
 LBB_COMPANY_DETAILS_URL = '{}/api/v1/office/{}/details?{}'
 LBB_COMPANIES_URL = '{}/api/v1/company/?{}'
@@ -84,7 +84,6 @@ def get_company(siret):
     params['signature'] = signature
 
     url = LBB_COMPANY_DETAILS_URL.format(LBB_URL, siret, urllib.parse.urlencode(params))
-
     return urllib.request.urlopen(url)
 
 
@@ -103,8 +102,13 @@ def get_companies(longitude, latitude, rome, page=1, distance=50):
         'distance': distance,
         'page': page,
         'page_size': PAGE_SIZE,
-        'contract': 'alternance',
     }
+
+    if LBB_USE_BETA_FLAG:
+        params.update({'hiring_type':'alt'})
+    else:
+        params.update({'contract':'alternance'})
+
 
     timestamp = make_timestamp()
     signature = make_signature(params, timestamp)
@@ -112,6 +116,7 @@ def get_companies(longitude, latitude, rome, page=1, distance=50):
     params['signature'] = signature
 
     url = LBB_COMPANIES_URL.format(LBB_URL, urllib.parse.urlencode(params))
+
     try:
         response = urllib.request.urlopen(url)
     except HTTPError as e:

@@ -135,6 +135,7 @@ CSRF_COOKIE_SECURE = False
 
 # LBB API
 LBB_URL = '<set it>'
+LBB_USE_BETA_FLAG = False
 LBB_API_KEY='<set it>'
 ESD_CLIENT_ID='<set it>'
 ESD_CLIENT_SECRET='<set it>'
