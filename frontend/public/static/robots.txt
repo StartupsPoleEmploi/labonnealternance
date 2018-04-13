@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://labonnealternance.pole-emploi.fr/sitemap.xml
