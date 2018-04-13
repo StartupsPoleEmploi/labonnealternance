@@ -93,7 +93,7 @@ class Companies extends Component {
                 this.setState({ showForm: true });
             }
 
-            if (this.state.citySlug) { this.SEOService.displayNoFollow(true); }
+            this.SEOService.displayNoFollow(true);
         } else {
             // On mobile, on first result page ever : display the number of results
             let showMobileResultPopup = localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null;
@@ -103,7 +103,10 @@ class Companies extends Component {
             }
 
             this.setState({ animateMagnifier: false, showForm: false });
+
+            // If user is gelocated, do not index the page (priority to URLs with citySlug)
             if (this.state.citySlug) { this.SEOService.displayNoFollow(false); }
+            else { this.SEOService.displayNoFollow(true); }
         }
     }
 

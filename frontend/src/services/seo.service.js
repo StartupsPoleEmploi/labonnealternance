@@ -30,20 +30,13 @@ export class SEOService {
     }
 
     displayNoFollow(addNoFollow) {
+        let followMeta = document.getElementById('robots-meta');
+        if(!followMeta) return;
+
         if (addNoFollow) {
-            if (document.getElementById('no-follow')) return;
-
-            // Add no-follow
-            let metaNoFollow = document.createElement('meta');
-            metaNoFollow.id = 'no-follow';
-            metaNoFollow.name = 'robots';
-            metaNoFollow.content = 'noindex,follow';
-
-            document.head.appendChild(metaNoFollow);
+            followMeta.content = 'noindex,follow';
         } else {
-            // Remove it
-            let noFollowElement = document.getElementById('no-follow');
-            if (noFollowElement) noFollowElement.remove();
+            followMeta.content = 'index,follow';
         }
     }
 }

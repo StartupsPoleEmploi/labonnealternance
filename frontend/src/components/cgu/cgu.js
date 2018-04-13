@@ -11,6 +11,7 @@ export default class CGU extends Component {
     }
 
     componentDidMount() {
+        this.SEOService.displayNoFollow(false);
         this.SEOService.setTitle("Conditions Générales d'utilisation");
     }
 

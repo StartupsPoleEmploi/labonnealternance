@@ -16,6 +16,7 @@ export default class Home extends Component {
     }
 
     componentWillMount() {
+        this.SEOService.displayNoFollow(false);
         this.SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
     }
 

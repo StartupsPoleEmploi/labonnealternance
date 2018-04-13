@@ -30,6 +30,7 @@ class Form extends Component {
     }
 
     componentDidMount() {
+        this.SEOService.displayNoFollow(false);
         this.SEOService.setTitle("Trouvez votre contrat d'alternance");
     }
 

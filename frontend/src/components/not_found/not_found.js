@@ -12,6 +12,7 @@ export default class NotFound extends Component {
     }
 
     componentDidMount() {
+        this.SEOService.displayNoFollow(true);
         this.SEOService.setTitle("Page non trouvée");
     }
 

@@ -11,6 +11,7 @@ export default class FAQ extends Component {
     }
 
     componentDidMount() {
+        this.SEOService.displayNoFollow(false);
         this.SEOService.setTitle("Questions fréquentes");
     }
 
