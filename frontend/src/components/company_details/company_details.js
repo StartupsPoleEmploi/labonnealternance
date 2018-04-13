@@ -42,7 +42,7 @@ export default class CompanyDetails extends Component {
         COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
-                this.SEOService.setTitle(company.label + " - Détails de l'entreprise");
+                this.SEOService.setTitle('Offres probables d\'alternance société ' + company.label);
                 this.setState({ company });
 
                 if (!company.hasExtraInfos()) this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
