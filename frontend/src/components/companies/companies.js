@@ -17,6 +17,7 @@ import { FavoritesService } from '../../services/favorites/favorites.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { FiltersService } from '../../services/filters/filters.service';
 import { ViewsService } from '../../services/view/views.service';
+import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
 
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 import { VIEWS_STORE } from '../../services/view/views.store';
@@ -45,6 +46,7 @@ class Companies extends Component {
         this.notificationService = new NotificationService();
         this.filtersService = new FiltersService();
         this.viewService = new ViewsService();
+        this.softSkillsService = new SoftSkillsService();
 
         this.baseUrl = this.props.match.url;
 
@@ -236,8 +238,9 @@ class Companies extends Component {
 
 
     initPageContent() {
-        // Get favorites from localStorage
+        // Get favorites and soft skills from localStorage
         this.favoritesService.getFavoritesFromLocalStorage();
+        this.softSkillsService.getSoftSkillsFromLocalStorage();
 
         // Fake loader page (goal : make the user read the message !)
         setInterval(() => this.setState({ loading: false }), LOADING_DURATION);

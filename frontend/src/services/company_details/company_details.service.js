@@ -16,32 +16,6 @@ export class CompanyDetailsService {
         });
     }
 
-
-    getSoftSkills(rome) {
-        fetch(constants.GET_SOFTSKILLS_URL + rome)
-            .then((response) => {
-                if (response.status === 200) return response.json();
-                return;
-            })
-            .then((softSkills) => {
-                if (!softSkills) return;
-
-                let skills = softSkills.skills;
-                if (!softSkills.skills.length === 0) return;
-
-                // We keep only skills with score > 0.5
-                let bestSkills =  [];
-                Object.keys(skills).forEach(key => {
-                    if (skills[key].score > 0.5) bestSkills.push(skills[key]);
-                });
-
-                COMPANY_DETAILS_STORE.dispatch({
-                    type: COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS,
-                    data: bestSkills
-                });
-            });
-    }
-
     getCompanyDetailsAsPromise(siret) {
         return new Promise((resolve, reject) => {
             fetch(constants.GET_COMPANY_DETAILS_LBB_URL + siret)

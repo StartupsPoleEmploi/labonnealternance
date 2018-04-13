@@ -15,6 +15,7 @@ import { getParameterByName } from '../../services/helpers';
 
 import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
+import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
 
 require('./company_details.css');
 
@@ -26,7 +27,10 @@ export default class CompanyDetails extends Component {
         super(props);
 
         this.companyDetailsService = new CompanyDetailsService();
+        this.softSkillsService = new SoftSkillsService();
         this.SEOService = new SEOService();
+
+        this.softSkillsService.getSoftSkillsFromLocalStorage();
 
         this.state= {
             referer: getParameterByName('referer') || undefined,
@@ -51,7 +55,7 @@ export default class CompanyDetails extends Component {
 
                 // Get soft skills
                 if (this.state.rome) {
-                    if (!company.hasSoftSkills()) this.companyDetailsService.getSoftSkills(this.state.rome);
+                    if (!company.hasSoftSkills()) this.softSkillsService.getSoftSkills(this.state.rome);
                 }
             } else {
                 this.SEOService.displayNoFollow(true);

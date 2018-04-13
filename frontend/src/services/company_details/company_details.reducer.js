@@ -4,7 +4,12 @@ import { determineNafSection } from '../companies/naf_section';
 export const COMPANY_DETAILS_ACTIONS = {
     SET_COMPANY: 'SET_COMPANY',
     DELETE_COMPANY: 'DELETE_COMPANY',
+
+    // When we get SoftSkills from localStorage, we have SoftSkills object
     ADD_SOFT_SKILLS: 'ADD_SOFT_SKILLS',
+    // When we get softSkills from an API request, we have to handle the response JSON format
+    ADD_SOFT_SKILLS_FROM_REQUEST: 'ADD_SOFT_SKILLS_FROM_REQUEST',
+
     ADD_COMPANY_DETAILS: 'ADD_COMPANY_DETAILS',
     ADD_ALL_COMPANY_DETAILS: 'ADD_ALL_COMPANY_DETAILS',
 };
@@ -19,6 +24,16 @@ export const COMPANY_DETAILS_REDUCER = (state = undefined, action) => {
         }
 
         case COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS: {
+            // Could happen when we get the informations after the modal is closed
+            if (!state) return state;
+
+            let company= state.copy();
+            company.setSoftSkills(action.data.softSkills.skills);
+
+            return company;
+        }
+
+        case COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS_FROM_REQUEST: {
             // Could happen when we get the informations after the modal is closed
             if (!state) return state;
 

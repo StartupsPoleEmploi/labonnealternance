@@ -8,15 +8,21 @@ import { COMPANY_DETAILS_STORE } from '../../../services/company_details/company
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
 import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
+import { SoftSkillsService } from '../../../services/soft_skills/soft_skills.service';
 
 export class CompanyModal extends Component {
 
     constructor(props) {
         super(props);
         this.companyDetailsService = new CompanyDetailsService();
+        this.softSkillsService = new SoftSkillsService();
+
+        this.hasSoftSkills = false;
+        this.hasExtraInfos = false;
 
         this.state = {
             company: undefined,
+
             showCoordinates: false,
         };
     }
@@ -26,11 +32,24 @@ export class CompanyModal extends Component {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
                 this.setState({ company });
-                if (company.job && company.job.rome) {
-                    if (!company.hasSoftSkills()) this.companyDetailsService.getSoftSkills(company.job.rome);
-                    if (!company.hasExtraInfos()) this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
+
+                // Soft skills
+                if (company.job && company.job.rome && !this.hasSoftSkills) {
+                    this.hasSoftSkills = true;
+                    this.softSkillsService.getSoftSkills(company.job.rome);
                 }
-            } else this.setState({ company: undefined });
+
+                // Extra infos
+                if (!this.hasExtraInfos) {
+                    this.hasExtraInfos = true;
+                    this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
+                }
+            } else {
+                // Re-init values
+                this.hasSoftSkills = false;
+                this.hasExtraInfos = false;
+                this.setState({ company: undefined });
+            }
         });
 
         // When a favorite is added/deleted => force update if needed
