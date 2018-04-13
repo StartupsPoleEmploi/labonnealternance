@@ -63,10 +63,11 @@ export default class Home extends Component {
                                 <div className="how-it-works max-size-1000">
                                     <h2>Comment ça marche ?</h2>
                                     <div>
-                                        <div className="sr-only">
-                                            <p>La Bonne Alternance utilise un algorithme vous propose des entreprises ayant déjà recruté en alternance dans le passé (sources : Pôle Emploi et le ministère du travail)</p>
-                                            <p>Par conséquent, il ne s'agit pas d'offres en alternance et vous devez démarcher ces entreprises via des candidatures spontanées.</p>
-                                            <p>Pour utiliser La Bonne Alternance, il suffit d'entrer le métier recherché et votre ville. Ensuite, on s'occupe du reste !</p>
+                                        <div className="text">
+                                            <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. Il est donc essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément déposées d’offres d’emploi en alternance.</p>
+                                            <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années pour vous proposer les entreprises qui recrutent régulièrement  en alternance.</p>
+                                            <p>Pour une meilleur lisibilité les résultats sont affichés sur une carte et en liste. Vous pouvez affiner la liste les entreprises par taille, métier et domaine . En cliquant sur une entreprise vous accédez à ses  données clés, à des conseils pour postuler ainsi qu'à ses coordonnées.</p>
+                                            <p><strong>Maximiser vos chances !</strong>  Postulez auprès des entreprises qui recrutent régulièrement en alternance sans forcément avoir déposé d’offres. C’est parti !</p>
                                         </div>
                                         <div className="images">
                                             <img className="img-responsive" src="/static/img/how-it-works/step-1.jpg" alt="" />
@@ -83,8 +84,7 @@ export default class Home extends Component {
                                             <img className="img-responsive" src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
                                         </a>
                                         <p>
-                                            Pôle Emploi innove et propose un service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance.
-                                            La Bonne Alternance est une startup interne de Pôle Emploi créée et développée par des conseillers.<br />
+                                            Pôle emploi innove et propose un service exclusif pour vous permettre de trouver plus facilement des entreprises recrutant régulièrement en contrat d’alternance sans avoir forcément déposées d’offres d’emploi.<br />
 
                                             <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
                                         </p>

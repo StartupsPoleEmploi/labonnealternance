@@ -140,6 +140,12 @@
 
         .how-it-works {
             padding: 20px;
+
+            .text {
+                p { margin-bottom: 10px; }
+                margin-bottom: 15px;
+            }
+
             .images {
                 text-align: center;
                 img {
