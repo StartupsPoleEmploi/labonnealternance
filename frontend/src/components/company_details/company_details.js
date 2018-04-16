@@ -204,10 +204,10 @@ export default class CompanyDetails extends Component {
                     <div className="modal-title">
                         <h1>{ company.label } a recruté en alternance en 2017.</h1>
                         <strong>Tentez votre chance, postulez avant que l'offre ne soit publiée !</strong>
-
                     </div>
 
                     <div className="modal-body">
+                        <small className="siret">SIRET: {company.siret}</small>
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
                         {this.renderCompanyDetails()}
                         <hr />
