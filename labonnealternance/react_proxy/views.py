@@ -37,7 +37,7 @@ def get_sitemap(request):
 
 def get_google_site_verification(request):
     try:
-        with open(os.path.join(settings.REACT_APP_DIR, 'build', 'static', ''), encoding='utf-8') as f:
+        with open(os.path.join(settings.REACT_APP_DIR, 'build', 'static', 'googlea04ab2b847e8e66f.html'), encoding='utf-8') as f:
             return HttpResponse(f.read())
     except FileNotFoundError:
         logging.error('No googlea04ab2b847e8e66f.html')
