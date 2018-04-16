@@ -35,6 +35,14 @@ def get_sitemap(request):
         logging.error('No sitemap.xml')
         return HttpResponse("Not found", status=404)
 
+def get_google_site_verification(request):
+    try:
+        with open(os.path.join(settings.REACT_APP_DIR, 'build', 'static', ''), encoding='utf-8') as f:
+            return HttpResponse(f.read())
+    except FileNotFoundError:
+        logging.error('No googlea04ab2b847e8e66f.html')
+        return HttpResponse("Not found", status=404)
+
 
 def get_robots(request):
     try:

@@ -26,6 +26,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    # React application / sitemap.xml / robots.txt : must be last !
+    # React application / sitemap.xml / robots.txt / google-site-verification : must be last !
     re_path(r'^', include("labonnealternance.react_proxy.urls")),
 ]
