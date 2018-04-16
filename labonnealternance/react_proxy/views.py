@@ -30,7 +30,9 @@ class ReactProxyAppView(View):
 def get_sitemap(request):
     try:
         with open(os.path.join(settings.REACT_APP_DIR, 'build', 'static', 'sitemap.xml'), encoding='utf-8') as f:
-            return HttpResponse(f.read())
+            response = HttpResponse(f.read())
+            response['Content-Type'] = 'text/xml; charset=utf-8'
+            return response
     except FileNotFoundError:
         logging.error('No sitemap.xml')
         return HttpResponse("Not found", status=404)
@@ -47,6 +49,9 @@ def get_google_site_verification(request):
 def get_robots(request):
     try:
         with open(os.path.join(settings.REACT_APP_DIR, 'build', 'static', 'robots.txt'), encoding='utf-8') as f:
+            response = HttpResponse(f.read())
+            response['Content-Type'] = 'text/plain; charset=utf-8'
+            return response
             return HttpResponse(f.read())
     except FileNotFoundError:
         logging.error('No robots.txt')
