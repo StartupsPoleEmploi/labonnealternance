@@ -25,11 +25,11 @@ export class CompaniesService {
         let text = 'Voici ';
 
         // Company count
-        if (companyCount > 1) text = text.concat('les ' + companyCount + ' entreprises ');
-        else text = text.concat('la seule entreprise ');
+        if (companyCount > 1) text = text.concat('les ' + companyCount + ' entreprises qui recrutent le plus');
+        else text = text.concat('la seule entreprise qui recrute');
 
         // Job name
-        text = text.concat('qui recrutent le plus en Alternance dans le métier/domaine "'+ searchTerm +'"');
+        text = text.concat(' en Alternance dans le métier/domaine "'+ searchTerm +'"');
 
         // City name (if possible)
         if (cityName) text = text.concat(', à ').concat(cityName).concat('.');
