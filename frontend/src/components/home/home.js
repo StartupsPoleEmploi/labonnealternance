@@ -65,7 +65,7 @@ export default class Home extends Component {
                                     <div>
                                         <div className="text">
                                             <p>7 employeurs sur 10 recrutent sans déposer d’offre d’emploi. Il est donc essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément déposé d’offre d’emploi en alternance.</p>
-                                            <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années pour vous proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de professionalisation).</p>
+                                            <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années pour vous proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de professionnalisation).</p>
                                             <p>Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste. Vous pouvez affiner la liste des entreprises par taille, métier et domaine. En cliquant sur une entreprise, vous accédez à ses données-clés, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
                                             <p><strong>Maximisez vos chances !</strong> Postulez auprès des entreprises qui recrutent régulièrement en alternance sans forcément avoir déposé d’offre. C’est parti !</p>
                                         </div>
