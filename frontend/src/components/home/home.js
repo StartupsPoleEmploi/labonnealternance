@@ -69,12 +69,6 @@ export default class Home extends Component {
                                             <p>Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste. Vous pouvez affiner la liste des entreprises par taille, métier et domaine. En cliquant sur une entreprise, vous accédez à ses données-clés, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
                                             <p><strong>Maximisez vos chances !</strong> Postulez auprès des entreprises qui recrutent régulièrement en alternance sans forcément avoir déposé d’offre. C’est parti !</p>
                                         </div>
-                                        <div className="images">
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-1.jpg" alt="" />
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-2.jpg" alt="" />
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-3.jpg" alt="" />
-                                            <img className="img-responsive" src="/static/img/how-it-works/step-4.jpg" alt="" />
-                                        </div>
                                     </div>
                                 </div>
                                 <div className="who-we-are max-size-1000">
