@@ -25,12 +25,12 @@ import { VIEWS_STORE } from '../../services/view/views.store';
 import { Job } from '../../services/search_form/job';
 import { formatString } from '../../services/helpers';
 import { GoogleAnalyticsService } from '../../services/google_analytics.service';
+import { constants } from '../../constants';
 
 require('./companies.css');
 
 // Constants
 const SHOW_RESULT_POPUP_KEY = 'SHOW_RESULT_POPUP_KEY';
-const MOBILE_MAX_WIDTH = 768; // Use mobile mode at 768px
 const LOADING_DURATION = 4000; // In milliseconds
 
 class Companies extends Component {
@@ -64,7 +64,7 @@ class Companies extends Component {
             searchTerm: this.props.match.params.term || '',
 
             // Some Javascript action depend on the mobile
-            mobileVersion: window.innerWidth < MOBILE_MAX_WIDTH,
+            mobileVersion: window.innerWidth < constants.MOBILE_MAX_WIDTH,
             animateMagnifier: false,
             showForm: false,
         };
@@ -73,7 +73,7 @@ class Companies extends Component {
 
     // Trigger when user resize the browser window
     updateDimensions() {
-        if (window.innerWidth < MOBILE_MAX_WIDTH) {
+        if (window.innerWidth < constants.MOBILE_MAX_WIDTH) {
             if (this.state.mobileVersion === false) {
                 this.setState({ mobileVersion: true });
             }

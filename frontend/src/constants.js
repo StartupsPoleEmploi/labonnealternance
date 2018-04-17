@@ -1,4 +1,7 @@
 export const constants = {
+    // GLOBAL
+    MOBILE_MAX_WIDTH: 768, // Use mobile mode at 768px
+
     // La Bonne Boite
     SUGGEST_JOBS_URL: '/api/labonneboite/suggest_jobs?term=',
     SUGGEST_CITY_URL: '/api/labonneboite/suggest_cities?term=',

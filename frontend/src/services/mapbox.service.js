@@ -9,6 +9,7 @@ import { CompanyDetailsService } from './company_details/company_details.service
 import { COMPANY_DETAILS_STORE } from './company_details/company_details.store';
 
 import { FAVORITES_STORE } from './favorites/favorites.store';
+import { constants } from '../constants';
 
 // Trigger when the user click on the popup
 window.selectSiret = (el) => {
@@ -32,7 +33,7 @@ export class MapBoxService {
         // Default value
         this.MAX_DISTANCE = 3000;
         this.DEFAULT_DISTANCE = 50;
-        this.DEFAULT_ZOOM = 13;
+        this.DEFAULT_ZOOM = window.innerWidth < constants.MOBILE_MAX_WIDTH ? 12 : 13;
         this.DISTANCE_GAP_FOR_RELOAD = 5; // Minimum distance for reload
         this.currentCenter = undefined;
 
