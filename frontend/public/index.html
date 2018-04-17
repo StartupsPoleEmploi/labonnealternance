@@ -36,12 +36,15 @@
   <meta property="og:description" content="Vous ne trouvez pas de contrat ou d'offres d'alternance ? Essayez La Bonne Alternance ! Trouvez ici les 63 000 entreprises qui recrutent régulièrement en alternance">
 
   <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
+    manifest.json provides metadata used when your web app is added to the
+    homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+  -->
   <link rel="manifest" href="%PUBLIC_URL%/static/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/static/favicon.png">
   <title>Le site des entreprises qui recrutent en alternance | La Bonne Alternance</title>
+
+  <!-- Raven for Sentry -->
+  <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -234,5 +237,4 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
-
 </html>

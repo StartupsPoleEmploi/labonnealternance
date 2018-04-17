@@ -83,6 +83,11 @@ function GoogleAnalytics(props){
     return null;
 }
 
+// Initialise Raven for Sentry
+if(environment.sentryCode && environment.sentryCode !== '') {
+    window.Raven.config(environment.sentryCode).install();
+}
+
 // Start the application
 if(environment.GA_ID && environment.GA_ID !== '') { ReactGA.initialize(environment.GA_ID); }
 ReactDOM.render(<App />, document.getElementById('root'));
