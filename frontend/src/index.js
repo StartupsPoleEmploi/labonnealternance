@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 
 // Based on https://www.linkedin.com/pulse/google-analytics-working-your-react-app-make-work-just-choudhary/
 import ReactGA from 'react-ga';
@@ -66,11 +67,11 @@ function GoogleAnalytics(props){
 
 
     // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
-    if(props.location.pathname.startsWith('/entreprises')) {
+    if(startsWith(props.location.pathname, '/entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyUrl(props.location.pathname);
     }
     // Format /details-entreprises/xx to /details-entreprises?siret=xx
-    else if(props.location.pathname.startsWith('/details-entreprises')) {
+    else if(startsWith(props.location.pathname, '/details-entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(props.location.pathname);
     }
 
