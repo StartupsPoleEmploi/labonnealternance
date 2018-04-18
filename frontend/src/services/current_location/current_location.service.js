@@ -29,6 +29,7 @@ export class CurrentLocationService {
                 if (!response) return;
                 if (response.features === undefined) {
                     this.notificationService.createError('Erreur lors de la récupération de ta position');
+                    return;
                 }
 
                 let addressData = response.features[0].properties;
