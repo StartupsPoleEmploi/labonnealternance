@@ -43,6 +43,7 @@ export class FavoritesService {
                         longitude: companyData.lon,
                         latitude: companyData.lat,
                         nafText: companyData.naf_text,
+                        officeName: companyData.raison_sociale,
                         address: companyData.address,
                         email: companyData.email,
                         phone: companyData.phone,
