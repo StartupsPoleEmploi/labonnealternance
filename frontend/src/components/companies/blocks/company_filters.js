@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
+import toArray from 'lodash/toArray';
 
 import { FiltersService } from '../../../services/filters/filters.service';
 import { ViewsService } from '../../../services/view/views.service';
@@ -298,7 +299,7 @@ export class CompanyFilters extends Component {
                         { this.state.romesSelected.length > 0 ? <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>: null }
                     </div>
                     <ul className="list-unstyled">
-                        {Array.from(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
+                        {toArray(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
                     </ul>
 
                     <div className="filter-title">
@@ -306,7 +307,7 @@ export class CompanyFilters extends Component {
                         { this.state.nafsSelected.length > 0 ? <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>: null }
                     </div>
                     <ul className="list-unstyled">
-                        {Array.from(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
+                        {toArray(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
                     </ul>
 
                     <div className="button-container">

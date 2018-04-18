@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import toArray from 'lodash/toArray';
 
 import { MapBoxService } from '../../../services/mapbox.service';
 import { CompaniesService } from '../../../services/companies/companies.service';
@@ -76,7 +77,7 @@ export class Results extends Component {
             });
 
             // Sort companies by distance
-            companies = new Map(Array.from(companies.entries()).sort((a,b) => a[1].distance - b[1].distance));
+            companies = new Map(toArray(companies.entries()).sort((a,b) => a[1].distance - b[1].distance));
 
             // Register companies and display no-result if needed
             this.setState({ companies, count: this.state.count + companies.size  });
@@ -183,7 +184,7 @@ export class Results extends Component {
         return (
             <ul className="list-unstyled list">
                 {/* Entry : [siret, Company object] */}
-                {Array.from(this.state.companies.entries()).map(entry => <CompanyListItem key={entry[0]} company={entry[1]} hoverFn={this.listItemHover} />)}
+                {toArray(this.state.companies.entries()).map(entry => <CompanyListItem key={entry[0]} company={entry[1]} hoverFn={this.listItemHover} />)}
             </ul>
         );
     }
