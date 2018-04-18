@@ -60,32 +60,32 @@ export default class Home extends Component {
 
 
                         <section className="more">
-                                <div className="how-it-works max-size-1000">
-                                    <h2>Comment ça marche ?</h2>
-                                    <div>
-                                        <div className="text">
-                                            <p>7 employeurs sur 10 recrutent sans déposer d’offre d’emploi. Il est donc essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément déposé d’offre d’emploi en alternance.</p>
-                                            <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années pour vous proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de professionnalisation).</p>
-                                            <p>Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste. Vous pouvez affiner la liste des entreprises par taille, métier et domaine. En cliquant sur une entreprise, vous accédez à ses données-clés, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
-                                            <p><strong>Maximisez vos chances !</strong> Postulez auprès des entreprises qui recrutent régulièrement en alternance sans forcément avoir déposé d’offre. C’est parti !</p>
-                                        </div>
+                            <div className="how-it-works max-size-1000">
+                                <h2>Comment ça marche ?</h2>
+                                <div>
+                                    <div className="text">
+                                        <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. Il est donc essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément déposé d’offres d’emploi en alternance.</p>
+                                        <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années pour vous proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de professionnalisation).</p>
+                                        <p>Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste. Vous pouvez affiner la liste des entreprises par taille, métier et domaine. En cliquant sur une entreprise, vous accédez à ses données-clés, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
+                                        <p><strong>Maximisez vos chances !</strong> Postulez auprès des entreprises qui recrutent régulièrement en alternance sans forcément avoir déposé d’offres. C’est parti !</p>
                                     </div>
                                 </div>
-                                <div className="who-we-are max-size-1000">
-                                    <h2>Qui sommes-nous ?</h2>
-                                    <div>
-                                        <a className="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
-                                            <img className="img-responsive" src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
-                                        </a>
-                                        <p>
-                                            Pôle emploi innove et propose un service exclusif pour vous permettre de trouver plus facilement des entreprises recrutant régulièrement en contrat d’alternance sans avoir forcément déposé d’offre d’emploi.<br />
+                            </div>
+                            <div className="who-we-are max-size-1000">
+                                <h2>Qui sommes-nous ?</h2>
+                                <div>
+                                    <a className="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
+                                        <img className="img-responsive" src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
+                                    </a>
+                                    <p>
+                                        Pôle emploi innove et propose un service exclusif pour vous permettre de trouver plus facilement des entreprises recrutant régulièrement en contrat d’alternance sans avoir forcément déposé d’offres d’emploi.<br />
 
-                                            <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
-                                        </p>
-                                    </div>
+                                        <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
+                                    </p>
                                 </div>
-                                <OtherStartups />
-                                <Footer cssClass="not-fixed"/>
+                            </div>
+                            <OtherStartups />
+                            <Footer cssClass="not-fixed"/>
                         </section>
                     </main>
 
