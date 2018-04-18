@@ -1,12 +1,24 @@
 // Remove accent + lowercase
 export function cleanTerm(term) {
-    let str = term.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    return str.toLowerCase();
+    let str = term.toLowerCase();
+    // Detect when normalize is not available
+    if (typeof ''.normalize === 'function') {
+        str = term.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    } else {
+        // Specific case (for Safari 9)
+        let a = ['à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ø', 'ù', 'ú', 'û', 'ü' , 'œ'];
+        let b = ['a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'oe'];
+
+        let i = a.length;
+        while(i--) str = str.replace(a[i], b[i]);
+    }
+
+    return str;
 }
 
 export function slug(str) {
     str = cleanTerm(str);
-    return str.replace(/ /g,'-');
+    return str.replace(/ /g, '-');
 }
 
 // Small string format : http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/
@@ -14,7 +26,7 @@ export function formatString(string, data) {
     let result = string;
     for (const entry in data) {
         if (!entry) continue;
-        result = result.replace(new RegExp('{'+ entry +'}','g'), data[entry]);
+        result = result.replace(new RegExp('{' + entry + '}', 'g'), data[entry]);
     }
     return result;
 }
