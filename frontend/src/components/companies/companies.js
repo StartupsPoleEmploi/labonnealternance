@@ -214,7 +214,6 @@ class Companies extends Component {
 
                     // Get location value (if needed) or init the map
                     if (!this.state.citySlug) {
-                        this.setPageTitle();
                         this.initPageContent();
                     } else {
                         // Get coordinates and city
