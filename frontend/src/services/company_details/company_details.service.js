@@ -45,7 +45,7 @@ export class CompanyDetailsService {
                         latitude: companyData.lat,
                         city: companyData.city,
                         distance: companyData.distance,
-                        naf_text: companyData.naf_text,
+                        nafText: companyData.naf_text,
                         headcount_text: companyData.headcount_text,
                         // */
                         address: {
@@ -54,7 +54,7 @@ export class CompanyDetailsService {
                         },
                         email: companyData.email,
                         phone: companyData.phone,
-                        officeName: companyData.office_name,
+                        officeName: companyData.raison_sociale,
                         naf: companyData.naf,
                         website: companyData.website
                     }

@@ -40,14 +40,14 @@ export class Company {
 
     hasSoftSkills() { return this.softSkills !== undefined; }
     hasExtraInfos() {
-        return this.address !== undefined || this.email !== undefined || this.phone !== undefined || this.website !== undefined;
+        return this.address !== undefined || this.email !== undefined || this.phone !== undefined || this.website !== undefined || this.officeName !== undefined;
     }
 
     setExtraInfos(address, email, phone, officeName, website) {
         this.address = address;
         this.email = email;
         this.phone = phone;
-        this.officeName = officeName; // French equivalent : Enseigne
+        this.officeName = officeName || ''; // French equivalent : Enseigne
         this.website = website;
     }
 
