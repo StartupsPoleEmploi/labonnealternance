@@ -90,7 +90,7 @@ export class CompanyModal extends Component {
                 </div>
 
                 <div className="line">
-                    { company.officeName ? <div className="office-name"><h4>Enseigne</h4><div>{company.officeName}</div></div>: null }
+                    { company.officeName && company.officeName !== company.label ? <div className="office-name"><h4>Raison sociale</h4><div>{company.officeName}</div></div>: null }
                     <div className="headcount">
                         <h4>Taille</h4>
                         {company.headcount ? <p>{company.headcount}</p>:'Inconnu'}
