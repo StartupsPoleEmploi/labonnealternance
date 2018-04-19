@@ -23,7 +23,7 @@ import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_de
 import { VIEWS_STORE } from '../../services/view/views.store';
 
 import { Job } from '../../services/search_form/job';
-import { formatString } from '../../services/helpers';
+import { formatString, unSlug } from '../../services/helpers';
 import { GoogleAnalyticsService } from '../../services/google_analytics.service';
 import { constants } from '../../constants';
 
@@ -69,7 +69,6 @@ class Companies extends Component {
             showForm: false,
         };
     }
-
 
     // Trigger when user resize the browser window
     updateDimensions() {
@@ -131,16 +130,14 @@ class Companies extends Component {
     }
 
     componentWillMount() {
+        // Set SEO Values title
+        this.setSEOValues();
+
         // Listen to resize event
         window.addEventListener('resize', this.updateDimensions.bind(this));
 
         // Listen to goBack/goForward event
         window.onpopstate = (event) => this.handleBackForwardEvent(event);
-
-        // Handle no-follow <meta>
-        if (!this.state.citySlug) {
-            this.SEOService.displayNoFollow(this.props.noFollow);
-        }
 
         // Check location
         let locationOk = this.state.longitude && this.state.latitude;
@@ -217,6 +214,7 @@ class Companies extends Component {
 
                     // Get location value (if needed) or init the map
                     if (!this.state.citySlug) {
+                        this.setPageTitle();
                         this.initPageContent();
                     } else {
                         // Get coordinates and city
@@ -236,27 +234,43 @@ class Companies extends Component {
         }
     }
 
+    // Handle SEO values
+    setSEOValues() {
+        // Page title
+        let title = 'Offres d\'alternance probables en {searchTerm}';
+        let data = { searchTerm: this.state.searchTerm };
+
+        if (this.state.citySlug) {
+            let citySlug = this.state.citySlug;
+            let zipcodeIndex = citySlug.lastIndexOf('-') +1;
+
+            let zipcode = citySlug.substr(zipcodeIndex, citySlug.length - 1);
+            let cityName = unSlug(citySlug.substr(0, zipcodeIndex - 1));
+            title = 'Offres d\'alternance probables en {searchTerm} - {cityName} ({zipcode})';
+            data = { searchTerm: this.state.searchTerm, cityName, zipcode };
+        }
+
+        this.seoService = this.SEOService.setTitle(formatString(title, data));
+
+
+        // Handle no-follow <meta>
+        if (!this.state.citySlug) {
+            this.SEOService.displayNoFollow(this.props.noFollow);
+        }
+    }
+
 
     initPageContent() {
         // Get favorites and soft skills from localStorage
         this.favoritesService.getFavoritesFromLocalStorage();
         this.softSkillsService.getSoftSkillsFromLocalStorage();
 
+
         // Fake loader page (goal : make the user read the message !)
         setInterval(() => this.setState({ loading: false }), LOADING_DURATION);
 
-        // SEO values
-        this.seoService = this.SEOService.setSeoValues({
-            title: this.computeTitle()
-        });
     }
 
-    computeTitle() {
-        let title = 'Offres d\'alternance probables en {searchTerm} - {cityName}';
-        if (!this.state.citySlug) title = 'Offres d\'alternance probables en {searchTerm}';
-
-        return formatString(title, { searchTerm: this.state.searchTerm, cityName: this.state.cityName });
-    }
 
     render() {
         if (this.state.inputError) {

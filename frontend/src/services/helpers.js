@@ -21,6 +21,19 @@ export function slug(str) {
     return str.replace(/ /g, '-');
 }
 
+export function unSlug(str) {
+    // Remove all '-' chars
+    str = str.replace(/-/g, ' ');
+
+    // Capitalize all words
+    str = str.split(" ");
+    for (let i = 0, x = str.length; i < x; i++) {
+        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+    }
+    return str.join(" ");
+}
+
+
 // Small string format : http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/
 export function formatString(string, data) {
     let result = string;
