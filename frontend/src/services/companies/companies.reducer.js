@@ -1,7 +1,6 @@
 import { Company } from './company';
 import { FILTERS_STORE } from '../filters/filters.store';
 import { determineNafSection } from './naf_section';
-import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 
 export const COMPANIES_ACTIONS = {
     ADD_COMPANIES: 'ADD_COMPANIES',
@@ -72,7 +71,7 @@ function computeFilters(filters, company) {
         // At least, one headcount filter matches with company.headcount
         let hasHeadcount = false;
         for (let i = 0; i < filters.headcount.length; i++) {
-            if(startsWith(company.headcount, filters.headcount[i])){
+            if(company.headcount.startsWith(filters.headcount[i])){
                 hasHeadcount = true;
                 break;
             }

@@ -45,6 +45,22 @@
 
   <!-- Raven for Sentry -->
   <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
+
+  <!-- For IE (not Edge), we include a polyfill to support recent JS functions -->
+  <script type="text/javascript">
+    var ua = window.navigator.userAgent;
+    // MSIE : IE6 -> 10 & Trident: IE 11
+    if(ua.indexOf('MSIE ') !== -1 || ua.indexOf('Trident/') !== -1) {
+      var id = 'polyfill-ie';
+      if (!document.getElementById(id)) {
+        var fjs = document.getElementsByTagName('script')[0];
+        var js = document.createElement('script');
+        js.id = id;
+        js.src = "https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+    }
+  </script>
 </head>
 
 <body>
