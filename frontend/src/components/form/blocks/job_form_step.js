@@ -104,7 +104,7 @@ export class JobFormStep extends Component {
         }
 
         // Save values and called next step
-        this.props.next();
+        if(this.isValid()) this.props.next();
     }
 
     // Trigger when filling the job input
