@@ -160,9 +160,9 @@ class Companies extends Component {
 
             if (company) {
                 // Update URL in browser
-                let referer = escape(this.baseUrl);
+                let referer = this.baseUrl;
                 let newUrl = '/details-entreprises/' + company.siret;
-                if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + referer + "&rome=" + company.job.rome);
+                if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + encodeURIComponent(referer) + "&rome=" + company.job.rome);
 
                 // Register event in GA
                 ReactGA.pageview(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));

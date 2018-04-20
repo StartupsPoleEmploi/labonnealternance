@@ -459,7 +459,7 @@
     .loader { @include mx-loader(); }
 
     .company, .prepare-application {
-        // On IE, we need to element repaint
+        // On IE, we need to force the element repaints
         // if not, the rotated animation of the loader is still apply to the content...
         zoom: 1;
     }
