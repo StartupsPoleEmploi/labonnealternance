@@ -29,7 +29,9 @@
     "devDependencies": {
         "eslint": "^4.18.2",
         "eslint-config-synacor": "^2.1.0",
-        "eslint-plugin-react": "^7.7.0"
+        "eslint-plugin-react": "^7.7.0",
+        "jest": "^22.4.3",
+        "jest-cli": "^22.4.3"
     },
     "eslintIgnore": [
         "build/*",
