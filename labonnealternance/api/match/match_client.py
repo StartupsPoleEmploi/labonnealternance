@@ -2,9 +2,10 @@ import datetime, requests
 
 from labonnealternance.api.common.singleton import Singleton
 from labonnealternance.api.common.client_base import ClientBase
+from config.settings import MATCH_VIA_SOFT_SKILLS_EXTRA_SCOPES
 
 MATCH_API_URL = 'https://api.emploi-store.fr/partenaire/matchviasoftskills/v1/professions/job_skills?code={}'
-ESD_SCOPES = ['api_matchviasoftskillsv1']
+ESD_SCOPES = ['api_matchviasoftskillsv1'] + MATCH_VIA_SOFT_SKILLS_EXTRA_SCOPES
 
 class SoftSkillsNotFound(Exception):
     pass

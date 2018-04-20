@@ -140,6 +140,9 @@ LBB_API_KEY='<set it>'
 ESD_CLIENT_ID='<set it>'
 ESD_CLIENT_SECRET='<set it>'
 
+# MATCH FOR SOFT SKILLS
+MATCH_VIA_SOFT_SKILLS_EXTRA_SCOPES = []
+
 # MANDRILL (for mailing)
 EMAIL_ACTIVATED = False
 MANDRILL_REDIRECT_ALL_EMAIL_TO = None # Redirect all email to an unique address (DEV_ONLY)
