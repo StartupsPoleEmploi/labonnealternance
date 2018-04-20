@@ -121,6 +121,10 @@ export class FavoritesService {
                 })
             }).then(response => {
                 if(response.status === 200) { resolve(); return; }
+
+                // Send exception to Sentry (for further analysis)
+                window.Raven.captureException(new Error("Error when exporting favorites : " + response.status + " " + response.statusText));
+
                 reject();
             })
         });

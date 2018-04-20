@@ -4,4 +4,7 @@ export const environment = {
 
     // Hotjar
     hotjarCode: 846857,
+
+    // Sentry code
+    sentryCode: ''
 };

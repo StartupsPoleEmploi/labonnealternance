@@ -8,7 +8,7 @@ export class RecruiterFormService {
             fetch(constants.CONTACT_FORM_URL, {
                 method: "POST",
                 headers: {
-                    'Accept':'application/json',
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json; charset=utf-8',
                     'X-CSRFToken': getCookie('csrftoken'),
                     'X-Requested-With': 'XMLHttpRequest',
@@ -26,8 +26,13 @@ export class RecruiterFormService {
                     }
                 })
             }).then(response => {
-                if(response.status === 200) { resolve(); return; }
-                reject()
+                if (response.status === 200) { resolve(); return; }
+
+                // Send exception to Sentry (for further analysis)
+                window.Raven.captureException(new Error("Error when sending recruiter form : " + response.status + " " + response.statusText));
+
+                reject();
+
             });
         });
     }
