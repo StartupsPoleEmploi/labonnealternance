@@ -404,7 +404,6 @@
 }
 
 // Modal
-.loader { @include mx-loader(); }
 .modal { @include mx-modal(); }
 
 .modal {
@@ -455,6 +454,14 @@
         width: 130%;
         margin-top: 5px;
         margin-bottom: 15px;
+    }
+
+    .loader { @include mx-loader(); }
+
+    .company, .prepare-application {
+        // On IE, we need to element repaint
+        // if not, the rotated animation of the loader is still apply to the content...
+        zoom: 1;
     }
 
     .prepare-application {
