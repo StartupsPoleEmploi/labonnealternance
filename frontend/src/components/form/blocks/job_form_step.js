@@ -10,6 +10,8 @@ import { AUTOCOMPLETE_JOB_STORE } from '../../../services/autocomplete_job/autoc
 import { SearchFormService } from '../../../services/search_form/search_form.service';
 
 const PLACEHOLDER_TEXT = 'Graphiste, maçon, second de cuisine...';
+const JOBS_MAX_SIZE = 4;
+
 
 export class JobFormStep extends Component {
 
@@ -48,9 +50,10 @@ export class JobFormStep extends Component {
                 this.props.searchForm.setJobs([]);
                 this.props.searchForm.setTerm('');
             } else {
-                // Save all the jobs
+                // Save the 4th jobs
                 let jobs = [];
-                suggestions.forEach(suggest => {
+                suggestions.forEach((suggest, index) => {
+                    if(index >= JOBS_MAX_SIZE) return;
                     jobs.push(new Job(suggest.rome, suggest.label, suggest.slug));
                 });
 
