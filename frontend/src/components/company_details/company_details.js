@@ -16,6 +16,7 @@ import { getParameterByName } from '../../services/helpers';
 import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
+import { CompanyDetailsCommon } from '../shared/company_details_commun/company_details_commun';
 
 require('./company_details.css');
 
@@ -84,103 +85,11 @@ export default class CompanyDetails extends Component {
     }
 
     // RENDER
-    renderPrepareApplication() {
-        const company = this.state.company;
-        const softSkills = company.softSkills;
-
-        if (!softSkills && this.state.rome) return <div className="loader"><Loader /></div>;
-
-        return (
-            <div className="prepare-application">
-                <div className="line responsive-column">
-                    { softSkills && this.state.rome ? <div className="soft-skills">
-                        <h4>Connaissez-vous les qualités requises pour ce métier ?</h4>
-                        <ul className="list-unstyled two-columns">
-                            { softSkills.map((skill, index) => <li key={index}>- {skill}</li>)}
-                        </ul>
-                    </div> : null }
-                    <div className="application-advices">
-                        <h4>Faites une candidature spontanée efficace</h4>
-                        <div>
-                            <h5>1. Faites la différence</h5>
-                            <p>Montrez au recruteur que vous vous intéressez à l’entreprise en faisant des recherche sur l’entreprise.</p>
-                        </div>
-                        <div>
-                            <h5>2. Préparez votre candidature</h5>
-                            <ul className="list-unstyled">
-                                <li>- Utilisez les informations recueillies sur l’entreprise</li>
-                                <li>- Mettez en avant vos compétences et les qualités attendues pour ce poste</li>
-                                <li>- Parlez de vous : vous faites un sport collectif (foot / basket..) ? Mettez en avant votre esprit d’équipe ! Vous êtes passionné d’art ? Parlez de votre créativité !</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h5>3. Postulez maintenant !</h5>
-                            <ul className="list-unstyled">
-                                <li>- Aucune offre n’a été déposée, donc soyez clair sur ce que vous cherchez et votre projet</li>
-                                <li>- Objet de mail clair : candidature au poste de (…) en alternance</li>
-                                <li>- Présentez-vous et parlez de votre projet et expliquez à l’employeur pourquoi vous avez choisi SON entreprise</li>
-                                <li>- Vérifiez que vous n’avez pas fait de faute ! </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    renderCompanyCoordinates() {
-        const company = this.state.company;
-        const address = company.address;
-
-        if (!address) return <div className="loader"><Loader /></div>;
-
-        return (
-            <div className="company-coordinates">
-                <div className="address">
-                    <h4>Adresse</h4>
-                    <ul className="list-unstyled">
-                        <li>{address.street}</li>
-                        <li>{address.city}</li>
-                    </ul>
-                </div>
-                <div className="contact">
-                    <h4>Contact</h4>
-                    <ul className="list-unstyled">
-                        <li><span className="icon phone">&nbsp;</span>{ company.phone ? company.phone:'Non renseigné' }</li>
-                        <li><span className="icon email">&nbsp;</span>{ company.email ? company.email:'Non renseigné' }</li>
-                    </ul>
-                </div>
-            </div>
-        );
-    }
-    renderCompanyDetails() {
-        const company = this.state.company;
-        if (!this.state.company.address) return <div className="loader"><Loader /></div>;
-
-        return (
-            <div className="company">
-                <div className="line column">
-                    <h3>{company.label}</h3>
-                    <div>{ company.nafText ? <p>{company.nafText}</p>:'' }</div>
-                </div>
-
-                <div className="line">
-                    { company.officeName ? <div className="office-name"><h4>Enseigne</h4><div>{company.officeName}</div></div>: null }
-                    <div className="headcount">
-                        <h4>Taille</h4>
-                        {company.headcount ? <p>{company.headcount}</p>:'Inconnu'}
-                    </div>
-
-                    { company.website ? <div className="hire-rate"><h4>Site Internet</h4><a href={company.website} target="_blank" title="Ouverture dans une nouvelle fenêtre">{company.website}</a></div>:'' }
-                </div>
-            </div>
-        );
-    }
     renderHowToApply() {
         return (
             <div className="line responsive-column how-to-apply">
                 <div className="flex-big">
-                    { this.state.showCoordinates ? this.renderCompanyCoordinates():<div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div> }
+                    { this.state.showCoordinates ? CompanyDetailsCommon.renderCompanyCoordinates(this.state.company):<div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div> }
                 </div>
             </div>
         );
@@ -188,7 +97,7 @@ export default class CompanyDetails extends Component {
     render() {
         if (!this.state.company) return <Loader />;
 
-        let company = this.state.company;
+        const company = this.state.company;
 
         return (
             <div id="company-details" className="max-size-1000">
@@ -200,24 +109,21 @@ export default class CompanyDetails extends Component {
                         { this.state.referer ? <Link to={this.state.referer} className="button small-white">Retour à la recherche</Link> : null }
                         <FavoriteButton company={company} />
                     </div>
+                    {CompanyDetailsCommon.renderTitle(company)}
 
-                    <div className="modal-title">
-                        <h1>{ company.label } a recruté en alternance en 2017.</h1>
-                        <strong>Tentez votre chance, postulez avant que l'offre ne soit publiée !</strong>
-                    </div>
 
-                    <div className="modal-body">
+                    <div>
                         <small className="siret">SIRET: {company.siret}</small>
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
-                        {this.renderCompanyDetails()}
+                        {CompanyDetailsCommon.renderCompanyDetails(company)}
                         <hr />
 
                         <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
-                        {this.renderPrepareApplication()}
+                        {CompanyDetailsCommon.renderPrepareApplication(company, this.state.rome)}
                         <hr />
 
                         <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
-                        {this.renderHowToApply()}
+                        {this.renderHowToApply(company)}
                     </div>
 
                     <div className="company-footer">
