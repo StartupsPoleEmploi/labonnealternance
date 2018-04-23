@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
-
+import ReactGA from 'react-ga';
 
 import { AutocompleteLocationService } from '../../../services/autocomplete_location/autocomplete_location.service';
 import { AUTOCOMPLETE_LOCATION_STORE } from '../../../services/autocomplete_location/autocomplete_location.store';
@@ -144,12 +144,14 @@ export class LocationFormStep extends Component {
             autocompleteLocation: { address: city, slug: citySlug, zipcode, longitude, latitude }
         }, () => { if (validateCallback) this.validateStep(); } );
 
-
     }
 
     // Trigger when cliking on my current position
     getCurrentLocation = () => {
         this.setState({ loading: true });
+
+        ReactGA.event({ category: 'Search', action: 'Use geolocalisation' });
+
         navigator.geolocation.getCurrentPosition((position) => {
             this.currentLocationService.getCurrentLocation(position.coords.longitude, position.coords.latitude);
         });
