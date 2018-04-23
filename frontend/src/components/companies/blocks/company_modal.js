@@ -30,6 +30,7 @@ export class CompanyModal extends Component {
         this.companyDetailsStore = COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
+                // We close the open coordinates block
                 this.setState({ company });
 
                 // Soft skills
@@ -47,7 +48,7 @@ export class CompanyModal extends Component {
                 // Re-init values
                 this.hasSoftSkills = false;
                 this.hasExtraInfos = false;
-                this.setState({ company: undefined });
+                this.setState({ company: undefined, showCoordinates: false });
             }
         });
 
