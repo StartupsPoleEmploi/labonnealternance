@@ -50,7 +50,7 @@ class SearchForm extends Component {
     render() {
         return (
             <div id="new-search">
-                <JobFormStep searchForm={this.state.searchForm} next={this.callNewSearch} onChange={this.handleChange} showSubmit={false} show />
+                <JobFormStep searchForm={this.state.searchForm} next={this.callNewSearch} onChange={this.handleChange} compactMode show />
                 <LocationFormStep searchForm={this.state.searchForm} next={this.callNewSearch} onChange={this.handleChange} showSubmit={false} show />
 
 

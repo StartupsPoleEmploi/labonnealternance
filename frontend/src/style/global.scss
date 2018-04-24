@@ -322,9 +322,42 @@ header#global-header {
         }
         input[type=text] { border: solid 1px lightgray; }
 
+
         #job-form-step, #location-form-step {
             margin-bottom: 20px;
         }
+
+        #job-form-step {
+            ul { margin-top: 15px; }
+
+            @include mx-list-selected(40px);
+            li {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-bottom: solid 1px $lightgray;
+            }
+
+            .autocomplete-submit {
+                margin-top: 10px;
+                button {
+                    font-size: 20px;
+                    padding: 8px 25px;
+                }
+            }
+
+            button.return {
+                margin: 15px auto 0 auto;
+                display: inherit;
+                border: none;
+                background: none;
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+
 
         .or {
             text-align: center;

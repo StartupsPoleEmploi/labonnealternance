@@ -153,6 +153,45 @@
     }
 }
 
+@mixin mx-list-selected($height: 40px, $icon-margin-top: 8px) {
+    li {
+        display: block;
+        &:last-child { border-bottom: none; }
+
+        button {
+            color: $gray-font;
+            font-size: 1em;
+            display: flex;
+            min-height: $height;
+            line-height: $height;
+            width: 100%;
+            padding: 0 20px;
+
+            background: none;
+            border: none;
+            border-left: solid 5px transparent;
+
+            text-align: left;
+
+            > span:first-child {
+                flex: 10;
+                min-height: $height;
+                span {
+                    display: inline-block;
+                    line-height: 20px;
+                    vertical-align: middle;
+                }
+            }
+            .icon { margin-top: $icon-margin-top; }
+        }
+
+        &.selected {
+            button { border-left: solid 5px $pink; }
+        }
+
+    }
+}
+
 /* Modal */
 @mixin mx-all-corner() {
     left: 0; right: 0; bottom: 0; top: 0;

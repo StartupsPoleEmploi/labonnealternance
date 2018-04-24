@@ -13,7 +13,9 @@ export class SearchFormData {
     getTerm() { return this.term; }
 
     setJobs(jobs) { this.jobs = jobs; }
-    hasJobs() { return this.jobs !== undefined; }
+    getJobs() { return this.jobs; }
+    hasJob(rome) { return this.jobs.filter(job => job.rome === rome).length > 0; }
+    hasJobs() { return this.jobs !== undefined && this.jobs.length !== 0; }
     areJobsValid() {
         if (!this.jobs) return false;
         if (!this.jobs.length === 0) return false;
