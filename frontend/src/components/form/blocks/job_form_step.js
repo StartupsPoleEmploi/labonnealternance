@@ -90,7 +90,6 @@ export class JobFormStep extends Component {
     }
 
     returnToAutocomplete = (event) => {
-        this.props.searchForm.setJobs([]);
         this.setState({ formStep: AUTOCOMPLETE_STEP });
     }
 
@@ -155,6 +154,7 @@ export class JobFormStep extends Component {
     }
 
     validateAutocompleteStep = () => {
+        this.props.searchForm.setJobs([]);
         this.setState({ formStep: JOB_SELECTION_STEP });
     }
 
