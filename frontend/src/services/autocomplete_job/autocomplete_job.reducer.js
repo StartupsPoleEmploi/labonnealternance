@@ -13,7 +13,7 @@ export const AUTOCOMPLETE_JOB_REDUCER = (state = initialState, action) => {
         case AUTOCOMPLETE_JOB_ACTIONS.SET_SUGGESTIONS: {
             let suggestions = [];
             action.data.forEach(suggest => {
-                suggestions.push(new AutocompleteJob(suggest.id, suggest.label, suggest.occupation));
+                suggestions.push(new AutocompleteJob(suggest.id, suggest.label, suggest.occupation, suggest.score));
             });
             return suggestions;
         }
