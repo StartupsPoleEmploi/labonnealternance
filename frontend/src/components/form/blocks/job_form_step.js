@@ -84,12 +84,13 @@ export class JobFormStep extends Component {
             if (this.state.requestNumber > 0) {
                 this.enterPressed = true;
             } else {
-                this.validateStep();
+                this.validateAutocompleteStep();
             }
         }
     }
 
     returnToAutocomplete = (event) => {
+        this.props.searchForm.setJobs([]);
         this.setState({ formStep: AUTOCOMPLETE_STEP });
     }
 
@@ -122,13 +123,14 @@ export class JobFormStep extends Component {
         while (target.nodeName.toLowerCase() !== 'button') target = target.parentNode;
 
         let rome = target.attributes['data-rome'].value;
-        let jobs = this.props.searchForm.getJobs();
+        let jobs = this.props.searchForm.getJobs() || [];
 
         if(this.props.searchForm.hasJob(rome)) {
             // Remove the job
             jobs = jobs.filter(job => job.rome !== rome);
         } else {
             // Add the job
+            console.log(rome, this.state.suggestedJobs);
             let job = this.state.suggestedJobs.find(job => job.rome === rome);
             jobs.push(job);
         }

@@ -14,7 +14,10 @@ export class SearchFormData {
 
     setJobs(jobs) { this.jobs = jobs; }
     getJobs() { return this.jobs; }
-    hasJob(rome) { return this.jobs.filter(job => job.rome === rome).length > 0; }
+    hasJob(rome) {
+        if(this.jobs === undefined) return false;
+        return this.jobs.filter(job => job.rome === rome).length > 0;
+    }
     hasJobs() { return this.jobs !== undefined && this.jobs.length !== 0; }
     areJobsValid() {
         if (!this.jobs) return false;
