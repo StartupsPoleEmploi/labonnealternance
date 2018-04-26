@@ -52,7 +52,8 @@
             color: white;
         }
         @media(min-width: 1000px) and (max-width: 1250px) {
-            margin-top: 20px;
+            // Note : 26/04/2018 from 20px to 80px
+            margin-top: 80px;
         }
         @media(max-width: $min-width-mobile) {
             margin-top: 10vh;
