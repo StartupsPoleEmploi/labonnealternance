@@ -18,7 +18,7 @@ export class GoogleAnalyticsService {
 
         // Job
         let jobs = urlSplit[1].split(',');
-        url = url.concat("&jobs=").concat(jobs.join("&job="));
+        url = url.concat("&job=").concat(jobs.join("&job="));
 
         // Search term
         let term = urlSplit[urlSplit.length - 1]
