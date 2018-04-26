@@ -84,7 +84,7 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            background-color: transparent;
+            background-color: white;
             @media (max-width: $min-width-mobile) {
                 display: none;
             }
@@ -115,7 +115,7 @@
             p {
                 width: 200px;
                 margin-top: 5px;
-                color: white;
+                color: $fse-blue;
                 font-size: 12px;
                 line-height: 14px;
                 text-align: left;
