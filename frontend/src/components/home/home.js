@@ -62,6 +62,9 @@ export default class Home extends Component {
                         <section className="more">
                             <div className="how-it-works max-size-1000">
                                 <h2>Comment ça marche ?</h2>
+                                <div className="youtube-video">
+                                    <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>
                                 <div>
                                     <div className="text">
                                         <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. Il est donc essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément déposé d’offres d’emploi en alternance.</p>
