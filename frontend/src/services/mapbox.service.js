@@ -34,7 +34,7 @@ export class MapBoxService {
         this.MAX_DISTANCE = 3000;
         this.DEFAULT_DISTANCE = 50;
         this.DEFAULT_ZOOM = window.innerWidth < constants.MOBILE_MAX_WIDTH ? 12 : 13;
-        this.DISTANCE_GAP_FOR_RELOAD = 5; // Minimum distance for reload
+        this.DISTANCE_GAP_FOR_RELOAD = 2; // Minimum distance for reload
         this.currentCenter = undefined;
 
         this.id = id;
