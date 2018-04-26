@@ -129,7 +129,6 @@ export class JobFormStep extends Component {
             jobs = jobs.filter(job => job.rome !== rome);
         } else {
             // Add the job
-            console.log(rome, this.state.suggestedJobs);
             let job = this.state.suggestedJobs.find(job => job.rome === rome);
             jobs.push(job);
         }
