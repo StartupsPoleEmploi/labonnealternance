@@ -2,16 +2,16 @@ import { SearchFormData } from './search_form_data';
 import { Job } from './job';
 import { Location } from './location';
 
-const SEARCH_VALUES_FORM = 'SEARCH_VALUES_FORM';
+const SEARCH_FORM_DATA = 'SEARCH_FORM_DATA';
 
 export class SearchFormService {
 
     saveSearchFormValues(searchForm) {
-        localStorage.setItem(SEARCH_VALUES_FORM, JSON.stringify(searchForm));
+        localStorage.setItem(SEARCH_FORM_DATA, JSON.stringify(searchForm));
     }
 
     getSearchFormValues() {
-        let rawValues = localStorage.getItem(SEARCH_VALUES_FORM);
+        let rawValues = localStorage.getItem(SEARCH_FORM_DATA);
         if (!rawValues) return undefined;
 
         try {
