@@ -222,7 +222,6 @@ export class JobFormStep extends Component {
         let selected = this.props.searchForm.hasJob(job.rome);
 
         let label = job.label;
-        if(this.props.compactMode) label = label.substr(0, label.indexOf('(') - 1);
 
         return (
             <li className={selected ? 'selected' : ''} key={job.rome}>
