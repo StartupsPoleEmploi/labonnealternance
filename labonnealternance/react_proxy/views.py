@@ -1,6 +1,4 @@
-import json
-import logging
-import os
+import json, logging, os, urllib
 
 from django.conf import settings
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -22,8 +20,8 @@ URLS_TO_TITLE = {
 DEFAULT_TITLE = 'Le site des entreprises qui recrutent en alternance | La Bonne Alternance'
 COMPANY_DETAILS_TITLE = 'Offres probables d\'alternance société {}'
 
-RESULTS_PAGE_TITLE = 'Offres d\'alternance probables en {} - {} ({})'
-RESULTS_PAGE_TITLE_NO_CITY = 'Offres d\'alternance probables en {}'
+RESULTS_PAGE_TITLE = 'Offres d\'alternance probables en {} - {} ({}) | La Bonne Alternance'
+RESULTS_PAGE_TITLE_NO_CITY = 'Offres d\'alternance probables en {} | La Bonne Alternance'
 
 
 class ReactProxyAppView(View):
@@ -33,8 +31,8 @@ class ReactProxyAppView(View):
     @method_decorator(ensure_csrf_cookie)
     def get(self, request):
         # Compute page title
-        path = request.get_full_path()
-        if not path.endswith('.css') and not path.endswith('.js'):
+        path = urllib.parse.unquote_plus(request.get_full_path())
+        if not path.endswith('.css') and not path.endswith('.js') and not path.endswith('.ico'):
             return render(request, 'index.html', {
                 'title': self.compute_page_title(path),
             })
