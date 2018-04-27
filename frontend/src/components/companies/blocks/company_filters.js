@@ -28,6 +28,10 @@ export class CompanyFilters extends Component {
         this.filtersService = new FiltersService();
         this.viewsService = new ViewsService();
 
+        // Transform jobs array to a Map
+        let romesValues = new Map();
+        this.props.jobs.forEach(job => romesValues.set(job.rome, job.label));
+
         // TODO : use store to get filters values
         this.state = {
             showFilters: false,
@@ -37,7 +41,7 @@ export class CompanyFilters extends Component {
             nafValues: new Map(),
             nafsSelected: [],
 
-            romeValues: new Map(),
+            romeValues: romesValues,
             romesSelected: []
         };
     }
@@ -59,28 +63,24 @@ export class CompanyFilters extends Component {
 
             // Companies : populate filters
             let newNafValues = new Map();
-            let newRomeValues = new Map();
 
             companies.forEach((company, siret) => {
                 if(company.nafSection) {
                     let nafSectionValue = getNafSessionLabel(company.nafSection);
                     if (!newNafValues.has(nafSectionValue)) newNafValues.set(company.nafSection, nafSectionValue);
                 }
-
-                // Job
-                if (!newRomeValues.has(company.job.rome)) newRomeValues.set(company.job.rome, company.job.label);
             });
 
-            // Update NAF selected
+            // Update filters selected
             this.setState({
                 nafValues: newNafValues,
                 nafsSelected: this.updateNafsSelected(newNafValues),
 
-                romeValues: newRomeValues,
-                romesSelected: this.updateRomesSelected(newRomeValues),
+                romesSelected: this.updateRomesSelected(),
             });
         });
 
+        // Handle filter view on mobile
         this.viewStore = VIEWS_STORE.subscribe(() => {
             if(VIEWS_STORE.getState() === VIEWS.FILTERS) this.setState({ showFilters: true });
             else this.setState({ showFilters: false });
@@ -171,18 +171,18 @@ export class CompanyFilters extends Component {
     }
 
     // ROME
-    updateRomesSelected(newRomeValues) {
-        // Detect if all NAF are selected
+    updateRomesSelected() {
+        // Detect if all romes are selected
         let noRomesSelected = this.state.romesSelected.length === 0;
 
         let newRomesSelected = [];
 
-        // All the NAF were selected, so we need to select all the new NAFs
+        // All the romes were selected, so we need to select all the romes
         if (!noRomesSelected) {
             // Some rome code were selected, we remove only the one not present in newromesSelected
             this.state.romesSelected.forEach(index => {
                 // Check presence in newNafAvaible and store is new index if necessary
-                if (newRomeValues.has(index)) newRomesSelected.push(index);
+                if (this.state.romeValues.has(index)) newRomesSelected.push(index);
             });
         }
 

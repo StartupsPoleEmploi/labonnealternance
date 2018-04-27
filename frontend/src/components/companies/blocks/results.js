@@ -196,7 +196,7 @@ export class Results extends Component {
                 { this.state.currentView !== VIEWS.FILTERS  ? this.renderResultTitle() : null }
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
-                <CompanyFilters isFiltering={this.state.isFiltering} />
+                <CompanyFilters jobs={this.props.jobs} isFiltering={this.state.isFiltering} />
                 { this.state.currentView !== VIEWS.FILTERS ? this.renderResultList(): null }
             </div>
         );
