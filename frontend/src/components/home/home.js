@@ -63,7 +63,7 @@ export default class Home extends Component {
                             <div className="how-it-works max-size-1000">
                                 <h2>Comment ça marche ?</h2>
                                 <div className="youtube-video">
-                                    <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                                 </div>
                                 <div>
                                     <div className="text">
