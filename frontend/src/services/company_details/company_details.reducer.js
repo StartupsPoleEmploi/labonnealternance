@@ -51,7 +51,6 @@ export const COMPANY_DETAILS_REDUCER = (state = undefined, action) => {
                 action.data.email,
                 action.data.phone,
                 action.data.officeName,
-                action.data.headcount,
                 action.data.website
             );
             return company;
@@ -68,7 +67,6 @@ export const COMPANY_DETAILS_REDUCER = (state = undefined, action) => {
                 action.data.email,
                 action.data.phone,
                 action.data.officeName,
-                action.data.headcount,
                 action.data.website
             );
 
