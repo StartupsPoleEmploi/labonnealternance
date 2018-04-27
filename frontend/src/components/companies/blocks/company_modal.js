@@ -111,7 +111,7 @@ export class CompanyModal extends Component {
                         <hr />
 
                         <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
-                        {CompanyDetailsCommon.renderPrepareApplication(company, this.state.rome)}
+                        {CompanyDetailsCommon.renderPrepareApplication(company, company.job.rome)}
                         <hr />
 
                         <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
