@@ -213,12 +213,10 @@ export class Results extends Component {
                     <div id="map-results">
                         { this.state.modalNoResult && !this.state.loading ?
                             <div className="no-result">
-                                <button className="close" onClick={this.closeNoResultModal}>
-                                    <span className="icon close-icon">&nbsp;</span>
-                                </button>
-
                                 <div>Désolé, nous n'avons pas trouvé d'entreprises correspondant à votre recherche</div>
                                 <div><strong>Elargissez votre recherche grâce à la carte ou faites une nouvelle recherche.</strong></div>
+
+                                <button className="close" onClick={this.closeNoResultModal}><span className="icon close-icon">&nbsp;</span></button>
                             </div> : null
                         }
                     </div>
