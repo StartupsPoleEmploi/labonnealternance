@@ -9,7 +9,6 @@ import { CompanyDetailsService } from './company_details/company_details.service
 import { COMPANY_DETAILS_STORE } from './company_details/company_details.store';
 
 import { FAVORITES_STORE } from './favorites/favorites.store';
-import { constants } from '../constants';
 
 // Trigger when the user click on the popup
 window.selectSiret = (el) => {
