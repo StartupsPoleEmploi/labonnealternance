@@ -33,8 +33,8 @@ export class MapBoxService {
         // Default value
         this.MAX_DISTANCE = 3000;
         this.DEFAULT_DISTANCE = 50;
-        this.DEFAULT_ZOOM = window.innerWidth < constants.MOBILE_MAX_WIDTH ? 12 : 13;
-        this.DISTANCE_GAP_FOR_RELOAD = 2; // Minimum distance for reload
+        this.DEFAULT_ZOOM = 12;
+        this.DISTANCE_GAP_FOR_RELOAD = 0.5; // Minimum distance for reload
         this.currentCenter = undefined;
 
         this.id = id;
@@ -78,7 +78,7 @@ export class MapBoxService {
         this.currentPositionMarker.addTo(this.map);
 
         this.map.on('dragend', () => this.newCompaniesFn());
-        this.map.on('zoom', () => this.newCompaniesFn());
+        this.map.on('zoom', () => this.newCompaniesFn(true));
     }
 
 
@@ -141,12 +141,14 @@ export class MapBoxService {
     }
 
 
-    getNewCompanies() {
+    getNewCompanies(force) {
         let center = this.map.getCenter();
 
         // Reload if distance between the last center is at least x km
-        let distanceLastCenter = this.computeDistance(center, this.currentCenter);
-        if (distanceLastCenter <= this.DISTANCE_GAP_FOR_RELOAD) return;
+        if(!force) {
+            let distanceLastCenter = this.computeDistance(center, this.currentCenter);
+            if (distanceLastCenter <= this.DISTANCE_GAP_FOR_RELOAD) return;
+        }
 
         // Change center position
         this.currentPositionMarker.setLatLng([center.lat, center.lng]);
