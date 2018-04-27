@@ -57,6 +57,7 @@ def get_city_slug_values(request):
     response = lbb_client.get_city_slug_details(city_slug)
     return HttpResponse(response.read())
 
+
 def get_job_slug_values(request):
     job_slug = request.GET.get('job-slug', None)
     if not job_slug:
@@ -64,6 +65,7 @@ def get_job_slug_values(request):
 
     response = lbb_client.get_job_slug_details(job_slug)
     return HttpResponse(response.read())
+
 
 def get_companies(request):
     # Required values

@@ -28,6 +28,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# React static
+# Link frontend/build to '/static'/
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
+REACT_BUILD_DIR =  os.path.join(REACT_APP_DIR, 'build')
+REACT_STATIC_DIR =  os.path.join(REACT_BUILD_DIR, 'static')
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,7 +69,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            REACT_BUILD_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,11 +132,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Link frontend/build to '/static'/
-REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 STATICFILES_DIRS = [
-    os.path.join(REACT_APP_DIR, 'build', 'static'),
+    REACT_STATIC_DIR,
 ]
+
 
 # CRSF cookie
 CSRF_COOKIE_NAME = "csrftoken"
