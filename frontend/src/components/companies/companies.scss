@@ -410,9 +410,12 @@
     }
 
     small {
-        float: right;
+        text-align: right;
         font-size: .8em;
         color: gray;
+        margin-bottom: 5px;
+        display: block;
+        padding-right: 10px;
     }
 
     hr {

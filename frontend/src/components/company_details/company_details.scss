@@ -40,9 +40,13 @@
     }
 
     small {
-        float: right;
+        text-align: right;
         font-size: .8em;
         color: gray;
+        margin-bottom: 5px;
+        margin-top: 10px;
+        display: block;
+        padding-right: 10px;
     }
 
     .company-footer {

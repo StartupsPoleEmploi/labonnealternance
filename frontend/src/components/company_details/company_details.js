@@ -111,9 +111,9 @@ export default class CompanyDetails extends Component {
                     </div>
                     {CompanyDetailsCommon.renderTitle(company)}
 
+                    <small className="siret">SIRET: {company.siret}</small>
 
                     <div>
-                        <small className="siret">SIRET: {company.siret}</small>
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
                         {CompanyDetailsCommon.renderCompanyDetails(company)}
                         <hr />

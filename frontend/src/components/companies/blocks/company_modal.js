@@ -103,9 +103,9 @@ export class CompanyModal extends Component {
                     </div>
                     {CompanyDetailsCommon.renderTitle(company)}
 
+                    <small className="siret">SIRET: {company.siret}</small>
 
                     <div className="modal-body">
-                        <small className="siret">SIRET: {company.siret}</small>
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
                         {CompanyDetailsCommon.renderCompanyDetails(company)}
                         <hr />
