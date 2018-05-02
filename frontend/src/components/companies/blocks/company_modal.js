@@ -7,7 +7,7 @@ import { CompanyDetailsService } from '../../../services/company_details/company
 import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
 import { SoftSkillsService } from '../../../services/soft_skills/soft_skills.service';
-import { CompanyDetailsCommon } from '../../shared/company_details_commun/company_details_commun';
+import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../../shared/company_details_commun/company_details_commun';
 
 export class CompanyModal extends Component {
 
@@ -82,7 +82,7 @@ export class CompanyModal extends Component {
         return (
             <div className="line responsive-column how-to-apply">
                 <div className="flex-big">
-                    {this.state.showCoordinates ? CompanyDetailsCommon.renderCompanyCoordinates(this.state.company) : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
+                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
                 </div>
             </div>
         );
@@ -107,11 +107,11 @@ export class CompanyModal extends Component {
 
                     <div className="modal-body">
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
-                        {CompanyDetailsCommon.renderCompanyDetails(company)}
+                        <CompanyIntroduction company={company} />
                         <hr />
 
                         <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
-                        {CompanyDetailsCommon.renderPrepareApplication(company, company.job.rome)}
+                        <PrepareApplication company={company} rome={company.job.rome} />
                         <hr />
 
                         <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>

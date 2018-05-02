@@ -16,13 +16,10 @@ import { getParameterByName } from '../../services/helpers';
 import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
-import { CompanyDetailsCommon } from '../shared/company_details_commun/company_details_commun';
+import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
 
 require('./company_details.css');
 
-/*
-FIXME : Ugly component due to some deadline issues... (A lot of duplicate code from company_modal.js)
-*/
 export default class CompanyDetails extends Component {
     constructor(props) {
         super(props);
@@ -89,7 +86,7 @@ export default class CompanyDetails extends Component {
         return (
             <div className="line responsive-column how-to-apply">
                 <div className="flex-big">
-                    { this.state.showCoordinates ? CompanyDetailsCommon.renderCompanyCoordinates(this.state.company):<div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div> }
+                    { this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div> }
                 </div>
             </div>
         );
@@ -115,11 +112,11 @@ export default class CompanyDetails extends Component {
 
                     <div>
                         <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
-                        {CompanyDetailsCommon.renderCompanyDetails(company)}
+                        <CompanyIntroduction company={company} />
                         <hr />
 
                         <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
-                        {CompanyDetailsCommon.renderPrepareApplication(company, this.state.rome)}
+                        <PrepareApplication company={company} rome={this.state.rome} />
                         <hr />
 
                         <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
