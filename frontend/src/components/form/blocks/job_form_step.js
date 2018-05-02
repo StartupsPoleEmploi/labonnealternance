@@ -27,18 +27,21 @@ export class JobFormStep extends Component {
 
         // Get search form register values
         let term = '';
+        let requestNumber = 0;
         if (this.props.searchForm && this.props.searchForm.jobs) {
             term = this.props.searchForm.term;
+            requestNumber = 1;
             if (term.length > 2) this.autocompleteJobService.getJobs(term);
         }
 
         this.enterPressed = false;
         this.state = {
             term,
-            requestNumber: 0,
+            requestNumber,
             placeholder: PLACEHOLDER_TEXT,
             suggestedJobs: [],
 
+            showNoJobPopin: true,
             formStep: AUTOCOMPLETE_STEP
         };
     }
@@ -84,7 +87,7 @@ export class JobFormStep extends Component {
             if (this.state.requestNumber > 0) {
                 this.enterPressed = true;
             } else {
-                this.validateAutocompleteStep();
+                if(this.isAutocompleteStepValid()) this.validateAutocompleteStep();
             }
         }
     }
@@ -108,6 +111,7 @@ export class JobFormStep extends Component {
         let term = event.target.value;
         this.setState({ term });
         if (term && term.length > 2) {
+            this.setState({ showNoJobPopin: true });
             this.callAutocompleteJobsFn();
         } else {
             this.setState({ suggestedJobs: [] });
@@ -178,21 +182,50 @@ export class JobFormStep extends Component {
         if(this.isStepValid()) this.props.next();
     }
 
+    noJobFound = () => {
+        const term = this.state.term;
+
+        if(!term) return false;
+        if(term.length <= 2) return false;
+        if(this.state.requestNumber !== 0) return false;
+        if(this.isAutocompleteStepValid()) return false;
+        if(!this.state.showNoJobPopin) return false;
+
+        return true;
+    }
+    hideNoJobPopin = () => {
+        this.setState({ showNoJobPopin: false });
+    }
+
+
     // RENDER PART
+    renderNotJobFound() {
+        return (
+            <div className="no-job-popin">
+                <button className="close-container" onClick={this.hideNoJobPopin} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button>
+                Nous n'avons pas compris<br />le métier que vous recherchez.<br />Essayez avec une autre orthographe
+            </div>
+        )
+    }
     renderAutocompleteBlock() {
-        let submitTitle = 'Valider';
-        if(this.props.compactMode) submitTitle = 'Sélectionner les métiers';
+        const notJobFound = this.noJobFound();
 
         return (
-            <div id="job-form-step">
+            <div class="job-form-step">
                 <h2><label htmlFor="job_input">Dans quel métier/domaine cherchez-vous ?</label></h2>
 
-                <input id="job-input" type="text" value={this.state.term} onChange={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
-                    onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
-
-                <div className="submit-container autocomplete-submit">
-                    <button className="button go-button" disabled={!this.isAutocompleteStepValid()} onClick={this.validateAutocompleteStep}>{submitTitle}</button>
+                <div>
+                    <input id="job-input" type="text" value={this.state.term} onChange={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
+                        onBlur={this.setPlaceholder} placeholder={this.state.placeholder} className={ notJobFound ? 'no-job-found' : null }/>
                 </div>
+
+                { notJobFound ? this.renderNotJobFound() : null }
+
+                {!this.props.compactMode ?
+                    <div className="submit-container autocomplete-submit">
+                        <button className="button go-button" disabled={!this.isAutocompleteStepValid()} onClick={this.validateAutocompleteStep}>Valider</button>
+                    </div> : null
+                }
             </div>
         );
     }
@@ -202,8 +235,8 @@ export class JobFormStep extends Component {
         if (this.props.compactMode !== undefined) showSubmit = !this.props.compactMode;
 
         return (
-            <div id="job-form-step">
-                <h2><label htmlFor="job_input">Choisissez les métiers qui vous intéressent</label></h2>
+            <div class="job-form-step">
+                <h2 className="small"><label htmlFor="job_input">Choisissez les métiers qui vous intéressent</label></h2>
 
                 <ul className="list-unstyled">
                     {this.state.suggestedJobs.map(job => this.renderJob(job))}
@@ -213,7 +246,7 @@ export class JobFormStep extends Component {
                     <button className="button go-button" disabled={!this.isStepValid()} onClick={this.validateStep}>Valider</button>
                 </div> : null }
 
-                <button className="return" onClick={this.returnToAutocomplete}>Retour</button>
+                { !this.props.compactMode ? <button className="return" onClick={this.returnToAutocomplete}>Retour</button> : null }
             </div>
         );
     }
@@ -237,8 +270,20 @@ export class JobFormStep extends Component {
     render() {
         if (!this.props.show) return null;
 
-        if (this.state.formStep === AUTOCOMPLETE_STEP) return this.renderAutocompleteBlock();
-        if (this.state.formStep === JOB_SELECTION_STEP) return this.renderSelectJobsBlock();
+        if (this.props.compactMode) {
+            const Fragment = React.Fragment;
+
+            return (
+                <Fragment>
+                    {this.renderAutocompleteBlock()}
+                    {this.noJobFound() ? null : this.renderSelectJobsBlock()}
+                </Fragment>
+            );
+        } else {
+            if (this.state.formStep === AUTOCOMPLETE_STEP) return this.renderAutocompleteBlock();
+            if (this.state.formStep === JOB_SELECTION_STEP) return this.renderSelectJobsBlock();
+        }
+
 
     }
 }

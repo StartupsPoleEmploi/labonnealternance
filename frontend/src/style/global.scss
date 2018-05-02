@@ -157,12 +157,6 @@ ul.three-columns { columns: 3; }
                 background-color: white;
             }
         }
-
-        &:disabled {
-            cursor: not-allowed;
-            text-decoration: none;
-            background-color: lightgray;
-        }
     }
 
 
@@ -175,11 +169,6 @@ input[type=text], input[type=email], input[type=tel] {
     border: none;
     width: 100%;
     font-size: 0.85em;
-
-    &:disabled, &[disabled] {
-        cursor: not-allowed;
-        background-color: lightgray;
-    }
 }
 textarea {
     display: block;
@@ -316,24 +305,35 @@ header#global-header {
         @media (max-width: $min-width-mobile) { padding: 10px 20px 20px 20px; }
 
         h2 {
-            color: $blue;
+            color: $gray-font;
             margin-bottom: 10px;
-            @media (max-width: $min-width-mobile) { font-size: 1.25em; }
+            font-size: 1.5em;
+            &.small {
+                text-align: center;
+                font-size: 1em;
+            }
         }
         input[type=text] { border: solid 1px lightgray; }
 
 
-        #job-form-step, #location-form-step {
+        .job-form-step, #location-form-step {
             margin-bottom: 20px;
         }
 
-        #job-form-step {
+        .job-form-step {
             ul { margin-top: 15px; }
 
             @include mx-list-selected(40px);
+
+            @include no-job(normal, 1em);
+            .no-job-popin {
+                border: solid 1px $pink;
+                margin-top: 5px;
+            }
+
             li {
-                margin-left: -20px;
-                margin-right: -20px;
+                margin-left: -40px;
+                margin-right: -40px;
                 border-bottom: solid 1px $lightgray;
             }
 
@@ -356,8 +356,6 @@ header#global-header {
                 }
             }
         }
-
-
 
         .or {
             text-align: center;
@@ -398,11 +396,6 @@ header#global-header {
                 &:hover { cursor: pointer; }
                 &:last-child { border-bottom: none; }
             }
-        }
-
-        button:disabled {
-            cursor: not-allowed;
-            background-color: lightgray;
         }
     }
 

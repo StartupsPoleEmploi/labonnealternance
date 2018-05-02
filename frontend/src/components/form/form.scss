@@ -11,7 +11,7 @@ $submit-width: 340px;
     }
 
 
-    #job-form-step {
+    .job-form-step {
         @include mx-list-selected();
         li {
             background-color: white;
@@ -34,9 +34,13 @@ $submit-width: 340px;
             ul { padding: 0 10px; }
             li .icon { margin-left: 5px; }
         }
+
+        .no-job-found {
+            border: solid 3px $pink;
+        }
     }
 
-    #job-form-step, #location-form-step {
+    .job-form-step, #location-form-step {
         margin: auto;
         max-width: 850px;
 
@@ -100,15 +104,6 @@ $submit-width: 340px;
                 max-width: 100%;
                 padding: 8px 50px;
                 @media (max-width: $min-width-mobile) { padding: 8px 20px; }
-
-                &:disabled {
-                    margin-bottom: 5px;
-                    background-color: gray;
-                    &:hover {
-                        text-decoration: none;
-                        cursor: not-allowed;
-                    }
-                }
             }
         }
 
@@ -122,10 +117,9 @@ $submit-width: 340px;
                 width: $submit-width;
                 max-width: 100%;
             }
-            > button:disabled, button[disabled] {
-                display: none;
-            }
         }
     }
+
+    @include no-job();
 
 }
