@@ -325,10 +325,10 @@ header#global-header {
 
             @include mx-list-selected(40px);
 
-            @include no-job(normal, 1em);
+            @include no-job(1em);
             .no-job-popin {
-                border: solid 1px $pink;
-                margin-top: 5px;
+                border: solid 1px $gray-font;
+                margin-top: 10px;
             }
 
             li {

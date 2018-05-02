@@ -313,14 +313,14 @@
 }
 
 // Mixin when no job found
-@mixin no-job($font-weight: bold, $font-size: 1.25em) {
+@mixin no-job($font-size: 1.25em) {
 
     .no-job-popin {
         background-color: white;
         border-radius: 5px;
         position: relative;
         padding: 10px;
-        color: $pink;
+        color: $gray-font;
         font-size: $font-size;
         text-align: left;
 
@@ -328,7 +328,6 @@
 
         width: 100%;
         max-width: 400px;
-        font-weight: $font-weight;
 
         .close-container {
             position: absolute;

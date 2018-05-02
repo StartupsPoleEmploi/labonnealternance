@@ -189,7 +189,6 @@ export class JobFormStep extends Component {
         if(term.length <= 2) return false;
         if(this.state.requestNumber !== 0) return false;
         if(this.isAutocompleteStepValid()) return false;
-        if(!this.state.showNoJobPopin) return false;
 
         return true;
     }
@@ -208,15 +207,15 @@ export class JobFormStep extends Component {
         )
     }
     renderAutocompleteBlock() {
-        const notJobFound = this.noJobFound();
+        const notJobFound = this.noJobFound() && this.state.showNoJobPopin;
 
         return (
-            <div class="job-form-step">
+            <div className="job-form-step">
                 <h2><label htmlFor="job_input">Dans quel métier/domaine cherchez-vous ?</label></h2>
 
                 <div>
                     <input id="job-input" type="text" value={this.state.term} onChange={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
-                        onBlur={this.setPlaceholder} placeholder={this.state.placeholder} className={ notJobFound ? 'no-job-found' : null }/>
+                        onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
                 </div>
 
                 { notJobFound ? this.renderNotJobFound() : null }
@@ -235,7 +234,7 @@ export class JobFormStep extends Component {
         if (this.props.compactMode !== undefined) showSubmit = !this.props.compactMode;
 
         return (
-            <div class="job-form-step">
+            <div className="job-form-step">
                 <h2 className="small"><label htmlFor="job_input">Choisissez les métiers qui vous intéressent</label></h2>
 
                 <ul className="list-unstyled">
