@@ -69,8 +69,8 @@ def get_job_slug_values(request):
 
 def get_companies(request):
     # Required values
-    Fetcher = collections.namedtuple('Fetcher', "rome longitude latitude")
-    fetcher = Fetcher(request.GET.get('rome'), request.GET.get('longitude'), request.GET.get('latitude'))
+    Fetcher = collections.namedtuple('Fetcher', "romes longitude latitude")
+    fetcher = Fetcher(request.GET.get('romes'), request.GET.get('longitude'), request.GET.get('latitude'))
     if not all(fetcher):
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
@@ -93,7 +93,7 @@ def get_companies(request):
 
 
     try:
-        response = lbb_client.get_companies(fetcher.longitude, fetcher.latitude, fetcher.rome, page, distance)
+        response = lbb_client.get_companies(fetcher.longitude, fetcher.latitude, fetcher.romes, page, distance)
     except HTTPError:
         return HttpResponseServerError('<h1>Error when proceeded request</h1>', 501)
 

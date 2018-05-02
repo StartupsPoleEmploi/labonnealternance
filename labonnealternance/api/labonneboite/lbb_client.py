@@ -87,7 +87,7 @@ def get_company(siret):
     return urllib.request.urlopen(url)
 
 
-def get_companies(longitude, latitude, rome, page=1, distance=50):
+def get_companies(longitude, latitude, romes, page=1, distance=50):
     """
     Calling LaBonneBoite API to get all the companies matches the given arguments.
 
@@ -97,17 +97,13 @@ def get_companies(longitude, latitude, rome, page=1, distance=50):
     params = {
         'longitude': longitude,
         'latitude': latitude,
-        'rome_codes': rome,
+        'rome_codes': romes,
         'user': API_USER,
         'distance': distance,
         'page': page,
-        'page_size': PAGE_SIZE,
+        'contract':'alternance',
+        'page_size': PAGE_SIZE
     }
-
-    if LBB_USE_BETA_FLAG:
-        params.update({'hiring_type':'alt'})
-    else:
-        params.update({'contract':'alternance'})
 
 
     timestamp = make_timestamp()

@@ -24,9 +24,13 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
 
             // Note : to not check duplicates here (because distance can change)
             let companies = new Map(state);
+
             action.data.companies.forEach(company => {
                 if (!companies.has(company.siret)) {
-                    let companyTemp = new Company(company.siret, action.data.job, company.name, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
+                    // Get the job
+                    let job = action.data.jobs.find(job => job.rome === company.matched_rome_code)
+
+                    let companyTemp = new Company(company.siret, job, company.name, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
 
                     if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
                     companies.set(company.siret, companyTemp);
