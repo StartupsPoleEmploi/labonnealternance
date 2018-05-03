@@ -1,4 +1,5 @@
 import debounce from 'lodash/debounce';
+import ReactGA from 'react-ga';
 
 // Initiate the window.L variable
 import { leaflet } from 'mapbox.js';
@@ -77,7 +78,10 @@ export class MapBoxService {
         this.currentPositionMarker.addTo(this.map);
 
         this.map.on('dragend', () => this.newCompaniesFn());
-        this.map.on('zoom', () => this.newCompaniesFn(true));
+        this.map.on('zoomend', () => {
+            ReactGA.event({ category: 'Map', action: 'Use zoom' });
+            this.newCompaniesFn(true)
+        });
     }
 
 
@@ -137,6 +141,22 @@ export class MapBoxService {
         this.map.removeLayer(this.CLUSTERS_ID);
         this.clusters = new MarkerClusterGroup(this.CLUSTERS_OPTS);
         this.map.addLayer(this.clusters);
+    }
+
+    move(direction) {
+        let center = this.map.getCenter();
+        let newCenter = { lat: center.lat, lng: center.lng };
+
+        let longitude_delta = center.lng - this.map.getBounds().getNorthWest().lng;
+        let latitude_delta  = center.lat - this.map.getBounds().getNorthWest().lat;
+
+        if(direction === 'left') { newCenter.lng -= longitude_delta; }
+        else if(direction === 'top') { newCenter.lat -= latitude_delta; }
+        else if(direction === 'right') { newCenter.lng += longitude_delta; }
+        else if(direction === 'bottom') { newCenter.lat += latitude_delta; }
+
+        this.center = newCenter;
+        this.map.flyTo([newCenter.lat, newCenter.lng]);
     }
 
 

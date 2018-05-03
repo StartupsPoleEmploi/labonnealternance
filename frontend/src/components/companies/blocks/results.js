@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import toArray from 'lodash/toArray';
+import ReactGA from 'react-ga';
 
 import { MapBoxService } from '../../../services/mapbox.service';
 import { CompaniesService } from '../../../services/companies/companies.service';
@@ -169,6 +170,12 @@ export class Results extends Component {
         this.mapBoxService.setPinkMarker(siret);
     }
 
+    move = (event) => {
+        let direction = event.target.attributes['data-direction'].value;
+        event.preventDefault();
+        ReactGA.event({ category: 'Map', action: 'Use map arrow' });
+        this.mapBoxService.move(direction);
+    }
 
     // RENDER PART
     resultsClasses = () => {
@@ -211,6 +218,12 @@ export class Results extends Component {
                 <div id="results" className={this.resultsClasses()}>
 
                     <div id="map-results">
+                        <div className="map-direction-controls">
+                            <button onClick={this.move} data-direction="top" className="top">&nbsp;</button>
+                            <button onClick={this.move} data-direction="bottom" className="bottom">&nbsp;</button>
+                            <button onClick={this.move} data-direction="left" className="left">&nbsp;</button>
+                            <button onClick={this.move} data-direction="right" className="right">&nbsp;</button>
+                        </div>
                         { this.state.modalNoResult && !this.state.loading ?
                             <div className="no-result">
                                 <div>Désolé, nous n'avons pas trouvé d'entreprises correspondant à votre recherche</div>

@@ -135,6 +135,30 @@
     flex: $flex-left;
     transition: opacity 0.2s ease;
 
+    .map-direction-controls {
+        > button {
+            position: absolute;
+            z-index: 1000;
+            box-shadow: $box-shadow;
+            background-size: 27px;
+            border-radius: 50%;
+            border: none;
+
+            height: 27px;
+            width: 27px;
+
+            &.top    { background-image: url('/static/img/map/map-arrow-top.svg'); left: 50%; top: 10px; }
+            &.bottom { background-image: url('/static/img/map/map-arrow-bottom.svg'); left: 50%; bottom: 10px; }
+            &.left   { background-image: url('/static/img/map/map-arrow-left.svg'); left: 10px; top: 50%; }
+            &.right  { background-image: url('/static/img/map/map-arrow-right.svg'); right: 10px; top: 50%; }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        @media (max-width: $min-width-mobile) { display: none; }
+    }
+
     // Make the center icon move when user move the map
     .center-icon {
         transition: all 0.5s ease;
@@ -142,6 +166,27 @@
 
     .leaflet-control-container > div:first-child {
         bottom: 50px; right: 10px; top: auto; left: auto;
+
+        > .leaflet-control-zoom {
+            border: none;
+            background: transparent;
+        }
+
+        a {
+            background-size: 27px;
+            box-shadow: $box-shadow;
+            border-radius: 50%;
+        }
+
+        a.leaflet-control-zoom-in {
+            background-image: url('/static/img/map/zoom-in.svg');
+        }
+        a.leaflet-control-zoom-out {
+            background-image: url('/static/img/map/zoom-out.svg');
+            margin-top: 10px;
+            background-position: 0;
+        }
+
         @media (max-width: $min-width-mobile) { display: none; }
     }
 
