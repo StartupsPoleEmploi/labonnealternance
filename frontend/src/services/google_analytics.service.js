@@ -22,7 +22,7 @@ export class GoogleAnalyticsService {
 
         // Search term
         let term = urlSplit[urlSplit.length - 1]
-        url = url.concat('&term=').concat(term);
+        url = url.concat('&term=').concat(term.toLowerCase());
 
         return url;
     }
