@@ -8,8 +8,8 @@ import { NotificationService } from '../notification/notification.service';
 export class CompaniesService {
 
     constructor() {
-        this.PAGE_SIZE = 10;
-        this.MAX_PAGE = 1; // Get only the first page
+        this.PAGE_SIZE = 100;
+        this.MAX_PAGE = 3; // 300 results max
 
         this.notificationService = new NotificationService();
     }
@@ -66,12 +66,14 @@ export class CompaniesService {
     }
 
 
-    getCompanies(job, longitude, latitude, opts) {
+    getCompanies(jobs, longitude, latitude, opts) {
         let options = opts || {};
 
         // Create URL for LBB
+        let romes = jobs.map(job => job.rome).join(',')
+
         let url = constants.GET_COMPANIES_URL;
-        url = url.concat('rome=', job.rome)
+        url = url.concat('romes=', romes)
             .concat('&longitude=', longitude)
             .concat('&latitude=', latitude);
 
@@ -93,13 +95,12 @@ export class CompaniesService {
 
                 // Extra-request if we don't have all the companies yet
                 if (this.moreRequestsNeeded(page, response.companies_count)) {
-                    this.getCompanies(job, longitude, latitude, { page: page+1, distance });
+                    this.getCompanies(jobs, longitude, latitude, { page: page+1, distance });
                 }
-
 
                 COMPANIES_STORE.dispatch({
                     type: COMPANIES_ACTIONS.ADD_COMPANIES,
-                    data: { companies: response.companies, job }
+                    data: { companies: response.companies, jobs }
                 });
             });
     }
