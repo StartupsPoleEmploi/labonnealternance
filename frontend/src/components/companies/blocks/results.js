@@ -124,7 +124,7 @@ export class Results extends Component {
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
         this.requestOccuring = this.props.jobs.length;
-        this.props.jobs.map(job => this.companiesService.getCompanies(job, this.props.longitude, this.props.latitude, { distance }));
+        this.companiesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }
 
     componentWillUnmount() {
@@ -159,7 +159,7 @@ export class Results extends Component {
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
         this.requestOccuring = this.props.jobs.length; // 1 request per job
-        this.props.jobs.map(job => this.companiesService.getCompanies(job, newLongitude, newLatitude, { distance }));
+        this.companiesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
     }
 
     // COMPANY LIST
