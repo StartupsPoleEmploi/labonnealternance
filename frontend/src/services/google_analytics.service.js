@@ -1,3 +1,6 @@
+import ReactGA from 'react-ga';
+import { environment } from '../environment';
+
 export class GoogleAnalyticsService {
 
     static handleCompanyUrl(currentUrl) {
@@ -36,5 +39,14 @@ export class GoogleAnalyticsService {
         if(urlSplit.length !== 2) return null;
 
         return '/details-entreprises?siret='.concat(urlSplit[1]);
+    }
+
+    static isGASetup() {
+        return environment.GA_ID && environment.GA_ID !== '';
+    }
+
+    static setPageView(pageView) {
+        ReactGA.set({ page: pageView });
+        ReactGA.pageview(pageView);
     }
 }

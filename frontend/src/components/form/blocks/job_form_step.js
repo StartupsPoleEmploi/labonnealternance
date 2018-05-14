@@ -8,11 +8,17 @@ import { NotificationService } from '../../../services/notification/notification
 import { AutocompleteJobService } from '../../../services/autocomplete_job/autocomplete_job.service';
 import { AUTOCOMPLETE_JOB_STORE } from '../../../services/autocomplete_job/autocomplete_job.store';
 import { SearchFormService } from '../../../services/search_form/search_form.service';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 const PLACEHOLDER_TEXT = 'Graphiste, maçon, second de cuisine...';
 const SCORE_MIN = 2
 const AUTOCOMPLETE_STEP = 'autocomplete'
 const JOB_SELECTION_STEP = 'jobSelection'
+
+const JOB_SEARCH_URL = '/recherche'
+const JOBS_FILTER_URL = '/recherche/filtre-metiers'
+const CITY_SEARCH_URL = '/recherche/choix-ville'
+
 
 export class JobFormStep extends Component {
 
@@ -93,6 +99,9 @@ export class JobFormStep extends Component {
     }
 
     returnToAutocomplete = (event) => {
+        if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+            GoogleAnalyticsService.setPageView(JOB_SEARCH_URL);
+        }
         this.setState({ formStep: AUTOCOMPLETE_STEP });
     }
 
@@ -158,6 +167,12 @@ export class JobFormStep extends Component {
 
     validateAutocompleteStep = () => {
         this.props.searchForm.setJobs([]);
+
+        // Save URL for GA
+        if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+            GoogleAnalyticsService.setPageView(JOBS_FILTER_URL);
+        }
+
         this.setState({ formStep: JOB_SELECTION_STEP });
     }
 
@@ -179,7 +194,14 @@ export class JobFormStep extends Component {
         }
 
         // Save values and called next step
-        if(this.isStepValid()) this.props.next();
+        if(this.isStepValid()) {
+            // Save URL for GA
+            if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+                GoogleAnalyticsService.setPageView(CITY_SEARCH_URL);
+            }
+
+            this.props.next();
+        }
     }
 
     noJobFound = () => {
