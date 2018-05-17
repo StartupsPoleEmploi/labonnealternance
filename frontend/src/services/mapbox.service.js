@@ -64,7 +64,11 @@ export class MapBoxService {
         // When a company is selected, we saved it (for gray marker)
         COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
-            if (company && !this.siretsVisited.has(company.siret)) this.siretsVisited.set(company.siret, '');
+            if (company && !this.siretsVisited.has(company.siret)) {
+                let siret = company.siret;
+                this.siretsVisited.set(siret, '');
+                this.markers.get(siret).setIcon(this.determineMarkerIcon(siret));
+            }
         });
     }
 
@@ -98,9 +102,6 @@ export class MapBoxService {
                 this.setPinkMarker(siret);
             }
         });
-
-        marker.on('mouseover', (event) => { marker.openPopup(); });
-        marker.on('mouseout', (event) => {  marker.closePopup(); });
 
         // Save the marker
         this.markers.set(company.siret, marker);
