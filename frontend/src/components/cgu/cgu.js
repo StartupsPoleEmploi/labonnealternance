@@ -57,9 +57,8 @@ export default class CGU extends Component {
                     <p>Il est possible pour les entreprises voulant ne plus apparaître dans les résultats de La Bonne Alternance, ou voulant modifier leurs coordonnées ou tout renseignement qui leur paraitrait inexact, de <a href="/informations-entreprise">faire une demande de modification</a>.</p>
 
                     <h2>4. Cookies</h2>
-                    <p>Pôle emploi utilise des cookies permettant d’enregistrer des informations relatives à la navigation de l’utilisateur de manière anonyme et dans un but d’analyses statistiques. Le cookie généré a une durée de conservation limitée à 12 mois. Les données anonymes recueillies sont conservées 10 ans par Pôle emploi. L’utilisateur peut s’opposer à l'enregistrement de cookies sur son ordinateur :</p>
-                            <ul>
-                            <li>en choisissant de naviguer en statut OPT-OUT sur la page <a href="http://www.atinternet.com/politique-du-respect-de-la-vie-privee">www.atinternet.com/politique-du-respect-de-la-vie-privee</a></li>
+                    <p>Pôle emploi utilise des cookies permettant d’enregistrer des informations relatives à la navigation de l’utilisateur de manière anonyme et dans un but d’analyses statistiques. Les cookies générés ont une durée de conservation limitée à 12 mois. Ces cookies sont émis par les sociétés Google et Hotjar. L’utilisateur peut s’opposer à l'enregistrement de cookies sur son ordinateur :</p>
+                        <ul>
                             <li>en configurant son poste informatique de la manière suivante :
                                 <p><strong>Pour Microsoft Internet Explorer 6.0 et + :</strong></p>
                                 <ol>
