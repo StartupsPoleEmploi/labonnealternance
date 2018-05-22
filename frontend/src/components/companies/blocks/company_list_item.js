@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
 import { FavoritesService } from '../../../services/favorites/favorites.service';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
+import { VISITED_SIRETS_STORE } from '../../../services/visited_sirets/visited_sirets.store';
 
 export class CompanyListItem extends Component {
 
@@ -15,6 +16,10 @@ export class CompanyListItem extends Component {
 
     selectCompany = () => {
         this.companyDetailsService.setCompany(this.props.company);
+    }
+
+    hasBeenVisited = (siret) => {
+        return VISITED_SIRETS_STORE.getState().has(siret);
     }
 
     blurItem = (event) => {
@@ -30,10 +35,16 @@ export class CompanyListItem extends Component {
         if (siret) this.props.hoverFn(siret);
     }
 
+    computeCssClasses = () => {
+        let cssClasses = "company-list-item";
+        if(this.hasBeenVisited(this.props.company.siret)) cssClasses += " visited";
+        return cssClasses;
+    }
+
     // RENDER
     render() {
         return (
-            <li data-siret={this.props.company.siret} className="company-list-item" onClick={this.selectCompany} onMouseLeave={this.blurItem} onMouseEnter={this.hoverItem}>
+            <li data-siret={this.props.company.siret} className={this.computeCssClasses()} onClick={this.selectCompany} onMouseLeave={this.blurItem} onMouseEnter={this.hoverItem}>
                 <div>
                     <div className="distance"><span className="icon pink-arrow">&nbsp;</span>{this.props.company.distance} km du lieu de recherche</div>
                     <div className="title">

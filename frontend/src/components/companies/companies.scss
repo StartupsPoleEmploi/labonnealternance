@@ -292,6 +292,10 @@
             }
         }
 
+        &.visited {
+            background-color: lightgray;
+        }
+
         .icon { margin-right: 5px; vertical-align: middle; }
 
         .see-more {

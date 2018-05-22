@@ -9,6 +9,9 @@ import { CompaniesService } from './companies/companies.service';
 import { CompanyDetailsService } from './company_details/company_details.service';
 import { COMPANY_DETAILS_STORE } from './company_details/company_details.store';
 
+import { VisitedServicesService } from '../services/visited_sirets/visited_sirets.service';
+import { VISITED_SIRETS_STORE } from '../services/visited_sirets/visited_sirets.store';
+
 import { FAVORITES_STORE } from './favorites/favorites.store';
 
 // Trigger when the user click on the popup
@@ -49,6 +52,7 @@ export class MapBoxService {
 
         this.companiesService = new CompaniesService();
         this.companyDetailsService = new CompanyDetailsService();
+        this.visitedServicesService = new VisitedServicesService();
 
         // Markers store and clusters
         this.markers = new Map();
@@ -58,15 +62,16 @@ export class MapBoxService {
 
         // Store the visited companies
         this.siretsVisited = new Map();
+        VISITED_SIRETS_STORE.subscribe(() => this.siretsVisited = VISITED_SIRETS_STORE.getState());
 
 
         // LISTENERS
         // When a company is selected, we saved it (for gray marker)
         COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
-            if (company && !this.siretsVisited.has(company.siret)) {
+            if (company) {
                 let siret = company.siret;
-                this.siretsVisited.set(siret, '');
+                this.visitedServicesService.addVisited(siret);
                 this.markers.get(siret).setIcon(this.determineMarkerIcon(siret));
             }
         });
@@ -114,7 +119,7 @@ export class MapBoxService {
     // Favorite Icon ? Gray icon ? Default icon ?
     determineMarkerIcon(siret) {
         if (FAVORITES_STORE.getState().has(siret)) return this.favoriteIcon;
-        if (this.siretsVisited.has(siret)) return this.grayIcon;
+        if (VISITED_SIRETS_STORE.getState().has(siret)) return this.grayIcon;
         return this.blueIcon;
     }
 
