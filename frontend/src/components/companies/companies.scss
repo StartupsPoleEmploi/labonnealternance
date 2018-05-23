@@ -287,13 +287,12 @@
             }
 
             > div {
-                background-color: lightgray;
                 border-left: solid 5px $pink;
             }
         }
 
         &.visited {
-            background-color: lightgray;
+            background-color: #ededed;
         }
 
         .icon { margin-right: 5px; vertical-align: middle; }
