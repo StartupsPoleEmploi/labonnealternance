@@ -55,6 +55,7 @@ export class Results extends Component {
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
             // Decrease the number of request occuring
             this.requestOccuring = this.requestOccuring - 1;
+            if(this.requestOccuring < 0) this.requestOccuring = 0;
 
             // Detect if a filter is active
             let filterActive = this.filtersService.isFiltersActive();
@@ -123,7 +124,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-        this.requestOccuring = this.props.jobs.length;
+        this.requestOccuring += 1;
         this.companiesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }
 
@@ -158,7 +159,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-        this.requestOccuring = this.props.jobs.length; // 1 request per job
+        this.requestOccuring += 1;
         this.companiesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
     }
 
