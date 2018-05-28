@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 
+import { environment } from './environment';
+
 // Based on https://www.linkedin.com/pulse/google-analytics-working-your-react-app-make-work-just-choudhary/
 import ReactGA from 'react-ga';
+import { GoogleAnalyticsService } from './services/google_analytics.service';
+import { HotjarService } from './services/hotjar.service';
 
 // Main pages (no async)
 import Home from './components/home/home';
@@ -17,14 +21,15 @@ import registerServiceWorker from './registerServiceWorker';
 
 // Async component
 import asyncComponent from './components/shared/asyncComponent';
-import { environment } from './environment';
-import { GoogleAnalyticsService } from './services/google_analytics.service';
 const AsyncRecruiterForm = asyncComponent(() => import('./components/recruiter_form/recruiter_form'));
 const AsyncCGU = asyncComponent(() => import('./components/cgu/cgu'));
 const AsyncWhoWeAre = asyncComponent(() => import('./components/who_we_are/who_we_are'));
 const AsyncFAQ = asyncComponent(() => import('./components/faq/faq'));
 
 require('./style/global.css');
+
+
+// Init Google Analytics
 
 export default class App extends Component {
 
@@ -34,7 +39,7 @@ export default class App extends Component {
                 <BrowserRouter>
                     <div>
                         {/* Google Analytics component */}
-                        <Route path="/" component={GoogleAnalytics} />
+                        { GoogleAnalyticsService.isGASetup ?  <Route path="/" component={GoogleAnalytics} /> : null }
 
                         <Switch>
                             <Route component={Home} exact path="/" />
@@ -62,9 +67,7 @@ export default class App extends Component {
 
 
 function GoogleAnalytics(props){
-
     let pageView = props.location.pathname + props.location.search;
-
 
     // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
     if(startsWith(props.location.pathname, '/entreprises')) {
@@ -85,23 +88,14 @@ function GoogleAnalytics(props){
 }
 
 // Initialise Raven for Sentry
-if(environment.sentryCode && environment.sentryCode !== '') {
-    window.Raven.config(environment.sentryCode).install();
+if(environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
+    window.Raven.config(environment.SENTRY_CODE).install();
 }
 
 // Start the application
-if(environment.GA_ID && environment.GA_ID !== '') { ReactGA.initialize(environment.GA_ID); }
+GoogleAnalyticsService.initGoogleAnaltics();
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
 
 // Hotjar
-if(environment.hotjarCode && environment.hotjarCode !== '') {
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid: environment.hotjarCode, hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-}
+HotjarService.initHotjar();

@@ -1,10 +1,7 @@
 export const environment = {
-    // Google Analytics ID
     GA_ID: '',
+    HOTJAR_CODE: '',
+    SENTRY_CODE: '',
 
-    // Hotjar
-    hotjarCode: 846857,
-
-    // Sentry code
-    sentryCode: ''
+    HOME_PAGE: 'http://localhost:3000'
 };

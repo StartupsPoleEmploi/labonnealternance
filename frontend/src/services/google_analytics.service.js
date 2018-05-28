@@ -1,7 +1,16 @@
 import ReactGA from 'react-ga';
 import { environment } from '../environment';
+import RGPDService from '../services/rgpd.service';
 
 export class GoogleAnalyticsService {
+
+    static initGoogleAnaltics() {
+        if(environment.GA_ID && environment.GA_ID !== '') {
+            ReactGA.initialize(environment.GA_ID);
+            // Anonymous mode : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
+            if(!RGPDService.userAcceptsRGPD()) ReactGA.set('anonymizeIp', true);
+        }
+    }
 
     static handleCompanyUrl(currentUrl) {
         currentUrl = currentUrl.replace('/',''); // Remove first '/' character

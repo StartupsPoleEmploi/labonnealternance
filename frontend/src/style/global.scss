@@ -14,13 +14,6 @@ html, body, #root, #app {
     margin: 0;
     color: $gray-font;
 }
-.clearfix {
-    &:after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-}
 
 // Generic classes
 .sr-only { position: absolute !important; left: -10000px !important; top: -10000px !important; }
@@ -31,6 +24,14 @@ ul.list-unstyled {
         margin-right: 15px;
     }
 }
+.clearfix {
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+ul.list-inline li { display: inline-block; }
 ul.list-no-margin-padding { margin: 0; padding: 0; }
 .text-center { text-align: center; }
 .no-padding { padding: 0 !important; }
@@ -290,6 +291,25 @@ textarea {
     margin-bottom: 29px !important;
 }
 
+
+// RGPD modal
+#modal-rgpd {
+    h2 { color: $blue; left: 0; }
+    p { margin-bottom: 10px; }
+    ul { padding-left: 40px; margin: 0 1em; }
+    button { margin: 20px 15px 0 0; }
+    .modal-content {
+        position: fixed;
+        left: 50%;
+        max-width: 50%;
+        margin-left: -25%;
+
+        @media (max-width: $min-width-mobile) {
+            max-width: 75%;
+            margin-left: -37.5%;
+        }
+    }
+}
 
 // Header, content and Footer : visible in most of the page (so we put in global.scss)
 header#global-header {
@@ -589,8 +609,11 @@ footer#global-footer {
     font-size: .95em;
     display: flex;
 
-    a {
+    a, button {
+        border: none;
+        background: transparent;
         color: white;
+        font-size: 1em;
         text-decoration: none;
         &:hover { text-decoration: underline; }
     }

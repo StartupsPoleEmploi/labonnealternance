@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
-import { CookieBar } from '../shared/cookie_bar/cookie_bar';
+import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 import { SEOService } from '../../services/seo.service';
 
 require('./home.css');
@@ -92,7 +92,7 @@ export default class Home extends Component {
                         </section>
                     </main>
 
-                    <CookieBar />
+                    <RGPDBar />
 
                 </div>
             </div>
