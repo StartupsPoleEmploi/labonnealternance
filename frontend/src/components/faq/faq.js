@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Footer } from '../shared/footer/footer';
 import { Header } from '../companies/blocks/header/header';
 import { SEOService } from '../../services/seo.service';
+import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
 export default class FAQ extends Component {
 
@@ -57,6 +58,8 @@ export default class FAQ extends Component {
                     <h2>J’ai une suggestion d’amélioration de La Bonne Alternance, comment puis-je vous la transmettre ?</h2>
                     <p>Laissez un message en cliquant sur "Donner votre avis" à droite de l’écran.</p>
                 </main>
+
+                <RGPDBar />
 
                 <Footer />
             </div>

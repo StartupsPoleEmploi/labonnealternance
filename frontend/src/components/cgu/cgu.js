@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Footer } from '../shared/footer/footer';
 import { Header } from '../companies/blocks/header/header';
 import { SEOService } from '../../services/seo.service';
+import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
 export default class CGU extends Component {
 
@@ -127,6 +128,8 @@ export default class CGU extends Component {
                         <p>Sans préjudice des dispositions prévues à l’article L.342-3 du code de la propriété intellectuelle, toute représentation, reproduction ou diffusion, intégrale ou partielle de la base de données, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi est sanctionné au titre des articles L.343-1 et suivants du même code.</p>
                         <p>Par ailleurs, la marque Pôle emploi est protégée au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Pôle emploi, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné au titre des articles L.716-1 du même code.</p>
                 </main>
+
+                <RGPDBar />
 
                 <Footer />
             </div>
