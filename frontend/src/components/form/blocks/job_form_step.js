@@ -107,6 +107,7 @@ export class JobFormStep extends Component {
 
     callAutocompleteJobs = () => {
         let term = this.state.term;
+
         if (term && term.length > 2) {
             this.autocompleteJobService.getJobs(term);
             this.setState({ requestNumber: this.state.requestNumber + 1 });
@@ -123,6 +124,7 @@ export class JobFormStep extends Component {
             this.setState({ showNoJobPopin: true });
             this.callAutocompleteJobsFn();
         } else {
+            this.props.searchForm.setJobs([]);
             this.setState({ suggestedJobs: [] });
             this.props.searchForm.setTerm('');
         }
