@@ -9,4 +9,5 @@ urlpatterns =[
     path('get_companies', views.get_companies),
     path('job_slug', views.get_job_slug_values),
     path('city_slug', views.get_city_slug_values),
+    path('city_slug_from_city_code', views.get_city_slug_from_city_code),
 ]

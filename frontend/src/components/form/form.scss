@@ -86,7 +86,6 @@ $submit-width: 340px;
             display: inline-block;
             margin-right: 15px;
             vertical-align: middle;
-            @include mx-loader();
         }
 
         .location-container {

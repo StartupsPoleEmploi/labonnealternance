@@ -38,7 +38,7 @@ export class CompaniesService {
     }
 
     getCityFromSlug(citySlug) {
-        let url = constants.GET_CITY_SLUG_INFORMATIONS.concat('city-slug=', citySlug);
+        let url = constants.GET_CITY_SLUG_INFORMATIONS.concat(citySlug);
 
         return new Promise((resolve, reject) => {
             fetch(url)
@@ -52,7 +52,7 @@ export class CompaniesService {
     }
 
     getJobFromSlug(jobSlug) {
-        let url = constants.GET_JOB_SLUG_INFORMATIONS.concat('job-slug=', jobSlug.trim());
+        let url = constants.GET_JOB_SLUG_INFORMATIONS.concat(jobSlug.trim());
 
         return new Promise((resolve, reject) => {
             fetch(url)

@@ -16,6 +16,7 @@ import Form from './components/form/form';
 import Companies from './components/companies/companies';
 import NotFound from './components/not_found/not_found';
 import CompanyDetails from './components/company_details/company_details';
+import RedirectBobEmploi from './components/redirect_bob_emploi/redirect_bob_emploi';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -45,6 +46,8 @@ export default class App extends Component {
                             <Route component={Home} exact path="/" />
                             <Route component={Form} exact path="/recherche" />
 
+                            <Route component={RedirectBobEmploi} exact path="/entreprises/commune/:cityCode/rome/:romeCode" />
+
                             <Route component={Companies} exact path="/entreprises/:jobSlugs/:citySlug/:term" />
                             <Route component={Companies} exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
 
@@ -54,6 +57,7 @@ export default class App extends Component {
                             <Route component={AsyncCGU} exact path="/conditions-generales-utilisation" />
                             <Route component={AsyncWhoWeAre} exact path="/qui-sommes-nous" />
                             <Route component={AsyncFAQ} exact path="/faq" />
+
 
                             {/* Not found route */}
                             <Route component={NotFound} status={404}/>

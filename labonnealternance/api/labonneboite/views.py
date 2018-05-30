@@ -67,6 +67,15 @@ def get_job_slug_values(request):
     return HttpResponse(response.read())
 
 
+def get_city_slug_from_city_code(request):
+    city_code = request.GET.get('city-code', None)
+    if not city_code:
+        return HttpResponseBadRequest('<h1>Bad request : no city-code given</h1>')
+
+    response = lbb_client.get_city_slug_from_city_code(city_code)
+    return HttpResponse(response.read())
+
+
 def get_companies(request):
     # Required values
     Fetcher = collections.namedtuple('Fetcher', "romes longitude latitude")

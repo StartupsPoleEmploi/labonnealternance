@@ -14,6 +14,7 @@ LBB_COMPANY_DETAILS_URL = '{}/api/v1/office/{}/details?{}'
 LBB_COMPANIES_URL = '{}/api/v1/company/?{}'
 LBB_JOB_SLUG_DETAILS_URL = '{}/job_slug_details?job-slug={}'
 LBB_CITY_SLUG_DETAILS_URL = '{}/city_slug_details?city-slug={}'
+LBB_CITY_SLUG_FROM_CITY_CODE_URL = '{}/city_code_details?city-code={}'
 LBB_ROME_URL = '{}/suggest_job_labels?term={}'
 LBB_CITY_URL = '{}/suggest_locations?term={}'
 
@@ -131,6 +132,18 @@ def get_job_slug_details(job_slug):
         raise(e)
 
     return response
+
+def get_city_slug_from_city_code(city_code):
+    url = LBB_CITY_SLUG_FROM_CITY_CODE_URL.format(LBB_URL, city_code)
+
+    try:
+        response = urllib.request.urlopen(url)
+    except HTTPError as e:
+        logger.error('Error when calling URL : {} - Exception: {}'.format(url, e))
+        raise(e)
+
+    return response
+
 
 def get_city_slug_details(city_slug):
     url = LBB_CITY_SLUG_DETAILS_URL.format(LBB_URL, city_slug)

@@ -35,6 +35,13 @@ export function unSlug(str) {
     return result.join(" ");
 }
 
+// When we get Boulangerie - viennoiserie (Chef boulanger / boulangère, ...) => Boulangerie - viennoiserie
+export function subJobLabel(jobLabel) {
+    let ogrStart = jobLabel.lastIndexOf('(');
+    if(ogrStart === -1) ogrStart = jobLabel.length;
+
+    return jobLabel.substr(0, ogrStart);
+}
 
 // Small string format : http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/
 export function formatString(string, data) {

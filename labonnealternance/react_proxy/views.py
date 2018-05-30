@@ -60,6 +60,8 @@ class ReactProxyAppView(View):
 
         if path.startswith("/details-entreprises/"):
             title = self.compute_details_company_title(path)
+        elif path.startswith("/entreprises/commune/"):
+            title = DEFAULT_TITLE
         elif path.startswith("/entreprises/"):
             title = self.compute_results_search_title(path)
 
@@ -144,3 +146,35 @@ def get_robots(request):
         logging.error('No robots.txt')
 
         return HttpResponse("Not found", status=404)
+
+
+def redirect_to_lba_search(request, commune_id, rome_codes):
+    # Get zipcode from zipcode
+    try:
+        cityResponse = lbb_client.get_city_slug_from_city_code(commune_id)
+        # TODO : parse
+    except Exception:
+        return HttpResponse("Not city found with commune_id : {}".format(commune_id), status=404)
+
+    # Get romes_slug from rome
+    try:
+        romeResponse = lbb_client.get_job_slug_details(rome_codes)
+        # TODO : parse
+    except Exception:
+        return HttpResponse("Not job found with rome_codes : {}".format(rome_codes), status=404)
+
+    # Extract slug
+    city_slug = "nantes-44000"
+    # Extract romes
+    rome_slugs = ['boucherie']
+    # Extract rome_label
+    rome_label = "boucherie"
+
+    # Compute
+    url = 'https://labonnealternance.pole-emploi.fr/entreprises/{}/{}/{}'.format(
+        city_slug,
+        ','.join(rome_slugs),
+        rome_label,
+    )
+
+    return HttpResponse('{} - {}'.format(commune_id, rome_codes))

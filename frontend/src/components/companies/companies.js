@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 // Components
 import { Results } from './blocks/results';
 import { CompanyModal } from './blocks/company_modal';
-import { LoaderScreen } from './blocks/loader_screen';
+import { LoaderScreen } from '../shared/loader/loader_screen';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
 import { Header } from './blocks/header/header';
 
