@@ -226,10 +226,10 @@ class Companies extends Component {
                             },
                             // Show the map and begin to search
                             () => this.initPageContent());
-                        });
+                        }).catch(err => this.props.history.push('/not-found'));
                     }
 
-                });
+                }).catch(err => this.props.history.push('/not-found'));
         }
     }
 
