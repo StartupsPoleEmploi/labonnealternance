@@ -38,6 +38,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# React static
+# Link frontend/build to '/static'/
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
+REACT_BUILD_DIR =  os.path.join(REACT_APP_DIR, 'build')
+REACT_STATIC_DIR =  os.path.join(REACT_BUILD_DIR, 'static')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,7 +55,6 @@ INSTALLED_APPS = [
     'labonnealternance.api.match',
     'labonnealternance.api.entreprises',
 
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,8 +65,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # DEV_ONLY !
-
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,7 +78,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            REACT_BUILD_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,23 +141,39 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Link frontend/build to '/static'/
-REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 STATICFILES_DIRS = [
-    os.path.join(REACT_APP_DIR, 'build', 'static')
+    REACT_STATIC_DIR,
 ]
 
-# CORS - DEV_ONLY !
-CORS_ORIGIN_ALLOW_ALL = True
+
+# CRSF cookie
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_COOKIE_SECURE = False
 
 # LBB API
 LBB_URL = 'https://labonneboite.pole-emploi.fr'
-LBB_API_KEY='XXX'
-ESD_CLIENT_ID='XXX'
-ESD_CLIENT_SECRET='XXX'
+LBB_USE_BETA_FLAG = False
+LBB_API_KEY='<set it>'
+ESD_CLIENT_ID='<set it>'
+ESD_CLIENT_SECRET='<set it>'
+
+# MATCH FOR SOFT SKILLS
+MATCH_VIA_SOFT_SKILLS_EXTRA_SCOPES = []
+
+# MANDRILL (for mailing)
+EMAIL_ACTIVATED = False
+MANDRILL_REDIRECT_ALL_EMAIL_TO = None # Redirect all email to an unique address (DEV_ONLY)
+MANDRILL_API_KEY = '<set it>'
+MANDRILL_FROM_EMAIL = '<set it>'
+MANDRILL_FROM_NAME = '<set it>'
+
+
+# Overrides settings
+# pylint: disable=wildcard-import,unused-wildcard-import
+from .overrides.settings import *
 ```
 
-- Modify the `settings.py` file with your values : `LBB_URL`, `LBB_API_KEY`, `ESD_CLIENT_ID`, `ESD_CLIENT_SECRET`
+- Modify the `settings.py` file to fill parameters with `<set-it>`
 - Apply migrations : `./manage.py migrate`
 - To start the environnement `make dev`
 - See `frontend/README.md` for the frontend installation
