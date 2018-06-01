@@ -31,7 +31,7 @@ export default class CompanyDetails extends Component {
         this.softSkillsService.getSoftSkillsFromLocalStorage();
 
         this.state= {
-            referer: getParameterByName('referer') || undefined,
+            referer: this.getReferer(),
             rome: getParameterByName('rome') || undefined,
 
             showCoordinates: false,
@@ -72,6 +72,17 @@ export default class CompanyDetails extends Component {
         this.companyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true);
     }
 
+
+    getReferer() {
+        let referer = getParameterByName('referer') || undefined;
+
+        if (referer) {
+            // Should start with '/entreprises'
+            let re = /^\/entreprises\//;
+            if(!re.test(referer)) referer = "";
+        }
+        return referer;
+    }
 
     // When user click on "Show coordinates"
     showCoordinates = () => {
