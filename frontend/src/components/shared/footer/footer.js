@@ -40,6 +40,7 @@ export class Footer extends Component {
                             <li className="small"><button onClick={this.showRGPDModal} title="Consulter notre politique sur les données personnelles">RGPD</button></li>
                             <li className="small"><Link to="/faq">FAQ</Link></li>
                             <li className="small"><Link to="/conditions-generales-utilisation">CGU</Link></li>
+                            <li><a href="https://github.com/StartupsPoleEmploi/labonnealternance">Code source ouvert</a></li>
                         </ul>
                     </div>
 
