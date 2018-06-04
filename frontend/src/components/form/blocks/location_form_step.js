@@ -267,10 +267,6 @@ export class LocationFormStep extends Component {
             <div id="location-form-step">
                 <h2><label htmlFor="location-input">Où voulez-vous chercher votre future entreprise ?</label></h2>
 
-                { this.renderLocationButton()}
-
-                <div className="or">ou</div>
-
                 <input id="location-input" type="text" onBlur={this.setPlaceholder} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder}
                     value={this.state.term} onChange={this.autocompleteCity} />
 
