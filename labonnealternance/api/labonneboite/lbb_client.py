@@ -102,7 +102,7 @@ def get_companies(longitude, latitude, romes, page=1, distance=50):
         'user': API_USER,
         'distance': distance,
         'page': page,
-        'contract':'alternance',
+        'contract': 'alternance',
         'page_size': PAGE_SIZE
     }
 
