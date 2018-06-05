@@ -17,5 +17,8 @@ start:
 build:
 	cd frontend && npm run build
 
+test:
+	cd frontend && npm run test
+
 clear-build:
 	rm -rfv frontend/build

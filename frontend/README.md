@@ -8,8 +8,18 @@ Install the `create-react-app` package globally : (https://github.com/facebook/c
 
     npm install -g create-react-app
 
+### Mac OS specific instructions
+
+To fix `Error: `fsevents` unavailable (this watcher can only be used on Darwin)` error when running the tests:
+
+	npm r -g watchman && brew install watchman
+
 ## Run the environment
 
     cd frontend/
     npm install
     npm run start
+
+## Run the tests
+
+	npm run test
