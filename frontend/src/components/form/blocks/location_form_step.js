@@ -216,7 +216,7 @@ export class LocationFormStep extends Component {
 
         if (navigator.geolocation) {
             return (
-                <div className="location-container">
+                <div className="location-container hide-desktop">
                     <button className="button white" onClick={this.getCurrentLocation}>
                         { this.state.loading ? <div className="loader"><Loader className="loader" /></div> : <span className="icon marker-cyan">&nbsp;</span> }
                         { location && location.address ? location.address : 'Ma position actuelle' }
@@ -226,7 +226,7 @@ export class LocationFormStep extends Component {
         }
         // Geolocation not available
         return (
-            <div className="location-container">
+            <div className="location-container hide-desktop">
                 <button className="button white" disabled="disabled">
                     Ma position actuelle
                 </button>
@@ -266,6 +266,10 @@ export class LocationFormStep extends Component {
         return (
             <div id="location-form-step">
                 <h2><label htmlFor="location-input">Où voulez-vous chercher votre future entreprise ?</label></h2>
+
+                { this.renderLocationButton()}
+
+                <div className="or hide-desktop">ou</div>
 
                 <input id="location-input" type="text" onBlur={this.setPlaceholder} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder}
                     value={this.state.term} onChange={this.autocompleteCity} />

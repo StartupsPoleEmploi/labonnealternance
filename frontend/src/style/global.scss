@@ -42,6 +42,12 @@ ul.list-no-margin-padding { margin: 0; padding: 0; }
 .max-size-1000 { max-width: 1000px; margin: auto; }
 .img-responsive { max-width: 100%;}
 
+// responsive classes
+.hide-desktop { @media (min-width: $min-width-desktop) { display: none; } }
+.hide-tablet { @media (min-width: $min-width-tablet) and (max-width: $min-width-desktop) { display: none; } }
+.hide-mobile { @media (min-width: $min-width-small-mobile) and (max-width: $min-width-tablet) { display: none; } }
+.hide-small-mobile { @media (max-width: $min-width-small-mobile) { display: none; } }
+
 /* Shared style */
 p { margin: 0; }
 main { padding: 0; }
