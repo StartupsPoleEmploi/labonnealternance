@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { LoaderScreen } from '../shared/loader/loader_screen';
 import { subJobLabel } from '../../services/helpers';
 import { constants } from '../../constants';

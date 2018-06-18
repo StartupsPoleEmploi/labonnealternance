@@ -50,7 +50,7 @@
   <script type="text/javascript">
     var ua = window.navigator.userAgent;
     // MSIE : IE6 -> 10 & Trident: IE 11
-    if(ua.indexOf('MSIE ') !== -1 || ua.indexOf('Trident/') !== -1) {
+    if (ua.indexOf('MSIE ') !== -1 || ua.indexOf('Trident/') !== -1) {
       var id = 'polyfill-ie';
       if (!document.getElementById(id)) {
         var fjs = document.getElementsByTagName('script')[0];
@@ -129,7 +129,8 @@
                     <div class="text">
                       <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. Il est donc essentiel dans votre recherche
                         de proposer votre candidature à des entreprises n’ayant pas forcément déposé d’offres d’emploi en
-                        alternance.</p>
+                        alternance.
+                      </p>
                       <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années
                         pour vous proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage
                         ou contrat de professionnalisation).</p>
@@ -245,6 +246,27 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  -->
+
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '220518362068242');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=220518362068242&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Facebook Pixel Code -->
 </body>
+
 </html>
