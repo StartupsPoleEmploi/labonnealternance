@@ -88,12 +88,13 @@ $submit-width: 340px;
             vertical-align: middle;
         }
 
+        .location-container, #location-input {
+            margin-bottom: 25px;
+        }
+
         .location-container {
             text-align: center;
-            margin-bottom: 25px;
-
             .marker-cyan { margin-right: 6px; }
-
             button {
                 width: $input-width;
                 max-width: 100%;
@@ -102,7 +103,9 @@ $submit-width: 340px;
             }
         }
 
-        .or { margin-bottom: 25px; }
+        .or, .distance { margin-bottom: 20px; }
+
+        .distance-chooser { @include mx-distance-chooser(); }
 
         .submit-container {
             text-align: center;

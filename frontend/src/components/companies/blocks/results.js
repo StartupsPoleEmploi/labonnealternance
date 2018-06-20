@@ -120,7 +120,7 @@ export class Results extends Component {
 
     componentDidMount() {
         // Create map when the component is ready
-        this.mapBoxService.createMap(this.props.longitude, this.props.latitude);
+        this.mapBoxService.createMap(this.props.longitude, this.props.latitude, this.props.distance);
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
@@ -151,7 +151,7 @@ export class Results extends Component {
     }
 
     // SEARCH
-    getNewCompanies(newLongitude, newLatitude, newDistance) {
+    getNewCompanies(newLongitude, newLatitude) {
         // Clear datas
         this.mapBoxService.removeAllMakers();
         this.setState({ companies: new Map(), count: 0, loading: true });
@@ -161,6 +161,9 @@ export class Results extends Component {
         let distance = this.mapBoxService.getMapMinDistance();
         this.requestOccuring += 1;
         this.companiesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
+    }
+    updateFitBounds(distance) {
+        this.mapBoxService.setFitBounds(distance);
     }
 
     // COMPANY LIST
@@ -208,7 +211,8 @@ export class Results extends Component {
                 { this.state.currentView !== VIEWS.FILTERS  ? this.renderResultTitle() : null }
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
-                <CompanyFilters jobs={this.props.jobs} isFiltering={this.state.isFiltering} />
+                {/* FIXME: we add the service instead of the method... because _this_ will refer to the childComponent if we pass the method... */}
+                <CompanyFilters jobs={this.props.jobs} isFiltering={this.state.isFiltering} mapBoxService={this.mapBoxService}/>
                 { this.state.currentView !== VIEWS.FILTERS ? this.renderResultList(): null }
             </div>
         );

@@ -142,7 +142,7 @@ export class LocationFormStep extends Component {
             suggestions: [],
             term: city,
             autocompleteLocation: { address: city, slug: citySlug, zipcode, longitude, latitude }
-        }, () => { if (validateCallback) this.validateStep(); } );
+        }, () => { if (validateCallback) this.validateStep(); });
 
     }
 
@@ -210,7 +210,16 @@ export class LocationFormStep extends Component {
     }
 
 
+    distanceSelected = (event) => {
+        let distance = +event.target.value;
+        this.props.searchForm.setDistance(distance);
+        this.forceUpdate();
+    }
+
     // RENDER PART
+    renderDistanceSelected(value) {
+        return this.props.searchForm.getDistance() === value ? 'checked' : '';
+    }
     renderLocationButton() {
         let location = this.state.currentLocation;
 
@@ -218,8 +227,8 @@ export class LocationFormStep extends Component {
             return (
                 <div className="location-container hide-desktop">
                     <button className="button white" onClick={this.getCurrentLocation}>
-                        { this.state.loading ? <div className="loader"><Loader className="loader" /></div> : <span className="icon marker-cyan">&nbsp;</span> }
-                        { location && location.address ? location.address : 'Ma position actuelle' }
+                        {this.state.loading ? <div className="loader"><Loader className="loader" /></div> : <span className="icon marker-cyan">&nbsp;</span>}
+                        {location && location.address ? location.address : 'Ma position actuelle'}
                     </button>
                 </div>
             );
@@ -241,7 +250,7 @@ export class LocationFormStep extends Component {
             <ul className="suggestions list-unstyled">
                 {
                     this.state.suggestions.map((city, index) => (
-                        <li key={city.city + '-' + city.zipcode} onClick={this.saveCityAutocomplete} data-zipcode={city.zipcode} data-latitude={city.latitude} data-slug={city.city+'-'+city.zipcode} data-longitude={city.longitude}>
+                        <li key={city.city + '-' + city.zipcode} onClick={this.saveCityAutocomplete} data-zipcode={city.zipcode} data-latitude={city.latitude} data-slug={city.city + '-' + city.zipcode} data-longitude={city.longitude}>
                             {city.city} ({city.zipcode})
                         </li>)
                     )
@@ -267,14 +276,30 @@ export class LocationFormStep extends Component {
             <div id="location-form-step">
                 <h2><label htmlFor="location-input">Où voulez-vous chercher votre future entreprise ?</label></h2>
 
-                { this.renderLocationButton()}
+                {this.renderLocationButton()}
 
                 <div className="or hide-desktop">ou</div>
 
                 <input id="location-input" type="text" onBlur={this.setPlaceholder} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder}
                     value={this.state.term} onChange={this.autocompleteCity} />
 
-                { this.renderSuggestions()}
+                {this.renderSuggestions()}
+                <div className="distance">dans un rayon de</div>
+                <ul className="distance-chooser unstyled-list list-inline">
+                    <li>
+                        <input checked={this.renderDistanceSelected(10)} onChange={this.distanceSelected} id="value-10" type="radio" name="distance" value="10" />
+                        <label htmlFor="value-10">10 km</label>
+                    </li>
+                    <li>
+                        <input checked={this.renderDistanceSelected(30)} onChange={this.distanceSelected} id="value-30" type="radio" name="distance" value="30" />
+                        <label htmlFor="value-30">30 km</label></li>
+                    <li>
+                        <input checked={this.renderDistanceSelected(60)} onChange={this.distanceSelected} id="value-60" type="radio" name="distance" value="60" />
+                        <label htmlFor="value-60">60 km</label></li>
+                    <li>
+                        <input checked={this.renderDistanceSelected(100)} onChange={this.distanceSelected} id="value-100" type="radio" name="distance" value="100" />
+                        <label htmlFor="value-100">100 km</label></li>
+                </ul>
 
                 {this.renderSubmitBlock()}
             </div>

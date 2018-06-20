@@ -23,7 +23,7 @@ import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_de
 import { VIEWS_STORE } from '../../services/view/views.store';
 
 import { Job } from '../../services/search_form/job';
-import { formatString, unSlug } from '../../services/helpers';
+import { formatString, unSlug, getParameterByName } from '../../services/helpers';
 import { GoogleAnalyticsService } from '../../services/google_analytics.service';
 import { constants } from '../../constants';
 
@@ -48,7 +48,12 @@ class Companies extends Component {
         this.viewService = new ViewsService();
         this.softSkillsService = new SoftSkillsService();
 
-        this.baseUrl = this.props.match.url;
+        this.baseUrl = this.props.match.url.concat(window.location.search);
+
+        let distance = getParameterByName('distance') || undefined;
+        if(distance) {
+            if(isNaN(parseInt(distance, 0))) distance = undefined;
+        }
 
         this.state = {
             inputError: undefined,
@@ -57,6 +62,7 @@ class Companies extends Component {
             citySlug: this.props.match.params.citySlug,
             longitude: this.props.match.params.longitude,
             latitude: this.props.match.params.latitude,
+            distance: distance,
             cityName: undefined,
 
             jobSlugs: this.props.match.params.jobSlugs,
@@ -280,13 +286,14 @@ class Companies extends Component {
             return (<LoaderScreen />);
         }
 
+        let { distance, longitude, latitude, jobs, searchTerm, cityName } = {...this.state};
         return (
             <div id="companies">
                 <Header animateMagnifier={this.state.animateMagnifier} showForm={this.state.showForm} />
 
                 <main>
                     <NotificationModal />
-                    <Results longitude={this.state.longitude} latitude={this.state.latitude} jobs={this.state.jobs} searchTerm={this.state.searchTerm} cityName={this.state.cityName} handleCompanyCount={this.handleCompanyCount} />
+                    <Results distance={distance} longitude={longitude} latitude={latitude} jobs={jobs} searchTerm={searchTerm} cityName={cityName} handleCompanyCount={this.handleCompanyCount} />
                     <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
             </div>

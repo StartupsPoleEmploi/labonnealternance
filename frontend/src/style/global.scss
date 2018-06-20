@@ -383,10 +383,29 @@ header#global-header {
             }
         }
 
-        .or {
+        .or, .distance {
             text-align: center;
             color: $gray;
             margin-bottom: 15px;
+        }
+        .distance { margin-top: 10px; margin-bottom: 10px; }
+
+        .distance-chooser {
+            max-width: 350px;
+            margin: 5px auto 0 auto;
+            display: flex;
+            flex-flow: row wrap;
+            > li {
+                flex: 1;
+                flex-basis: 50%;
+                text-align: center;
+                input {
+                    display: inline-block;
+                    vertical-align: text-top;
+                    margin-top: 3px;
+                    margin-right: 5px;
+                }
+            }
         }
 
         .location-container {

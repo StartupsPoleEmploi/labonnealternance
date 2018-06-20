@@ -15,9 +15,9 @@ import { getNafSessionLabel } from '../../../services/companies/naf_section';
 const HEADCOUNT_VALUES = [
     ['0', '1 ou 2', '3 à 5', '6 à 9', '10 à 19'],
     ['20 à 49'],
-    ['50 à 99','100 à 199'],
-    ['200 à 249','250 à 499'],
-    ['500 à 999','1 000 à 1 999','2 000 à 4 999','5 000 à 9 999','10 000']
+    ['50 à 99', '100 à 199'],
+    ['200 à 249', '250 à 499'],
+    ['500 à 999', '1 000 à 1 999', '2 000 à 4 999', '5 000 à 9 999', '10 000']
 ];
 
 export class CompanyFilters extends Component {
@@ -65,7 +65,7 @@ export class CompanyFilters extends Component {
             let newNafValues = new Map();
 
             companies.forEach((company, siret) => {
-                if(company.nafSection) {
+                if (company.nafSection) {
                     let nafSectionValue = getNafSessionLabel(company.nafSection);
                     if (!newNafValues.has(nafSectionValue)) newNafValues.set(company.nafSection, nafSectionValue);
                 }
@@ -82,7 +82,7 @@ export class CompanyFilters extends Component {
 
         // Handle filter view on mobile
         this.viewStore = VIEWS_STORE.subscribe(() => {
-            if(VIEWS_STORE.getState() === VIEWS.FILTERS) this.setState({ showFilters: true });
+            if (VIEWS_STORE.getState() === VIEWS.FILTERS) this.setState({ showFilters: true });
             else this.setState({ showFilters: false });
         });
     }
@@ -94,7 +94,7 @@ export class CompanyFilters extends Component {
     }
 
     isSelected(filtersCollections, index) {
-        if(filtersCollections.length === 0) return false;
+        if (filtersCollections.length === 0) return false;
 
         let exists = filtersCollections.find(value => value === index);
         return exists !== undefined;
@@ -111,8 +111,8 @@ export class CompanyFilters extends Component {
 
     // Select/Deselect
     unselectedAllNaf = (event) => { this.setState({ nafsSelected: [] }, () => this.filterCompanies()); }
-    unselectedAllHeadcount = (event) => { this.setState({ headcountsSelected: [] }, () => this.filterCompanies());  }
-    unselectedAllRome = (event) => { this.setState({ romesSelected: [] }, () => this.filterCompanies());  }
+    unselectedAllHeadcount = (event) => { this.setState({ headcountsSelected: [] }, () => this.filterCompanies()); }
+    unselectedAllRome = (event) => { this.setState({ romesSelected: [] }, () => this.filterCompanies()); }
 
 
     // HEADCOUNT
@@ -229,16 +229,23 @@ export class CompanyFilters extends Component {
         this.filtersService.saveFilters(filters);
     }
 
+
+    distanceSelected = (event) => {
+        let distance = +event.target.value;
+        this.props.mapBoxService.setFitBounds(distance);
+    }
+
+
     // RENDER
     renderRome(text, rome) {
         let selected = this.isSelected(this.state.romesSelected, rome);
 
         return (
-            <li className={selected ? 'selected': ''} key={rome}>
+            <li className={selected ? 'selected' : ''} key={rome}>
                 <button data-value={rome} onClick={this.toggleRomeFilter}>
                     <span><span>{text}</span></span>
-                    <span className="sr-only">{selected ? 'Activez ce filtre': 'Désactivez ce filtre'}</span>
-                    <span className={selected ? 'icon check-active': 'icon check-inactive'}>&nbsp;</span>
+                    <span className="sr-only">{selected ? 'Activez ce filtre' : 'Désactivez ce filtre'}</span>
+                    <span className={selected ? 'icon check-active' : 'icon check-inactive'}>&nbsp;</span>
                 </button>
             </li>
         );
@@ -247,11 +254,11 @@ export class CompanyFilters extends Component {
         let selected = this.isSelected(this.state.nafsSelected, index);
 
         return (
-            <li className={selected ? 'selected': ''} key={index}>
+            <li className={selected ? 'selected' : ''} key={index}>
                 <button data-value={index} onClick={this.toggleNafFilter}>
                     <span><span>{text}</span></span>
-                    <span className="sr-only">{selected ? 'Activez ce filtre': 'Désactivez ce filtre'}</span>
-                    <span className={selected ? 'icon check-active': 'icon check-inactive'}>&nbsp;</span>
+                    <span className="sr-only">{selected ? 'Activez ce filtre' : 'Désactivez ce filtre'}</span>
+                    <span className={selected ? 'icon check-active' : 'icon check-inactive'}>&nbsp;</span>
                 </button>
             </li>
         );
@@ -260,11 +267,11 @@ export class CompanyFilters extends Component {
         let selected = this.isSelected(this.state.headcountsSelected, index);
 
         return (
-            <li className={selected ? 'selected': ''}>
+            <li className={selected ? 'selected' : ''}>
                 <button data-value={index} onClick={this.toggleHeadcount}>
                     <span>{text}</span>
-                    <span className="sr-only">{selected ? 'Activez ce filtre': 'Désactivez ce filtre'}</span>
-                    <span  className={selected ? 'icon check-active': 'icon check-inactive'}>&nbsp;</span>
+                    <span className="sr-only">{selected ? 'Activez ce filtre' : 'Désactivez ce filtre'}</span>
+                    <span className={selected ? 'icon check-active' : 'icon check-inactive'}>&nbsp;</span>
                 </button>
             </li>
         );
@@ -276,38 +283,58 @@ export class CompanyFilters extends Component {
                     <button className="button small-white" onClick={this.state.showFilters ? this.hideFilters : this.showFilters}>
                         <span className="icon filter-icon">&nbsp;</span>Filtres
                     </button>
-                    { this.props.isFiltering ? <Loader cssClass="loader" />: null }
-                    { this.state.showFilters ? <button className="close-container" onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null }
+                    {this.props.isFiltering ? <Loader cssClass="loader" /> : null}
+                    {this.state.showFilters ? <button className="close-container" onClick={this.hideFilters} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button> : null}
                 </div>
 
-                <div className={this.state.showFilters ? 'results no-padding':'results sr-only no-padding'}>
+                <div className={this.state.showFilters ? 'results no-padding' : 'results sr-only no-padding'}>
+
+                    <div className="filter-title">
+                        <h3>Rayon de recherche</h3>
+                    </div>
+                    <ul className="distance-chooser list-unstyled inline-list">
+                        <li>
+                            <input onChange={this.distanceSelected} id="value-10" type="radio" name="distance" value="10" />
+                            <label htmlFor="value-10">10 km</label>
+                        </li>
+                        <li>
+                            <input onChange={this.distanceSelected} id="value-30" type="radio" name="distance" value="30" />
+                            <label htmlFor="value-30">30 km</label></li>
+                        <li>
+                            <input onChange={this.distanceSelected} id="value-60" type="radio" name="distance" value="60" />
+                            <label htmlFor="value-60">60 km</label></li>
+                        <li>
+                            <input onChange={this.distanceSelected} id="value-100" type="radio" name="distance" value="100" />
+                            <label htmlFor="value-100">100 km</label></li>
+                    </ul>
+
 
                     <div className="filter-title">
                         <h3>Taille de l'entreprise</h3>
-                        { this.state.headcountsSelected.length > 0 ? <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button>: null }
+                        {this.state.headcountsSelected.length > 0 ? <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button> : null}
                     </div>
                     <ul className="list-unstyled">
-                        { this.renderHeadcount('- de 10 salariés', 0)}
-                        { this.renderHeadcount('de 10 à 50 salariés', 1)}
-                        { this.renderHeadcount('de 50 à 200 salariés', 2)}
-                        { this.renderHeadcount('de 200 à 500 salariés', 3)}
-                        { this.renderHeadcount('+ de 500 salariés', 4)}
+                        {this.renderHeadcount('- de 10 salariés', 0)}
+                        {this.renderHeadcount('de 10 à 50 salariés', 1)}
+                        {this.renderHeadcount('de 50 à 200 salariés', 2)}
+                        {this.renderHeadcount('de 200 à 500 salariés', 3)}
+                        {this.renderHeadcount('+ de 500 salariés', 4)}
                     </ul>
 
                     <div className="filter-title">
                         <h3>Métiers</h3>
-                        { this.state.romesSelected.length > 0 ? <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button>: null }
+                        {this.state.romesSelected.length > 0 ? <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button> : null}
                     </div>
                     <ul className="list-unstyled">
-                        {toArray(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0] ))}
+                        {toArray(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0]))}
                     </ul>
 
                     <div className="filter-title">
                         <h3>Secteurs d'activité</h3>
-                        { this.state.nafsSelected.length > 0 ? <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button>: null }
+                        {this.state.nafsSelected.length > 0 ? <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button> : null}
                     </div>
                     <ul className="list-unstyled">
-                        {toArray(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0] ))}
+                        {toArray(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0]))}
                     </ul>
 
                     <div className="button-container">

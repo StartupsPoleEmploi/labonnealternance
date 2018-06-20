@@ -14,6 +14,8 @@ import { VISITED_SIRETS_STORE } from '../services/visited_sirets/visited_sirets.
 
 import { FAVORITES_STORE } from './favorites/favorites.store';
 
+import { computeDistance, computeViewBox } from '../services/distance-helpers';
+
 // Trigger when the user click on the popup
 window.selectSiret = (el) => {
     if (!el) return;
@@ -77,12 +79,17 @@ export class MapBoxService {
         });
     }
 
-    createMap(longitude, latitude) {
+    createMap(longitude, latitude, distance=undefined) {
         window.L.mapbox.accessToken = this.accessToken;
+
+        this.currentCenter = { lat: latitude, lng: longitude };
+
         this.map = window.L.mapbox.map(this.id, 'mapbox.streets').setView([latitude, longitude], this.DEFAULT_ZOOM).setMinZoom(7);
 
+        // Compute viewBox
+        if(distance) this.setFitBounds(distance);
+
         // Add the search center
-        this.currentCenter = { lat: latitude, lng: longitude };
         this.currentPositionMarker = window.L.marker([ latitude , longitude ], { icon: this.cyanIcon, interactive: false });
         this.currentPositionMarker.addTo(this.map);
 
@@ -91,6 +98,12 @@ export class MapBoxService {
             ReactGA.event({ category: 'Map', action: 'Use zoom' });
             this.newCompaniesFn(true)
         });
+    }
+
+
+    setFitBounds(distance) {
+        let viewBox = computeViewBox(this.currentCenter, distance);
+        this.map.fitBounds([viewBox.southWest, viewBox.northEast]);
     }
 
 
@@ -171,7 +184,7 @@ export class MapBoxService {
 
         // Reload if distance between the last center is at least x km
         if(!force) {
-            let distanceLastCenter = this.computeDistance(center, this.currentCenter);
+            let distanceLastCenter = computeDistance(center, this.currentCenter);
             if (distanceLastCenter <= this.DISTANCE_GAP_FOR_RELOAD) return;
         }
 
@@ -194,28 +207,10 @@ export class MapBoxService {
 
         // Compute the min distance between North->South and Est->West
         let bounds = this.map.getBounds();
-        let latitudeDistance = this.computeDistance(bounds.getNorthWest(), bounds.getNorthEast());
-        let longitudeDistance = this.computeDistance(bounds.getNorthWest(), bounds.getSouthEast());
+        let latitudeDistance = computeDistance(bounds.getNorthWest(), bounds.getNorthEast());
+        let longitudeDistance = computeDistance(bounds.getNorthWest(), bounds.getSouthEast());
 
         return Math.min(latitudeDistance, longitudeDistance);
-    }
-
-    convertRad(value) { return (Math.PI * value) / 180; }
-
-    computeDistance(pointA, pointB){
-        let R = 6378000; // Earth radius
-
-        let latA = this.convertRad(pointA.lat);
-        let lonA = this.convertRad(pointA.lng);
-        let latB = this.convertRad(pointB.lat);
-        let lonB = this.convertRad(pointB.lng);
-
-        let distance = R * (Math.PI/2 - Math.asin( Math.sin(latB) * Math.sin(latA) + Math.cos(lonB - lonA) * Math.cos(latB) * Math.cos(latA)));
-
-        // We want the distance from the center, so we divided the distance by 2
-        distance = distance / 2;
-
-        return Math.trunc(distance / 1000);
     }
 
 

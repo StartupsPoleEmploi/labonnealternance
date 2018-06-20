@@ -7,6 +7,7 @@ export class SearchFormData {
         this.term = '';
         this.jobs = undefined;
         this.location = undefined;
+        this.distance = undefined;
     }
 
     setTerm(term) { this.term = term; }
@@ -34,31 +35,34 @@ export class SearchFormData {
     clearLocation() { this.location = undefined; }
     hasLocation() { return this.location !== undefined; }
 
+    setDistance(distance) { this.distance = distance; }
+    getDistance() { return this.distance; }
+
     callSearch(historyContext) {
         let urlJobs = this.jobs.map(job => job.slug).join(',');
 
-        // If user use geolocalisation
+        let url = '';
         if (this.location.isGeolocated) {
-            historyContext.push(
-                formatString('/entreprises/{jobSlug}/{longitude}/{latitude}/{term}', {
-                    longitude: this.location.longitude,
-                    latitude: this.location.latitude,
-                    jobSlug: urlJobs,
-                    term: encodeURIComponent(this.term)
-                })
-            );
-            historyContext.go();
-            return;
+            url = formatString('/entreprises/{jobSlug}/{longitude}/{latitude}/{term}', {
+                longitude: this.location.longitude,
+                latitude: this.location.latitude,
+                jobSlug: urlJobs,
+                term: encodeURIComponent(this.term)
+            })
         }
-
-        // If use the city auto-complete form
-        historyContext.push(
-            formatString('/entreprises/{jobSlug}/{citySlug}/{term}', {
+        // If user use geolocalisation
+        else {
+            url = formatString('/entreprises/{jobSlug}/{citySlug}/{term}', {
                 citySlug: this.location.slug,
                 jobSlug: urlJobs,
                 term: encodeURIComponent(this.term)
             })
-        );
+        }
+
+        // Add distance
+        if(this.distance) url = url.concat('?distance=').concat(this.distance);
+
+        historyContext.push(url);
         historyContext.go();
     }
 }
