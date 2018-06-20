@@ -23,6 +23,8 @@ export default class Home extends Component {
     render() {
         return (
             <div id="home">
+                <div className="form-1">&nbsp;</div>
+
                 <div className="container">
                     <div className="beta">&nbsp;</div>
                     <Header showOffset={false} />
@@ -61,34 +63,48 @@ export default class Home extends Component {
 
                         <section className="more">
                             <div className="how-it-works max-size-1000">
-                                <h2>Comment ça marche ?</h2>
+                                <h2 className="big">Comment ça marche ?</h2>
                                 <div className="youtube-video">
                                     <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                                 </div>
-                                <div>
-                                    <div className="text">
-                                        <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. Il est donc essentiel dans votre recherche de proposer votre candidature à des entreprises n’ayant pas forcément déposé d’offres d’emploi en alternance.</p>
-                                        <p>Notre algorithme La Bonne Alternance analyse les offres et les recrutements des 5 dernières années pour vous proposer les entreprises qui recrutent régulièrement en alternance (contrat d'apprentissage ou contrat de professionnalisation).</p>
-                                        <p>Pour une meilleure lisibilité, les résultats sont affichés sur une carte et en liste. Vous pouvez affiner la liste des entreprises par taille, métier et domaine. En cliquant sur une entreprise, vous accédez à ses données-clés, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
-                                        <p><strong>Maximisez vos chances !</strong> Postulez auprès des entreprises qui recrutent régulièrement en alternance sans forcément avoir déposé d’offres. C’est parti !</p>
-                                    </div>
+                            </div>
+
+                            <div className="how-it-works max-size-1000">
+                                <h2 className="big">La Bonne Alternance</h2>
+                                <div className="img-right">
+                                    <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br/>Il est essentiel dans votre recherche de proposer <br/>votre candidature à des entreprises n’ayant pas <br/>forcément déposé d’offres d’emploi en alternance.</p>
+                                    <div className="recruteurs"><img src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
+                                </div>
+                                <div className="img-left">
+                                    <div className="diagramme"><img src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
+                                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br/>recrutements des 5 dernières années pour vous proposer les <br/>entreprises qui recrutent régulièrement en alternance (contrat <br/> d'apprentissage ou contrat de professionnalisation).</p>
+                                </div>
+                                <div className="img-right">
+                                    <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br/>carte et en liste. Vous pouvez affiner la liste des entreprises par <br/>taille, métier et domaine. En cliquant sur une entreprise, vous <br/>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
+                                    <div className="map"><img src="/static/img/how-it-works/home-map.svg" alt="" /></div>
+                                </div>
+
+                                <div className="text-center go-container">
+                                    <p>Maximisez vos chances ! Postulez auprès des entreprises qui recrutent régulièrement <br />en alternance sans forcément avoir déposé d’offres.</p>
+                                    <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
                                 </div>
                             </div>
-                            <div className="who-we-are max-size-1000">
-                                <h2>Qui sommes-nous ?</h2>
+
+                            <div className="form-2"><div>&nbsp;</div></div>
+                            <div className="who-we-are max-size-1200">
+                                <h2 className="big">Qui sommes-nous ?</h2>
                                 <div>
                                     <a className="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
                                         <img className="img-responsive" src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
                                     </a>
                                     <p>
-                                        Pôle emploi innove et propose un service exclusif pour vous permettre de trouver plus facilement des entreprises recrutant régulièrement en contrat d’alternance sans avoir forcément déposé d’offres d’emploi.<br />
-
+                                        Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
                                         <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
                                     </p>
                                 </div>
                             </div>
                             <OtherStartups />
-                            <Footer cssClass="not-fixed"/>
+                            <Footer cssClass="not-fixed" />
                         </section>
                     </main>
 
