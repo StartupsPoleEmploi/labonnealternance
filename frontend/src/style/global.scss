@@ -393,11 +393,11 @@ header#global-header {
         .distance-chooser {
             max-width: 350px;
             margin: 5px auto 0 auto;
-            display: flex;
-            flex-flow: row wrap;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             > li {
-                flex: 1;
-                flex-basis: 50%;
+                margin-right: 15px;
+                text-align: center;
                 text-align: center;
                 input {
                     display: inline-block;
@@ -406,7 +406,10 @@ header#global-header {
                     margin-right: 5px;
                 }
             }
+            @media (max-width: 1200px) { grid-template-columns: 1fr 1fr; }
+            @media (max-width: $min-width-mobile) { grid-template-columns: 1fr 1fr 1fr 1fr; }
         }
+
 
         .location-container {
             text-align: center;
