@@ -31,7 +31,7 @@ require('./companies.css');
 
 // Constants
 const SHOW_RESULT_POPUP_KEY = 'SHOW_RESULT_POPUP_KEY';
-const LOADING_DURATION = 4000; // In milliseconds
+const LOADING_DURATION = 2000; // In milliseconds
 
 class Companies extends Component {
 
