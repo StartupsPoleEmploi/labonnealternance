@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga';
+
 import { FAVORITES_ACTIONS } from './favorites.reducers';
 import { FAVORITES_STORE } from './favorites.store';
 import { Favorite } from './favorite';
@@ -120,7 +122,12 @@ export class FavoritesService {
                     favorites : favoriteSiret,
                 })
             }).then(response => {
-                if(response.status === 200) { resolve(); return; }
+                if(response.status === 200) {
+                    ReactGA.event({ category: 'Favorites', action: 'Send favorites by email' });
+
+                    resolve();
+                    return;
+                }
 
                 // Send exception to Sentry (for further analysis)
                 window.Raven.captureException(new Error("Error when exporting favorites : " + response.status + " " + response.statusText));
