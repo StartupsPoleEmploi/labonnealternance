@@ -46,7 +46,7 @@ export default class RGPDModal extends Component {
 
                         <p>Pôle emploi et La Bonne Alternance s'engagent à ne pas communiquer vos données personnelles à des organismes tiers.</p>
 
-                        <p class="text-center ">
+                        <p className="text-center ">
                             <button onClick={this.acceptRGPD} className="button small-white">Accepter</button>
                             <button onClick={this.denyRGPD} className="button small-white">Refuser</button>
                         </p>

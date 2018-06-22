@@ -6,7 +6,7 @@ export class OtherStartups extends Component {
     render() {
         return (
             <div id="other-startups" className="clearfix">
-                <h2>D'autres services proposés par Pôle Emploi</h2>
+                <h2>D'autres services digitaux proposés par Pôle Emploi</h2>
 
                 <div>
                     <a href="https://labonneboite.pole-emploi.fr" target="_blank" rel="noopener noreferrer" className="la-bonne-boite">

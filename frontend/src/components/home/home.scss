@@ -1,10 +1,35 @@
 @import '../../style/mixins.scss';
 
 #home {
+    position: relative;
+
     @include mx-home-common();
 
     h1 { color: white; }
     h2 { color: white; }
+
+    .form-1, .form-2 {
+        z-index: 1;
+        @media(max-width: 800px) { display: none; }
+    }
+    .form-1 {
+        width: 205px; height: 259px;
+        position: absolute;
+        left: 0; top: 80%;
+        background-image: url('/static/img/home-forme-1.svg');
+    }
+    .form-2 {
+        position: relative;
+        height: 60px;
+        overflow: visible;
+        > div {
+            position: absolute;
+            width: 153px; height: 284px;
+            right: 0; top: -40px;
+            background-image: url('/static/img/home-forme-2.svg');
+        }
+    }
+
 
     .introduction {
         display: block;
@@ -140,15 +165,25 @@
             text-align: center;
             color: $violet;
             padding: 20px 10px;
+            font-size: 2em;
+            font-weight: normal;
+
+            &.big {
+                color: $gray-font;
+                font-size: 2.8em;
+                padding: 30px 10px 30px 10px;
+            }
         }
 
         .youtube-video {
             position: relative;
             padding-bottom: 56.25%;
             padding-top: 30px;
+            max-width: 1000px;
+            margin: auto auto 50px auto;
             height: 0;
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-bottom: 60px;
 
             iframe,
             object,
@@ -162,36 +197,63 @@
         }
 
         .how-it-works {
-            padding: 20px;
+            margin-bottom: 80px;
+            h2 { padding-bottom: 20px; }
+            p { font-size: 1.1em; }
 
-            .text {
-                p { margin-bottom: 10px; }
-                margin-bottom: 15px;
+            > .img-right, .img-left {
+                display: flex;
+                p {
+                    flex: 10;
+                    line-height: 1.5em;
+                    align-self: center;
+                }
+                > div {
+                    flex: 2;
+                    padding: 50px 0;
+                }
+            }
+            > .img-right {
+                text-align: right;
+                p { padding-right: 80px; padding-left: 20px; }
+                div { padding-right: 30px; }
+            }
+            > .img-left {
+                text-align: left;
+                p { padding-left: 80px;  }
+                div { padding-left: 30px; padding-right: 20px; }
             }
 
-            .images {
-                text-align: center;
-                img {
-                    width: 50%;
-                    padding: 15px;
-                    display: inline-block;
-                    vertical-align: top;
-                    @media (max-width: 1000px) { padding: 10px; }
-                    @media (max-width: $min-width-mobile) { padding: 10px; width: 100%; }
+            .recruteurs img { height: 164px; width: 264px; }
+            .map img { height: 117px; width: 255px; }
+            .diagramme img { height: 180px; width: 256px; }
+
+            .go-container {
+                margin-top: 50px;
+                color: $blue;
+                p {
+                    display: block;
+                    margin-bottom: 30px;
+                    padding: 0 30px;
                 }
+                a { margin-top: 40px; }
             }
         }
 
         .who-we-are {
             padding: 10px 20px 40px 20px;
+            margin-bottom: 60px;
+            line-height: 1.3em;
 
             > div {
-                display: flex;
+                padding-top: 10px;
                 .logo-pe {
-                    flex: 1;
+                    width: 100px;
+                    display: inline-block;
                 }
                 p {
-                    flex: 10;
+                    display: inline-block;
+                    width: 550px;
                     padding: 0 20px 0 30px;
                     font-size: 0.85em;
                     a {
@@ -201,6 +263,28 @@
                         color: $pink;
                         &:hover { text-decoration: underline; }
                     }
+                }
+            }
+        }
+
+        @media (max-width: $min-width-tablet) {
+            // .how-it-works { padding: 0 30px; }
+            > .img-right p { padding-left: 40px; }
+            > .img-left p { padding-right: 40px;  }
+            .how-it-works br { display: none; }
+        }
+        @media (max-width: $min-width-mobile) {
+            .img-right, .img-left {
+                flex-direction: column;
+                p {
+                    order: 2;
+                    padding: 20px !important;
+                    text-align: center !important;
+                }
+                > div {
+                    order: 1;
+                    padding: 40px 0 0 0!important;
+                    text-align: center !important;
                 }
             }
         }
