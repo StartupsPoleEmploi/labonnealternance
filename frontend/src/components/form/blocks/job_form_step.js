@@ -87,6 +87,11 @@ export class JobFormStep extends Component {
         if (!this.props.show) return;
     }
 
+    componentWillUnmount() {
+        // Unsubscribe to store
+        this.jobStoreUnsubscribeFn();
+    }
+
     nextIfEnter = (event) => {
         if (event.key === 'Enter') {
             // A request for suggestions is occuring, so the step will be validate after the last request
