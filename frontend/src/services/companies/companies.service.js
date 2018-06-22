@@ -4,6 +4,7 @@ import { COMPANIES_STORE } from './companies.store';
 import { COMPANIES_ACTIONS } from './companies.reducer';
 
 import { NotificationService } from '../notification/notification.service';
+import { RequestOccuringService } from '../requests_occuring/request_occuring.service';
 
 export class CompaniesService {
 
@@ -12,6 +13,7 @@ export class CompaniesService {
         this.MAX_PAGE = 3; // 300 results max
 
         this.notificationService = new NotificationService();
+        this.requestOccuringService = new RequestOccuringService();
     }
 
     applyFilters(filters) {
@@ -86,6 +88,8 @@ export class CompaniesService {
         // Fetch result from LBB
         fetch(url)
             .then((response) => {
+                // NOTE : the first addRequest(); is done in Result.getNewCompanies
+                this.requestOccuringService.removeRequest();
                 if (response.status === 200) return response.json();
 
                 this.notificationService.createError('Erreur lors de communication avec le serveur');
@@ -95,6 +99,7 @@ export class CompaniesService {
 
                 // Extra-request if we don't have all the companies yet
                 if (this.moreRequestsNeeded(page, response.companies_count)) {
+                    this.requestOccuringService.addRequest();
                     this.getCompanies(jobs, longitude, latitude, { page: page+1, distance });
                 }
 
@@ -106,6 +111,8 @@ export class CompaniesService {
     }
 
     clearCompanies() {
+        if(COMPANIES_STORE.getState().size === 0) return;
+
         COMPANIES_STORE.dispatch({
             type: COMPANIES_ACTIONS.CLEAR_COMPANIES
         });

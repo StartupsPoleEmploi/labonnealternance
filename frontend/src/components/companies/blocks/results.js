@@ -6,6 +6,7 @@ import { MapBoxService } from '../../../services/mapbox.service';
 import { CompaniesService } from '../../../services/companies/companies.service';
 import { FiltersService } from '../../../services/filters/filters.service';
 import { ViewsService } from '../../../services/view/views.service';
+import { RequestOccuringService } from '../../../services/requests_occuring/request_occuring.service';
 
 import { CompanyListItem } from './company_list_item';
 import { CompanyFilters } from './company_filters';
@@ -17,6 +18,7 @@ import { FILTERS_STORE } from '../../../services/filters/filters.store';
 
 import { VIEWS } from '../../../services/view/views.reducers';
 import { VIEWS_STORE } from '../../../services/view/views.store';
+import { REQUEST_OCCURING_STORE } from '../../../services/requests_occuring/request_occuring.store';
 
 export class Results extends Component {
 
@@ -29,8 +31,7 @@ export class Results extends Component {
             this
         );
 
-        this.requestOccuring = 0;
-
+        this.requestOccuringService = new RequestOccuringService();
         this.companiesService = new CompaniesService();
         this.filtersService = new FiltersService();
         this.viewsService = new ViewsService();
@@ -53,10 +54,6 @@ export class Results extends Component {
     componentWillMount() {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
-            // Decrease the number of request occuring
-            this.requestOccuring = this.requestOccuring - 1;
-            if(this.requestOccuring < 0) this.requestOccuring = 0;
-
             // Detect if a filter is active
             let filterActive = this.filtersService.isFiltersActive();
 
@@ -90,8 +87,8 @@ export class Results extends Component {
             }, 1000);
 
 
-            // If we don't expect other request result)
-            if(this.requestOccuring === 0) {
+            // If we don't expect other request result
+            if(REQUEST_OCCURING_STORE.getState() === 0) {
                 // Hide or show the no-result modal
                 if (companies.size === 0 && !filterActive) this.setState({ modalNoResult: true });
                 else this.setState({ modalNoResult: false });
@@ -124,7 +121,6 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-        this.requestOccuring += 1;
         this.companiesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }
 
@@ -152,6 +148,10 @@ export class Results extends Component {
 
     // SEARCH
     getNewCompanies(newLongitude, newLatitude) {
+        // Add the first request here (will be decrement in this.companiesService.getCompanies)
+        // Why here ? Because when we clear companies, the behavior on 'no result event' is displayed all along the application
+        this.requestOccuringService.addRequest();
+
         // Clear datas
         this.mapBoxService.removeAllMakers();
         this.setState({ companies: new Map(), count: 0, loading: true });
@@ -159,7 +159,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-        this.requestOccuring += 1;
+
         this.companiesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
     }
     updateFitBounds(distance) {
