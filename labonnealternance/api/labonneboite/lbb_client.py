@@ -77,6 +77,7 @@ def get_company(siret):
     """
     params = {
         'user': API_USER,
+        'contract': 'alternance'
     }
 
     timestamp = make_timestamp()
