@@ -75,7 +75,6 @@ export class JobFormStep extends Component {
                     this.setState({ suggestedJobs: jobs });
                     this.props.searchForm.setTerm(this.state.term);
 
-
                     // If no request occuring and 'enter' pressed, we validate the step automatically
                     if (this.enterPressed) this.validateAutocompleteStep();
                 }
@@ -84,6 +83,16 @@ export class JobFormStep extends Component {
     }
 
     componentDidUpdate() {
+        if (this.state.formStep === JOB_SELECTION_STEP) {
+            if (this.state.suggestedJobs.length === 1) {
+                // avoid infinite loop of renders
+                this.state.formStep = null;
+                // automatically select the single job
+                this.props.searchForm.setJobs(this.state.suggestedJobs);
+                // skip the job selection step entirely
+                this.props.next();
+            }
+        }
         if (!this.props.show) return;
     }
 
@@ -154,7 +163,7 @@ export class JobFormStep extends Component {
         }
 
         this.props.searchForm.setJobs(jobs);
-        // Notifify parent (if form is include in a bigger component. Ex: new sarch in header)
+        // Notifify parent (if form is include in a bigger component. Ex: new search in header)
         if (this.props.onChange) this.props.onChange();
         this.forceUpdate();
     }
@@ -200,7 +209,7 @@ export class JobFormStep extends Component {
             return;
         }
 
-        // Save values and called next step
+        // Save values and call next step
         if(this.isStepValid()) {
             // Save URL for GA
             if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
