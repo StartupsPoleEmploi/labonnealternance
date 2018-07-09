@@ -76,7 +76,9 @@ export class JobFormStep extends Component {
                     this.props.searchForm.setTerm(this.state.term);
 
                     // If no request occuring and 'enter' pressed, we validate the step automatically
-                    if (this.enterPressed) this.validateAutocompleteStep();
+                    // Note : we check the number of jobs directly because setState() is not immediate
+                    // so the validation in validateAutocompleteStep() is based on the last state...
+                    if (this.enterPressed && jobs.length > 0) this.validateAutocompleteStep();
                 }
             }
         });
@@ -107,7 +109,7 @@ export class JobFormStep extends Component {
             if (this.state.requestNumber > 0) {
                 this.enterPressed = true;
             } else {
-                if(this.isAutocompleteStepValid()) this.validateAutocompleteStep();
+                this.validateAutocompleteStep();
             }
         }
     }
@@ -182,6 +184,7 @@ export class JobFormStep extends Component {
     }
 
     validateAutocompleteStep = () => {
+        if(!this.isAutocompleteStepValid()) return;
         this.props.searchForm.setJobs([]);
 
         // Save URL for GA
