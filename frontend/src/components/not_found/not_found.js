@@ -23,7 +23,7 @@ export default class NotFound extends Component {
                     <Link to="/">
                         <img className="lba-logo" src="/static/img/logo/logo-noir-lba.svg" alt="La Bonne Alternance" />
                     </Link>
-                    <h1 className="sr-only">Page non trouvé</h1>
+                    <h1 className="sr-only">Page non trouvée</h1>
 
                     <div className="text-container">
                         <div className="images">
@@ -35,7 +35,7 @@ export default class NotFound extends Component {
                             <img className="img-responsive" src="/static/img/not_found/404-illustration.svg" alt="" />
                         </div>
                         <div className="text">
-                            <p>Oups, nous n'avons pas trouvé la page que vous avez demandé.</p>
+                            <p>Oups, nous n'avons pas trouvé la page que vous avez demandée.</p>
                             <p>Faites une nouvelle recherche !</p>
                             <div className="button-container">
                                 <Link className="button blue-button" to="/">Aller à la page d'accueil</Link>
