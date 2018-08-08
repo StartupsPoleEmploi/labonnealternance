@@ -97,7 +97,7 @@ if(environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
 }
 
 // Start the application
-GoogleAnalyticsService.initGoogleAnaltics();
+GoogleAnalyticsService.initGoogleAnalytics();
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
 

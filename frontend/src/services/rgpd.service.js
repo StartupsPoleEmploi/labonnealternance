@@ -33,7 +33,7 @@ export default class RGPDService {
 
         if(userReponse === true) {
             // TODO : serviceGA & serviceHotjar => init
-            GoogleAnalyticsService.initGoogleAnaltics();
+            GoogleAnalyticsService.initGoogleAnalytics();
             HotjarService.initHotjar();
         } else {
             // Reload the page : GA and hotjar will not installed after
