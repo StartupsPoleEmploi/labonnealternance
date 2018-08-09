@@ -4,7 +4,7 @@ import RGPDService from '../services/rgpd.service';
 
 export class GoogleAnalyticsService {
 
-    static initGoogleAnaltics() {
+    static initGoogleAnalytics() {
         if(environment.GA_ID && environment.GA_ID !== '') {
             ReactGA.initialize(environment.GA_ID);
             // Anonymous mode : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
