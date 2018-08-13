@@ -85,16 +85,6 @@ export class JobFormStep extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.formStep === JOB_SELECTION_STEP) {
-            if (this.state.suggestedJobs.length === 1) {
-                // avoid infinite loop of renders
-                this.state.formStep = null;
-                // automatically select the single job
-                this.props.searchForm.setJobs(this.state.suggestedJobs);
-                // skip the job selection step entirely
-                this.props.next();
-            }
-        }
         if (!this.props.show) return;
     }
 
@@ -187,14 +177,18 @@ export class JobFormStep extends Component {
         if(!this.isAutocompleteStepValid()) return;
         this.props.searchForm.setJobs([]);
 
-        // Save URL for GA
-        if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
-            GoogleAnalyticsService.setPageView(JOBS_FILTER_URL);
+        if (this.state.suggestedJobs.length === 1) {
+            this.props.searchForm.setJobs(this.state.suggestedJobs);
+            this.props.next();
+        } else {
+            // Save URL for GA
+            if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+                GoogleAnalyticsService.setPageView(JOBS_FILTER_URL);
+            }
+
+            this.setState({ formStep: JOB_SELECTION_STEP });
         }
-
-        this.setState({ formStep: JOB_SELECTION_STEP });
     }
-
 
     isStepValid = () => {
         if (!this.props.searchForm.jobs) return false;
