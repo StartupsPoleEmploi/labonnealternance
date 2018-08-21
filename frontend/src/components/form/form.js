@@ -20,23 +20,20 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.searchFormService = new SearchFormService();
-        this.SEOService = new SEOService();
-
         this.state = {
             step: 0,
             stepNumber: 2,
-            searchForm: this.searchFormService.getSearchFormValues() || new SearchFormData()
+            searchForm: SearchFormService.getSearchFormValues() || new SearchFormData()
         };
     }
 
     componentDidMount() {
-        this.SEOService.displayNoFollow(false);
-        this.SEOService.setTitle("Trouvez votre contrat d'alternance");
+        SEOService.displayNoFollow(false);
+        SEOService.setTitle("Trouvez votre contrat d'alternance");
     }
 
     sendForm = () => {
-        this.searchFormService.saveSearchFormValues(this.state.searchForm);
+        SearchFormService.saveSearchFormValues(this.state.searchForm);
         this.state.searchForm.callSearch(this.props.history);
     }
 

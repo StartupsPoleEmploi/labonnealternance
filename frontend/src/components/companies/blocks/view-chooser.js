@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 
-import { ViewsService } from '../../../services/view/views.service';
 import { VIEWS_STORE } from '../../../services/view/views.store';
 import { VIEWS } from '../../../services/view/views.reducers';
+import { ViewsService } from '../../../services/view/views.service';
 
 export class ViewChooser extends Component {
 
     constructor(props) {
         super(props);
-
-        this.viewService = new ViewsService();
 
         this.state = ({
             view: VIEWS.MAP
@@ -31,15 +29,15 @@ export class ViewChooser extends Component {
 
     setFiltersView = () => {
         ReactGA.event({ category: 'Views', action: 'Select filters view' });
-        this.viewService.setFiltersView();
+        ViewsService.setFiltersView();
     }
     setMapView = () => {
         ReactGA.event({ category: 'Views', action: 'Select map view' });
-        this.viewService.setMapView();
+        ViewsService.setMapView();
     }
     setListView = () => {
         ReactGA.event({ category: 'Views', action: 'Select list view' });
-        this.viewService.setListView();
+        ViewsService.setListView();
     }
 
 

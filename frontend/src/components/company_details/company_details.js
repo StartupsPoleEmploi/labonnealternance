@@ -24,11 +24,7 @@ export default class CompanyDetails extends Component {
     constructor(props) {
         super(props);
 
-        this.companyDetailsService = new CompanyDetailsService();
-        this.softSkillsService = new SoftSkillsService();
-        this.SEOService = new SEOService();
-
-        this.softSkillsService.getSoftSkillsFromLocalStorage();
+        SoftSkillsService.getSoftSkillsFromLocalStorage();
 
         this.state= {
             referer: this.getReferer(),
@@ -44,19 +40,19 @@ export default class CompanyDetails extends Component {
         COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
-                this.SEOService.displayNoFollow(false);
-                this.SEOService.setTitle('Offres probables d\'alternance société ' + company.label);
+                SEOService.displayNoFollow(false);
+                SEOService.setTitle('Offres probables d\'alternance société ' + company.label);
 
                 this.setState({ company });
 
-                if (!company.hasExtraInfos()) this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
+                if (!company.hasExtraInfos()) CompanyDetailsService.getCompanyDetailsFromLBB(company.siret);
 
                 // Get soft skills
                 if (this.state.rome) {
-                    if (!company.hasSoftSkills()) this.softSkillsService.getSoftSkills(this.state.rome);
+                    if (!company.hasSoftSkills()) SoftSkillsService.getSoftSkills(this.state.rome);
                 }
             } else {
-                this.SEOService.displayNoFollow(true);
+                SEOService.displayNoFollow(true);
             }
         });
 
@@ -67,9 +63,9 @@ export default class CompanyDetails extends Component {
 
         // Set canonical URL
         let canonical = window.location.origin.concat(window.location.pathname);
-        this.SEOService.setCanonical(canonical);
+        SEOService.setCanonical(canonical);
 
-        this.companyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true);
+        CompanyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true);
     }
 
 

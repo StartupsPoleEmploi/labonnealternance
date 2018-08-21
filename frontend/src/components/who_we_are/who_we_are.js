@@ -11,13 +11,8 @@ require('./who_we_are.css');
 
 export default class FAQ extends Component {
 
-    constructor(props) {
-        super(props);
-        this.SEOService = new SEOService();
-    }
-
     componentDidMount() {
-        this.SEOService.setTitle("Qui sommes-nous ?");
+        SEOService.setTitle("Qui sommes-nous ?");
     }
 
     render() {

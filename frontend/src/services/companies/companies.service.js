@@ -6,14 +6,11 @@ import { COMPANIES_ACTIONS } from './companies.reducer';
 import { NotificationService } from '../notification/notification.service';
 import { RequestOccuringService } from '../requests_occuring/request_occuring.service';
 
-export class CompaniesService {
+class CompaniesServiceFactory {
 
     constructor() {
         this.PAGE_SIZE = 100;
         this.MAX_PAGE = 3; // 300 results max
-
-        this.notificationService = new NotificationService();
-        this.requestOccuringService = new RequestOccuringService();
     }
 
     applyFilters(filters) {
@@ -89,17 +86,17 @@ export class CompaniesService {
         fetch(url)
             .then((response) => {
                 // NOTE : the first addRequest(); is done in Result.getNewCompanies
-                this.requestOccuringService.removeRequest();
+                RequestOccuringService.removeRequest();
                 if (response.status === 200) return response.json();
 
-                this.notificationService.createError('Erreur lors de communication avec le serveur');
+                NotificationService.createError('Erreur lors de communication avec le serveur');
             })
             .then((response) => {
                 if (!response) return;
 
                 // Extra-request if we don't have all the companies yet
                 if (this.moreRequestsNeeded(page, response.companies_count)) {
-                    this.requestOccuringService.addRequest();
+                    RequestOccuringService.addRequest();
                     this.getCompanies(jobs, longitude, latitude, { page: page+1, distance });
                 }
 
@@ -125,3 +122,9 @@ export class CompaniesService {
         return companiesCount > currentPage * this.PAGE_SIZE;
     }
 }
+
+
+// Export as singleton
+const companiesService = new CompaniesServiceFactory();
+Object.freeze(companiesService);
+export { companiesService as CompaniesService };

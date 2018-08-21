@@ -1,7 +1,7 @@
 import { getCookie } from "./helpers";
 import { constants } from "../constants";
 
-export class RecruiterFormService {
+class RecruiterFormServiceFactory {
 
     sendForm(formValues) {
         return new Promise((resolve, reject) => {
@@ -38,3 +38,8 @@ export class RecruiterFormService {
     }
 
 }
+
+// Export as singleton
+const recruiterFormService = new RecruiterFormServiceFactory();
+Object.freeze(recruiterFormService);
+export { recruiterFormService as RecruiterFormService };

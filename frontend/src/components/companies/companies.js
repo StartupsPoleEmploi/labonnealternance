@@ -16,7 +16,6 @@ import { CompanyDetailsService } from '../../services/company_details/company_de
 import { FavoritesService } from '../../services/favorites/favorites.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { FiltersService } from '../../services/filters/filters.service';
-import { ViewsService } from '../../services/view/views.service';
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
 
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
@@ -37,16 +36,6 @@ class Companies extends Component {
 
     constructor(props) {
         super(props);
-
-        // Set SEO values
-        this.SEOService = new SEOService();
-        this.companiesService = new CompaniesService();
-        this.companyDetailsService = new CompanyDetailsService();
-        this.favoritesService = new FavoritesService();
-        this.notificationService = new NotificationService();
-        this.filtersService = new FiltersService();
-        this.viewService = new ViewsService();
-        this.softSkillsService = new SoftSkillsService();
 
         this.baseUrl = this.props.match.url.concat(window.location.search);
 
@@ -95,25 +84,25 @@ class Companies extends Component {
             // Animate magnifier on mobile
             if (this.state.mobileVersion) {
                 this.setState({ animateMagnifier: true });
-            } else if (!this.filtersService.isFiltersActive()) {
+            } else if (!FiltersService.isFiltersActive()) {
                 // Show form on desktop (if no filter)
                 this.setState({ showForm: true });
             }
 
-            this.SEOService.displayNoFollow(true);
+            SEOService.displayNoFollow(true);
         } else {
             // On mobile, on first result page ever : display the number of results
             let showMobileResultPopup = localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null;
             if (showMobileResultPopup) {
-                let message = this.companiesService.computeResultTitle(companyCount, this.state.searchTerm, this.state.cityName);
-                this.notificationService.createInfo(message, SHOW_RESULT_POPUP_KEY);
+                let message = CompaniesService.computeResultTitle(companyCount, this.state.searchTerm, this.state.cityName);
+                NotificationService.createInfo(message, SHOW_RESULT_POPUP_KEY);
             }
 
             this.setState({ animateMagnifier: false, showForm: false });
 
             // If user is gelocated, do not index the page (priority to URLs with citySlug)
-            if (this.state.citySlug) { this.SEOService.displayNoFollow(false); }
-            else { this.SEOService.displayNoFollow(true); }
+            if (this.state.citySlug) { SEOService.displayNoFollow(false); }
+            else { SEOService.displayNoFollow(true); }
         }
     }
 
@@ -127,8 +116,8 @@ class Companies extends Component {
         if (event.state) companySiret = event.state.companySiret || undefined;
 
         if (!companySiret) {
-            this.companyDetailsService.unsetCompany();
-        } else this.companyDetailsService.setCompanySiret(companySiret);
+            CompanyDetailsService.unsetCompany();
+        } else CompanyDetailsService.setCompanySiret(companySiret);
 
         // Handle view (if in history.state)
 
@@ -207,7 +196,7 @@ class Companies extends Component {
 
         // Get Job from slug
         if (this.state.jobSlugs) {
-            this.companiesService.getJobFromSlug(this.state.jobSlugs)
+            CompaniesService.getJobFromSlug(this.state.jobSlugs)
                 .then(responseJobs => {
                     let jobs = [];
 
@@ -223,7 +212,7 @@ class Companies extends Component {
                         this.initPageContent();
                     } else {
                         // Get coordinates and city
-                        let response = this.companiesService.getCityFromSlug(this.state.citySlug);
+                        let response = CompaniesService.getCityFromSlug(this.state.citySlug);
                         response.then(response => {
                             this.setState({
                                 latitude: response.city.latitude,
@@ -255,7 +244,7 @@ class Companies extends Component {
             data = { searchTerm: this.state.searchTerm, cityName, zipcode };
         }
 
-        this.seoService = this.SEOService.setTitle(formatString(title, data));
+        SEOService.setTitle(formatString(title, data));
 
 
         // Handle no-follow <meta>
@@ -267,8 +256,8 @@ class Companies extends Component {
 
     initPageContent() {
         // Get favorites and soft skills from localStorage
-        this.favoritesService.getFavoritesFromLocalStorage();
-        this.softSkillsService.getSoftSkillsFromLocalStorage();
+        FavoritesService.getFavoritesFromLocalStorage();
+        SoftSkillsService.getSoftSkillsFromLocalStorage();
 
 
         // Fake loader page (goal : make the user read the message !)

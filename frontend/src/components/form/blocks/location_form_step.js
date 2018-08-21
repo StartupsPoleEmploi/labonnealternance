@@ -9,7 +9,6 @@ import { CURRENT_LOCATION_STORE } from '../../../services/current_location/curre
 
 import { Location } from '../../../services/search_form/location';
 import { NotificationService } from '../../../services/notification/notification.service';
-import { SearchFormService } from '../../../services/search_form/search_form.service';
 
 import { Loader } from '../../shared/loader/loader';
 
@@ -19,11 +18,6 @@ export class LocationFormStep extends Component {
 
     constructor(props) {
         super(props);
-
-        this.autocompleteLocationService = new AutocompleteLocationService();
-        this.currentLocationService = new CurrentLocationService();
-        this.notificationService = new NotificationService();
-        this.searchFormService = new SearchFormService();
 
         this.callAutocompleteCityFn = debounce(this.callAutocompleteCity, 250)
 
@@ -62,7 +56,7 @@ export class LocationFormStep extends Component {
     }
 
     componentWillMount() {
-        this.notificationService.deleteNotification();
+        NotificationService.deleteNotification();
 
         this.autocompleteLocationStore = AUTOCOMPLETE_LOCATION_STORE.subscribe(() => {
             this.setState({ suggestions: AUTOCOMPLETE_LOCATION_STORE.getState() });
@@ -115,7 +109,7 @@ export class LocationFormStep extends Component {
     callAutocompleteCity = () => {
         let term = this.state.term;
         if (term && term.length > 2) {
-            this.autocompleteLocationService.getCities(term);
+            AutocompleteLocationService.getCities(term);
         }
     }
 
@@ -153,7 +147,7 @@ export class LocationFormStep extends Component {
         ReactGA.event({ category: 'Search', action: 'Use geolocalisation' });
 
         navigator.geolocation.getCurrentPosition((position) => {
-            this.currentLocationService.getCurrentLocation(position.coords.longitude, position.coords.latitude);
+            CurrentLocationService.getCurrentLocation(position.coords.longitude, position.coords.latitude);
         });
     }
 
@@ -197,11 +191,11 @@ export class LocationFormStep extends Component {
 
     validateStep = () => {
         if (!this.props.searchForm.location) {
-            this.notificationService.createError('Aucune coordonnée renseignée !');
+            NotificationService.createError('Aucune coordonnée renseignée !');
             return;
         }
         if (!this.props.searchForm.location.isValid()) {
-            this.notificationService.createError('Erreur avec les coordonnées renseignées !');
+            NotificationService.createError('Erreur avec les coordonnées renseignées !');
             return;
         }
 

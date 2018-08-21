@@ -14,10 +14,6 @@ export default class RecruiterForm extends Component {
     constructor(props) {
         super(props);
 
-        this.notificationService = new NotificationService();
-        this.SEOService = new SEOService();
-        this.recruiterService = new RecruiterFormService();
-
         this.state = {
             action: "promote",
             siret: getParameterByName('siret') || "",
@@ -30,8 +26,8 @@ export default class RecruiterForm extends Component {
     }
 
     componentWillMount() {
-        this.SEOService.setTitle("Accès recruteurs");
-        this.SEOService.setCanonical(window.location.origin.concat(window.location.pathname));
+        SEOService.setTitle("Accès recruteurs");
+        SEOService.setCanonical(window.location.origin.concat(window.location.pathname));
     }
 
 
@@ -61,14 +57,14 @@ export default class RecruiterForm extends Component {
     sendForm = (event) => {
         event.preventDefault();
         let messages = this.validateForm();
-        this.notificationService.deleteNotification();
+        NotificationService.deleteNotification();
 
         if (messages.length !== 0) {
-            this.notificationService.createError(messages);
+            NotificationService.createError(messages);
             return;
         }
 
-        let promise = this.recruiterService.sendForm({
+        let promise = RecruiterFormService.sendForm({
             action: this.state.action,
             siret: this.state.siret,
             firstName: this.state.firstName,
@@ -79,11 +75,11 @@ export default class RecruiterForm extends Component {
         });
         promise
             .then(() => {
-                this.notificationService.createSuccess("Merci pour votre message, nous reviendrons vers vous dès que possible.");
+                NotificationService.createSuccess("Merci pour votre message, nous reviendrons vers vous dès que possible.");
                 // Reset form
                 this.setState({ action: "promote", siret: getParameterByName('siret') || "", firstName: "", lastName: "", email: "", phone: "", comment: "" });
             })
-            .catch(() => this.notificationService.createError("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"))
+            .catch(() => NotificationService.createError("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"))
     }
 
     render() {

@@ -6,14 +6,10 @@ import { SEOService } from '../../services/seo.service';
 require('./not_found.css');
 
 export default class NotFound extends Component {
-    constructor(props) {
-        super(props);
-        this.SEOService = new SEOService();
-    }
 
     componentDidMount() {
-        this.SEOService.displayNoFollow(true);
-        this.SEOService.setTitle("Page non trouvée");
+        SEOService.displayNoFollow(true);
+        SEOService.setTitle("Page non trouvée");
     }
 
     render() {

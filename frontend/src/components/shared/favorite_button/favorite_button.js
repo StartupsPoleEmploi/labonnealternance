@@ -5,20 +5,15 @@ import ReactGA from 'react-ga';
 
 export default class FavoriteButton extends Component {
 
-    constructor(props) {
-        super(props);
-        this.favoritesService = new FavoritesService();
-    }
-
     addFavorite = (event) => {
         event.stopPropagation();
         ReactGA.event({ category: 'Favorites', action: 'Add favorite' });
-        this.favoritesService.addFavorite(this.props.company);
+        FavoritesService.addFavorite(this.props.company);
     }
 
     removeFavorite = (event) => {
         event.stopPropagation();
-        this.favoritesService.removeFavorite(this.props.company.siret);
+        FavoritesService.removeFavorite(this.props.company.siret);
     }
 
     isFavorite() {

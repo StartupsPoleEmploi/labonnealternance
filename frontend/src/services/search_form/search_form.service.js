@@ -4,7 +4,7 @@ import { Location } from './location';
 
 const SEARCH_FORM_DATA = 'SEARCH_FORM_DATA';
 
-export class SearchFormService {
+class SearchFormServiceFactory {
 
     saveSearchFormValues(searchForm) {
         localStorage.setItem(SEARCH_FORM_DATA, JSON.stringify(searchForm));
@@ -38,3 +38,8 @@ export class SearchFormService {
     }
 
 }
+
+// Export as singleton
+const searchFormService = new SearchFormServiceFactory();
+Object.freeze(searchFormService);
+export { searchFormService as SearchFormService };

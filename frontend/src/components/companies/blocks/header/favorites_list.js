@@ -10,13 +10,10 @@ export class FavoritesList extends Component {
     constructor(props) {
         super(props);
 
-        this.favoritesService = new FavoritesService();
-        this.notificationService = new NotificationService();
-
         this.state = {
             favorites: [],
             placeholder: PLACEHOLDER_TEXT,
-            email: this.favoritesService.getEmailFromLocalStorage(),
+            email: FavoritesService.getEmailFromLocalStorage(),
         };
     }
 
@@ -45,23 +42,23 @@ export class FavoritesList extends Component {
     // Trigger when user click on remove button
     removeFavorite = (event) => {
         let siret = event.target.attributes['data-siret'].value;
-        if (siret) this.favoritesService.removeFavorite(siret);
+        if (siret) FavoritesService.removeFavorite(siret);
     }
 
     inputEmail = (event) => { this.setState({ email: event.target.value }); }
     exportFavorite = (event) => {
         event.preventDefault();
-        this.notificationService.deleteNotification();
+        NotificationService.deleteNotification();
 
         if(!this.state.email || !isEmail(this.state.email)) {
-            this.notificationService.createError("Votre e-mail n'est pas valide");
+            NotificationService.createError("Votre e-mail n'est pas valide");
             return;
         }
 
-        let promise = this.favoritesService.sendFavorites(this.state.email, this.state.favorites.map(favorite => favorite.siret));
+        let promise = FavoritesService.sendFavorites(this.state.email, this.state.favorites.map(favorite => favorite.siret));
         promise
-            .then(() => { this.notificationService.createSuccess("Vos favoris ont été envoyés à l'adresse : " + this.state.email); this.setState({ 'email': "" }); })
-            .catch(() => this.notificationService.createError("Erreur lors de l'envoi de vos favoris. Veuillez réessayer ultérieurement."))
+            .then(() => { NotificationService.createSuccess("Vos favoris ont été envoyés à l'adresse : " + this.state.email); this.setState({ 'email': "" }); })
+            .catch(() => NotificationService.createError("Erreur lors de l'envoi de vos favoris. Veuillez réessayer ultérieurement."))
     }
 
 

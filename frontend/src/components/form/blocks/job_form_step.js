@@ -7,7 +7,6 @@ import { NotificationService } from '../../../services/notification/notification
 
 import { AutocompleteJobService } from '../../../services/autocomplete_job/autocomplete_job.service';
 import { AUTOCOMPLETE_JOB_STORE } from '../../../services/autocomplete_job/autocomplete_job.store';
-import { SearchFormService } from '../../../services/search_form/search_form.service';
 import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 const PLACEHOLDER_TEXT = 'Graphiste, maçon, second de cuisine...';
@@ -25,9 +24,6 @@ export class JobFormStep extends Component {
     constructor(props) {
         super(props);
 
-        this.autocompleteJobService = new AutocompleteJobService();
-        this.searchFormService = new SearchFormService();
-        this.notificationService = new NotificationService();
 
         this.callAutocompleteJobsFn = debounce(this.callAutocompleteJobs, 250)
 
@@ -37,7 +33,7 @@ export class JobFormStep extends Component {
         if (this.props.searchForm && this.props.searchForm.jobs) {
             term = this.props.searchForm.term;
             requestNumber = 1;
-            if (term.length > 2) this.autocompleteJobService.getJobs(term);
+            if (term.length > 2) AutocompleteJobService.getJobs(term);
         }
 
         this.enterPressed = false;
@@ -53,7 +49,7 @@ export class JobFormStep extends Component {
     }
 
     componentWillMount() {
-        this.notificationService.deleteNotification();
+        NotificationService.deleteNotification();
 
         this.jobStoreUnsubscribeFn = AUTOCOMPLETE_JOB_STORE.subscribe(() => {
 
@@ -125,14 +121,14 @@ export class JobFormStep extends Component {
         let term = this.state.term;
 
         if (term && term.length > 2) {
-            this.autocompleteJobService.getJobs(term);
+            AutocompleteJobService.getJobs(term);
             this.setState({ requestNumber: this.state.requestNumber + 1 });
         }
     }
 
     // Trigger when filling the job input
     autocompleteJobs = (event) => {
-        this.notificationService.deleteNotification();
+        NotificationService.deleteNotification();
 
         let term = event.target.value;
         this.setState({ term });
@@ -204,11 +200,11 @@ export class JobFormStep extends Component {
 
     validateStep = () => {
         if (!this.props.searchForm.jobs.length === 0) {
-            this.notificationService.createError('Aucun métier renseigné');
+            NotificationService.createError('Aucun métier renseigné');
             return;
         }
         if (!this.props.searchForm.areJobsValid()) {
-            this.notificationService.createError('Erreur avec les métiers renseignés');
+            NotificationService.createError('Erreur avec les métiers renseignés');
             return;
         }
 
@@ -323,7 +319,5 @@ export class JobFormStep extends Component {
             if (this.state.formStep === AUTOCOMPLETE_STEP) return this.renderAutocompleteBlock();
             if (this.state.formStep === JOB_SELECTION_STEP) return this.renderSelectJobsBlock();
         }
-
-
     }
 }

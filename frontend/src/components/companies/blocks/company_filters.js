@@ -25,9 +25,6 @@ export class CompanyFilters extends Component {
     constructor(props) {
         super(props);
 
-        this.filtersService = new FiltersService();
-        this.viewsService = new ViewsService();
-
         // Transform jobs array to a Map
         let romesValues = new Map();
         this.props.jobs.forEach(job => romesValues.set(job.rome, job.label));
@@ -102,11 +99,11 @@ export class CompanyFilters extends Component {
 
     showFilters = () => {
         ReactGA.event({ category: 'Views', action: 'Select filters view' });
-        this.viewsService.setFiltersView();
+        ViewsService.setFiltersView();
     }
     hideFilters = () => {
         // For mobile => show map on close
-        this.viewsService.setMapView();
+        ViewsService.setMapView();
     }
 
     // Select/Deselect
@@ -226,7 +223,7 @@ export class CompanyFilters extends Component {
             filters.rome = this.state.romesSelected;
         }
 
-        this.filtersService.saveFilters(filters);
+        FiltersService.saveFilters(filters);
     }
 
 
