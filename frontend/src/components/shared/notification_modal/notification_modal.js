@@ -10,8 +10,6 @@ export class NotificationModal extends Component {
     constructor(props) {
         super(props);
 
-        this.notificationService = new NotificationService();
-
         this.state = {
             notification: undefined
         };
@@ -37,7 +35,7 @@ export class NotificationModal extends Component {
     }
 
     onClose = () => {
-        this.notificationService.deleteNotification();
+        NotificationService.deleteNotification();
     }
 
     render() {

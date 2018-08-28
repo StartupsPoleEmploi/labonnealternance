@@ -6,14 +6,9 @@ import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
 export default class CGU extends Component {
 
-    constructor(props) {
-        super(props);
-        this.SEOService = new SEOService();
-    }
-
     componentDidMount() {
-        this.SEOService.displayNoFollow(false);
-        this.SEOService.setTitle("Conditions Générales d'utilisation");
+        SEOService.displayNoFollow(false);
+        SEOService.setTitle("Conditions Générales d'utilisation");
     }
 
     render() {

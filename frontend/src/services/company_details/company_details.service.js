@@ -3,7 +3,7 @@ import { constants } from '../../constants';
 import { COMPANY_DETAILS_STORE } from './company_details.store';
 import { COMPANY_DETAILS_ACTIONS } from './company_details.reducer';
 
-export class CompanyDetailsService {
+class CompanyDetailsServiceFactory {
 
     setCompanySiret(siret) {
         this.getCompanyDetailsFromLBB(siret, true);
@@ -70,3 +70,9 @@ export class CompanyDetailsService {
         COMPANY_DETAILS_STORE.dispatch({ type: COMPANY_DETAILS_ACTIONS.DELETE_COMPANY });
     }
 }
+
+
+// Export as singleton
+const companyDetailsService = new CompanyDetailsServiceFactory();
+Object.freeze(companyDetailsService);
+export { companyDetailsService as CompanyDetailsService };

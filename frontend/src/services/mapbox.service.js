@@ -5,11 +5,10 @@ import ReactGA from 'react-ga';
 import { leaflet } from 'mapbox.js';
 import { MarkerClusterGroup } from 'leaflet.markercluster';
 
-import { CompaniesService } from './companies/companies.service';
 import { CompanyDetailsService } from './company_details/company_details.service';
 import { COMPANY_DETAILS_STORE } from './company_details/company_details.store';
 
-import { VisitedServicesService } from '../services/visited_sirets/visited_sirets.service';
+import { VisitedSiretService } from '../services/visited_sirets/visited_sirets.service';
 import { VISITED_SIRETS_STORE } from '../services/visited_sirets/visited_sirets.store';
 
 import { FAVORITES_STORE } from './favorites/favorites.store';
@@ -21,10 +20,7 @@ window.selectSiret = (el) => {
     if (!el) return;
     let siret = el.getAttribute('data-siret');
 
-    if (siret) {
-        let companyDetailsService = new CompanyDetailsService();
-        companyDetailsService.setCompanySiret(siret);
-    }
+    if (siret) CompanyDetailsService.setCompanySiret(siret);
 };
 
 
@@ -52,10 +48,6 @@ export class MapBoxService {
         // only if user don't move the map for 0.300 second
         this.newCompaniesFn = debounce(this.getNewCompanies, 300);
 
-        this.companiesService = new CompaniesService();
-        this.companyDetailsService = new CompanyDetailsService();
-        this.visitedServicesService = new VisitedServicesService();
-
         // Markers store and clusters
         this.markers = new Map();
         this.CLUSTERS_ID = 'CLUSTERS_ID';
@@ -73,7 +65,7 @@ export class MapBoxService {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
                 let siret = company.siret;
-                this.visitedServicesService.addVisited(siret);
+                VisitedSiretService.addVisited(siret);
                 this.markers.get(siret).setIcon(this.determineMarkerIcon(siret));
             }
         });
@@ -116,7 +108,7 @@ export class MapBoxService {
         marker.on('click', (event) => {
             let siret = event.target.options.company;
             if (siret) {
-                this.companyDetailsService.setCompany(company);
+                CompanyDetailsService.setCompany(company);
                 this.setPinkMarker(siret);
             }
         });

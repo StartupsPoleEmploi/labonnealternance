@@ -10,7 +10,7 @@ import { SoftSkills } from './soft_skill';
 
 const SOFT_SKILLS_STORAGE_KEY = 'SOFT_SKILLS';
 
-export class SoftSkillsService {
+class SoftSkillsServiceFactory {
 
 
     constructor() {
@@ -87,5 +87,10 @@ export class SoftSkillsService {
                 });
             });
     }
-
 }
+
+
+// Export as singleton
+const softSkillsService = new SoftSkillsServiceFactory();
+Object.freeze(softSkillsService);
+export { softSkillsService as SoftSkillsService };

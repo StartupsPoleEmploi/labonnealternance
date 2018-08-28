@@ -4,16 +4,12 @@ import ReactGA from 'react-ga';
 
 import { FavoritesList } from './favorites_list';
 import SearchForm from '../../../shared/search_form/search_form';
-import { ViewsService } from '../../../../services/view/views.service';
 import { FAVORITES_STORE } from '../../../../services/favorites/favorites.store';
 
 export class Header extends Component {
 
     constructor(props) {
         super(props);
-
-        this.viewsService = new ViewsService();
-
 
         this.state = ({
             favoritesNumber: 0,

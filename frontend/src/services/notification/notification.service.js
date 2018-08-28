@@ -1,7 +1,7 @@
 import { NOTIFICATION_ACTIONS } from './notification.reducers';
 import { NOTIFICATION_STORE } from './notification.store';
 
-export class NotificationService {
+class NotificationServiceFactory {
 
     _handleKey(key) {
 
@@ -69,3 +69,8 @@ export class NotificationService {
         });
     }
 }
+
+// Export as singleton
+const notificationService = new NotificationServiceFactory();
+Object.freeze(notificationService);
+export { notificationService as NotificationService };

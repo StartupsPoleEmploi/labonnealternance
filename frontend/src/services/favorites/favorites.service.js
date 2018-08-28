@@ -13,11 +13,9 @@ const FAVORITES_STORAGE_KEY = 'FAVORITES';
 const EMAIL_STORAGE_KEY = 'EMAIL';
 const MAX_FAVORITES = 50; // Avoid too much favorites
 
-export class FavoritesService {
+class FavoritesServiceFactory {
 
     constructor() {
-        this.notificationService = new NotificationService();
-
         // Save favorites to local storage when favorites change
         FAVORITES_STORE.subscribe(() => {
             this.saveFavoritesToLocalStorage();
@@ -28,12 +26,11 @@ export class FavoritesService {
         // Check if we already have reach the favorites limit
         let favorites = FAVORITES_STORE.getState();
         if (favorites.size >= MAX_FAVORITES) {
-            this.notificationService.createError('Désolé, vous ne pouvez pas sauvegardé plus de ' + MAX_FAVORITES + ' favoris.');
+            NotificationService.createError('Désolé, vous ne pouvez pas sauvegardé plus de ' + MAX_FAVORITES + ' favoris.');
         }
 
         // Get company details from La Bonne Boite
-        let companyService = new CompanyDetailsService();
-        let response = companyService.getCompanyDetailsAsPromise(company.siret);
+        let response = CompanyDetailsService.getCompanyDetailsAsPromise(company.siret);
 
         response.then(companyData => {
             FAVORITES_STORE.dispatch({
@@ -151,3 +148,9 @@ export class FavoritesService {
         localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
     }
 }
+
+
+// Export as singleton
+const favoritesService = new FavoritesServiceFactory();
+Object.freeze(favoritesService);
+export { favoritesService as FavoritesService };

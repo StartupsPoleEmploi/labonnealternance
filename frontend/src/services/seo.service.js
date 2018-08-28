@@ -1,4 +1,4 @@
-export class SEOService {
+class SEOServiceFactory {
 
     constructor() {
         this.TITLE_DEFAULT = 'La Bonne Alternance';
@@ -40,3 +40,8 @@ export class SEOService {
         }
     }
 }
+
+// Export as singleton
+const seoService = new SEOServiceFactory();
+Object.freeze(seoService);
+export { seoService as SEOService };

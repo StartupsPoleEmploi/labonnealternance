@@ -2,20 +2,13 @@
 import React, { Component } from 'react';
 
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
-import { FavoritesService } from '../../../services/favorites/favorites.service';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
 import { VISITED_SIRETS_STORE } from '../../../services/visited_sirets/visited_sirets.store';
 
 export class CompanyListItem extends Component {
 
-    constructor(props) {
-        super(props);
-        this.companyDetailsService = new CompanyDetailsService();
-        this.favoritesService = new FavoritesService();
-    }
-
     selectCompany = () => {
-        this.companyDetailsService.setCompany(this.props.company);
+        CompanyDetailsService.setCompany(this.props.company);
     }
 
     hasBeenVisited = (siret) => {

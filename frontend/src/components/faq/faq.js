@@ -6,14 +6,10 @@ import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
 export default class FAQ extends Component {
 
-    constructor(props) {
-        super(props);
-        this.SEOService = new SEOService();
-    }
 
     componentDidMount() {
-        this.SEOService.displayNoFollow(false);
-        this.SEOService.setTitle("Questions fréquentes");
+        SEOService.displayNoFollow(false);
+        SEOService.setTitle("Questions fréquentes");
     }
 
     render() {

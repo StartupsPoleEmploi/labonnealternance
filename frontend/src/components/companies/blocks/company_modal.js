@@ -13,8 +13,6 @@ export class CompanyModal extends Component {
 
     constructor(props) {
         super(props);
-        this.companyDetailsService = new CompanyDetailsService();
-        this.softSkillsService = new SoftSkillsService();
 
         this.hasSoftSkills = false;
         this.hasExtraInfos = false;
@@ -36,13 +34,13 @@ export class CompanyModal extends Component {
                 // Soft skills
                 if (company.job && company.job.rome && !this.hasSoftSkills) {
                     this.hasSoftSkills = true;
-                    this.softSkillsService.getSoftSkills(company.job.rome);
+                    SoftSkillsService.getSoftSkills(company.job.rome);
                 }
 
                 // Extra infos
                 if (!this.hasExtraInfos) {
                     this.hasExtraInfos = true;
-                    this.companyDetailsService.getCompanyDetailsFromLBB(company.siret);
+                    CompanyDetailsService.getCompanyDetailsFromLBB(company.siret);
                 }
             } else {
                 // Re-init values

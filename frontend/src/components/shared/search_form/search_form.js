@@ -11,10 +11,8 @@ class SearchForm extends Component {
     constructor(props) {
         super(props);
 
-        this.searchFormService = new SearchFormService();
-
         this.state = {
-            searchForm: this.searchFormService.getSearchFormValues() || new SearchFormData()
+            searchForm: SearchFormService.getSearchFormValues() || new SearchFormData()
         };
     }
 
@@ -32,7 +30,7 @@ class SearchForm extends Component {
 
     callNewSearch = () => {
         if (this.isValid()) {
-            this.searchFormService.saveSearchFormValues(this.state.searchForm);
+            SearchFormService.saveSearchFormValues(this.state.searchForm);
             this.state.searchForm.callSearch(this.props.history);
         }
     }

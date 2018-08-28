@@ -1,7 +1,7 @@
 import { FILTERS_STORE } from './filters.store';
 import { FILTERS_ACTIONS } from './filters.reducers';
 
-export class FiltersService {
+class FiltersServiceFactory {
 
     isFiltersActive() {
         let filters = FILTERS_STORE.getState();
@@ -18,3 +18,9 @@ export class FiltersService {
         });
     }
 }
+
+
+// Export as singleton
+const filtersService = new FiltersServiceFactory();
+Object.freeze(filtersService);
+export { filtersService as FiltersService };

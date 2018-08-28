@@ -5,7 +5,6 @@ import ReactGA from 'react-ga';
 import { MapBoxService } from '../../../services/mapbox.service';
 import { CompaniesService } from '../../../services/companies/companies.service';
 import { FiltersService } from '../../../services/filters/filters.service';
-import { ViewsService } from '../../../services/view/views.service';
 import { RequestOccuringService } from '../../../services/requests_occuring/request_occuring.service';
 
 import { CompanyListItem } from './company_list_item';
@@ -31,11 +30,6 @@ export class Results extends Component {
             this
         );
 
-        this.requestOccuringService = new RequestOccuringService();
-        this.companiesService = new CompaniesService();
-        this.filtersService = new FiltersService();
-        this.viewsService = new ViewsService();
-
         this.state = {
             loading: true,
             companies: new Map(),
@@ -55,7 +49,7 @@ export class Results extends Component {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {
             // Detect if a filter is active
-            let filterActive = this.filtersService.isFiltersActive();
+            let filterActive = FiltersService.isFiltersActive();
 
             let companiesStored = COMPANIES_STORE.getState();
             let companies = this.state.companies;
@@ -121,7 +115,7 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-        this.companiesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
+        CompaniesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }
 
     componentWillUnmount() {
@@ -141,7 +135,7 @@ export class Results extends Component {
         this.mapBoxService.removeAllMakers();
         this.setState(
             { companies: new Map(), count: 0, isFiltering: true },
-            () => this.companiesService.applyFilters(filters)
+            () => CompaniesService.applyFilters(filters)
         );
 
     }
@@ -150,17 +144,17 @@ export class Results extends Component {
     getNewCompanies(newLongitude, newLatitude) {
         // Add the first request here (will be decrement in this.companiesService.getCompanies)
         // Why here ? Because when we clear companies, the behavior on 'no result event' is displayed all along the application
-        this.requestOccuringService.addRequest();
+        RequestOccuringService.addRequest();
 
         // Clear datas
         this.mapBoxService.removeAllMakers();
         this.setState({ companies: new Map(), count: 0, loading: true });
-        this.companiesService.clearCompanies();
+        CompaniesService.clearCompanies();
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
 
-        this.companiesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
+        CompaniesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
     }
     updateFitBounds(distance) {
         this.mapBoxService.setFitBounds(distance);
@@ -191,7 +185,7 @@ export class Results extends Component {
     }
     renderResultTitle() {
         if (this.state.companies.size === 0) return null;
-        return (<div><h1>{this.companiesService.computeResultTitle(this.state.companies.size, this.props.searchTerm, this.props.cityName)}</h1></div>);
+        return (<div><h1>{CompaniesService.computeResultTitle(this.state.companies.size, this.props.searchTerm, this.props.cityName)}</h1></div>);
     }
     renderResultList() {
         if (this.state.companies.size === 0) return null;

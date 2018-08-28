@@ -7,15 +7,11 @@ import { CURRENT_LOCATION_ACTIONS } from './current_location.reducer';
 
 import { formatString } from '../helpers';
 
-export class CurrentLocationService {
-
-    constructor() {
-        this.notificationService = new NotificationService();
-    }
+class CurrentLocationServiceFactory {
 
     getCurrentLocation(longitude, latitude) {
         if (isNaN(longitude) || isNaN(latitude)) {
-            this.notificationService.createError('Erreur lors de la récupération de ta position');
+            NotificationService.createError('Erreur lors de la récupération de ta position');
             return;
         }
 
@@ -23,12 +19,12 @@ export class CurrentLocationService {
         fetch(url)
             .then(response => {
                 if (response.status === 200) return response.json();
-                this.notificationService.createError('Erreur lors de la récupération de ta position');
+                NotificationService.createError('Erreur lors de la récupération de ta position');
                 return;
             }).then(response => {
                 if (!response) return;
                 if (response.features === undefined) {
-                    this.notificationService.createError('Erreur lors de la récupération de ta position');
+                    NotificationService.createError('Erreur lors de la récupération de ta position');
                     return;
                 }
 
@@ -46,3 +42,8 @@ export class CurrentLocationService {
 
     }
 }
+
+// Export as singleton
+const currentLocationService = new CurrentLocationServiceFactory();
+Object.freeze(currentLocationService);
+export { currentLocationService as CurrentLocationService };

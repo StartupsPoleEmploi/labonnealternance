@@ -10,14 +10,9 @@ import { SEOService } from '../../services/seo.service';
 require('./home.css');
 
 export default class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.SEOService = new SEOService();
-    }
-
     componentWillMount() {
-        this.SEOService.displayNoFollow(false);
-        this.SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
+        SEOService.displayNoFollow(false);
+        SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
     }
 
     render() {
