@@ -44,10 +44,10 @@ ul.list-no-margin-padding { margin: 0; padding: 0; }
 .img-responsive { max-width: 100%;}
 
 // responsive classes
-.hide-desktop { @media (min-width: $min-width-desktop) { display: none; } }
-.hide-tablet { @media (min-width: $min-width-tablet) and (max-width: $min-width-desktop) { display: none; } }
-.hide-mobile { @media (min-width: $min-width-small-mobile) and (max-width: $min-width-tablet) { display: none; } }
-.hide-small-mobile { @media (max-width: $min-width-small-mobile) { display: none; } }
+.hide-desktop { @media (min-width: $min-width-desktop) { display: none !important; } }
+.hide-tablet { @media (min-width: $min-width-tablet) and (max-width: $min-width-desktop) { display: none !important; } }
+.hide-mobile { @media (min-width: $min-width-small-mobile) and (max-width: $min-width-tablet) { display: none !important; } }
+.hide-small-mobile { @media (max-width: $min-width-small-mobile) { display: none !important; } }
 
 /* Shared style */
 p { margin: 0; }
@@ -361,6 +361,10 @@ header#global-header {
             li {
                 margin-left: -40px;
                 margin-right: -40px;
+                @media (max-width: $min-width-mobile) {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                }
                 border-bottom: solid 1px $lightgray;
             }
 
@@ -672,7 +676,7 @@ footer#global-footer {
 
     .flags {
         flex: 5;
-        @media (max-width: 1000px) { flex: 6; }
+        @media (max-width: 1000px) { flex: 5; }
         text-align: right;
 
         ul {

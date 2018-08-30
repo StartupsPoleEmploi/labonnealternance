@@ -98,6 +98,9 @@
             text-decoration: none;
             &:hover { text-decoration: underline; }
         }
+        @media (max-height: 750px) {
+            margin-top: 30px;
+        }
     }
 
     section.main-landing {
@@ -171,6 +174,7 @@
             &.big {
                 color: $gray-font;
                 font-size: 2.8em;
+                line-height: 1.25em;
                 padding: 30px 10px 30px 10px;
             }
         }
@@ -254,6 +258,7 @@
                 p {
                     display: inline-block;
                     width: 550px;
+                    max-width: 100%;
                     padding: 0 20px 0 30px;
                     font-size: 0.85em;
                     a {
@@ -273,6 +278,7 @@
             > .img-left p { padding-right: 40px;  }
             .how-it-works br { display: none; }
         }
+
         @media (max-width: $min-width-mobile) {
             .img-right, .img-left {
                 flex-direction: column;
@@ -287,6 +293,16 @@
                     text-align: center !important;
                 }
             }
+
+            .who-we-are {
+                a.logo-pe {
+                    display: block;
+                    text-align: center;
+                    margin: auto auto 30px auto;
+                }
+                > div p { width: auto; }
+            }
         }
+
     }
 }
