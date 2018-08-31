@@ -78,9 +78,10 @@ export class CompanyModal extends Component {
     // RENDER
     renderHowToApply() {
         return (
-            <div className="line responsive-column how-to-apply">
+            <div className="how-to-apply">
                 <div className="flex-big">
                     {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
+                    <FavoriteButton company={this.state.company} />
                 </div>
             </div>
         );
@@ -96,7 +97,6 @@ export class CompanyModal extends Component {
                 <div className="modal-bg">&nbsp;</div>
                 <div className="modal-content">
                     <div className="actions-zone">
-                        <FavoriteButton company={company} />
                         <button onClick={this.closeModal}><span className="icon close-icon">&nbsp;</span></button>
                     </div>
                     {CompanyDetailsCommon.renderTitle(company)}
@@ -112,7 +112,6 @@ export class CompanyModal extends Component {
                         <PrepareApplication company={company} rome={company.job.rome} />
                         <hr />
 
-                        <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
                         {this.renderHowToApply(company)}
                     </div>
 

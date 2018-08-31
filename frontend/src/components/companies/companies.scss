@@ -266,7 +266,6 @@
         .title {
             color: $blue;
 
-            // Favorite button
             button.favorite-button {
                 border: none;
                 background: none;
@@ -526,9 +525,37 @@
     }
 
     .how-to-apply {
-        button {
-            // Ensure that this button is visible on mobile
-            margin-bottom: 50px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 90px;
+        background-color: white;
+        text-align: center;
+
+        button.favorite-button {
+            border: none;
+            background: none;
+            float: right;
+
+            .heart {
+                height: 47px !important;
+                width: 47px !important;
+            }
+        }
+
+        > div.flex-big {
+            display: flex;
+            justify-content: center;
+            margin: 10px 10px;
+            text-align: center;
+
+            > div {
+                width: 80%;
+                max-width: 600px;
+                @media (max-width: $min-width-mobile) {
+                    > div { padding: 0 10px; }
+                }
+            }
         }
     }
 
@@ -539,15 +566,23 @@
         display: inline-block;
     }
 
+    .company-footer {
+        margin-top: 65px;
+        @media (max-width: $min-width-mobile) {
+            margin-top: 150px;
+        }
+    }
+
     .company-coordinates-container {
         flex: 2 !important;
     }
     .company-coordinates {
         display: flex;
+        align-items: center;
+
         > div { flex: 1; padding: 0 30px; }
         .icon { margin-right: 5px;}
         @media (max-width: $min-width-mobile) {
-            flex-direction: column;
             > div { margin-bottom: 20px; }
         }
     }
