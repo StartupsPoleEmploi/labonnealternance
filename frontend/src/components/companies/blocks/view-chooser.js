@@ -27,6 +27,10 @@ export class ViewChooser extends Component {
         this.viewsStore();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.view !== this.state.view;
+    }
+
     setFiltersView = () => {
         ReactGA.event({ category: 'Views', action: 'Select filters view' });
         ViewsService.setFiltersView();

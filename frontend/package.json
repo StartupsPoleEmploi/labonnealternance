@@ -31,7 +31,8 @@
         "eslint-config-synacor": "^2.1.0",
         "eslint-plugin-react": "^7.11.1",
         "jest": "^22.4.4",
-        "jest-cli": "^23.5.0"
+        "jest-cli": "^23.5.0",
+        "why-did-you-update": "^0.1.1"
     },
     "eslintIgnore": [
         "build/*",

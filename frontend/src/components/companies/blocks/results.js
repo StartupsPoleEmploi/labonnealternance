@@ -45,6 +45,13 @@ export class Results extends Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.state !== nextState) return true;
+
+        let fields= ['distance', 'handleCompanyCount', 'jobs', 'latitude', 'longitude', 'searchTerm']
+        return fields.some(field => this.state[field] !== nextState[field]);
+    }
+
     componentWillMount() {
         // Listen to the company store
         this.companiesStore = COMPANIES_STORE.subscribe(() => {

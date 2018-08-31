@@ -34,6 +34,10 @@ export class CompanyListItem extends Component {
         return cssClasses;
     }
 
+    shouldComponentUpdate(nextProps) {
+        return this.props.company.siret !== nextProps.company.siret;
+    }
+
     // RENDER
     render() {
         return (

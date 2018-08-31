@@ -29,6 +29,11 @@ const AsyncFAQ = asyncComponent(() => import('./components/faq/faq'));
 
 require('./style/global.css');
 
+// Why do you update plugin
+if (process.env.NODE_ENV !== 'production') {
+    const {whyDidYouUpdate} = require('why-did-you-update')
+    whyDidYouUpdate(React)
+}
 
 // Init Google Analytics
 

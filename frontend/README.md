@@ -20,6 +20,16 @@ To fix `Error: `fsevents` unavailable (this watcher can only be used on Darwin)`
     npm install
     npm run start
 
+### Why did you update package
+
+In development environment, `Why did you update` is automatically loaded.
+
+As explained at https://github.com/maicki/why-did-you-update :
+`Why did you update is a function that monkey patches React and notifies you in the console when *potentially* unnecessary re-renders occur.`
+
+To use it : simply open the 'Console' tab in yout browser devtools (F12 in Chrome, Firefox and Edge).
+
+
 ## Run the tests
 
 	npm run test
