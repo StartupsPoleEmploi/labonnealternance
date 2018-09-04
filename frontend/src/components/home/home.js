@@ -35,7 +35,7 @@ export default class Home extends Component {
                                 <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
                             </div>
 
-                            <div className="recruiter"><Link to="/acces-recruteur">Accès recruteur</Link></div>
+                            <div className="recruiter"><a href="https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance">Accès recruteur</a></div>
 
                             <div className="footer">
                                 <ul className="list-unstyled inline-list">

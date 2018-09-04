@@ -28,6 +28,11 @@ class CompanyDetailsServiceFactory {
         });
     }
 
+
+    getRecruteurAccessUrl(siret) {
+        return `https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance&siret=${siret}`;
+    }
+
     getCompanyDetailsFromLBB(siret, allDetails = false)  {
         fetch(constants.GET_COMPANY_DETAILS_LBB_URL + siret)
             .then(response => {

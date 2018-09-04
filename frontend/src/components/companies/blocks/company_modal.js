@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
 import { COMPANY_DETAILS_STORE } from '../../../services/company_details/company_details.store';
@@ -19,7 +18,7 @@ export class CompanyModal extends Component {
 
         this.state = {
             company: undefined,
-
+            recruiterAccessUrl: undefined,
             showCoordinates: false,
         };
     }
@@ -29,7 +28,7 @@ export class CompanyModal extends Component {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
                 // We close the open coordinates block
-                this.setState({ company });
+                this.setState({ company, recruiterAccessUrl: CompanyDetailsService.getRecruteurAccessUrl(company.siret) });
 
                 // Soft skills
                 if (company.job && company.job.rome && !this.hasSoftSkills) {
@@ -46,7 +45,7 @@ export class CompanyModal extends Component {
                 // Re-init values
                 this.hasSoftSkills = false;
                 this.hasExtraInfos = false;
-                this.setState({ company: undefined, showCoordinates: false });
+                this.setState({ company: undefined, showCoordinates: false, recruiterAccessUrl: undefined });
             }
         });
 
@@ -116,7 +115,7 @@ export class CompanyModal extends Component {
                     </div>
 
                     <div className="company-footer">
-                        <Link to={'/acces-recruteur?siret=' + company.siret}>C'est mon entreprise et je souhaite en modifier les informations</Link>
+                        <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
                     </div>
                 </div>
 

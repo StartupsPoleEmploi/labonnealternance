@@ -26,13 +26,16 @@ export default class CompanyDetails extends Component {
 
         SoftSkillsService.getSoftSkillsFromLocalStorage();
 
+        let siret = this.props.match.params.companySiret;
+
         this.state= {
             referer: this.getReferer(),
             rome: getParameterByName('rome') || undefined,
 
             showCoordinates: false,
-            siret: this.props.match.params.companySiret,
-            company: undefined
+            siret: siret,
+            company: undefined,
+            recruiterAccessUrl: CompanyDetailsService.getRecruteurAccessUrl(siret)
         };
     }
 
@@ -131,8 +134,8 @@ export default class CompanyDetails extends Component {
                     </div>
 
                     <div className="company-footer">
-                        <Link to={'/acces-recruteur?siret=' + company.siret}>C'est mon entreprise et je souhaite en modifier les informations</Link>
-                    </div>
+                        <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
+                </div>
                 </main>
 
                 <Footer />
