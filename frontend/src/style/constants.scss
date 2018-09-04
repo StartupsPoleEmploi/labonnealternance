@@ -23,8 +23,8 @@ $font: 'Signika', sans-serif;
 $gradient-background: linear-gradient(to top right, cyan, blue , purple, magenta);
 
 // MAP/LIST SPACE REPARTITION
-$flex-left: 5;
-$flex-right: 5;
+$flex-left: 10; // MAP
+$flex-right: 5; // LIST
 
 // Box-shadow
 $box-shadow: 1px 5px 2px -2px #666;
