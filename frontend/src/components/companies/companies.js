@@ -49,8 +49,8 @@ class Companies extends Component {
             loading: true,
 
             citySlug: this.props.match.params.citySlug,
-            longitude: this.props.match.params.longitude,
-            latitude: this.props.match.params.latitude,
+            longitude: parseFloat(this.props.match.params.longitude),
+            latitude: parseFloat(this.props.match.params.latitude),
             distance: distance,
             cityName: undefined,
 
@@ -249,7 +249,7 @@ class Companies extends Component {
 
         // Handle no-follow <meta>
         if (!this.state.citySlug) {
-            this.SEOService.displayNoFollow(this.props.noFollow);
+            SEOService.displayNoFollow(this.props.noFollow);
         }
     }
 
@@ -276,6 +276,7 @@ class Companies extends Component {
         }
 
         let { distance, longitude, latitude, jobs, searchTerm, cityName } = {...this.state};
+
         return (
             <div id="companies">
                 <Header animateMagnifier={this.state.animateMagnifier} showForm={this.state.showForm} />
