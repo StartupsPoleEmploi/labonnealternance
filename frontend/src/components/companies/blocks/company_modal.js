@@ -61,6 +61,11 @@ export class CompanyModal extends Component {
         this.favoritesStore();
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        let fields= ['searchTerm', 'company', 'showCoordinates'];
+        return fields.some(field => this.state[field] !== nextState[field]);
+    }
+
     closeModal = (event) => {
         // This event will catched in companies.js (method : handleBackForwardEvent)
         window.history.back();

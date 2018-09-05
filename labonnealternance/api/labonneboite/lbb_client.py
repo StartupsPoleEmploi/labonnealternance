@@ -2,7 +2,7 @@
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
 
-from config.settings import LBB_URL, LBB_API_KEY, LBB_USE_BETA_FLAG
+from config.settings import LBB_URL, LBB_API_KEY
 
 logger = logging.getLogger(__name__)
 

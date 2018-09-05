@@ -16,6 +16,10 @@ export class RGPDBar extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.state.show === nextState.show && this.state.showRGPDModal === nextState.showRGPDModal) return false;
+    }
+
     showRGPDModal = () => {
         this.setState({ showRGPDModal: true });
     }

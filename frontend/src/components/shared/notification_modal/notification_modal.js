@@ -15,6 +15,11 @@ export class NotificationModal extends Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(!this.state.notification && !nextState.notification) return false;
+        if(this.state.notification === nextState.notification) return false;
+    }
+
     componentWillMount() {
         this.notificationStore = NOTIFICATION_STORE.subscribe(() => {
             let notification = NOTIFICATION_STORE.getState();

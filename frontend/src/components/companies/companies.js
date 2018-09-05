@@ -65,6 +65,14 @@ class Companies extends Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.props !== nextProps) return true;
+
+        let fields= ['inputError', 'loading', 'citySlug', 'longitude', 'latitude', 'distance', 'cityName', 'jobSlugs', 'jobs', 'searchTerm', 'mobileVersion', 'animateMagnifier', 'showForm'];
+
+        return fields.some(field => this.state[field] !== nextState[field]);
+    }
+
     // Trigger when user resize the browser window
     updateDimensions() {
         if (window.innerWidth < constants.MOBILE_MAX_WIDTH) {
