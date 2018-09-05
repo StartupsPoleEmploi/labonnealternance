@@ -26,9 +26,8 @@ export default class RedirectionBobEmploi extends Component {
         let jobPromise = fetch(`${constants.SUGGEST_JOBS_URL}${this.state.romeCode}`);
 
         Promise.all([cityPromise, jobPromise])
-            .then(responses => this.computeUrl(responses))
-            .catch(err => this.setState({ hasError: true }))
-            .finally(() => this.setState({ loading: false }))
+            .then(responses => { this.computeUrl(responses); this.setState({ loading: false }) })
+            .catch(err => this.setState({ hasError: true, loading: false }));
     }
 
     computeUrl(responses) {
