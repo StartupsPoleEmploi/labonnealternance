@@ -87,7 +87,7 @@ function computeFilters(filters, company) {
 
     // By NAF
     if (filters.naf !== 'all' && visible) {
-        visible = filters.naf.includes(company.nafSection);
+        visible = filters.naf.indexOf(company.nafSection) !== -1;
     }
 
     // By Rome
