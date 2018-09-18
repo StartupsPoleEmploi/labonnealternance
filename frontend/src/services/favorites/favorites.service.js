@@ -30,7 +30,7 @@ class FavoritesServiceFactory {
         }
 
         // Get company details from La Bonne Boite
-        let response = CompanyDetailsService.getCompanyDetailsAsPromise(company.siret);
+        let response = CompanyDetailsService.getCompanyDetailsFromLBB(company.siret);
 
         response.then(companyData => {
             FAVORITES_STORE.dispatch({

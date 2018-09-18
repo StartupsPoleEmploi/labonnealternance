@@ -64,12 +64,20 @@ class CompaniesServiceFactory {
         });
     }
 
+    getCompaniesFromWindowObject(jobs) {
+        COMPANIES_STORE.dispatch({
+            type: COMPANIES_ACTIONS.ADD_COMPANIES,
+            data: { companies: window.__companies.companies, jobs }
+        });
+        delete window.__companies; // Ensure that this content will not be re-used through navigation
+    }
 
     getCompanies(jobs, longitude, latitude, opts) {
         let options = opts || {};
 
         // Create URL for LBB
-        let romes = jobs.map(job => job.rome).join(',')
+        let romes = jobs.map(job => job.rome || job.rome_code).join(',')
+
 
         let url = constants.GET_COMPANIES_URL;
         url = url.concat('romes=', romes)

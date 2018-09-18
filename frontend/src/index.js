@@ -65,7 +65,7 @@ export default class App extends Component {
 
 
                             {/* Not found route */}
-                            <Route component={NotFound} status={404}/>
+                            <Route component={NotFound} status={404} />
                         </Switch>
                     </div>
                 </BrowserRouter>
