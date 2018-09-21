@@ -30,7 +30,7 @@ class CompanyDetailsServiceFactory {
 
 
     getRecruteurAccessUrl(siret) {
-        return `https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance&siret=${siret}`;
+        return `https://labonneboite.pole-emploi.fr/verification-informations-entreprise/${siret}?origin=labonnealternance`;
     }
 
     getCompanyDetailsFromLBB(siret, allDetails = false)  {
