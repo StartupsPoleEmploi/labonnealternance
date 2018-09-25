@@ -20,9 +20,13 @@ export default class RGPDService {
         let dateSaved = localStorage.getItem(RGPD_DATE);
         if(isNaN(Date.parse(dateSaved))) return true;
 
+        console.log('dateSaved => ', dateSaved)
+
         let date = new Date(dateSaved)
         let expirationDate = new Date(dateSaved);
         expirationDate.setFullYear(date.getFullYear() + 1);
+
+        console.log('new Date() >= expirationDate => ', new Date() >= expirationDate)
 
         return new Date() >= expirationDate;
     }

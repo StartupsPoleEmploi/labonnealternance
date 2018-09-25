@@ -34,10 +34,12 @@ export class RGPDBar extends Component {
     }
 
     hideBar = () => {
+        console.log('hideBar')
         this.setState({ show: false });
     }
 
     render() {
+        console.log(this.state.show);
         if(!this.state.show) return null;
 
         return(
@@ -51,9 +53,9 @@ export class RGPDBar extends Component {
                         <li><button onClick={this.showRGPDModal}>En savoir plus</button>&nbsp;-&nbsp;</li>
                         <li><button onClick={this.denyRGPD}><b>Refuser</b></button></li>
                     </ul>
+                    { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.hideBar} /> : null }
                 </div>
 
-                { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.hideBar} /> : null }
             </Fragment>
         );
     }
