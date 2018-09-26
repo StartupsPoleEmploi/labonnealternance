@@ -17,6 +17,7 @@ import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
 import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
 import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
+import { GoogleAdwordsService } from '../../services/google_adword.service';
 
 require('./company_details.css');
 
@@ -87,6 +88,7 @@ export default class CompanyDetails extends Component {
     showCoordinates = () => {
         // Recording event in GA
         ReactGA.event({ category: 'Company', action: 'Open coordinates block' });
+        GoogleAdwordsService.sendCompanyCoordinatesConversion();
 
         this.setState({ showCoordinates: true });
     }

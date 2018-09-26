@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
 import { VISITED_SIRETS_STORE } from '../../../services/visited_sirets/visited_sirets.store';
+import { GoogleAdwordsService } from '../../../services/google_adword.service';
 
 export class CompanyListItem extends Component {
 
     selectCompany = () => {
         CompanyDetailsService.setCompany(this.props.company);
+        GoogleAdwordsService.sendCompanyModalConversion();
     }
 
     hasBeenVisited = (siret) => {
