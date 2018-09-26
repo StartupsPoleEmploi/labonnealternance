@@ -10,12 +10,23 @@ import { SEOService } from '../../services/seo.service';
 require('./home.css');
 
 export default class Home extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = { showYoutubeVideo: false };
+    }
     componentWillMount() {
         SEOService.displayNoFollow(false);
         SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
     }
 
+    componentDidMount() {
+        setTimeout(() => this.setState({ showYoutubeVideo: true }), 1000);
+    }
+
     render() {
+        const showYoutubeVideo = this.state.showYoutubeVideo;
+
         return (
             <div id="home">
                 <div className="form-1">&nbsp;</div>
@@ -60,7 +71,7 @@ export default class Home extends Component {
                             <div className="how-it-works max-size-1000">
                                 <h2 className="big">Comment ça marche ?</h2>
                                 <div className="youtube-video">
-                                    <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                                    { showYoutubeVideo ? <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe> : null }
                                 </div>
                             </div>
 
@@ -68,15 +79,15 @@ export default class Home extends Component {
                                 <h2 className="big">La Bonne Alternance</h2>
                                 <div className="img-right">
                                     <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br/>Il est essentiel dans votre recherche de proposer <br/>votre candidature à des entreprises n’ayant pas <br/>forcément déposé d’offres d’emploi en alternance.</p>
-                                    <div className="recruteurs"><img src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
+                                    <div className="recruteurs"><img class="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
                                 </div>
                                 <div className="img-left">
-                                    <div className="diagramme"><img src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
+                                    <div className="diagramme"><img class="lazyload" data-src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
                                     <p>Notre algorithme La Bonne Alternance analyse les offres et les <br/>recrutements des 5 dernières années pour vous proposer les <br/>entreprises qui recrutent régulièrement en alternance (contrat <br/> d'apprentissage ou contrat de professionnalisation).</p>
                                 </div>
                                 <div className="img-right">
                                     <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br/>carte et en liste. Vous pouvez affiner la liste des entreprises par <br/>taille, métier et domaine. En cliquant sur une entreprise, vous <br/>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
-                                    <div className="map"><img src="/static/img/how-it-works/home-map.svg" alt="" /></div>
+                                    <div className="map"><img class="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt="" /></div>
                                 </div>
 
                                 <div className="text-center go-container">
@@ -90,7 +101,7 @@ export default class Home extends Component {
                                 <h2 className="big">Qui sommes-nous ?</h2>
                                 <div>
                                     <a className="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
-                                        <img className="img-responsive" src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
+                                        <img className="img-responsive" data-src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
                                     </a>
                                     <p>
                                         Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
