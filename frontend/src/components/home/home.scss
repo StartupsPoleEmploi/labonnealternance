@@ -61,7 +61,15 @@
             padding-left: 10px;
             font-size: 2em;
             letter-spacing: 0;
+        }
 
+        @media (max-height: 750px) and (min-width: $min-width-desktop) {
+            margin-top: 20vh;
+            font-size: 3em;
+        }
+        @media (max-height: 750px) and (min-width: $min-width-tablet) {
+            margin-top: 20vh;
+            font-size: 3em;
         }
     }
 
@@ -87,6 +95,10 @@
         @media(max-width: $min-width-small-mobile) {
             margin-top: 50px;
             letter-spacing: 0;
+        }
+        @media (max-height: 750px) {
+            margin-top: 30px;
+            font-size: .9em;
         }
     }
 
@@ -114,9 +126,8 @@
             right: 0;
             left: 0;
             background-color: white;
-            @media (max-width: $min-width-mobile) {
-                display: none;
-            }
+            @media (max-width: $min-width-mobile) { display: none; }
+            @media (max-height: 500px) { display: none; }
 
             ul { text-align: right; }
 
@@ -163,6 +174,8 @@
     .more {
         position: absolute;
         top: 100vh; left: 0; right: 0;
+
+        @media (max-height: 400px) { top: 110%; }
 
         h2 {
             text-align: center;
