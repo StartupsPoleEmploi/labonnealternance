@@ -13,15 +13,15 @@ import { HotjarService } from './services/hotjar.service';
 // Main pages (no async)
 import Home from './components/home/home';
 import Form from './components/form/form';
-import Companies from './components/companies/companies';
 import NotFound from './components/not_found/not_found';
-import CompanyDetails from './components/company_details/company_details';
 import RedirectBobEmploi from './components/redirect_bob_emploi/redirect_bob_emploi';
 
 import registerServiceWorker from './registerServiceWorker';
 
 // Async component
 import asyncComponent from './components/shared/asyncComponent';
+const AsyncCompanies = asyncComponent(() => import('./components/companies/companies'));
+const AsyncCompanyDetails = asyncComponent(() => import('./components/company_details/company_details'));
 const AsyncRecruiterForm = asyncComponent(() => import('./components/recruiter_form/recruiter_form'));
 const AsyncCGU = asyncComponent(() => import('./components/cgu/cgu'));
 const AsyncWhoWeAre = asyncComponent(() => import('./components/who_we_are/who_we_are'));
@@ -53,11 +53,10 @@ export default class App extends Component {
 
                             <Route component={RedirectBobEmploi} exact path="/entreprises/commune/:cityCode/rome/:romeCode" />
 
-                            <Route component={Companies} exact path="/entreprises/:jobSlugs/:citySlug/:term" />
-                            <Route component={Companies} exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
+                            <Route component={AsyncCompanies} exact path="/entreprises/:jobSlugs/:citySlug/:term" />
+                            <Route component={AsyncCompanies} exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
 
-                            <Route component={CompanyDetails} path="/details-entreprises/:companySiret" />
-
+                            <Route component={AsyncCompanyDetails} path="/details-entreprises/:companySiret" />
                             <Route component={AsyncRecruiterForm} exact path="/acces-recruteur" />
                             <Route component={AsyncCGU} exact path="/conditions-generales-utilisation" />
                             <Route component={AsyncWhoWeAre} exact path="/qui-sommes-nous" />
