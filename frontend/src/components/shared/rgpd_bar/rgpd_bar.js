@@ -56,8 +56,8 @@ export class RGPDBar extends Component {
                         <li><button onClick={this.denyRGPD}><b>Refuser</b></button></li>
                     </ul>
                 </div>
-
                 { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.hideBar} /> : null }
+
             </Fragment>
         );
     }
