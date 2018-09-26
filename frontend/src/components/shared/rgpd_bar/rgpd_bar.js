@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import RGPDModal from './rgpd_modal';
 import RGPDService from '../../../services/rgpd.service';
@@ -16,10 +16,6 @@ export class RGPDBar extends Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if(this.state.show === nextState.show && this.state.showRGPDModal === nextState.showRGPDModal) return false;
-    }
-
     showRGPDModal = () => {
         this.setState({ showRGPDModal: true });
     }
@@ -29,32 +25,32 @@ export class RGPDBar extends Component {
 
     denyRGPD = () => {
         RGPDService.setRGPDConsent(false);
-        this.hideBar();
+        this.setState({ show: false });
     }
 
     acceptRGPD = () => {
         RGPDService.setRGPDConsent(true);
-        this.hideBar();
-    }
-
-    hideBar = () => {
         this.setState({ show: false });
     }
 
     render() {
-        if (!this.state.show) return null;
+        if(!this.state.show) return null;
 
-        return (
-            <div className="rgpd-banner">
+        return(
+            <Fragment>
 
-                <p>En poursuivant votre navigation sur ce site, vous acceptez nos conditions d'utilisation de vos données personnelles (RGPD).</p>
-                <ul className="list-unstyled list-inline">
-                    <li><button onClick={this.acceptRGPD}><b>Accepter</b></button>&nbsp;-&nbsp;</li>
-                    <li><button onClick={this.showRGPDModal}>En savoir plus</button>&nbsp;-&nbsp;</li>
-                    <li><button onClick={this.denyRGPD}><b>Refuser</b></button></li>
-                </ul>
-                {this.state.showRGPDModal ? <RGPDModal closeModalFn={this.hideBar} /> : null}
-            </div>
+                <div className="rgpd-banner">
+
+                    <p>En poursuivant votre navigation sur ce site, vous acceptez nos conditions d'utilisation de vos données personnelles (RGPD).</p>
+                    <ul className="list-unstyled list-inline">
+                        <li><button onClick={this.acceptRGPD}><b>Accepter</b></button>&nbsp;-&nbsp;</li>
+                        <li><button onClick={this.showRGPDModal}>En savoir plus</button>&nbsp;-&nbsp;</li>
+                        <li><button onClick={this.denyRGPD}><b>Refuser</b></button></li>
+                    </ul>
+                </div>
+
+                { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.hideBar} /> : null }
+            </Fragment>
         );
     }
 }
