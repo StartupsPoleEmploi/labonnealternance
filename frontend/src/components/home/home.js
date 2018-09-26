@@ -71,7 +71,7 @@ export default class Home extends Component {
                             <div className="how-it-works max-size-1000">
                                 <h2 className="big">Comment ça marche ?</h2>
                                 <div className="youtube-video">
-                                    { showYoutubeVideo ? <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe> : null }
+                                    { showYoutubeVideo ? <iframe sandbox="allow-scripts allow-same-origin" title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe> : null }
                                 </div>
                             </div>
 
@@ -79,15 +79,15 @@ export default class Home extends Component {
                                 <h2 className="big">La Bonne Alternance</h2>
                                 <div className="img-right">
                                     <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br/>Il est essentiel dans votre recherche de proposer <br/>votre candidature à des entreprises n’ayant pas <br/>forcément déposé d’offres d’emploi en alternance.</p>
-                                    <div className="recruteurs"><img class="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
+                                    <div className="recruteurs"><img className="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
                                 </div>
                                 <div className="img-left">
-                                    <div className="diagramme"><img class="lazyload" data-src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
+                                    <div className="diagramme"><img className="lazyload" data-src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
                                     <p>Notre algorithme La Bonne Alternance analyse les offres et les <br/>recrutements des 5 dernières années pour vous proposer les <br/>entreprises qui recrutent régulièrement en alternance (contrat <br/> d'apprentissage ou contrat de professionnalisation).</p>
                                 </div>
                                 <div className="img-right">
                                     <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br/>carte et en liste. Vous pouvez affiner la liste des entreprises par <br/>taille, métier et domaine. En cliquant sur une entreprise, vous <br/>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
-                                    <div className="map"><img class="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt="" /></div>
+                                    <div className="map"><img className="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt="" /></div>
                                 </div>
 
                                 <div className="text-center go-container">
