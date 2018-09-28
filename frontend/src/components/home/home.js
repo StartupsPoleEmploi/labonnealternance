@@ -6,6 +6,7 @@ import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
 import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 import { SEOService } from '../../services/seo.service';
+import LazyLoadYoutube from '../shared/lazyload-youtube/lazyload-youtube';
 
 require('./home.css');
 
@@ -59,9 +60,7 @@ export default class Home extends Component {
                         <section className="more">
                             <div className="how-it-works max-size-1000">
                                 <h2 className="big">Comment ça marche ?</h2>
-                                <div className="youtube-video">
-                                    <iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560" height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                                </div>
+                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/Jqs6QTHSJkY" backgroundImage="/static/img/youtube/home.jpg" />
                             </div>
 
                             <div className="how-it-works max-size-1000">
