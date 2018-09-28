@@ -1,0 +1,361 @@
+/* Style common between : home, job_search and location search page */
+/* Modal */
+#home {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: black;
+  background-attachment: fixed;
+  background-position: center; }
+  #home header {
+    padding-top: 30px;
+    padding-left: 40px; }
+    #home header a {
+      height: 45px;
+      display: inline-block; }
+    #home header .logo-lba {
+      padding-right: 20px;
+      border-right: solid 1px white; }
+      #home header .logo-lba img {
+        max-width: 100%; }
+    #home header .logo-pe {
+      margin-left: 15px;
+      height: 45px; }
+      #home header .logo-pe img {
+        height: 45px; }
+    @media (max-width: 768px) {
+      #home header {
+        padding-left: 20px; } }
+    @media (max-width: 350px) {
+      #home header {
+        display: flex;
+        padding-left: 10px;
+        padding-top: 20px;
+        /* To center verticaly images */ }
+        #home header a {
+          font-size: 45px; }
+        #home header .logo-lba {
+          flex: 4;
+          padding-right: 10px; }
+        #home header .logo-pe {
+          flex: 1;
+          margin-left: 5px; } }
+  #home > div.container {
+    position: relative;
+    background-size: cover;
+    background-color: white;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("/static/img/fd-desktop.jpg");
+    min-height: 100vh;
+    margin: auto; }
+    @media (max-width: 350px) {
+      #home > div.container {
+        height: auto;
+        min-height: 100vh; } }
+    #home > div.container .beta {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 112px;
+      height: 84px;
+      background-image: url("/static/img/BETA.svg"); }
+      @media (max-width: 350px) {
+        #home > div.container .beta {
+          top: -15px;
+          width: 90px; } }
+    #home > div.container main {
+      min-width: 600px;
+      min-height: 350px; }
+    @media (max-width: 768px) {
+      #home > div.container {
+        background-image: url("/static/img/fd-mobile.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        max-width: 100%;
+        padding: 10px; }
+        #home > div.container main {
+          min-width: inherit;
+          margin-bottom: 80px; } }
+  #home h1 {
+    color: white; }
+  #home h2 {
+    color: white; }
+  #home .form-1, #home .form-2 {
+    z-index: 1; }
+    @media (max-width: 800px) {
+      #home .form-1, #home .form-2 {
+        display: none; } }
+  #home .form-1 {
+    width: 205px;
+    height: 259px;
+    position: absolute;
+    left: 0;
+    top: 80%;
+    background-image: url("/static/img/home-forme-1.svg"); }
+  #home .form-2 {
+    position: relative;
+    height: 60px;
+    overflow: visible; }
+    #home .form-2 > div {
+      position: absolute;
+      width: 153px;
+      height: 284px;
+      right: 0;
+      top: -40px;
+      background-image: url("/static/img/home-forme-2.svg"); }
+  #home .introduction {
+    display: block;
+    text-align: center;
+    margin-top: 28vh;
+    font-size: 4em;
+    letter-spacing: 1px; }
+    #home .introduction span {
+      font-weight: normal; }
+    @media (max-width: 1000px) {
+      #home .introduction {
+        margin-top: 20vh;
+        margin-bottom: 30px;
+        padding-left: 15px;
+        font-size: 3em; } }
+    @media (max-width: 768px) {
+      #home .introduction {
+        text-align: left;
+        margin-top: 25vh;
+        margin-bottom: 30px;
+        padding-left: 15px;
+        font-size: 2.7em; } }
+    @media (max-width: 350px) {
+      #home .introduction {
+        margin-top: 21vh;
+        margin-bottom: 50px;
+        padding-left: 10px;
+        font-size: 2em;
+        letter-spacing: 0; } }
+    @media (max-height: 750px) and (min-width: 1200px) {
+      #home .introduction {
+        margin-top: 20vh;
+        font-size: 3em; } }
+    @media (max-height: 750px) and (min-width: 992px) {
+      #home .introduction {
+        margin-top: 20vh;
+        font-size: 3em; } }
+  #home .button-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 100px;
+    letter-spacing: 1px;
+    font-size: 1.2em; }
+    #home .button-container .loading {
+      color: white; }
+    @media (min-width: 1000px) and (max-width: 1250px) {
+      #home .button-container {
+        margin-top: 80px; } }
+    @media (max-width: 768px) {
+      #home .button-container {
+        margin-top: 10vh; } }
+    @media (max-width: 350px) {
+      #home .button-container {
+        margin-top: 50px;
+        letter-spacing: 0; } }
+    @media (max-height: 750px) {
+      #home .button-container {
+        margin-top: 30px;
+        font-size: .9em; } }
+  #home .recruiter {
+    text-align: center;
+    margin-top: 80px; }
+    #home .recruiter a {
+      color: white;
+      text-decoration: none; }
+      #home .recruiter a:hover {
+        text-decoration: underline; }
+    @media (max-height: 750px) {
+      #home .recruiter {
+        margin-top: 30px; } }
+  #home section.main-landing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh; }
+    #home section.main-landing .footer {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: white; }
+      @media (max-width: 768px) {
+        #home section.main-landing .footer {
+          display: none; } }
+      @media (max-height: 500px) {
+        #home section.main-landing .footer {
+          display: none; } }
+      #home section.main-landing .footer ul {
+        text-align: right; }
+      #home section.main-landing .footer li {
+        padding-top: 10px;
+        margin: 0 20px 0 0;
+        vertical-align: top;
+        width: 90px; }
+        #home section.main-landing .footer li.fse {
+          width: 120px; }
+        #home section.main-landing .footer li.pole-emploi a {
+          width: 90px; }
+        #home section.main-landing .footer li.fse-text {
+          width: auto !important; }
+        #home section.main-landing .footer li img {
+          max-width: 100%; }
+      @media (max-width: 768px) {
+        #home section.main-landing .footer li {
+          margin: 0 10px 0 0;
+          width: 50px; }
+        #home section.main-landing .footer.fse {
+          width: 70px; }
+        #home section.main-landing .footer.fse-text {
+          padding: 1px 0; } }
+      #home section.main-landing .footer a {
+        display: inline-block; }
+      #home section.main-landing .footer p {
+        width: 200px;
+        margin-top: 5px;
+        color: #004fa2;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: left; }
+      @media (max-width: 768px) {
+        #home section.main-landing .footer p {
+          width: 120px;
+          font-size: 9px;
+          line-height: 11px; } }
+  #home .more {
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    right: 0; }
+    @media (max-height: 400px) {
+      #home .more {
+        top: 110%; } }
+    #home .more h2 {
+      text-align: center;
+      color: #351D4E;
+      padding: 20px 10px;
+      font-size: 2em;
+      font-weight: normal; }
+      #home .more h2.big {
+        color: #333;
+        font-size: 2.8em;
+        line-height: 1.25em;
+        padding: 30px 10px 30px 10px; }
+    #home .more .youtube-video {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 30px;
+      max-width: 1000px;
+      margin: auto auto 50px auto;
+      height: 0;
+      overflow: hidden;
+      margin-bottom: 60px; }
+      #home .more .youtube-video iframe,
+      #home .more .youtube-video object,
+      #home .more .youtube-video embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; }
+    #home .more .how-it-works {
+      margin-bottom: 80px; }
+      #home .more .how-it-works h2 {
+        padding-bottom: 20px; }
+      #home .more .how-it-works p {
+        font-size: 1.1em; }
+      #home .more .how-it-works > .img-right, #home .more .how-it-works .img-left {
+        display: flex; }
+        #home .more .how-it-works > .img-right p, #home .more .how-it-works .img-left p {
+          flex: 10;
+          line-height: 1.5em;
+          align-self: center; }
+        #home .more .how-it-works > .img-right > div, #home .more .how-it-works .img-left > div {
+          flex: 2;
+          padding: 50px 0; }
+      #home .more .how-it-works > .img-right {
+        text-align: right; }
+        #home .more .how-it-works > .img-right p {
+          padding-right: 80px;
+          padding-left: 20px; }
+        #home .more .how-it-works > .img-right div {
+          padding-right: 30px; }
+      #home .more .how-it-works > .img-left {
+        text-align: left; }
+        #home .more .how-it-works > .img-left p {
+          padding-left: 80px; }
+        #home .more .how-it-works > .img-left div {
+          padding-left: 30px;
+          padding-right: 20px; }
+      #home .more .how-it-works .recruteurs img {
+        height: 164px;
+        width: 264px; }
+      #home .more .how-it-works .map img {
+        height: 117px;
+        width: 255px; }
+      #home .more .how-it-works .diagramme img {
+        height: 180px;
+        width: 256px; }
+      #home .more .how-it-works .go-container {
+        margin-top: 50px;
+        color: #066EE7; }
+        #home .more .how-it-works .go-container p {
+          display: block;
+          margin-bottom: 30px;
+          padding: 0 30px; }
+        #home .more .how-it-works .go-container a {
+          margin-top: 40px; }
+    #home .more .who-we-are {
+      padding: 10px 20px 40px 20px;
+      margin-bottom: 60px;
+      line-height: 1.3em; }
+      #home .more .who-we-are > div {
+        padding-top: 10px; }
+        #home .more .who-we-are > div .logo-pe {
+          width: 100px;
+          display: inline-block; }
+        #home .more .who-we-are > div p {
+          display: inline-block;
+          width: 550px;
+          max-width: 100%;
+          padding: 0 20px 0 30px;
+          font-size: 0.85em; }
+          #home .more .who-we-are > div p a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #F60CB9; }
+            #home .more .who-we-are > div p a:hover {
+              text-decoration: underline; }
+    @media (max-width: 992px) {
+      #home .more > .img-right p {
+        padding-left: 40px; }
+      #home .more > .img-left p {
+        padding-right: 40px; }
+      #home .more .how-it-works br {
+        display: none; } }
+    @media (max-width: 768px) {
+      #home .more .img-right, #home .more .img-left {
+        flex-direction: column; }
+        #home .more .img-right p, #home .more .img-left p {
+          order: 2;
+          padding: 20px !important;
+          text-align: center !important; }
+        #home .more .img-right > div, #home .more .img-left > div {
+          order: 1;
+          padding: 40px 0 0 0 !important;
+          text-align: center !important; }
+      #home .more .who-we-are a.logo-pe {
+        display: block;
+        text-align: center;
+        margin: auto auto 30px auto; }
+      #home .more .who-we-are > div p {
+        width: auto; } }

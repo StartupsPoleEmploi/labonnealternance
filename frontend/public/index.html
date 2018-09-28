@@ -10,10 +10,8 @@
   <meta id="robots-meta" name="robots" content="index, follow">
 
   <!-- CSS -->
-  <link href="./home.css" rel="stylesheet">
-  <link href="./global.css" rel="stylesheet">
-
-  <!-- Google Font -->
+  <link href="/home.css" rel="stylesheet">
+  <link href="/global.css" rel="stylesheet">  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
 
   <!-- SEO Values -->
@@ -43,8 +41,11 @@
   <link rel="shortcut icon" href="%PUBLIC_URL%/static/favicon.png">
   <title>{{ title | escape }}</title>
 
+  <!-- lazysizes.min.js -->
+  <script src="/static/lazysizes.min.js" async=""></script>
+
   <!-- Raven for Sentry -->
-  <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous" async=""></script>
 
   <!-- For IE (not Edge), we include a polyfill to support recent JS functions -->
   <script type="text/javascript">
@@ -66,7 +67,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-963904050"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'AW-963904050');
   </script>
@@ -84,28 +85,29 @@
           <div class="container">
             <div class="beta">&nbsp;</div>
             <header><a class="logo-lba" href="/"><img src="/static/img/logo/logo-blanc-lba.svg" alt="Retour à l'accueil"
-                  title="Retour à l'accueil"></a><a class="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer"
-                title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/logo-pe-NB.svg" alt="La Bonne Alternance est un site de Pôle Emploi"
-                  title="La Bonne Alternance est un site de Pôle Emploi"></a></header>
+                  title="Retour à l'accueil"></a><a class="logo-pe" href="https://www.pole-emploi.fr/" target="_blank"
+                rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/logo-pe-NB.svg"
+                  alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi"></a></header>
             <main>
               <section class="main-landing">
-                <h2 class="introduction"><span>Trouvez ici les <strong><span class="no-break-word bold">63 000</span> entreprises</strong></span><br><span>qui
-                    recrutent <strong>régulièrement</strong> en alternance</span></h2>
-                <div class="button-container">
-                  <div class="loading-dotted">Chargement en cours</div>
-                </div>
-                <div class="recruiter"><a href="https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance">Accès recruteur</a></div>
+                <h1 class="introduction"><span>Trouvez ici les <strong><span class="no-break-word bold">63 000</span>
+                      entreprises</strong></span><br><span>qui recrutent <strong>régulièrement</strong> en alternance</span></h1>
+                <div class="button-container"><a class="button" title="Commencer à chercher" href="/recherche">C'est
+                    parti !</a></div>
+                <div class="recruiter"><a href="https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance">Accès
+                    recruteur</a></div>
                 <div class="footer">
                   <ul class="list-unstyled inline-list">
                     <li class="fse"><a href="http://www.fse.gouv.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre"><img
                           src="/static/img/logo/logo-FSE-color.svg" alt="Visiter le site du Fonds Social Européen"></a></li>
-                    <li><a href="https://europa.eu/european-union/index_fr" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre"><img
-                          src="/static/img/logo/logo-ue.svg" alt="Visiter le site officiel de l'Union européenne"></a></li>
+                    <li><a href="https://europa.eu/european-union/index_fr" target="_blank" rel="noopener noreferrer"
+                        title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/logo-ue.svg" alt="Visiter le site officiel de l'Union européenne"></a></li>
                     <li class="pole-emploi"><a href="https://www.pole-emploi.fr/accueil/" target="_blank" rel="noopener noreferrer"
-                        title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un service de Pôle Emploi"></a></li>
+                        title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/pole-emploi-couleur.svg"
+                          alt="La Bonne Alternance est un service de Pôle Emploi"></a></li>
                     <li class="fse-text">
-                      <p>Ce dispositif est cofinancé par le Fonds Social Européen dans le cadre du Programme opérationnel
-                        national "emploi et inclusion" 2014-2020</p>
+                      <p>Ce dispositif est cofinancé par le Fonds Social Européen dans le cadre du Programme
+                        opérationnel national "emploi et inclusion" 2014-2020</p>
                     </li>
                   </ul>
                 </div>
@@ -113,69 +115,74 @@
               <section class="more">
                 <div class="how-it-works max-size-1000">
                   <h2 class="big">Comment ça marche ?</h2>
-                  <div class="youtube-video"><iframe title="Vidéo de présentation de La Bonne Alternance sur Youtube" width="560"
-                      height="315" src="https://www.youtube.com/embed/Jqs6QTHSJkY" frameborder="0" allow="autoplay; encrypted-media"
-                      allowfullscreen=""></iframe></div>
+                  <div class="youtube-video"></div>
                 </div>
                 <div class="how-it-works max-size-1000">
                   <h2 class="big">La Bonne Alternance</h2>
                   <div class="img-right">
-                    <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br>Il est essentiel dans votre recherche
-                      de proposer <br>votre candidature à des entreprises n’ayant pas <br>forcément déposé d’offres d’emploi
-                      en alternance.</p>
-                    <div class="recruteurs"><img src="/static/img/how-it-works/home-recruteurs.svg" alt=""></div>
+                    <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br>Il est essentiel dans votre
+                      recherche de proposer <br>votre candidature à des entreprises n’ayant pas <br>forcément déposé
+                      d’offres d’emploi en alternance.</p>
+                    <div class="recruteurs"><img class="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt=""></div>
                   </div>
                   <div class="img-left">
-                    <div class="diagramme"><img src="/static/img/how-it-works/home-diagramme.svg" alt=""></div>
-                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br>recrutements des 5 dernières années
-                      pour vous proposer les <br>entreprises qui recrutent régulièrement en alternance (contrat <br> d'apprentissage
-                      ou contrat de professionnalisation).</p>
+                    <div class="diagramme"><img class="lazyload" data-src="/static/img/how-it-works/home-diagramme.svg"
+                        alt=""></div>
+                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br>recrutements des 5 dernières
+                      années pour vous proposer les <br>entreprises qui recrutent régulièrement en alternance (contrat
+                      <br> d'apprentissage ou contrat de professionnalisation).</p>
                   </div>
                   <div class="img-right">
-                    <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br>carte et en liste. Vous pouvez
-                      affiner la liste des entreprises par <br>taille, métier et domaine. En cliquant sur une entreprise,
-                      vous <br>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
-                    <div class="map"><img src="/static/img/how-it-works/home-map.svg" alt=""></div>
+                    <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br>carte et en liste. Vous
+                      pouvez affiner la liste des entreprises par <br>taille, métier et domaine. En cliquant sur une
+                      entreprise, vous <br>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour
+                      postuler.</p>
+                    <div class="map"><img class="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt=""></div>
                   </div>
                   <div class="text-center go-container">
-                    <p>Maximisez vos chances ! Postulez auprès des entreprises qui recrutent régulièrement <br>en alternance
-                      sans forcément avoir déposé d’offres.</p></div>
+                    <p>Maximisez vos chances ! Postulez auprès des entreprises qui recrutent régulièrement <br>en
+                      alternance sans forcément avoir déposé d’offres.</p><a class="button" title="Commencer à chercher"
+                      href="/recherche">C'est parti !</a>
+                  </div>
                 </div>
                 <div class="form-2">
                   <div>&nbsp;</div>
                 </div>
                 <div class="who-we-are max-size-1200">
                   <h2 class="big">Qui sommes-nous ?</h2>
-                  <div><a class="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre"><img
-                        class="img-responsive" src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi"
-                        title="La Bonne Alternance est un site de Pôle Emploi"></a><p>Pôle Emploi innove et propose ce service
-                      pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats
-                      en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par
-                      des conseillers.<br><a title="En savoir plus sur les startups Pôle Emploi" href="/qui-sommes-nous">En
-                        savoir plus</a></p>
+                  <div><a class="logo-pe" href="https://www.pole-emploi.fr/" target="_blank" rel="noopener noreferrer"
+                      title="Ouverture dans une nouvelle fenêtre"><img class="img-responsive" data-src="/static/img/logo/pole-emploi-couleur.svg"
+                        alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi"></a>
+                    <p>Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des
+                      entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une
+                      start-up interne de Pôle Emploi créée et développée par des conseillers.<br><a title="En savoir plus sur les startups Pôle Emploi"
+                        href="/qui-sommes-nous">En savoir plus</a></p>
                   </div>
                 </div>
                 <div id="other-startups" class="clearfix">
                   <h2>D'autres services digitaux proposés par Pôle Emploi</h2>
                   <div><a href="https://labonneboite.pole-emploi.fr" target="_blank" rel="noopener noreferrer" class="la-bonne-boite"><img
-                        src="/static/img/startups/la_bonne_boite.png" alt="La Bonne Boite"><span>Trouvez les entreprises qui
-                        embauchent sans déposer d’offres d’emploi !</span></a><a href="https://labonneformation.pole-emploi.fr"
-                      target="_blank" rel="noopener noreferrer" class="la-bonne-formation"><img src="/static/img/startups/la_bonne_formation.jpg"
-                        alt="La Bonne Formation"><span>Trouvez une formation en fonction de votre profil ET du marché du travail.</span></a><a
-                      href="https://maintenant.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" class="maintenant"><img
-                        src="/static/img/startups/maintenant.png" alt="Maintenant"><span>Maintenant ! Trouver le bon job en
-                        moins de 5mn <strong>Pas de CV.</strong></span></a><a href="https://memo.pole-emploi.fr/" target="_blank"
-                      rel="noopener noreferrer" class="memo"><img src="/static/img/startups/memo.png" alt="Memo"><span>Mes
-                        candidatures en un clin d'oeil</span></a><a href="https://avril.pole-emploi.fr/" target="_blank"
-                      rel="noopener noreferrer" class="avril"><img src="/static/img/startups/avril.svg" alt="Avril"><span>La
+                        class="lazyload" data-src="/static/img/startups/la_bonne_boite.png" alt="La Bonne Boite"><span>Trouvez
+                        les entreprises qui embauchent sans déposer d’offres d’emploi !</span></a><a href="https://labonneformation.pole-emploi.fr"
+                      target="_blank" rel="noopener noreferrer" class="la-bonne-formation"><img class="lazyload"
+                        data-src="/static/img/startups/la_bonne_formation.jpg" alt="La Bonne Formation"><span>Trouvez
+                        une formation en fonction de votre profil ET du marché du travail.</span></a><a href="https://maintenant.pole-emploi.fr/"
+                      target="_blank" rel="noopener noreferrer" class="maintenant"><img class="lazyload" data-src="/static/img/startups/maintenant.png"
+                        alt="Maintenant"><span>Maintenant ! Trouver le bon job en moins de 5mn <strong>Pas de CV.</strong></span></a><a
+                      href="https://memo.pole-emploi.fr/" target="_blank" rel="noopener noreferrer" class="memo"><img
+                        class="lazyload" data-src="/static/img/startups/memo.png" alt="Memo"><span>Mes candidatures en
+                        un clin d'oeil</span></a><a href="https://avril.pole-emploi.fr/" target="_blank" rel="noopener noreferrer"
+                      class="avril"><img class="lazyload" data-src="/static/img/startups/avril.svg" alt="Avril"><span>La
                         VAE facile. Transformez votre expérience en diplôme reconnu.</span></a><a href="https://clara.pole-emploi.fr/"
-                      target="_blank" rel="noopener noreferrer" class="clara"><img src="/static/img/startups/clara.svg" alt="Clara"><span>Vos
-                        aides en un clic. Découvrez les aides et mesures qui vont accélérer votre reprise d'emploi.</span></a></div>
+                      target="_blank" rel="noopener noreferrer" class="clara"><img class="lazyload" data-src="/static/img/startups/clara.svg"
+                        alt="Clara"><span>Vos aides en un clic. Découvrez les aides et mesures qui vont accélérer votre
+                        reprise d'emploi.</span></a></div>
                 </div>
                 <footer id="global-footer" class="not-fixed">
                   <div class="links">
                     <ul class="list-unstyled inline-list">
-                      <li><a href="https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance">Accès recruteur</a></li>
+                      <li><a href="https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance">Accès
+                          recruteur</a></li>
                       <li><a href="/qui-sommes-nous">Qui sommes-nous ?</a></li>
                       <li class="small"><button title="Consulter notre politique sur les données personnelles">RGPD</button></li>
                       <li class="small"><a href="/faq">FAQ</a></li>
@@ -189,13 +196,14 @@
                     <ul class="list-unstyled inline-list">
                       <li class="fse"><a href="http://www.fse.gouv.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre"><img
                             src="/static/img/logo/logo-FSE-color.svg" alt="Visiter le site du Fonds Social Européen"></a></li>
-                      <li><a href="https://europa.eu/european-union/index_fr" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre"><img
-                            src="/static/img/logo/logo-ue.svg" alt="Visiter le site officiel de l'Union européenne"></a></li>
+                      <li><a href="https://europa.eu/european-union/index_fr" target="_blank" rel="noopener noreferrer"
+                          title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/logo-ue.svg" alt="Visiter le site officiel de l'Union européenne"></a></li>
                       <li class="pole-emploi"><a href="https://www.pole-emploi.fr/accueil/" target="_blank" rel="noopener noreferrer"
-                          title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un service de Pôle Emploi"></a></li>
+                          title="Ouverture dans une nouvelle fenêtre"><img src="/static/img/logo/pole-emploi-couleur.svg"
+                            alt="La Bonne Alternance est un service de Pôle Emploi"></a></li>
                       <li class="fse-text">
-                        <p>Ce dispositif est cofinancé par le Fonds Social Européen dans le cadre du Programme opérationnel
-                          national "emploi et inclusion" 2014-2020</p>
+                        <p>Ce dispositif est cofinancé par le Fonds Social Européen dans le cadre du Programme
+                          opérationnel national "emploi et inclusion" 2014-2020</p>
                       </li>
                     </ul>
                   </div>
@@ -235,7 +243,7 @@
     fbq('track', 'PageView');
   </script>
   <noscript>
-    <img height="1" width="1" src="https://www.facebook.com/tr?id=220518362068242&ev=PageView&noscript=1" />
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=220518362068242&ev=PageView&noscript=1" alt="" />
   </noscript>
   <!-- End Facebook Pixel Code -->
 </body>
