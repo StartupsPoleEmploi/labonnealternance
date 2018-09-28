@@ -57,6 +57,11 @@ button {
     &:hover { cursor: pointer; }
 }
 
+button.reset {
+    border: none;
+    background: none;
+}
+
 button.close {
     border: none;
     background: none;
