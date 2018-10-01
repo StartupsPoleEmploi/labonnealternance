@@ -120,7 +120,10 @@ export class Results extends Component {
         // Create map when the component is ready
         this.mapBoxService.createMap(this.props.longitude, this.props.latitude, this.props.distance);
 
-        // For each jobs, get companies
+        if(window.__companies) {
+            CompaniesService.getCompaniesFromWindowObject(this.props.jobs);
+        }
+
         let distance = this.mapBoxService.getMapMinDistance();
         CompaniesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }

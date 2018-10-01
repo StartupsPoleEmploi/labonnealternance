@@ -89,7 +89,7 @@ def get_company(siret):
     return urllib.request.urlopen(url)
 
 
-def get_companies(longitude, latitude, romes, page=1, distance=50):
+def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50):
     """
     Calling LaBonneBoite API to get all the companies matches the given arguments.
 
@@ -99,7 +99,7 @@ def get_companies(longitude, latitude, romes, page=1, distance=50):
     params = {
         'longitude': longitude,
         'latitude': latitude,
-        'rome_codes': romes,
+        'rome_codes': rome_codes_str,
         'user': API_USER,
         'distance': distance,
         'page': page,
@@ -148,7 +148,6 @@ def get_city_slug_from_city_code(city_code):
 
 def get_city_slug_details(city_slug):
     url = LBB_CITY_SLUG_DETAILS_URL.format(LBB_URL, city_slug)
-
     try:
         response = urllib.request.urlopen(url)
     except HTTPError as e:

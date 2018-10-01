@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import { withRouter } from 'react-router-dom';
 
 
 import { Loader } from '../shared/loader/loader';
@@ -21,7 +22,7 @@ import { GoogleAdwordsService } from '../../services/google_adword.service';
 
 require('./company_details.css');
 
-export default class CompanyDetails extends Component {
+class CompanyDetails extends Component {
     constructor(props) {
         super(props);
 
@@ -29,7 +30,7 @@ export default class CompanyDetails extends Component {
 
         let siret = this.props.match.params.companySiret;
 
-        this.state= {
+        this.state = {
             referer: this.getReferer(),
             rome: getParameterByName('rome') || undefined,
 
@@ -69,7 +70,16 @@ export default class CompanyDetails extends Component {
         let canonical = window.location.origin.concat(window.location.pathname);
         SEOService.setCanonical(canonical);
 
-        CompanyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true);
+        // Init from window.__companyDetails or by request
+        if (window.__companyDetails) {
+            CompanyDetailsService.initFromWindowObject();
+        } else {
+            CompanyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true)
+                .catch(() => {
+                    this.props.history.push('/not-found');
+                    this.props.history.go();
+                });
+        }
     }
 
 
@@ -79,7 +89,7 @@ export default class CompanyDetails extends Component {
         if (referer) {
             // Should start with '/entreprises'
             let re = /^\/entreprises\//;
-            if(!re.test(referer)) referer = "";
+            if (!re.test(referer)) referer = "";
         }
         return referer;
     }
@@ -98,7 +108,7 @@ export default class CompanyDetails extends Component {
         return (
             <div className="line responsive-column how-to-apply">
                 <div className="flex-big">
-                    { this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div> }
+                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
                 </div>
             </div>
         );
@@ -115,7 +125,7 @@ export default class CompanyDetails extends Component {
 
                 <main className="content">
                     <div className="actions-zone">
-                        { this.state.referer ? <Link to={this.state.referer} className="button small-white">Retour à la recherche</Link> : null }
+                        {this.state.referer ? <Link to={this.state.referer} className="button small-white">Retour à la recherche</Link> : null}
                         <FavoriteButton company={company} />
                     </div>
                     {CompanyDetailsCommon.renderTitle(company)}
@@ -137,7 +147,7 @@ export default class CompanyDetails extends Component {
 
                     <div className="company-footer">
                         <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
-                </div>
+                    </div>
                 </main>
 
                 <Footer />
@@ -145,3 +155,5 @@ export default class CompanyDetails extends Component {
         );
     }
 }
+
+export default withRouter(CompanyDetails);

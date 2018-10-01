@@ -30,7 +30,6 @@ require('./companies.css');
 
 // Constants
 const SHOW_RESULT_POPUP_KEY = 'SHOW_RESULT_POPUP_KEY';
-const LOADING_DURATION = 2000; // In milliseconds
 
 class Companies extends Component {
 
@@ -40,22 +39,37 @@ class Companies extends Component {
         this.baseUrl = this.props.match.url.concat(window.location.search);
 
         let distance = getParameterByName('distance') || undefined;
-        if(distance) {
-            if(isNaN(parseInt(distance, 0))) distance = undefined;
+        if (distance) {
+            if (isNaN(parseInt(distance, 0))) distance = undefined;
         }
+
+        // Get longitude,latitude & jobs from window object (and populate server-side)
+        let longitude = parseFloat(this.props.match.params.longitude);
+        if (isNaN(longitude) && window.longitude) longitude = window.longitude;
+
+        let latitude = parseFloat(this.props.match.params.latitude);
+        if (isNaN(latitude) && window.latitude) latitude = window.latitude;
+
+        let defaultJobs = [];
+        if(window.jobs && window.jobs.length > 0) {
+            window.jobs.forEach(job => defaultJobs.push(new Job(job.rome_code, job.label, ''))); // No slug needed
+        }
+        // Ensure that this content will not be re-used through navigation
+        delete window.jobs; delete window.latitude; delete window.longitude;
+
 
         this.state = {
             inputError: undefined,
             loading: true,
 
             citySlug: this.props.match.params.citySlug,
-            longitude: parseFloat(this.props.match.params.longitude),
-            latitude: parseFloat(this.props.match.params.latitude),
+            longitude: longitude,
+            latitude: latitude,
             distance: distance,
             cityName: undefined,
 
             jobSlugs: this.props.match.params.jobSlugs,
-            jobs: [],
+            jobs: defaultJobs,
             searchTerm: this.props.match.params.term || '',
 
             // Some Javascript action depend on the mobile
@@ -147,7 +161,7 @@ class Companies extends Component {
         if (locationOk) {
             locationOk = !isNaN(this.state.longitude) || !isNaN(this.state.latitude);
         } else {
-            locationOk = this.state.citySlug;
+            locationOk = this.state.citySlug !== undefined;
         }
 
         // Check job
@@ -155,7 +169,15 @@ class Companies extends Component {
         if (!jobOk && !locationOk) {
             this.setState({ inputError: true });
             return;
+        } else {
+            // Start search
+            this.searchCity();
         }
+
+        // Get favorites and soft skills from localStorage
+        FavoritesService.getFavoritesFromLocalStorage();
+        SoftSkillsService.getSoftSkillsFromLocalStorage();
+
 
         // When a company is selected
         this.companyDetailsStore = COMPANY_DETAILS_STORE.subscribe(() => {
@@ -187,9 +209,6 @@ class Companies extends Component {
         });
     }
 
-    componentDidMount() {
-        this.makeSearch();
-    }
     componentWillUnmount() {
         // Unlisten to resize event
         window.removeEventListener('resize', this.updateDimensions.bind(this));
@@ -199,41 +218,43 @@ class Companies extends Component {
         this.viewsStore();
     }
 
-    makeSearch() {
-        // TODO => Get datas from localStorage if match between city/job Slugs
+    searchCity() {
+        if(!isNaN(this.state.latitude) && !isNaN(this.state.longitude)) {
+            this.searchJobs();
+            return;
+        }
 
+        // Get city
+        if (!this.state.citySlug) {
+            this.searchJobs();
+        } else {
+            // Get coordinates and city
+            let response = CompaniesService.getCityFromSlug(this.state.citySlug);
+            response.then(response => {
+                this.setState({
+                    latitude: response.city.latitude,
+                    longitude: response.city.longitude,
+                    cityName: response.city.name,
+                }, this.searchJobs());
+            }).catch(err => this.props.history.push('/not-found'));
+        }
+    }
+
+    searchJobs() {
         // Get Job from slug
-        if (this.state.jobSlugs) {
+        if (this.state.jobSlugs && this.state.jobs.length === 0) {
             CompaniesService.getJobFromSlug(this.state.jobSlugs)
                 .then(responseJobs => {
                     let jobs = [];
-
                     responseJobs.forEach(response => {
                         jobs.push(new Job(response.rome_code, response.label, '')); // No slug needed
                     });
 
                     // Save values
                     this.setState({ jobs });
-
-                    // Get location value (if needed) or init the map
-                    if (!this.state.citySlug) {
-                        this.initPageContent();
-                    } else {
-                        // Get coordinates and city
-                        let response = CompaniesService.getCityFromSlug(this.state.citySlug);
-                        response.then(response => {
-                            this.setState({
-                                latitude: response.city.latitude,
-                                longitude: response.city.longitude,
-                                cityName: response.city.name,
-                            },
-                            // Show the map and begin to search
-                            () => this.initPageContent());
-                        }).catch(err => this.props.history.push('/not-found'));
-                    }
-
                 }).catch(err => this.props.history.push('/not-found'));
         }
+
     }
 
     // Handle SEO values
@@ -244,7 +265,7 @@ class Companies extends Component {
 
         if (this.state.citySlug) {
             let citySlug = this.state.citySlug;
-            let zipcodeIndex = citySlug.lastIndexOf('-') +1;
+            let zipcodeIndex = citySlug.lastIndexOf('-') + 1;
 
             let zipcode = citySlug.substr(zipcodeIndex, citySlug.length - 1);
             let cityName = unSlug(citySlug.substr(0, zipcodeIndex - 1));
@@ -262,28 +283,13 @@ class Companies extends Component {
     }
 
 
-    initPageContent() {
-        // Get favorites and soft skills from localStorage
-        FavoritesService.getFavoritesFromLocalStorage();
-        SoftSkillsService.getSoftSkillsFromLocalStorage();
-
-
-        // Fake loader page (goal : make the user read the message !)
-        setInterval(() => this.setState({ loading: false }), LOADING_DURATION);
-
-    }
-
-
     render() {
         if (this.state.inputError) {
             return (<main>Valeurs incorrectes</main>);
         }
 
-        if (this.state.loading) {
-            return (<LoaderScreen />);
-        }
-
-        let { distance, longitude, latitude, jobs, searchTerm, cityName } = {...this.state};
+        let { distance, longitude, latitude, jobs, searchTerm, cityName } = { ...this.state };
+        if (isNaN(longitude) || isNaN(latitude) || jobs.length === 0) return (<LoaderScreen />);
 
         return (
             <div id="companies">

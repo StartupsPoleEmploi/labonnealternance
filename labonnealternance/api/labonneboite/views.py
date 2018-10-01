@@ -2,7 +2,7 @@ import collections, re
 from urllib.error import HTTPError
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound
 
 from . import lbb_client
 from labonnealternance.api.common import siret_validator
@@ -36,7 +36,10 @@ def suggest_cities(request):
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
-    response = lbb_client.autocomplete_city(text)
+    try:
+        response = lbb_client.autocomplete_city(text)
+    except HTTPError:
+        return HttpResponseNotFound()
     return HttpResponse(response.read())
 
 
@@ -45,7 +48,10 @@ def company_details(request):
     if not siret or not siret_validator.validate_siret(siret):
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
-    response = lbb_client.get_company(siret)
+    try:
+        response = lbb_client.get_company(siret)
+    except HTTPError:
+        return HttpResponseNotFound()
     return HttpResponse(response.read())
 
 

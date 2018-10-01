@@ -1,4 +1,5 @@
 import json, logging, os, urllib
+from urllib.error import HTTPError
 
 from django.conf import settings
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -23,6 +24,9 @@ COMPANY_DETAILS_TITLE = 'Offres probables d\'alternance société {}'
 RESULTS_PAGE_TITLE = 'Offres d\'alternance probables en {} - {} ({}) | La Bonne Alternance'
 RESULTS_PAGE_TITLE_NO_CITY = 'Offres d\'alternance probables en {} | La Bonne Alternance'
 
+class NoCompanyFound(Exception):
+    pass
+
 
 class ReactProxyAppView(View):
     """
@@ -32,10 +36,19 @@ class ReactProxyAppView(View):
     def get(self, request):
         # Compute page title
         path = urllib.parse.unquote_plus(request.get_full_path())
+
         if not path.endswith('.css') and not path.endswith('.js') and not path.endswith('.ico'):
-            return render(request, 'index.html', {
-                'title': self.compute_page_title(path),
-            })
+            params = { 'title': self.compute_page_title(path) }
+
+            # Company details
+            if path.startswith("/details-entreprises/"):
+                params = self.get_company_details_as_param(path, params)
+
+            # Search
+            elif path.startswith('/entreprises/'):
+                params = self.get_companies_as_params(path, params)
+
+            return render(request, 'index.html', params)
 
         # Generic case
         try:
@@ -58,9 +71,7 @@ class ReactProxyAppView(View):
         """
         title = URLS_TO_TITLE.get(path, DEFAULT_TITLE)
 
-        if path.startswith("/details-entreprises/"):
-            title = self.compute_details_company_title(path)
-        elif path.startswith("/entreprises/commune/"):
+        if path.startswith("/entreprises/commune/"):
             title = DEFAULT_TITLE
         elif path.startswith("/entreprises/"):
             title = self.compute_results_search_title(path)
@@ -68,7 +79,27 @@ class ReactProxyAppView(View):
         return title
 
 
-    def compute_details_company_title(self, path):
+    # Company details
+    """
+    Add company details in params object for rendring in template
+    """
+    def get_company_details_as_param(self, path, params):
+        try:
+            title, company_data = self.compute_details_company_data(path)
+        except NoCompanyFound:
+            pass
+        else:
+            if title and company_data:
+                params.update({
+                    'title': title,
+                    'store': {
+                        'name': '__companyDetails',
+                        'data': company_data
+                    }
+                })
+        return params
+
+    def compute_details_company_data(self, path):
         """
         Compute URL when we display the details of a company
         Exemple : https://labonnealternance.pole-emploi.fr/details-entreprises/81903933000025
@@ -81,18 +112,16 @@ class ReactProxyAppView(View):
         try:
             response = lbb_client.get_company(siret)
         except Exception:
-            return HttpResponse("No company found with siret : {}".format(siret), status=404)
+            raise NoCompanyFound("No company found with siret : {}".format(siret))
 
         if response:
             company_data = json.loads(response.read().decode('utf-8'))
-            return COMPANY_DETAILS_TITLE.format(company_data.get('name', ''))
+            return COMPANY_DETAILS_TITLE.format(company_data.get('name', '')), company_data
 
 
     def compute_results_search_title(self, path):
-        url_without_query_string = path[:path.find('?')] if '?' in path else path
-        url_params = url_without_query_string.split('/')
-
         # Get search term (and city-slug if possible)
+        url_params = self.extract_params(path)
         search_term = url_params[-1]
 
         if len(url_params) == 5:
@@ -100,22 +129,91 @@ class ReactProxyAppView(View):
             city_slug = url_params[len(url_params) - 2]
             city, zipcode = self.extract_city_slug(city_slug)
 
+            # Clean slug
+            city = city.replace('-', ' ')
+            city = city.title().strip() # Capitalize and trim
+
             return RESULTS_PAGE_TITLE.format(search_term, city, zipcode)
 
         # No city-slug
         return RESULTS_PAGE_TITLE_NO_CITY.format(search_term)
 
+    # Company search
+    def get_companies_as_params(self, path, params):
+        url_params = self.extract_params(path)
+
+        # Get slug
+        try:
+            romes_data = self.get_rome_codes(url_params[2])
+        except HTTPError:
+            # Error => No need to go further
+            return params
+
+        rome_codes_str = ','.join([rome['rome_code'] for rome in romes_data])
+
+        longitude = None
+        latitude = None
+
+        # In case, we got romes-slug/city-slug
+        if len(url_params) == 5:
+            try:
+                response = lbb_client.get_city_slug_details(url_params[-2])
+            except HTTPError:
+                # Error => No need to go further
+                return params
+
+            city_data = json.loads(response.read().decode('utf-8'))
+            longitude = city_data['city']['longitude']
+            latitude = city_data['city']['latitude']
+
+        # In case we got romes-slugs/longitude/latitude
+        elif len(url_params) == 6:
+            longitude = url_params[-3]
+            latitude = url_params[-2]
+
+
+        # Get companies
+        try:
+            response = lbb_client.get_companies(longitude, latitude, rome_codes_str)
+        except HTTPError:
+            # Error => No need to go further
+            return params
+
+        # This setp is needed to handle " and ' characters
+        companies_data_temp =  json.loads(response.read().decode('utf-8'))
+        companies_data = json.dumps(companies_data_temp)
+
+        params.update({
+            'store': {
+                'name': '__companies',
+                'data': companies_data
+            },
+            'longitude': format_as_float(longitude),
+            'latitude': format_as_float(latitude),
+            'jobs': romes_data
+        })
+
+        return params
+
+
+    def get_rome_codes(self, romes_slug):
+        response = lbb_client.get_job_slug_details(romes_slug)
+        return json.loads(response.read().decode('utf-8'))
+
+
+    def extract_params(self, path):
+        url_without_query_string = path[:path.find('?')] if '?' in path else path
+        return url_without_query_string.split('/')
+
 
     def extract_city_slug(self, city_slug):
         last_dash_index = city_slug.rfind('-')
-        city_raw = city_slug[:last_dash_index]
+        city = city_slug[:last_dash_index]
         zipcode = city_slug[last_dash_index+1:]
-
-        # Clean slug
-        city = city_raw.replace('-', ' ')
-        city = city.title().strip() # Capitalize and trim
-
         return city, zipcode
+
+def format_as_float(float_value):
+    return str(float_value).replace(',','.')
 
 def get_sitemap(request):
     try:
