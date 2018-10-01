@@ -27,10 +27,10 @@ export default class Home extends Component {
 
                     <main>
                         <section className="main-landing">
-                            <h2 className="introduction">
+                            <h1 className="introduction">
                                 <span>Trouvez ici les <strong><span className="no-break-word bold">63 000</span> entreprises</strong></span><br />
                                 <span>qui recrutent <strong>régulièrement</strong> en alternance</span>
-                            </h2>
+                            </h1>
 
                             <div className="button-container">
                                 <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
