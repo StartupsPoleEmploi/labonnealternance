@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
   <!-- CSS -->
-  <link href="./home.css" rel="preload">
-  <link href="./global.css" rel="preload">
+  <link href="./home.css" rel="preload" as="style">
+  <link href="./global.css" rel="preload" as="style">
 
   <!-- SEO Values -->
   <meta name="keywords" content="contrat offres alternance">
@@ -46,10 +46,6 @@
 
   <!-- Lazysizes -->
   <script src="/static/js/lazysizes.min.js" async=""></script>
-
-  <!-- Raven for Sentry -->
-  <link rel="preconnect" href="https://cdn.ravenjs.com/" crossorigin>
-  <script defer="" src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
 
   <!-- For IE (not Edge), we include a polyfill to support recent JS functions -->
   <script type="text/javascript">
@@ -233,6 +229,9 @@
       To create a production bundle, use `npm run build` or `yarn build`.
   -->
 
+  <!-- Raven for Sentry -->
+  <link rel="preconnect" href="https://cdn.ravenjs.com/" crossorigin>
+  <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
 
   {% if store %}<script>window['{{ store.name }}'] = {{  store.data | safe }};</script>{% endif %}
   {% if longitude %}<script>window.longitude = {{  longitude }};</script>{% endif %}
