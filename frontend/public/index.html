@@ -9,12 +9,13 @@
   <!-- Meta SEO -->
   <meta id="robots-meta" name="robots" content="index, follow">
 
-  <!-- CSS -->
-  <link href="./home.css" rel="stylesheet">
-  <link href="./global.css" rel="stylesheet">
+  <!-- Google Font : Preconnect to speed font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+  <!-- CSS -->
+  <link href="./home.css" rel="preload">
+  <link href="./global.css" rel="preload">
 
   <!-- SEO Values -->
   <meta name="keywords" content="contrat offres alternance">
@@ -47,7 +48,8 @@
   <script src="/static/js/lazysizes.min.js" async=""></script>
 
   <!-- Raven for Sentry -->
-  <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://cdn.ravenjs.com/" crossorigin>
+  <script defer="" src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
 
   <!-- For IE (not Edge), we include a polyfill to support recent JS functions -->
   <script type="text/javascript">

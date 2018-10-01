@@ -7,7 +7,20 @@
     box-sizing: border-box;
 }
 
-html { font-family: $font; }
+
+/* latin-ext */
+@font-face {
+    font-family: 'Signika';
+    font-display: swap;
+    font-style: normal;
+    font-weight: 400;
+    src: local('Signika Regular'), local('Signika-Regular'), url(https://fonts.gstatic.com/s/signika/v8/vEFR2_JTCgwQ5ejvG18mBkho.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+html {
+    font-family: $font;
+}
 html, body, #root, #app {
     height: 100vh;
     width: 100%;
