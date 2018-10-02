@@ -525,12 +525,10 @@
     }
 
     .how-to-apply {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 90px;
+        width: 100%;
         background-color: white;
         text-align: center;
+        transition: top .1s linear;
 
         button.favorite-button {
             border: none;
@@ -564,13 +562,6 @@
         padding: 10px 30px;
         font-size: .9em;
         display: inline-block;
-    }
-
-    .company-footer {
-        margin-top: 65px;
-        @media (max-width: $min-width-mobile) {
-            margin-top: 150px;
-        }
     }
 
     .company-coordinates-container {
