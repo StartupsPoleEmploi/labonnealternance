@@ -9,9 +9,13 @@
   <!-- Meta SEO -->
   <meta id="robots-meta" name="robots" content="index, follow">
 
-  <!-- Google Font : Preconnect to speed font loading -->
+  <!-- Preconnect to speed loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://cdn.ravenjs.com/" crossorigin>
+  <link rel="preconnect" href="https://googleadservices.com/" crossorigin>
+  <link rel="preconnect" href="https://connect.facebook.net/" crossorigin>
+
 
   <!-- SEO Values -->
   <meta name="keywords" content="contrat offres alternance">
@@ -226,7 +230,6 @@
   -->
 
   <!-- Raven for Sentry -->
-  <link rel="preconnect" href="https://cdn.ravenjs.com/" crossorigin>
   <script src="https://cdn.ravenjs.com/3.24.1/raven.min.js" crossorigin="anonymous"></script>
 
   {% if store %}<script>window['{{ store.name }}'] = {{  store.data | safe }};</script>{% endif %}
@@ -251,7 +254,7 @@
     fbq('track', 'PageView');
   </script>
   <noscript>
-    <img height="1" width="1" src="https://www.facebook.com/tr?id=220518362068242&ev=PageView&noscript=1" />
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=220518362068242&ev=PageView&noscript=1" alt=""/>
   </noscript>
   <!-- End Facebook Pixel Code -->
 </body>
