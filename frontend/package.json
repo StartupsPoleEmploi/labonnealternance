@@ -6,36 +6,44 @@
     "dependencies": {
         "leaflet.markercluster": "^1.4.0",
         "mapbox.js": "^3.1.1",
-        "node-sass-chokidar": "^1.3.3",
-        "npm-run-all": "^4.1.3",
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-ga": "^2.5.3",
         "react-router-dom": "^4.3.1",
-        "react-scripts": "^1.1.5",
         "redux": "^3.7.2"
     },
     "scripts": {
         "build-css": "node-sass-chokidar src/ -o src/",
         "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
         "start-js": "react-scripts start",
-        "start": "npm-run-all -p watch-css start-js",
+        "start": "./node_modules/.bin/npm-run-all -p watch-css start-js",
         "build-js": "react-scripts build",
-        "build": "npm-run-all build-css build-js",
+        "build": "./node_modules/.bin/npm-run-all build-css build-js",
         "lint": "eslint src",
         "test": "react-scripts test --env=jsdom --watchAll",
         "eject": "react-scripts eject"
     },
     "devDependencies": {
-        "eslint": "^4.19.1",
+        "babel-eslint": "^9.0.0",
+        "babel-jest": "^23.6.0",
+        "eslint": "5.6.0",
         "eslint-config-synacor": "^2.1.0",
         "eslint-plugin-react": "^7.11.1",
-        "jest": "^22.4.4",
+        "jest": "23.6.0",
         "jest-cli": "^23.5.0",
+        "node-sass-chokidar": "^1.3.3",
+        "npm-run-all": "^4.1.3",
+        "react-scripts": "^2.0.3",
         "why-did-you-update": "^0.1.1"
     },
     "eslintIgnore": [
         "build/*",
         "registerServiceWorker.js"
+    ],
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
     ]
 }
