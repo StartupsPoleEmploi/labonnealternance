@@ -8,6 +8,10 @@ import FavoriteButton from '../../shared/favorite_button/favorite_button';
 import { SoftSkillsService } from '../../../services/soft_skills/soft_skills.service';
 import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../../shared/company_details_commun/company_details_commun';
 import { GoogleAdwordsService } from '../../../services/google_adword.service';
+import throttle from 'lodash/throttle';
+
+
+const FOOTER_HEIGHT_DELTA = 50;
 
 export class CompanyModal extends Component {
 
@@ -16,20 +20,26 @@ export class CompanyModal extends Component {
 
         this.hasSoftSkills = false;
         this.hasExtraInfos = false;
+        this.hasScrollEventListener = false;
+
+        // Throttle — invokes function at most once per every X milliseconds.
+        this.updateCoordinatesFn = throttle(this.computeCoordinatesTopValue, 100);
 
         this.state = {
             company: undefined,
             recruiterAccessUrl: undefined,
             showCoordinates: false,
+
+            coordinateTop: undefined
         };
     }
 
     componentDidMount() {
+        // Listen to resize event
         this.companyDetailsStore = COMPANY_DETAILS_STORE.subscribe(() => {
             let company = COMPANY_DETAILS_STORE.getState();
             if (company) {
-                // We close the open coordinates block
-                this.setState({ company, recruiterAccessUrl: CompanyDetailsService.getRecruteurAccessUrl(company.siret) });
+                this.setState({ company, recruiterAccessUrl: CompanyDetailsService.getRecruteurAccessUrl(company.siret) }, () => this.computeCoordinatesTopValue());
 
                 // Soft skills
                 if (company.job && company.job.rome && !this.hasSoftSkills) {
@@ -46,6 +56,7 @@ export class CompanyModal extends Component {
                 // Re-init values
                 this.hasSoftSkills = false;
                 this.hasExtraInfos = false;
+                this.hasScrollEventListener = false;
                 this.setState({ company: undefined, showCoordinates: false, recruiterAccessUrl: undefined });
             }
         });
@@ -54,6 +65,10 @@ export class CompanyModal extends Component {
         this.favoritesStore = FAVORITES_STORE.subscribe(() => {
             if (this.state.company) this.forceUpdate();
         });
+    }
+
+    componentDidUpdate() {
+        if(!this.hasScrollEventListener) this.initModalEventListener();
     }
 
     componentWillUnmount() {
@@ -78,13 +93,49 @@ export class CompanyModal extends Component {
         ReactGA.event({ category: 'Company', action: 'Open coordinates block' });
         GoogleAdwordsService.sendCompanyCoordinatesConversion();
 
-        this.setState({ showCoordinates: true });
+        this.setState({ showCoordinates: true }, () => this.computeCoordinatesTopValue());
+    }
+
+
+    initModalEventListener = () => {
+        let modal = document.querySelectorAll('.modal-content')[0];
+        if(!modal) return null;
+
+        modal.addEventListener("scroll", this.updateCoordinatesFn);
+        this.hasScrollEventListener = true;
+        this.computeCoordinatesTopValue();
+    }
+
+    computeCoordinatesTopValue = () => {
+        let modal = document.querySelectorAll('.modal-content')[0];
+        if(!modal) return null;
+
+        let modalHeight = modal.offsetHeight; // Height on screen
+        let modalScrollHeight = modal.scrollHeight; // Height needed for no scrolling
+        let scrollTop = modal.scrollTop;
+        let coordinatesHeight = document.querySelectorAll('.how-to-apply')[0].offsetHeight;
+
+        // We got a scroll => Coordinates at bottom
+        if(modalHeight < modalScrollHeight + coordinatesHeight) {
+            let newTopValue = modalHeight + scrollTop - coordinatesHeight;
+            // If scrollbar is near to the bottom, we decrease the top value in order to see the company footer
+            if(modalHeight + scrollTop + FOOTER_HEIGHT_DELTA/2 >= modalScrollHeight) newTopValue -= FOOTER_HEIGHT_DELTA;
+
+            this.setState({ coordinateTop: { 'position': 'absolute', 'left': 0, 'top': newTopValue } });
+            this.forceUpdate();
+        } else {
+            // All the modal is visible ? We disabled sticky bottom
+            if(this.state.coordinateTop !== undefined) {
+                this.setState({ coordinateTop: undefined });
+                this.forceUpdate();
+            }
+        }
     }
 
     // RENDER
     renderHowToApply() {
         return (
-            <div className="how-to-apply">
+            <div className="how-to-apply" style={this.state.coordinateTop}>
                 <div className="flex-big">
                     {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
                     <FavoriteButton company={this.state.company} />
@@ -116,7 +167,6 @@ export class CompanyModal extends Component {
 
                         <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
                         <PrepareApplication company={company} rome={company.job.rome} />
-                        <hr />
 
                         {this.renderHowToApply(company)}
                     </div>
