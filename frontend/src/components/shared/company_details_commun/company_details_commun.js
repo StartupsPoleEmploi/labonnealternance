@@ -63,7 +63,7 @@ export const CompanyIntroduction = (props) => {
                     {company.headcount ? <p>{company.headcount}</p> : 'Inconnu'}
                 </div>
 
-                {company.website ? <div className="hire-rate"><h4>Site Internet</h4><a href={company.website} target="_blank" title="Ouverture dans une nouvelle fenêtre">{company.website}</a></div> : ''}
+                {company.website ? <div className="hire-rate"><h4>Site Internet</h4><a href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">{company.website}</a></div> : ''}
             </div>
         </div>
     );
