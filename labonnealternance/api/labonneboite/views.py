@@ -1,4 +1,4 @@
-import collections, re
+import collections, json, re
 from urllib.error import HTTPError
 
 from django.shortcuts import render
@@ -6,8 +6,10 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServer
 
 from . import lbb_client
 from labonnealternance.api.common import siret_validator
+from .custom_search_jobs import CustomSearchJob
 
 
+CUSTOM_SEARCH_JOB_RESULTS = CustomSearchJob()
 DISTANCE_DEFAULT = 50
 
 def suggest_romes(request):
@@ -17,6 +19,11 @@ def suggest_romes(request):
     text = request.GET.get('term', None)
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
+
+    # Manual search mapping
+    results = CUSTOM_SEARCH_JOB_RESULTS.get_entry(text)
+    if results:
+        return HttpResponse(json.dumps(results))
 
     # Remove some cursus words
     escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap']
