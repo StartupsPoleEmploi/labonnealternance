@@ -39,6 +39,7 @@ class CompanyDetailsServiceFactory {
                 })
                 .then(companyData => {
                     if (!companyData) return;
+                    resolve(companyData);
                     this.dispatch(companyData, allDetails);
                 });
         })
