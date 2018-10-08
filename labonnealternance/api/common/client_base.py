@@ -37,7 +37,7 @@ class ClientBase(object):
         }
 
         try:
-            r = requests.post(ACCESS_TOKEN_URL, data=data, headers={'Content-Type':'application/x-www-form-urlencoded'})
+            r = requests.post(ACCESS_TOKEN_URL, data=data, headers={'Content-Type':'application/x-www-form-urlencoded'}, verify=False)
             response = r.json()
             return response['access_token'], self.compute_expire_date(response['expires_in'])
         except Exception as e:

@@ -25,7 +25,7 @@ class MatchClient(Singleton, ClientBase):
         }
 
         url = MATCH_API_URL.format(rome)
-        response = requests.post(url, data=rome, headers=headers)
+        response = requests.post(url, data=rome, headers=headers, verify=False)
 
         if response.status_code == 400:
             raise SoftSkillsNotFound('No soft skills associated to the rome :{}'.format(rome))
