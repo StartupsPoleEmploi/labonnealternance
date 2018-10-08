@@ -38,14 +38,10 @@ class ClientBase(object):
 
         try:
             r = requests.post(ACCESS_TOKEN_URL, data=data, headers={'Content-Type':'application/x-www-form-urlencoded'})
-        except Exception:
-            # TODO - What ?
+            response = r.json()
+            return response['access_token'], self.compute_expire_date(response['expires_in'])
+        except Exception as e:
             pass
-
-        # Response as dict
-        response = r.json()
-
-        return response['access_token'], self.compute_expire_date(response['expires_in'])
 
 
     def compute_expire_date(self, expires_in):
