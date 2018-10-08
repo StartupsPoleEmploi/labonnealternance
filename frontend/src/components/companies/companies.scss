@@ -546,7 +546,10 @@
             justify-content: center;
             margin: 10px 10px;
             text-align: center;
-
+            @media (max-width: $min-width-small-mobile) {
+                flex-direction: column;
+                > .text-center { width: 100%; margin-bottom: 15px; }
+            }
             > div {
                 width: 80%;
                 max-width: 600px;
@@ -575,6 +578,11 @@
         .icon { margin-right: 5px;}
         @media (max-width: $min-width-mobile) {
             > div { margin-bottom: 20px; }
+            flex-direction: column;
+        }
+        @media (max-width: $min-width-small-mobile) {
+            text-align: left;
+            width: 100% !important;
         }
     }
 }
