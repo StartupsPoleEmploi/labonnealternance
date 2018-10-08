@@ -310,6 +310,11 @@
             padding: 0 15px 10px 15px;
         }
     }
+
+    @media (max-width: $min-width-small-mobile) {
+        .modal-content { top: 0vh; width: 100%; }
+    }
+
 }
 
 // Mixin when no job found
