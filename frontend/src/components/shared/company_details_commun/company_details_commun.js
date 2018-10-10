@@ -37,7 +37,7 @@ export const CompanyCoordinates =  (props) => {
                 <h4>Contact</h4>
                 <ul className="list-unstyled">
                     <li><span className="icon phone">&nbsp;</span>{company.phone ? company.phone : 'Non renseigné'}</li>
-                    <li><span className="icon email">&nbsp;</span>{company.email ? company.email : 'Non renseigné'}</li>
+                    <li className="no-break-word"><span className="icon email">&nbsp;</span>{company.email ? company.email : 'Non renseigné'}</li>
                 </ul>
             </div>
         </div>
