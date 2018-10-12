@@ -47,7 +47,9 @@
   <!-- Lazysizes -->
   <script src="/static/js/lazysizes.min.js" async=""></script>
 
-  <!-- For IE (not Edge), we include a polyfill to support recent JS functions -->
+  <!-- fetch polyfill -->
+  <script src="https://unpkg.com/unfetch/polyfill"></script>
+  <!-- For IE (not Edge), we include polyfills to support recent JS functions -->
   <script type="text/javascript">
     var ua = window.navigator.userAgent;
     // MSIE : IE6 -> 10 & Trident: IE 11
