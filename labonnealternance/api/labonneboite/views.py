@@ -2,7 +2,7 @@ import collections, json, re
 from urllib.error import HTTPError
 
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound, JsonResponse
 
 from . import lbb_client
 from labonnealternance.api.common import siret_validator
@@ -23,7 +23,9 @@ def suggest_romes(request):
     # Manual search mapping
     results = CUSTOM_SEARCH_JOB_RESULTS.get_entry(text)
     if results:
-        return HttpResponse(json.dumps(results))
+        # Note: by default, only dict are handle by JsonResponse
+        # So we set safe=False to handle an array
+        return JsonResponse(results, safe=False)
 
     # Remove some cursus words
     escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap']

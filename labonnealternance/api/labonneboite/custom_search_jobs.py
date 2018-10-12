@@ -1,7 +1,4 @@
-import csv, os
-
-MAX_CELL_INDEX = 3*20+1 # Maximum 20 groups of 3 values (rome,slug,label)
-HEADER_KEYWORD = "MOT SEARCH"
+import csv, os, re
 
 class CustomSearchJob(object):
 
@@ -14,29 +11,19 @@ class CustomSearchJob(object):
 
         with open(file_path, 'r') as csvfile:
             # Note: we use US separator ',' instead of the european one ';'
-            csv_content = csv.reader(csvfile, delimiter=',', quotechar='|')
-            for line in csv_content:
-                # Ignore CSV headers
-                if line[0] == HEADER_KEYWORD:
-                    continue
-                self.compute_line(line)
+            csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
+            for line in csv_reader:
+                word = line[0].lower()
+                # New entry ?
+                if not self.custom_search_jobs.get(word, None):
+                    self.custom_search_jobs[word] = list()
 
-    def compute_line(self, line):
-        results = list()
-        for i in range(1, len(line) - 4, 3):
-            if line[i] == '':
-                break # no more values
-
-            results.append({
-                'id': line[i],
-                'label': line[i+1],
-                'occupation': line[i+2],
-            })
-
-        word = line[0].lower()
-        self.custom_search_jobs[word] = results
-
+                self.custom_search_jobs[word].append({
+                    'id': line[1],
+                    'label': line[2],
+                    'occupation': line[3],
+                })
 
     def get_entry(self, text):
         return self.custom_search_jobs.get(text.lower(), '')
