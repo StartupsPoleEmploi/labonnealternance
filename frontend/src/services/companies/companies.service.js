@@ -3,6 +3,8 @@ import { constants } from '../../constants';
 import store from '../store';
 import { COMPANIES_ACTIONS } from './companies.reducer';
 
+import { formatString } from '../../services/helpers';
+
 import { NotificationService } from '../notification/notification.service';
 import { RequestOccuringService } from '../requests_occuring/request_occuring.service';
 
@@ -72,14 +74,52 @@ class CompaniesServiceFactory {
         delete window.__companies; // Ensure that this content will not be re-used through navigation
     }
 
-    getCompanies(jobs, longitude, latitude, opts) {
+    getVisibleMarketCompanies(jobs, longitude, latitude, opts) {
+        this.getCityCodeByCoordinates(longitude, latitude)
+            .then(citycode => {
+
+                let options = opts || {};
+
+                // Create URL for LBB
+                let romes = jobs.map(job => job.rome || job.rome_code).join(',')
+
+                let url = constants.GET_VISIBLE_MARKET_COMPANIES_URL;
+                url = url.concat('romes=', romes)
+                    .concat('&citycode=', citycode);
+
+                let distance = options.distance || 10;
+                if (distance) { url = url.concat('&distance=', distance); }
+
+                // Fetch result from LBB
+                fetch(url)
+                    .then((response) => {
+                        // NOTE : the first addRequest(); is done in Result.getNewCompanies
+                        RequestOccuringService.removeRequest();
+                        if (response.status === 200) return response.json();
+
+                        NotificationService.createError('Erreur lors de communication avec le serveur');
+                    })
+                    .then((response) => {
+                        if (!response) return;
+
+                        store.dispatch({
+                            type: COMPANIES_ACTIONS.ADD_COMPANIES,
+                            data: { companies: response.companies, jobs }
+                        });
+                    });
+
+
+            }).catch(err => {});
+
+    }
+
+    getHiddenMarketCompanies(jobs, longitude, latitude, opts) {
         let options = opts || {};
 
         // Create URL for LBB
         let romes = jobs.map(job => job.rome || job.rome_code).join(',')
 
-
-        let url = constants.GET_COMPANIES_URL;
+        let url = constants.GET_HIDDEN_MARKET_COMPANIES_URL;
         url = url.concat('romes=', romes)
             .concat('&longitude=', longitude)
             .concat('&latitude=', latitude);
@@ -105,7 +145,7 @@ class CompaniesServiceFactory {
                 // Extra-request if we don't have all the companies yet
                 if (this.moreRequestsNeeded(page, response.companies_count)) {
                     RequestOccuringService.addRequest();
-                    this.getCompanies(jobs, longitude, latitude, { page: page+1, distance });
+                    this.getHiddenMarketCompanies(jobs, longitude, latitude, { page: page+1, distance });
                 }
 
                 store.dispatch({
@@ -129,6 +169,25 @@ class CompaniesServiceFactory {
 
         return companiesCount > currentPage * this.PAGE_SIZE;
     }
+
+    getCityCodeByCoordinates(longitude, latitude) {
+        let url = formatString(constants.API_ADRESSE_URL, { longitude, latitude });
+
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(response => {
+                    if (response.status === 200) return response.json();
+                    reject();
+                }).then(response => {
+                    if (!response || response.features === undefined || response.features[0] === undefined) {
+                        reject();
+                        return;
+                    }
+                    resolve(response.features[0].properties.citycode);
+                });
+        });
+    }
+
 }
 
 

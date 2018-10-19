@@ -14,6 +14,9 @@ import store from '../../../services/store';
 import { VIEWS } from '../../../services/view/views.reducers';
 import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
+// Disable this to show only visible market (offers) and debug it.
+export const SHOW_HIDDEN_MARKET = true;
+
 export class Results extends Component {
 
     constructor(props) {
@@ -122,7 +125,10 @@ export class Results extends Component {
         // We set a delay to prioritize the display of the list (for SEO purpose)
         this.mapBoxService.createMap(this.props.longitude, this.props.latitude, this.props.distance);
         let distance = this.mapBoxService.getMapMinDistance();
-        CompaniesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
+        if (SHOW_HIDDEN_MARKET === true) {
+            CompaniesService.getHiddenMarketCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
+        }
+        CompaniesService.getVisibleMarketCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }
 
     componentWillUnmount() {
@@ -160,9 +166,12 @@ export class Results extends Component {
 
         // For each jobs, get companies
         let distance = this.mapBoxService.getMapMinDistance();
-
-        CompaniesService.getCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
+        if (SHOW_HIDDEN_MARKET === true) {
+            CompaniesService.getHiddenMarketCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
+        }
+        CompaniesService.getVisibleMarketCompanies(this.props.jobs, newLongitude, newLatitude, { distance });
     }
+
     updateFitBounds(distance) {
         this.mapBoxService.setFitBounds(distance);
     }

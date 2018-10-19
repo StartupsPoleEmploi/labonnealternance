@@ -11,6 +11,7 @@ from .custom_search_jobs import CustomSearchJob
 
 
 CUSTOM_SEARCH_JOB_RESULTS = CustomSearchJob()
+PAGE_DEFAULT = 1
 DISTANCE_DEFAULT = 50
 
 
@@ -114,8 +115,32 @@ def get_city_slug_from_city_code(request):
     return HttpResponse(response.read())
 
 
-def get_companies(request):
-    # We have a token but an invalid one, no need to go further
+def get_visible_market_companies(request):
+    widget_domain_name = request.GET.get('widget-name', None)
+    use_widget_user = True if widget_domain_name else False
+
+    # Required values
+    Fetcher = collections.namedtuple('Fetcher', "romes citycode")
+    fetcher = Fetcher(request.GET.get('romes'), request.GET.get('citycode'))
+    if not all(fetcher):
+        return HttpResponseBadRequest('<h1>Bad request</h1>')
+
+    # Optional value : distance
+    distance = request.GET.get('distance', DISTANCE_DEFAULT)
+    try:
+        distance = int(distance)
+    except ValueError:
+        distance = DISTANCE_DEFAULT
+
+    try:
+        response = lbb_client.get_visible_market_companies(fetcher.citycode, fetcher.romes, distance)
+    except HTTPError:
+        return HttpResponseServerError('<h1>Error while processing request</h1>', 501)
+
+    return HttpResponse(response.read())
+
+
+def get_hidden_market_companies(request):
     widget_domain_name = request.GET.get('widget-name', None)
     use_widget_user = True if widget_domain_name else False
 
@@ -126,14 +151,14 @@ def get_companies(request):
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
     # Optional value : page
-    page = 1 if widget_domain_name else request.GET.get('page', 1)
+    page = PAGE_DEFAULT if widget_domain_name else request.GET.get('page', PAGE_DEFAULT)
     try:
         page = int(page)
     except ValueError:
-        page = 1
+        page = PAGE_DEFAULT
 
-    if page < 1:
-        page = 1
+    if page < PAGE_DEFAULT:
+        page = PAGE_DEFAULT
 
     # Optional value : pageSize
     try:
@@ -150,13 +175,12 @@ def get_companies(request):
     try:
         distance = int(distance)
     except ValueError:
-        distance = 1
-
+        distance = DISTANCE_DEFAULT
 
     try:
-        response = lbb_client.get_companies(fetcher.longitude, fetcher.latitude, fetcher.romes, page, distance, page_size, use_widget_user)
+        response = lbb_client.get_hidden_market_companies(fetcher.longitude, fetcher.latitude, fetcher.romes, page, distance, page_size, use_widget_user)
     except HTTPError:
-        return HttpResponseServerError('<h1>Error when proceeded request</h1>', 501)
+        return HttpResponseServerError('<h1>Error while processing request</h1>', 501)
 
     response = HttpResponse(response.read())
 

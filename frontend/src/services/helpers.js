@@ -88,7 +88,7 @@ export function getParameterByName(name) {
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
-// Detect is the given object is empty
+// Detect if the given object is empty
 export function isEmpty(obj) {
   return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }

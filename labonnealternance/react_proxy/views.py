@@ -24,6 +24,7 @@ COMPANY_DETAILS_TITLE = 'Offres probables d\'alternance société {}'
 RESULTS_PAGE_TITLE = 'Offres d\'alternance probables en {} - {} ({}) | La Bonne Alternance'
 RESULTS_PAGE_TITLE_NO_CITY = 'Offres d\'alternance probables en {} | La Bonne Alternance'
 
+
 class NoCompanyFound(Exception):
     pass
 
@@ -193,7 +194,7 @@ class ReactProxyAppView(View):
         # Get companies
         rome_codes_str = ','.join([rome['rome_code'] for rome in romes_data])
         try:
-            response = lbb_client.get_companies(longitude, latitude, rome_codes_str)
+            response = lbb_client.get_hidden_market_companies(longitude, latitude, rome_codes_str)
         except HTTPError:
             # Error => No need to go further
             return params
