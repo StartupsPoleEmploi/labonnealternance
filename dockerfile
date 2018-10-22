@@ -22,12 +22,19 @@ ADD requirements.txt /code/
 ADD additional_requirements.txt /code/
 RUN pip3 install -r /code/requirements.txt
 
+# Install NPM requirements in a temporary folder
+# Note : before ADD . /code/ in order to update requirement only if necessary
+ADD frontend/package.json /usr/local/temp/
+WORKDIR /usr/local/temp/
+RUN npm install
+
 # Copy all the folder
 ADD . /code/
 
 # Build React Project
 WORKDIR /code/frontend/
-RUN npm install
+# Link to temporary folder
+RUN ln -s /usr/local/temp/node_modules node_modules
 RUN npm run build
 
 # Start application
