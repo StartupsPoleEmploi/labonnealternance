@@ -22,3 +22,7 @@ test:
 
 clear-build:
 	rm -rfv frontend/build
+
+# End to end testing
+test-e2e:
+	nightwatch -c tests-e2e/browserstack.conf.js -e edge,chrome,firefox,safariHighSierra
