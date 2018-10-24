@@ -12,12 +12,10 @@
 ```
 [![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=2sNtZzSsdNX4sztdR29P)](https://www.browserstack.com/automate/public-build/2sNtZzSsdNX4sztdR29P)
 
-# Présentation du projet
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=2sNtZzSsdNX4sztdR29P)](https://www.browserstack.com/automate/public-build/2sNtZzSsdNX4sztdR29P)
 
-## Testing
-￼ For end-to-end testing, we use BrowserStack https://www.browserstack.com/
-￼
-￼ ![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
+
+# Présentation du projet
 
 ## Install a new development environment
 
@@ -35,3 +33,9 @@
 
 - [Django 2.0.1](https://www.djangoproject.com/)
 - [mandrill](https://mandrillapp.com/api/docs/index.python.html)
+
+
+## Testing
+For end-to-end testing, we use BrowserStack https://www.browserstack.com/
+
+![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)

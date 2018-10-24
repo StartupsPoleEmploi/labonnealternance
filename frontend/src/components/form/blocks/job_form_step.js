@@ -320,7 +320,7 @@ export class JobFormStep extends Component {
 
         return (
             <li className={selected ? 'selected' : ''} key={job.rome}>
-                <button data-rome={job.rome} onClick={this.toggleJob}>
+                <button class={job.rome} data-rome={job.rome} onClick={this.toggleJob}>
                     <span><span>{label}</span></span>
                     <span className="sr-only">{selected ? 'Choisir ce métier' : 'Retirer ce métier'}</span>
                     <span className={selected ? 'icon check-active' : 'icon check-inactive'}>&nbsp;</span>
