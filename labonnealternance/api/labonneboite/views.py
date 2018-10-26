@@ -20,6 +20,9 @@ def suggest_romes(request):
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
+    if not CUSTOM_SEARCH_JOB_RESULTS.load:
+        CUSTOM_SEARCH_JOB_RESULTS.load_csv()
+
     # Manual search mapping
     results = CUSTOM_SEARCH_JOB_RESULTS.get_entry(text)
     if results:
