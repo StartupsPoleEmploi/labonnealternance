@@ -1,3 +1,4 @@
+from collections import defaultdict
 import csv, os, re
 
 class CustomSearchJob(object):
@@ -6,7 +7,7 @@ class CustomSearchJob(object):
         self.load = False
 
     def load_csv(self):
-        self.custom_search_jobs = dict()
+        self.custom_search_jobs = defaultdict(list)
 
         # Populate the list from the csv file
         current_path = os.path.dirname(os.path.abspath(__file__))
@@ -16,11 +17,9 @@ class CustomSearchJob(object):
             # Note: we use US separator ',' instead of the european one ';'
             csv_reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
+
             for line in csv_reader:
                 word = line[0].lower()
-                # New entry ?
-                if not self.custom_search_jobs.get(word, None):
-                    self.custom_search_jobs[word] = list()
 
                 self.custom_search_jobs[word].append({
                     'id': line[1],
