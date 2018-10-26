@@ -1,8 +1,9 @@
 
+import ssl
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
 
-from config.settings import LBB_URL, LBB_API_KEY
+from config.settings import LBB_URL, LBB_BYPASS_SSL_CERTIFICATE, LBB_API_KEY
 
 logger = logging.getLogger(__name__)
 
@@ -60,15 +61,24 @@ def get_ordered_argument_string(args):
     return urllib.parse.urlencode(ordered_args)
 
 
+def get_url(url):
+    if LBB_BYPASS_SSL_CERTIFICATE:
+        # https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error
+        context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
+        return urllib.request.urlopen(url, context=context)
+    else:
+        return urllib.request.urlopen(url)
+
 def autocomplete_job(text):
     """ Get jobs matching the given text by calling LaBonneBoite """
     url = LBB_ROME_URL.format(LBB_URL, urllib.parse.quote(text))
-    return urllib.request.urlopen(url)
+    return get_url(url)
+
 
 def autocomplete_city(text):
     """ Get cities matching the given text by calling LaBonneBoite """
     url = LBB_CITY_URL.format(LBB_URL, urllib.parse.quote(text))
-    return urllib.request.urlopen(url)
+    return get_url(url)
 
 
 def get_company(siret):
@@ -86,7 +96,7 @@ def get_company(siret):
     params['signature'] = signature
 
     url = LBB_COMPANY_DETAILS_URL.format(LBB_URL, siret, urllib.parse.urlencode(params))
-    return urllib.request.urlopen(url)
+    return get_url(url)
 
 
 def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50):
@@ -116,7 +126,7 @@ def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50):
     url = LBB_COMPANIES_URL.format(LBB_URL, urllib.parse.urlencode(params))
 
     try:
-        response = urllib.request.urlopen(url)
+        response = get_url(url)
     except HTTPError as e:
         logger.error('Error when calling URL : {} - Exception: {}'.format(url, e))
         raise(e)
@@ -127,7 +137,7 @@ def get_job_slug_details(job_slug):
     url = LBB_JOB_SLUG_DETAILS_URL.format(LBB_URL, job_slug)
 
     try:
-        response = urllib.request.urlopen(url)
+        response = get_url(url)
     except HTTPError as e:
         logger.error('Error when calling URL : {} - Exception: {}'.format(url, e))
         raise(e)
@@ -138,7 +148,7 @@ def get_city_slug_from_city_code(city_code):
     url = LBB_CITY_SLUG_FROM_CITY_CODE_URL.format(LBB_URL, city_code)
 
     try:
-        response = urllib.request.urlopen(url)
+        response = get_url(url)
     except HTTPError as e:
         logger.error('Error when calling URL : {} - Exception: {}'.format(url, e))
         raise(e)
@@ -149,7 +159,7 @@ def get_city_slug_from_city_code(city_code):
 def get_city_slug_details(city_slug):
     url = LBB_CITY_SLUG_DETAILS_URL.format(LBB_URL, city_slug)
     try:
-        response = urllib.request.urlopen(url)
+        response = get_url(url)
     except HTTPError as e:
         logger.error('Error when calling URL : {} - Exception: {}'.format(url, e))
         raise(e)
