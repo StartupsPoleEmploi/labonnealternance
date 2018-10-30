@@ -19,7 +19,7 @@ def suggest_romes(request):
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
     # Remove some cursus words
-    escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap', 'cqp', 'titre']
+'    escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap', 'cqp', 'titre', 'cqp', 'bp', 'professionnelle']
     for word in escape_words:
         escape = re.compile(re.escape(word), re.IGNORECASE)
         text = escape.sub('', text)
