@@ -28,7 +28,7 @@ export default class Home extends Component {
                     <main>
                         <section className="main-landing">
                             <h1 className="introduction">
-                                <span>Trouvez ici les <strong><span className="no-break-word bold">63 000</span> entreprises</strong></span><br />
+                                <span>Trouvez ici les entreprises</span><br />
                                 <span>qui recrutent <strong>régulièrement</strong> en alternance</span>
                             </h1>
 
