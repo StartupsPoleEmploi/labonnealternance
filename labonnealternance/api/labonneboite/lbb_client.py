@@ -20,7 +20,6 @@ LBB_ROME_URL = '{}/suggest_job_labels?term={}'
 LBB_CITY_URL = '{}/suggest_locations?term={}'
 
 
-
 def make_timestamp():
     """
     Create the API request's timestamp

@@ -246,7 +246,6 @@ def extract_job_slug():
         slug_suggestions = json.loads(response.decode('utf-8'))
 
         occupations = [slug.get('occupation') for slug in slug_suggestions]
-        print('(\'{}\', \'{}\'),'.format(term, ','.join(occupations)))
 
 
 def create_sitemap():

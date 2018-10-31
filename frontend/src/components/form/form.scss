@@ -36,6 +36,23 @@ $submit-width: 340px;
         }
     }
 
+    .pagination {
+        text-align: right;
+        margin-top: 10px;
+        button {
+            background: none;
+            border: none;
+            padding: 5px;
+            margin-left: 5px;
+            color: white;
+            &:not(.selected) {
+                background: white;
+                color: black;
+                &:hover { text-decoration: underline; }
+            }
+        }
+    }
+
     .job-form-step, #location-form-step {
         margin: auto;
         max-width: 850px;

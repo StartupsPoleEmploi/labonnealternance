@@ -18,6 +18,7 @@ const JOB_SEARCH_URL = '/recherche'
 const JOBS_FILTER_URL = '/recherche/filtre-metiers'
 const CITY_SEARCH_URL = '/recherche/choix-ville'
 
+const PAGE_SIZE = 10
 
 export class JobFormStep extends Component {
 
@@ -42,6 +43,7 @@ export class JobFormStep extends Component {
             requestNumber,
             placeholder: PLACEHOLDER_TEXT,
             suggestedJobs: [],
+            currentPage: 0,
 
             showNoJobPopin: true,
             formStep: AUTOCOMPLETE_STEP
@@ -260,17 +262,30 @@ export class JobFormStep extends Component {
         );
     }
 
+    renderPagination() {
+        return (
+            <div className="pagination">
+                { [0,1].map(page=> (<button key={page} className={ this.state.currentPage === page ? 'selected' : '' } data-page={page} onClick={this.setPage}>{page + 1}</button>)) }
+            </div>
+        );
+    }
+
     renderSelectJobsBlock() {
         let showSubmit = true;
         if (this.props.compactMode !== undefined) showSubmit = !this.props.compactMode;
+
+        // Pagination
+        let begin = PAGE_SIZE * this.state.currentPage;
+        const suggestedJobs = this.state.suggestedJobs.slice(begin, begin + PAGE_SIZE);
 
         return (
             <div className="job-form-step">
                 <h2 className="small"><label htmlFor="job_input">Choisissez les métiers qui vous intéressent</label></h2>
 
                 <ul className="list-unstyled">
-                    {this.state.suggestedJobs.map(job => this.renderJob(job))}
+                    { suggestedJobs.map(job => this.renderJob(job))}
                 </ul>
+                { this.state.suggestedJobs.length > PAGE_SIZE ? this.renderPagination() : null }
 
                 { showSubmit ? <div className="submit-container">
                     <button className="button go-button" disabled={!this.isStepValid()} onClick={this.validateStep}>Valider</button>
@@ -295,6 +310,11 @@ export class JobFormStep extends Component {
                 </button>
             </li>
         );
+    }
+
+    setPage = (e) => {
+        let page = e.target.attributes['data-page'].value;
+        this.setState({ currentPage: +page });
     }
 
     render() {
