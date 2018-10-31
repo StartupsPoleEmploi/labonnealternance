@@ -40,6 +40,10 @@ class ReactProxyAppView(View):
         if not path.endswith('.css') and not path.endswith('.js') and not path.endswith('.ico'):
             params = { 'title': self.compute_page_title(path) }
 
+            # Render all index.html only in home page
+            if path == '/':
+                params.update({ 'render_complete_home': True })
+
             # Company details
             if path.startswith("/details-entreprises/"):
                 params = self.get_company_details_as_param(path, params)
