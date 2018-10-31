@@ -244,8 +244,10 @@ export class LocationFormStep extends Component {
             <ul className="suggestions list-unstyled">
                 {
                     this.state.suggestions.map((city, index) => (
-                        <li key={city.city + '-' + city.zipcode} onClick={this.saveCityAutocomplete} data-zipcode={city.zipcode} data-latitude={city.latitude} data-slug={city.city + '-' + city.zipcode} data-longitude={city.longitude}>
-                            {city.city} ({city.zipcode})
+                        <li key={city.city + '-' + city.zipcode}>
+                            <button onClick={this.saveCityAutocomplete} data-zipcode={city.zipcode} data-latitude={city.latitude} data-slug={city.city + '-' + city.zipcode} data-longitude={city.longitude}>
+                                {city.city} ({city.zipcode})
+                            </button>
                         </li>)
                     )
                 }

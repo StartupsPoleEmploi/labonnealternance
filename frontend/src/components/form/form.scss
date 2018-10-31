@@ -67,17 +67,23 @@ $submit-width: 340px;
             overflow: hidden;
 
             li {
-                text-transform: capitalize;
                 border-bottom: solid 1px darkgray;
-
-                padding: 15px 10px;
-                color: #333;
-
                 &:last-child { border-bottom: none; }
 
                 &:hover {
                     background-color: lightgrey;
                     cursor: pointer;
+                }
+
+                button {
+                    padding: 15px 10px;
+                    text-transform: capitalize;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    background: transparent;
+                    font-size: 1em;
+                    color: #333;
                 }
             }
         }
