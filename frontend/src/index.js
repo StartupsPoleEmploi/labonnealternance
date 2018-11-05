@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
+import 'babel-polyfill';
+
 
 import { environment } from './environment';
 

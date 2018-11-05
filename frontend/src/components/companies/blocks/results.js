@@ -46,9 +46,9 @@ export class Results extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if(this.state !== nextState) return true;
+        if (this.state !== nextState) return true;
 
-        let fields= ['distance', 'handleCompanyCount', 'jobs', 'latitude', 'longitude', 'searchTerm']
+        let fields = ['distance', 'handleCompanyCount', 'jobs', 'latitude', 'longitude', 'searchTerm']
         return fields.some(field => this.state[field] !== nextState[field]);
     }
 
@@ -74,13 +74,14 @@ export class Results extends Component {
                     // Note : no setState({}) here => to avoid a lot of component update
                     this.mapBoxService.addMarker(company);
                 }, delay * 1000); // x1000 to get in second instead of milliseconds
+
             });
 
             // Sort companies by distance
-            companies = new Map(toArray(companies.entries()).sort((a,b) => a[1].distance - b[1].distance));
+            companies = new Map(toArray(companies.entries()).sort((a, b) => a[1].distance - b[1].distance));
 
             // Register companies and display no-result if needed
-            this.setState({ companies, count: this.state.count + companies.size  });
+            this.setState({ companies, count: this.state.count + companies.size });
 
             // Wait before remove loading
             setTimeout(() => {
@@ -89,7 +90,7 @@ export class Results extends Component {
 
 
             // If we don't expect other request result
-            if(REQUEST_OCCURING_STORE.getState() === 0) {
+            if (REQUEST_OCCURING_STORE.getState() === 0) {
                 // Hide or show the no-result modal
                 if (companies.size === 0 && !filterActive) this.setState({ modalNoResult: true });
                 else this.setState({ modalNoResult: false });
@@ -117,13 +118,12 @@ export class Results extends Component {
     }
 
     componentDidMount() {
+        // In order to get first display faster (for SEO purpose mainly), we put some companies in the window object
+        if (window.__companies) CompaniesService.getCompaniesFromWindowObject(this.props.jobs);
+
         // Create map when the component is ready
+        // We set a delay to prioritize the display of the list (for SEO purpose)
         this.mapBoxService.createMap(this.props.longitude, this.props.latitude, this.props.distance);
-
-        if(window.__companies) {
-            CompaniesService.getCompaniesFromWindowObject(this.props.jobs);
-        }
-
         let distance = this.mapBoxService.getMapMinDistance();
         CompaniesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
     }
@@ -210,14 +210,14 @@ export class Results extends Component {
     renderResultsAsList() {
         // Show the company list
         return (
-            <div id="list-results" className={this.state.loading ? 'loading':''} >
+            <div id="list-results" className={this.state.loading ? 'loading' : ''} >
 
-                { this.state.currentView !== VIEWS.FILTERS  ? this.renderResultTitle() : null }
+                {this.state.currentView !== VIEWS.FILTERS ? this.renderResultTitle() : null}
 
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
                 {/* FIXME: we add the service instead of the method... because _this_ will refer to the childComponent if we pass the method... */}
-                <CompanyFilters jobs={this.props.jobs} isFiltering={this.state.isFiltering} mapBoxService={this.mapBoxService}/>
-                { this.state.currentView !== VIEWS.FILTERS ? this.renderResultList(): null }
+                <CompanyFilters jobs={this.props.jobs} isFiltering={this.state.isFiltering} mapBoxService={this.mapBoxService} />
+                {this.state.currentView !== VIEWS.FILTERS ? this.renderResultList() : null}
             </div>
         );
     }
@@ -233,7 +233,7 @@ export class Results extends Component {
                             <button onClick={this.move} data-direction="left" className="left">&nbsp;</button>
                             <button onClick={this.move} data-direction="right" className="right">&nbsp;</button>
                         </div>
-                        { this.state.modalNoResult && !this.state.loading ?
+                        {this.state.modalNoResult && !this.state.loading ?
                             <div className="no-result">
                                 <div>Désolé, nous n'avons pas trouvé d'entreprises correspondant à votre recherche</div>
                                 <div><strong>Elargissez votre recherche grâce à la carte ou faites une nouvelle recherche.</strong></div>
