@@ -149,8 +149,6 @@ class ReactProxyAppView(View):
             # Error => No need to go further
             return params
 
-        rome_codes_str = ','.join([rome['rome_code'] for rome in romes_data])
-
         longitude = None
         latitude = None
 
@@ -171,23 +169,7 @@ class ReactProxyAppView(View):
             longitude = url_params[-3]
             latitude = url_params[-2]
 
-
-        # Get companies
-        try:
-            response = lbb_client.get_companies(longitude, latitude, rome_codes_str)
-        except HTTPError:
-            # Error => No need to go further
-            return params
-
-        # This setp is needed to handle " and ' characters
-        companies_data_temp =  json.loads(response.read().decode('utf-8'))
-        companies_data = json.dumps(companies_data_temp)
-
         params.update({
-            'store': {
-                'name': '__companies',
-                'data': companies_data
-            },
             'longitude': format_as_float(longitude),
             'latitude': format_as_float(latitude),
             'jobs': romes_data
