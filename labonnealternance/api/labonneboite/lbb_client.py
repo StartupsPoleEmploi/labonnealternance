@@ -98,7 +98,7 @@ def get_company(siret):
     return get_url(url)
 
 
-def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50):
+def get_companies(longitude, latitude, rome_codes_str, page_size=PAGE_SIZE, page=1, distance=50):
     """
     Calling LaBonneBoite API to get all the companies matches the given arguments.
 
@@ -113,7 +113,7 @@ def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50):
         'distance': distance,
         'page': page,
         'contract': 'alternance',
-        'page_size': PAGE_SIZE
+        'page_size': page_size
     }
 
 

@@ -30,6 +30,9 @@ export class Results extends Component {
             this
         );
 
+        this.mapLoaded = false;
+        this.needToClearCompanies = false;
+
         this.state = {
             loading: true,
             companies: new Map(),
@@ -61,6 +64,11 @@ export class Results extends Component {
             let companiesStored = COMPANIES_STORE.getState();
             let companies = this.state.companies;
 
+            if(this.needToClearCompanies) {
+                companies = new Map();
+                this.needToClearCompanies = false;
+            }
+
             companiesStored.forEach((company, siret) => {
                 // Not display if filtered ?
                 if (company.visible === false) return;
@@ -68,12 +76,14 @@ export class Results extends Component {
 
                 companies.set(siret, company);
 
-                // Wait between 0..1 second to add a marker (to create a little delay)
-                let delay = Math.random();
-                setTimeout(() => {
-                    // Note : no setState({}) here => to avoid a lot of component update
-                    this.mapBoxService.addMarker(company);
-                }, delay * 1000); // x1000 to get in second instead of milliseconds
+                if(this.mapLoaded) {
+                    // Wait between 0..1 second to add a marker (to create a little delay)
+                    let delay = Math.random();
+                    setTimeout(() => {
+                        // Note : no setState({}) here => to avoid a lot of component update
+                        this.mapBoxService.addMarker(company);
+                    }, delay * 1000); // x1000 to get in second instead of milliseconds
+                }
             });
 
             // Sort companies by distance
@@ -117,15 +127,18 @@ export class Results extends Component {
     }
 
     componentDidMount() {
+        // In order to get first display faster (for SEO purpose mainly), we put some companies in the window object
+        if(window.__companies) CompaniesService.getCompaniesFromWindowObject(this.props.jobs);
+
         // Create map when the component is ready
-        this.mapBoxService.createMap(this.props.longitude, this.props.latitude, this.props.distance);
-
-        if(window.__companies) {
-            CompaniesService.getCompaniesFromWindowObject(this.props.jobs);
-        }
-
-        let distance = this.mapBoxService.getMapMinDistance();
-        CompaniesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
+        // We set a delay to prioritize the display of the list (for SEO purpose)
+        setTimeout(() => {
+            this.mapBoxService.createMap(this.props.longitude, this.props.latitude, this.props.distance);
+            this.needToClearCompanies = true;
+            this.mapLoaded = true;
+            let distance = this.mapBoxService.getMapMinDistance();
+            CompaniesService.getCompanies(this.props.jobs, this.props.longitude, this.props.latitude, { distance });
+        }, 250);
     }
 
     componentWillUnmount() {

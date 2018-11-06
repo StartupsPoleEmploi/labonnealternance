@@ -169,7 +169,41 @@ class ReactProxyAppView(View):
             longitude = url_params[-3]
             latitude = url_params[-2]
 
+
+        # Get companies
+        rome_codes_str = ','.join([rome['rome_code'] for rome in romes_data])
+        try:
+            response = lbb_client.get_companies(longitude, latitude, rome_codes_str, page_size=20)
+        except HTTPError:
+            # Error => No need to go further
+            return params
+
+        # This step is needed to handle " and ' characters
+        companies_data_temp =  json.loads(response.read().decode('utf-8'))
+
+        # Keep only (in order to reduce JSON size)
+        filter_results = [
+            {
+                'name': company.get('name'),
+                'siret': company.get('siret'),
+                'naf': company.get('naf'),
+                'naf_text': company.get('naf_text'),
+                'lon': company.get('lon'),
+                'lat': company.get('lat'),
+                'city': company.get('city'),
+                'distance': company.get('distance'),
+                'matched_rome_code': company.get('matched_rome_code')
+            } for company in companies_data_temp.get('companies')
+        ]
+        companies_data_temp.update({ 'companies': filter_results })
+
+        companies_data = json.dumps(companies_data_temp)
+
         params.update({
+            'store': {
+                'name': '__companies',
+                'data': companies_data
+            },
             'longitude': format_as_float(longitude),
             'latitude': format_as_float(latitude),
             'jobs': romes_data
