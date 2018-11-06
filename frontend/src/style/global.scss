@@ -405,6 +405,20 @@ header#global-header {
                     text-decoration: underline;
                 }
             }
+
+            .pagination {
+                text-align: right;
+                margin-top: 5px;
+                button {
+                    border: none;
+                    background: none;
+                    margin-left: 5px;
+                    padding: 3px 5px;
+                    &:not(.selected) {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
 
         .or, .distance {
