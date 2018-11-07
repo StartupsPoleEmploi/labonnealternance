@@ -130,20 +130,22 @@ class Companies extends Component {
 
     // Handle when user use Go back / Go forward buttons
     handleBackForwardEvent(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
         // Handle companySiret (if in history.state)
-        let companySiret;
-        if (event.state) companySiret = event.state.companySiret || undefined;
-
-        if (!companySiret) {
+        let company = COMPANY_DETAILS_STORE.getState();
+        if (company) {
+            event.preventDefault();
+            event.stopPropagation();
             CompanyDetailsService.unsetCompany();
-        } else CompanyDetailsService.setCompanySiret(companySiret);
+            return false;
+        }
 
-        // Handle view (if in history.state)
+        // Native behavior
+        if(window.location.pathname.startsWith('/entreprises')) {
+            window.history.back();
+            // Disbale pop state
+            window.onpopstate = undefined;
+        }
 
-        return false;
     }
 
     componentWillMount() {
