@@ -118,6 +118,7 @@
     section.main-landing {
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
+        height: 960px; /* For old browser compatibility */
         height: 100vh;
 
         .footer {
@@ -173,6 +174,7 @@
 
     .more {
         position: absolute;
+        top: 960px; /* For old browser compatibility */
         top: 100vh; left: 0; right: 0;
 
         @media (max-height: 400px) { top: 110%; }
