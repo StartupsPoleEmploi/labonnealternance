@@ -1,87 +1,45 @@
-COMMERCE,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-COMMERCE,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-COMMERCE,D1401,Assistanat commercial,assistanat-commercial
-COMMERCE,E1101,Animation de site multimédia ( Web commercial / commerciale),animation-de-site-multimedia
-COMMERCE,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-COMMERCE,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-COMMERCE,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-COMMERCE,D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-COMMERCE,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-COMMERCE,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-COMMERCE,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-COMMERCE,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-COMMERCE,M1705,Marketing (Assistant / Assistante marketing….),marketing
-COMMERCE,M1101,Achats (Acheteur / Acheteuse junior….),achats
-COMMERCE,D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
-COMMERCE,D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-COMMERCE,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-COMMERCE,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-COMMERCE,D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-COMMERCE,D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-COMMERCE,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-COMMERCIAL,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-COMMERCIAL,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-COMMERCIAL,D1401,Assistanat commercial,assistanat-commercial
-COMMERCIAL,E1101,Animation de site multimédia ( Web commercial / commerciale),animation-de-site-multimedia
-COMMERCIAL,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-COMMERCIAL,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-COMMERCIAL,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-COMMERCIAL,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-COMMERCIAL,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-COMMERCIAL,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-COMMERCIAL,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-COMMERCIAL,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-COMMERCIAL,M1705,Marketing (Assistant / Assistante marketing….),marketing
-COMMERCIAL,M1101,Achats (Acheteur / Acheteuse junior….),achats
-COMMERCIAL,D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
-COMMERCIAL,D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-COMMERCIAL,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-COMMERCIAL,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-COMMERCIAL,D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-COMMERCIAL,D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-COMMERCIAL,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-VENDEUR,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-VENDEUR,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-VENDEUR,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-VENDEUR,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-VENDEUR,D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-VENDEUR,D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-VENDEUR,G1303,Vente de voyages,vente-de-voyages
-VENDEUR,D1201,"Achat vente d'objets d'art, anciens ou d'occasion (Vendeur / Vendeuse en antiquités…)",achat-vente-d-objets-d-art-anciens-ou-d-occasion
-VENDEUR,D1209,Vente en végétaux,vente-en-vegetaux
-VENDEUR,D1210,Vente en animalerie,vente-en-animalerie
-VENDEUR,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-VENDEUR,D1401,Assistanat commercial,assistanat-commercial
-VENDEUR,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-VENDEUR,D1211,Vente en gros de matériel et équipement (Vendeur en grossiste….),vente-en-articles-de-sport-et-loisirs
-VENDEUR,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-VENDEUR,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-VENDEUR,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-VENDEUR,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-VENDEUR,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-VENDEUR,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-VENDEUR,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-VENDEUSE,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-VENDEUSE,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-VENDEUSE,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-VENDEUSE,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-VENDEUSE,D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-VENDEUSE,D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-VENDEUSE,G1303,Vente de voyages,vente-de-voyages
-VENDEUSE,D1201,"Achat vente d'objets d'art, anciens ou d'occasion (Vendeur / Vendeuse en antiquités…)",achat-vente-d-objets-d-art-anciens-ou-d-occasion
-VENDEUSE,D1209,Vente en végétaux,vente-en-vegetaux
-VENDEUSE,D1210,Vente en animalerie,vente-en-animalerie
-VENDEUSE,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-VENDEUSE,D1401,Assistanat commercial,assistanat-commercial
-VENDEUSE,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-VENDEUSE,D1211,Vente en gros de matériel et équipement (Vendeur en grossiste….),vente-en-articles-de-sport-et-loisirs
-VENDEUSE,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-VENDEUSE,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-VENDEUSE,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-VENDEUSE,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-VENDEUSE,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-VENDEUSE,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-VENDEUSE,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
+"COMMERCE,COMMERCIAL",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
+"COMMERCE,COMMERCIAL",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
+"COMMERCE,COMMERCIAL",D1401,Assistanat commercial,assistanat-commercial
+"COMMERCE,COMMERCIAL",E1101,Animation de site multimédia ( Web commercial / commerciale),animation-de-site-multimedia
+"COMMERCE,COMMERCIAL",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
+"COMMERCE,COMMERCIAL",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
+"COMMERCE,COMMERCIAL",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
+"COMMERCE,COMMERCIAL",D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"COMMERCE,COMMERCIAL",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
+"COMMERCE,COMMERCIAL",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
+"COMMERCE,COMMERCIAL",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
+"COMMERCE,COMMERCIAL",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
+"COMMERCE,COMMERCIAL",M1705,Marketing (Assistant / Assistante marketing….),marketing
+"COMMERCE,COMMERCIAL",M1101,Achats (Acheteur / Acheteuse junior….),achats
+"COMMERCE,COMMERCIAL",D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
+"COMMERCE,COMMERCIAL",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
+"COMMERCE,COMMERCIAL",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
+"COMMERCE,COMMERCIAL",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
+"COMMERCE,COMMERCIAL",D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
+"COMMERCE,COMMERCIAL",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
+"COMMERCE,COMMERCIAL",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
+"VENDEUR,VENDEUSE",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
+"VENDEUR,VENDEUSE",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
+"VENDEUR,VENDEUSE",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
+"VENDEUR,VENDEUSE",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
+"VENDEUR,VENDEUSE",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
+"VENDEUR,VENDEUSE",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
+"VENDEUR,VENDEUSE",G1303,Vente de voyages,vente-de-voyages
+"VENDEUR,VENDEUSE",D1201,"Achat vente d'objets d'art, anciens ou d'occasion (Vendeur / Vendeuse en antiquités…)",achat-vente-d-objets-d-art-anciens-ou-d-occasion
+"VENDEUR,VENDEUSE",D1209,Vente en végétaux,vente-en-vegetaux
+"VENDEUR,VENDEUSE",D1210,Vente en animalerie,vente-en-animalerie
+"VENDEUR,VENDEUSE",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
+"VENDEUR,VENDEUSE",D1401,Assistanat commercial,assistanat-commercial
+"VENDEUR,VENDEUSE",D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"VENDEUR,VENDEUSE",D1211,Vente en gros de matériel et équipement (Vendeur en grossiste….),vente-en-articles-de-sport-et-loisirs
+"VENDEUR,VENDEUSE",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
+"VENDEUR,VENDEUSE",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
+"VENDEUR,VENDEUSE",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
+"VENDEUR,VENDEUSE",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
+"VENDEUR,VENDEUSE",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
+"VENDEUR,VENDEUSE",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
+"VENDEUR,VENDEUSE",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
 INFORMATIQUE,I1401,Maintenance informatique et bureautique (Installateur dépanneur / Installatrice dépanneuse en informatique,maintenance-informatique-et-bureautique
 INFORMATIQUE,M1805,Études et développement informatique (Développeur / Développeuse informatique…),etudes-et-developpement-informatique
 INFORMATIQUE,M1801,Administration de systèmes d'information(Administrateur / Administratrice de site Web….),administration-de-systemes-d-information
@@ -98,151 +56,73 @@ COMMUNICATION,E1101,Animation de site multimédia (Chargé / Chargée des relati
 COMMUNICATION,E1103,Communication (Assistant / Assistante de communication….),communication
 COMMUNICATION,E1104,Conception de contenus multimédias (Rédacteur / Rédactrice web…),conception-de-contenus-multimedias
 COMMUNICATION,E1106,Journalisme et information média (Assistant / Assistante de rédaction….),journalisme-et-information-media
-COMPTABLE,M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
-COMPTABLE,M1204,Contrôle de gestion (Assistant / Assistante au contrôle de gestion…),controle-de-gestion
-COMPTABLE,M1202,Audit et contrôle comptables et financiers (Collaborateur / Collaboratrice d'expertise comptable,audit-et-controle-comptables-et-financiers
-COMPTABLE,M1201,Analyse et ingénierie financière (Gestionnaire de risques financiers…),analyse-et-ingenierie-financiere
-COMPTABILITE,M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
-COMPTABILITE,M1204,Contrôle de gestion (Assistant / Assistante au contrôle de gestion…),controle-de-gestion
-COMPTABILITE,M1202,Audit et contrôle comptables et financiers (Collaborateur / Collaboratrice d'expertise comptable,audit-et-controle-comptables-et-financiers
-COMPTABILITE,M1201,Analyse et ingénierie financière (Gestionnaire de risques financiers…),analyse-et-ingenierie-financiere
+"COMPTABLE,COMPTABILITE",M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
+"COMPTABLE,COMPTABILITE",M1204,Contrôle de gestion (Assistant / Assistante au contrôle de gestion…),controle-de-gestion
+"COMPTABLE,COMPTABILITE",M1202,Audit et contrôle comptables et financiers (Collaborateur / Collaboratrice d'expertise comptable,audit-et-controle-comptables-et-financiers
+"COMPTABLE,COMPTABILITE",M1201,Analyse et ingénierie financière (Gestionnaire de risques financiers…),analyse-et-ingenierie-financiere
 MARKETING,M1403,Études et prospectives socio-économiques (Chargé / Chargée d'études en marketing…),etudes-et-prospectives-socio-economiques
 MARKETING,M1705,Marketing (Assistant / Assistante marketing…),marketing
 MARKETING,M1703,Management et gestion de produit (Assistant / Assistante chef de produit…),management-et-gestion-de-produit
-Secrétaire,M1607,Secrétariat (Secrétaire administratif / administrative…),secretariat
-Secrétaire,M1608,Secrétariat comptable ,secretariat-comptable
-Secrétaire,M1609,Secrétariat et assistanat médical ou médico-social (Secrétaire médical / médicale…),secretariat-et-assistanat-medical-ou-medico-social
-Secrétaire,M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
-Secrétaire,M1501,Assistanat en ressources humaines (Secrétaire du service personnel…),assistanat-en-ressources-humaines
-Secrétaire,D1401,Assistanat commercial (Secrétaire commercial / commerciale….),assistanat-commercial
-Secrétaire,C1502,Gestion locative immobilière (Secrétaire en agence immobiliére…),gestion-locative-immobiliere
-Secrétaire,M1605,Assistanat technique et administratif (Secrétaire du bâtiment…),assistanat-technique-et-administratif
-Secrétaire,C1401,Gestion en banque et assurance (Agent administratif / Agente administrative d'assurances….),gestion-en-banque-et-assurance
-Secrétaire,M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
-SECRETAIRE,M1607,Secrétariat (Secrétaire administratif / administrative…),secretariat
-SECRETAIRE,M1608,Secrétariat comptable ,secretariat-comptable
-SECRETAIRE,M1609,Secrétariat et assistanat médical ou médico-social (Secrétaire médical / médicale…),secretariat-et-assistanat-medical-ou-medico-social
-SECRETAIRE,M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
-SECRETAIRE,M1501,Assistanat en ressources humaines (Secrétaire du service personnel…),assistanat-en-ressources-humaines
-SECRETAIRE,D1401,Assistanat commercial (Secrétaire commercial / commerciale….),assistanat-commercial
-SECRETAIRE,C1502,Gestion locative immobilière (Secrétaire en agence immobiliére…),gestion-locative-immobiliere
-SECRETAIRE,M1605,Assistanat technique et administratif (Secrétaire du bâtiment…),assistanat-technique-et-administratif
-SECRETAIRE,C1401,Gestion en banque et assurance (Agent administratif / Agente administrative d'assurances….),gestion-en-banque-et-assurance
-SECRETAIRE,M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
-SECRETARIAT,M1607,Secrétariat (Secrétaire administratif / administrative…),secretariat
-SECRETARIAT,M1608,Secrétariat comptable ,secretariat-comptable
-SECRETARIAT,M1609,Secrétariat et assistanat médical ou médico-social (Secrétaire médical / médicale…),secretariat-et-assistanat-medical-ou-medico-social
-SECRETARIAT,M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
-SECRETARIAT,M1501,Assistanat en ressources humaines (Secrétaire du service personnel…),assistanat-en-ressources-humaines
-SECRETARIAT,D1401,Assistanat commercial (Secrétaire commercial / commerciale….),assistanat-commercial
-SECRETARIAT,C1502,Gestion locative immobilière (Secrétaire en agence immobiliére…),gestion-locative-immobiliere
-SECRETARIAT,M1605,Assistanat technique et administratif (Secrétaire du bâtiment…),assistanat-technique-et-administratif
-SECRETARIAT,C1401,Gestion en banque et assurance (Agent administratif / Agente administrative d'assurances….),gestion-en-banque-et-assurance
-SECRETARIAT,M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
-ASSISTANT ADMINISTRATIF,M1607,Secrétariat (Secrétaire administratif / administrative…),secretariat
-ASSISTANT ADMINISTRATIF,M1608,Secrétariat comptable ,secretariat-comptable
-ASSISTANT ADMINISTRATIF,M1609,Secrétariat et assistanat médical ou médico-social (Secrétaire médical / médicale…),secretariat-et-assistanat-medical-ou-medico-social
-ASSISTANT ADMINISTRATIF,M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
-ASSISTANT ADMINISTRATIF,M1501,Assistanat en ressources humaines (Secrétaire du service personnel…),assistanat-en-ressources-humaines
-ASSISTANT ADMINISTRATIF,D1401,Assistanat commercial (Secrétaire commercial / commerciale….),assistanat-commercial
-ASSISTANT ADMINISTRATIF,C1502,Gestion locative immobilière (Secrétaire en agence immobiliére…),gestion-locative-immobiliere
-ASSISTANT ADMINISTRATIF,M1605,Assistanat technique et administratif (Secrétaire du bâtiment…),assistanat-technique-et-administratif
-ASSISTANT ADMINISTRATIF,C1401,Gestion en banque et assurance (Agent administratif / Agente administrative d'assurances….),gestion-en-banque-et-assurance
-ASSISTANT ADMINISTRATIF,M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1607,Secrétariat (Secrétaire administratif / administrative…),secretariat
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1608,Secrétariat comptable ,secretariat-comptable
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1609,Secrétariat et assistanat médical ou médico-social (Secrétaire médical / médicale…),secretariat-et-assistanat-medical-ou-medico-social
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1501,Assistanat en ressources humaines (Secrétaire du service personnel…),assistanat-en-ressources-humaines
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",D1401,Assistanat commercial (Secrétaire commercial / commerciale….),assistanat-commercial
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",C1502,Gestion locative immobilière (Secrétaire en agence immobiliére…),gestion-locative-immobiliere
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1605,Assistanat technique et administratif (Secrétaire du bâtiment…),assistanat-technique-et-administratif
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",C1401,Gestion en banque et assurance (Agent administratif / Agente administrative d'assurances….),gestion-en-banque-et-assurance
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1203,Comptabilité (Assistant / Assistante comptable….),comptabilite
 ASSISTANT MANAGER,M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
 ASSISTANT MANAGER,D1401,Assistanat commercial (Secrétaire commercial / commerciale….),assistanat-commercial
 ASSISTANT MANAGER,M1203,Comptabilité (Assistant / Assistante comptable et administrative….),comptabilite
 ASSISTANT MANAGER,G1401,Assistance de direction d'hôtel-restaurant (Assistant manager / Assistante manageuse en restauration…),assistance-de-direction-d-hotel-restaurant
-BTS MUC,D1508,Encadrement du personnel de caisses,encadrement-du-personnel-de-caisses
-BTS MUC,D1401,Assistanat commercial,assistanat-commercial
-BTS MUC,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-BTS MUC,D1509,Management de département en grande distribution,management-de département-en-grande-ditribution
-BTS MUC,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-BTS MUC,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-BTS MUC,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-BTS MUC,D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-BTS MUC,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-BTS MUC,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-BTS MUC,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-BTS MUC,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-BTS MUC,M1705,Marketing (Assistant / Assistante marketing….),marketing
-BTS MUC,D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
-BTS MUC,D1502,Management/gestion de rayon produits alimentaires,management-gestion-de-rayon-produits-alimentaires
-BTS MUC,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-BTS MUC,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-BTS MUC,D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-BTS MUC,D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-BTS MUC,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1508,Encadrement du personnel de caisses,encadrement-du-personnel-de-caisses
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1401,Assistanat commercial,assistanat-commercial
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1509,Management de département en grande distribution,management-de département-en-grande-ditribution
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-BTS MANAGEMENT DES UNITES COMMERCIALES,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-BTS MANAGEMENT DES UNITES COMMERCIALES,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-BTS MANAGEMENT DES UNITES COMMERCIALES,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-BTS MANAGEMENT DES UNITES COMMERCIALES,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-BTS MANAGEMENT DES UNITES COMMERCIALES,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-BTS MANAGEMENT DES UNITES COMMERCIALES,M1705,Marketing (Assistant / Assistante marketing….),marketing
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1502,Management/gestion de rayon produits alimentaires,management-gestion-de-rayon-produits-alimentaires
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-BTS MANAGEMENT DES UNITES COMMERCIALES,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-BTS NRC,D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-BTS NRC,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-BTS NRC,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-BTS NRC,D1401,Assistanat commercial,assistanat-commercial
-BTS NRC,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-BTS NRC,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-BTS NRC,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-BTS NRC,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-BTS NRC,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-BTS NRC,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-BTS NRC,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-BTS NRC,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-BTS NRC,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-BTS NRC,M1705,Marketing (Assistant / Assistante marketing….),marketing
-BTS NRC,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-BTS NRC,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-BTS NRC,D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-BTS NRC,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-BTS NRC,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-BTS NEGOCIATION RELATION CLIENT,D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-BTS NEGOCIATION RELATION CLIENT,D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-BTS NEGOCIATION RELATION CLIENT,D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-BTS NEGOCIATION RELATION CLIENT,D1401,Assistanat commercial,assistanat-commercial
-BTS NEGOCIATION RELATION CLIENT,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-BTS NEGOCIATION RELATION CLIENT,C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-BTS NEGOCIATION RELATION CLIENT,D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-BTS NEGOCIATION RELATION CLIENT,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-BTS NEGOCIATION RELATION CLIENT,C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-BTS NEGOCIATION RELATION CLIENT,C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-BTS NEGOCIATION RELATION CLIENT,M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-BTS NEGOCIATION RELATION CLIENT,M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-BTS NEGOCIATION RELATION CLIENT,M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-BTS NEGOCIATION RELATION CLIENT,M1705,Marketing (Assistant / Assistante marketing….),marketing
-BTS NEGOCIATION RELATION CLIENT,D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-BTS NEGOCIATION RELATION CLIENT,D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-BTS NEGOCIATION RELATION CLIENT,D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-BTS NEGOCIATION RELATION CLIENT,D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-BTS NEGOCIATION RELATION CLIENT,D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1508,Encadrement du personnel de caisses,encadrement-du-personnel-de-caisses
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1401,Assistanat commercial,assistanat-commercial
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1509,Management de département en grande distribution,management-de département-en-grande-ditribution
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",M1705,Marketing (Assistant / Assistante marketing….),marketing
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1502,Management/gestion de rayon produits alimentaires,management-gestion-de-rayon-produits-alimentaires
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
+"BTS MUC,BTS MANAGEMENT DES UNITES COMMERCIALES",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1401,Assistanat commercial,assistanat-commercial
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",M1705,Marketing (Assistant / Assistante marketing….),marketing
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
+"BTS NRC,BTS NEGOCIATION RELATION CLIENT",D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
 CQP EMPLOYE DE COMMERCE,D1507,"Mise en rayon libre-service (Employé polyvalent / Employée polyvalente de libre-service,Employé / Employée de rayon équipement de la maison....)",mise-en-rayon-libre-service
 CQP EMPLOYE DE COMMERCE,D1505,Personnel de caisse (Hôte / Hôtesse de caisse...),personnel-de-caisse
 RH,M1501,Assistanat en ressources humaines,assistanat-en-ressources-humaines
 RH,M1502,"Développement des ressources humaines (Chargé / Chargée des recrutements, des formations…)",developpement-des-ressources-humaines
 RH,M1503,Management des ressources humaines (Adjoint / Adjointe au responsable RH…),management-des-ressources-humaines
-CUISINE,G1602,Personnel de cuisine,personnel-de-cuisine
-CUISINE,G1603 ,Personnel polyvalent en restauration,personnel-polyvalent-en-restauration
-CUISINE,G1604,Fabrication de crêpes ou pizzas,fabrication-de-crêpes-ou-pizzas
-CUISINE,G1605,Plonge en restauration,plonge-en-restauration
-CUISINE,G1601,Management du personnel de cuisine (chef de cuisine...),management-du personnel-de-cuisine
-CUISINIER,G1602,Personnel de cuisine,personnel-de-cuisine
-CUISINIER,G1603 ,Personnel polyvalent en restauration,personnel-polyvalent-en-restauration
-CUISINIER,G1604,Fabrication de crêpes ou pizzas,fabrication-de-crêpes-ou-pizzas
-CUISINIER,G1605,Plonge en restauration,plonge-en-restauration
-CUISINIER,G1601,Management du personnel de cuisine (chef de cuisine...),management-du personnel-de-cuisine
+"CUISINE,CUISINIER",G1602,Personnel de cuisine,personnel-de-cuisine
+"CUISINE,CUISINIER",G1603 ,Personnel polyvalent en restauration,personnel-polyvalent-en-restauration
+"CUISINE,CUISINIER",G1604,Fabrication de crêpes ou pizzas,fabrication-de-crêpes-ou-pizzas
+"CUISINE,CUISINIER",G1605,Plonge en restauration,plonge-en-restauration
+"CUISINE,CUISINIER",G1601,Management du personnel de cuisine (chef de cuisine...),management-du personnel-de-cuisine

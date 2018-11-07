@@ -19,13 +19,13 @@ class CustomSearchJob(object):
 
 
             for line in csv_reader:
-                word = line[0].lower()
-
-                self.custom_search_jobs[word].append({
-                    'id': line[1],
-                    'label': line[2],
-                    'occupation': line[3],
-                })
+                words = line[0].lower().split(',').strip()
+                for word in words:
+                    self.custom_search_jobs[word].append({
+                        'id': line[1],
+                        'label': line[2],
+                        'occupation': line[3],
+                    })
             self.load = True
 
     def get_entry(self, text):
