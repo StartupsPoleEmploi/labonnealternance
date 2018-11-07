@@ -151,7 +151,7 @@ export class CompanyModal extends Component {
 
         return (
             <div className="modal">
-                <div className="modal-bg">&nbsp;</div>
+                <div className="modal-bg" onClick={this.closeModal}>&nbsp;</div>
                 <div className="modal-content">
                     <div className="actions-zone">
                         <button onClick={this.closeModal}><span className="icon close-icon">&nbsp;</span></button>

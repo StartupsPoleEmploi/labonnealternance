@@ -48,7 +48,7 @@ export class NotificationModal extends Component {
 
         return (
             <div id="notification-modal" className="modal">
-                <div className="modal-bg">&nbsp;</div>
+                <div className="modal-bg" onClick={this.onClose}>&nbsp;</div>
                 <div className="modal-content">
                     <button className="close" onClick={this.onClose}>
                         <span className="icon close-icon">&nbsp;</span>
