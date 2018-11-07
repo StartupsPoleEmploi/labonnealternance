@@ -19,9 +19,9 @@ class CustomSearchJob(object):
 
 
             for line in csv_reader:
-                words = line[0].lower().split(',').strip()
+                words = line[0].lower().split(',')
                 for word in words:
-                    self.custom_search_jobs[word].append({
+                    self.custom_search_jobs[word.strip()].append({
                         'id': line[1],
                         'label': line[2],
                         'occupation': line[3],
