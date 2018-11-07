@@ -26,7 +26,7 @@ export class JobFormStep extends Component {
         super(props);
 
 
-        this.callAutocompleteJobsFn = debounce(this.callAutocompleteJobs, 250)
+        this.callAutocompleteJobsFn = debounce(this.callAutocompleteJobs, 100)
 
         // Get search form register values
         let term = '';
@@ -45,7 +45,7 @@ export class JobFormStep extends Component {
             suggestedJobs: [],
             currentPage: 0,
 
-            showNoJobPopin: true,
+            hasSubmitting: false,
             formStep: AUTOCOMPLETE_STEP
         };
     }
@@ -121,11 +121,11 @@ export class JobFormStep extends Component {
     // Trigger when filling the job input
     autocompleteJobs = (event) => {
         NotificationService.deleteNotification();
+        this.setState({ hasSubmitting: false });
 
         let term = event.target.value;
         this.setState({ term });
         if (term && term.length > 2) {
-            this.setState({ showNoJobPopin: true });
             this.callAutocompleteJobsFn();
         } else {
             this.props.searchForm.setJobs([]);
@@ -172,6 +172,8 @@ export class JobFormStep extends Component {
     }
 
     validateAutocompleteStep = () => {
+        this.setState({ hasSubmitting: true });
+
         if(!this.isAutocompleteStepValid()) return;
         this.props.searchForm.setJobs([]);
 
@@ -226,7 +228,7 @@ export class JobFormStep extends Component {
         return true;
     }
     hideNoJobPopin = () => {
-        this.setState({ showNoJobPopin: false });
+        this.setState({ hasSubmitting: false });
     }
 
 
@@ -240,8 +242,6 @@ export class JobFormStep extends Component {
         )
     }
     renderAutocompleteBlock() {
-        const notJobFound = this.noJobFound() && this.state.showNoJobPopin;
-
         return (
             <div className="job-form-step">
                 <h2><label htmlFor="job_input">Dans quel métier/formation/domaine cherchez-vous ?</label></h2>
@@ -251,11 +251,11 @@ export class JobFormStep extends Component {
                         onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
                 </div>
 
-                { notJobFound ? this.renderNotJobFound() : null }
+                { !this.isAutocompleteStepValid() && this.state.hasSubmitting ? this.renderNotJobFound() : null }
 
                 {!this.props.compactMode ?
                     <div className="submit-container autocomplete-submit">
-                        <button className="button go-button" disabled={!this.isAutocompleteStepValid()} onClick={this.validateAutocompleteStep}>Valider</button>
+                        <button className="button go-button" onClick={this.validateAutocompleteStep}>Valider</button>
                     </div> : null
                 }
             </div>
@@ -321,13 +321,11 @@ export class JobFormStep extends Component {
         if (!this.props.show) return null;
 
         if (this.props.compactMode) {
-            const Fragment = React.Fragment;
-
             return (
-                <Fragment>
+                <>
                     {this.renderAutocompleteBlock()}
                     {this.noJobFound() ? null : this.renderSelectJobsBlock()}
-                </Fragment>
+                </>
             );
         } else {
             if (this.state.formStep === AUTOCOMPLETE_STEP) return this.renderAutocompleteBlock();
