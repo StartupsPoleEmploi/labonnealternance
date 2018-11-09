@@ -114,7 +114,7 @@ class Companies extends Component {
             SEOService.displayNoFollow(true);
         } else {
             // On mobile, on first result page ever : display the number of results
-            let showMobileResultPopup = localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null;
+            let showMobileResultPopup = localStorage.getItem(SHOW_RESULT_POPUP_KEY) === null && this.state.mobileVersion;
             if (showMobileResultPopup) {
                 let message = CompaniesService.computeResultTitle(companyCount, this.state.searchTerm, this.state.cityName);
                 NotificationService.createInfo(message, SHOW_RESULT_POPUP_KEY);
