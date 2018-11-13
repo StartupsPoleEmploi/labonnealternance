@@ -23,7 +23,7 @@ class NotificationServiceFactory {
         return false;
     }
 
-    createInfo(messages, key= undefined) {
+    createInfo(messages, key=undefined) {
         let createNotification = this._handleKey(key);
         if (!createNotification) return;
 

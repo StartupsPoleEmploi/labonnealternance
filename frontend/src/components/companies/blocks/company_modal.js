@@ -9,6 +9,7 @@ import { SoftSkillsService } from '../../../services/soft_skills/soft_skills.ser
 import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../../shared/company_details_commun/company_details_commun';
 import { GoogleAdwordsService } from '../../../services/google_adword.service';
 import throttle from 'lodash/throttle';
+import Modal from '../../shared/modal';
 
 
 const FOOTER_HEIGHT_DELTA = 50;
@@ -68,7 +69,7 @@ export class CompanyModal extends Component {
     }
 
     componentDidUpdate() {
-        if(!this.hasScrollEventListener) this.initModalEventListener();
+        if (!this.hasScrollEventListener) this.initModalEventListener();
     }
 
     componentWillUnmount() {
@@ -78,7 +79,7 @@ export class CompanyModal extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        let fields= ['searchTerm', 'company', 'showCoordinates'];
+        let fields = ['searchTerm', 'company', 'showCoordinates'];
         return fields.some(field => this.state[field] !== nextState[field]);
     }
 
@@ -99,7 +100,7 @@ export class CompanyModal extends Component {
 
     initModalEventListener = () => {
         let modal = document.querySelectorAll('.modal-content')[0];
-        if(!modal) return null;
+        if (!modal) return null;
 
         modal.addEventListener("scroll", this.updateCoordinatesFn);
         this.hasScrollEventListener = true;
@@ -108,7 +109,7 @@ export class CompanyModal extends Component {
 
     computeCoordinatesTopValue = () => {
         let modal = document.querySelectorAll('.modal-content')[0];
-        if(!modal) return null;
+        if (!modal) return null;
 
         let modalHeight = modal.offsetHeight; // Height on screen
         let modalScrollHeight = modal.scrollHeight; // Height needed for no scrolling
@@ -116,16 +117,16 @@ export class CompanyModal extends Component {
         let coordinatesHeight = document.querySelectorAll('.how-to-apply')[0].offsetHeight;
 
         // We got a scroll => Coordinates at bottom
-        if(modalHeight < modalScrollHeight + coordinatesHeight) {
+        if (modalHeight < modalScrollHeight + coordinatesHeight) {
             let newTopValue = modalHeight + scrollTop - coordinatesHeight;
             // If scrollbar is near to the bottom, we decrease the top value in order to see the company footer
-            if(modalHeight + scrollTop + FOOTER_HEIGHT_DELTA/2 >= modalScrollHeight) newTopValue -= FOOTER_HEIGHT_DELTA;
+            if (modalHeight + scrollTop + FOOTER_HEIGHT_DELTA / 2 >= modalScrollHeight) newTopValue -= FOOTER_HEIGHT_DELTA;
 
             this.setState({ coordinateTop: { 'position': 'absolute', 'left': 0, 'top': newTopValue } });
             this.forceUpdate();
         } else {
             // All the modal is visible ? We disabled sticky bottom
-            if(this.state.coordinateTop !== undefined) {
+            if (this.state.coordinateTop !== undefined) {
                 this.setState({ coordinateTop: undefined });
                 this.forceUpdate();
             }
@@ -150,33 +151,26 @@ export class CompanyModal extends Component {
         const company = this.state.company;
 
         return (
-            <div className="modal">
-                <div className="modal-bg" onClick={this.closeModal}>&nbsp;</div>
-                <div className="modal-content">
-                    <div className="actions-zone">
-                        <button onClick={this.closeModal}><span className="icon close-icon">&nbsp;</span></button>
-                    </div>
-                    {CompanyDetailsCommon.renderTitle(company)}
+            <Modal title={"Détails de l'entreprise : " + company.name } onClose={this.closeModal}>
+                {CompanyDetailsCommon.renderTitle(company)}
 
-                    <small className="siret">SIRET: {company.siret}</small>
+                <small className="siret">SIRET: {company.siret}</small>
 
-                    <div className="modal-body">
-                        <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
-                        <CompanyIntroduction company={company} />
-                        <hr />
+                <div className="modal-body">
+                    <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
+                    <CompanyIntroduction company={company} />
+                    <hr />
 
-                        <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
-                        <PrepareApplication company={company} rome={company.job.rome} />
+                    <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
+                    <PrepareApplication company={company} rome={company.job.rome} />
 
-                        {this.renderHowToApply(company)}
-                    </div>
-
-                    <div className="company-footer">
-                        <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
-                    </div>
+                    {this.renderHowToApply(company)}
                 </div>
 
-            </div>
+                <div className="company-footer">
+                    <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
+                </div>
+            </Modal>
         );
     }
 }
