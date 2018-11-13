@@ -38,7 +38,10 @@ class ReactProxyAppView(View):
         path = urllib.parse.unquote_plus(request.get_full_path())
 
         if not path.endswith('.css') and not path.endswith('.js') and not path.endswith('.ico'):
-            params = { 'title': self.compute_page_title(path) }
+            params = {
+                'title': self.compute_page_title(path),
+                'canonical': self.compute_page_canonical(request),
+            }
 
             # Render all index.html only in home page
             if path == '/':
@@ -82,6 +85,17 @@ class ReactProxyAppView(View):
 
         return title
 
+    def compute_page_canonical(self, request):
+        scheme = 'https' if request.is_secure() else 'http'
+        host = request.get_host()
+        path = request.get_full_path()
+
+        canonical = '{}://{}{}'.format(
+            scheme,
+            host,
+            path,
+        )
+        return canonical[0:canonical.find('?')]
 
     # Company details
     """
