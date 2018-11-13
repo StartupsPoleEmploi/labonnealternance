@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { NOTIFICATION_STORE } from '../../../services/notification/notification.store';
 import { NotificationService } from '../../../services/notification/notification.service';
+import Modal from '../modal';
 
 require('./notification_modal.css');
 
@@ -18,6 +19,7 @@ export class NotificationModal extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         if(!this.state.notification && !nextState.notification) return false;
         if(this.state.notification === nextState.notification) return false;
+        return true;
     }
 
     componentWillMount() {
@@ -47,15 +49,9 @@ export class NotificationModal extends Component {
         if (!this.state.notification) return null;
 
         return (
-            <div id="notification-modal" className="modal">
-                <div className="modal-bg" onClick={this.onClose}>&nbsp;</div>
-                <div className="modal-content">
-                    <button className="close" onClick={this.onClose}>
-                        <span className="icon close-icon">&nbsp;</span>
-                    </button>
-                    <div className="text">{this.state.notification.messages[0]}</div>
-                </div>
-            </div>
+            <Modal id="notification-modal" title={this.state.notification.messages[0]} onClose={this.onClose}>
+                <div className="text">{this.state.notification.messages[0]}</div>
+            </Modal>
         );
     }
 }

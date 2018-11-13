@@ -81,6 +81,7 @@ button.close {
     background: none;
     color: white;
     font-size: 1.5em;
+    z-index: 5;
 
     position: absolute;
     right: 10px;
@@ -100,6 +101,10 @@ ul.three-columns { columns: 3; }
         content: '';
     }
 }
+
+/* Lock the scroll position by adding this class to the `<html>` element. */
+.lock-scroll { overflow: hidden !important; }
+
 
 @-webkit-keyframes dotty {
     0%   { content: ''; }
