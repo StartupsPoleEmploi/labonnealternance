@@ -69,7 +69,7 @@
 @mixin mx-home-common {
     min-height: 100vh;
     width: 100%;
-    background-color: black;
+    background-color: white;
     background-attachment: fixed;
     background-position: center;
 
@@ -117,6 +117,9 @@
         background-image: url('/static/img/fd-desktop.jpg');
 
         min-height: 100vh;
+        // Google has a huge viewport, so we replace the min-height vh
+        @media (min-height: 2000px) { min-height: 2000px !important; }
+
         @media(max-width: $min-width-small-mobile) { height: auto; min-height: 100vh; }
 
         margin: auto;
