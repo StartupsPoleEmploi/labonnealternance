@@ -11,13 +11,15 @@ module.exports = {
             // Let's go !
             .click('section.main-landing a[href="/recherche"]')
             .pause(1000)
+            .execute(client.resizeWindow(1200, 3000))
 
             // Job term step
             .assert.containsText('.job-form-step h2 label', 'Dans quel métier/formation/domaine cherchez-vous ?')
             .setValue(".form-step-container #job-input", 'maçon')
-            .pause(1000)
+            .pause(3000)
             .click('.form-step-container .submit-container button')
             .pause(1000)
+            .execute(client.resizeWindow(1200, 3000))
 
             // Jobs select step
             .assert.containsText('.job-form-step h2 label', 'Choisissez les métiers qui vous intéressent')
@@ -25,6 +27,7 @@ module.exports = {
             .click('.job-form-step li button.F1611')
             .click('.form-step-container .submit-container button')
             .pause(1000)
+            .execute(client.resizeWindow(1200, 3000))
 
             // City select step
             .setValue("#location-form-step #location-input", 'Nantes')
@@ -32,6 +35,7 @@ module.exports = {
             .click('#location-form-step ul.suggestions button.44000')
             .click('.form-step-container .submit-container button')
             .pause(10000)
+            .execute(client.resizeWindow(1200, 3000))
 
             // Check text
             .assert.containsText('#list-results h1', 'entreprises qui recrutent le plus en Alternance dans le métier/domaine "maçon"')
