@@ -21,15 +21,15 @@ module.exports = {
 
             // Jobs select step
             .assert.containsText('.job-form-step h2 label', 'Choisissez les métiers qui vous intéressent')
-            .click('.job-form-step li:nth-child(1)')
-            .click('.job-form-step li:nth-child(2)')
+            .click('.job-form-step li button.F1703')
+            .click('.job-form-step li button.F1611')
             .click('.form-step-container .submit-container button')
             .pause(1000)
 
             // City select step
             .setValue("#location-form-step #location-input", 'Nantes')
             .pause(2000)
-            .click('#location-form-step ul.suggestions li:nth-child(1) button')
+            .click('#location-form-step ul.suggestions button.44000')
             .click('.form-step-container .submit-container button')
             .pause(10000)
 
