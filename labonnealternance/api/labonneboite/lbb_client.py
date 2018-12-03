@@ -1,5 +1,5 @@
 
-import ssl
+import re, ssl
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
 
@@ -10,6 +10,8 @@ logger = logging.getLogger(__name__)
 API_USER = 'labonnealternance'
 
 PAGE_SIZE = 100
+
+JOB_SLUG_REGEX = r"^[a-z,-]*$"
 
 LBB_COMPANY_DETAILS_URL = '{}/api/v1/office/{}/details?{}'
 LBB_COMPANIES_URL = '{}/api/v1/company/?{}'
@@ -132,6 +134,7 @@ def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page
     return response
 
 def get_job_slug_details(job_slug):
+    job_slug = remove_invalid_slugs(job_slug)
     url = LBB_JOB_SLUG_DETAILS_URL.format(LBB_URL, job_slug)
 
     try:
@@ -163,3 +166,9 @@ def get_city_slug_details(city_slug):
         raise(e)
 
     return response
+
+def remove_invalid_slugs(slugs_str):
+    return ','.join([s for s in slugs_str.split(',') if valid_job_slug(s)])
+
+def valid_job_slug(job_slug):
+    return bool(re.match(JOB_SLUG_REGEX, job_slug))
