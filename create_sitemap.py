@@ -1,4 +1,4 @@
-import json, os, time
+import json, re, os, time
 from datetime import datetime
 from urllib import request, parse
 
@@ -8,6 +8,15 @@ from labonnealternance.api.labonneboite.lbb_client import LBB_ROME_URL
 # We don't want to use settings.LBB_URL to ensure to call the LBB prod server
 LBB_URL = 'https://labonneboite.pole-emploi.fr'
 
+JOBS_SLUG_REGEX = r"^[a-z,-]*$"
+CITY_SLUG_REGEX = r"^[a-z-]*[0-9]{5}$"
+
+
+class InvalidJobsSlug(Exception):
+    pass
+
+class InvalidCitySlug(Exception):
+    pass
 
 # Cities
 CITIES = [
@@ -125,9 +134,9 @@ JOBS = [
     ('assistant administratif', 'secretariat,secretariat-comptable,secretariat-et-assistanat-medical-ou-medico-social,assistanat-de-direction,assistanat-en-ressources-humaines,assistanat-commercial,gestion-locative-immobiliere,assistanat-technique-et-administratif,gestion-en-banque-et-assurance,comptabilite'),
     ('assistant commercial', 'assistanat-commercial,conseil-en-services-funeraires,transaction-immobiliere,relation-commerciale-en-vente-de-vehicules,comptabilite,communication,coiffure,marketing,prise-de-son-et-sonorisation,coordination-d-edition'),
     ('assistante commerciale', 'relation-commerciale-en-vente-de-vehicules,assistanat-commercial,conseil-en-services-funeraires,transaction-immobiliere,strategie-commerciale,relation-commerciale-grands-comptes-et-entreprises,relation-commerciale-aupres-de-particuliers,relation-technico-commerciale,comptabilite,marketing'),
-    ('cuisinier', 'personnel-de-cuisine,personnel-polyvalent-en-restauration,fabrication-de-crepes-ou-pizzas,plonge-en-restauration,management-du personnel-de-cuisine'),
-    ('cuisiniere', 'personnel-de-cuisine,personnel-polyvalent-en-restauration,fabrication-de-crepes-ou-pizzas,plonge-en-restauration,management-du personnel-de-cuisine'),
-    ('cuisine', 'personnel-de-cuisine,personnel-polyvalent-en-restauration,fabrication-de-crepes-ou-pizzas,plonge-en-restauration,management-du personnel-de-cuisine'),
+    ('cuisinier', 'personnel-de-cuisine,personnel-polyvalent-en-restauration,fabrication-de-crepes-ou-pizzas,plonge-en-restauration,management-du-personnel-de-cuisine'),
+    ('cuisiniere', 'personnel-de-cuisine,personnel-polyvalent-en-restauration,fabrication-de-crepes-ou-pizzas,plonge-en-restauration,management-du-personnel-de-cuisine'),
+    ('cuisine', 'personnel-de-cuisine,personnel-polyvalent-en-restauration,fabrication-de-crepes-ou-pizzas,plonge-en-restauration,management-du-personnel-de-cuisine'),
     ('agent administratif', 'gestion-en-banque-et-assurance,operations-administratives,transaction-immobiliere,gardiennage-de-locaux,conduite-d-enquetes,plonge-en-restauration,hydrotherapie,accueil-et-renseignements,services-domestiques,affretement-transport'),
     ('agente administrative', 'operations-administratives,gestion-en-banque-et-assurance,direction-administrative-et-financiere,secretariat,information-sociale,assistanat-en-ressources-humaines,management-des-ressources-humaines,administration-des-ventes,comptabilite,coordination-pedagogique'),
     ('chauffeur', 'conduite-de-transport-de-particuliers,conduite-de-transport-en-commun-sur-route,presentation-de-spectacles-ou-d-emissions,conduite-d-operations-funeraires,conduite-d-engins-agricoles-et-forestiers,conduite-de-transport-de-marchandises-sur-longue-distance,conduite-et-livraison-par-tournees-sur-courte-distance,conduite-d-installation-de-production-des-metaux,pilotage-d-installation-energetique-et-petrochimique'),
@@ -270,7 +279,11 @@ def create_sitemap():
         'https://labonnealternance.pole-emploi.fr/recherche',
     ]
     for city in CITIES:
+        check_city_slug(city)
+
         for job in JOBS:
+            check_jobs_slug(job[1], job[0])
+
             encoded_job = parse.quote(job[0])
             urls.append(SEARCH_URL_TEMPLATE.format(job[1], city, encoded_job))
 
@@ -287,6 +300,16 @@ def create_sitemap():
 
     print('Create sitemap.xml with {} urls ({} cities and {} jobs)'.format(len(urls), len(CITIES), len(JOBS)))
 
+
+def check_city_slug(city_slug):
+    if not bool(re.match(CITY_SLUG_REGEX, city_slug)):
+        raise InvalidCitySlug('Invalid city slug: {}'.format(city_slug))
+    return True
+
+def check_jobs_slug(jobs_slug, job):
+    if not bool(re.match(JOBS_SLUG_REGEX, jobs_slug)):
+        raise InvalidJobsSlug('Invalid jobs slug: {}'.format(job))
+    return True
 
 if __name__ == "__main__":
     create_sitemap()
