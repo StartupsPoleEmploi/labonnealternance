@@ -186,7 +186,9 @@ class ReactProxyAppView(View):
         elif len(url_params) == 6:
             longitude = url_params[-3]
             latitude = url_params[-2]
-
+        else:
+            # Too much or not enough parameters, no need to go further
+            return params
 
         # Get companies
         rome_codes_str = ','.join([rome['rome_code'] for rome in romes_data])
