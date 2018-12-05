@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 
 import { Loader } from '../shared/loader/loader';
 import { Footer } from '../shared/footer/footer';
+import { NotificationModal } from '../shared/notification_modal/notification_modal';
+
 import { Header } from '../companies/blocks/header/header';
 import FavoriteButton from '../shared/favorite_button/favorite_button';
 
@@ -19,6 +21,7 @@ import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_de
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
 import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
 import { GoogleAdwordsService } from '../../services/google_adword.service';
+import UpdateCompanyLink from '../shared/update-company-link';
 
 require('./company_details.css');
 
@@ -122,7 +125,7 @@ class CompanyDetails extends Component {
             <div id="company-details" className="max-size-1000">
                 <Header showOffset={false} />
 
-
+                <NotificationModal />
                 <main className="content">
                     <div className="actions-zone">
                         {this.state.referer ? <Link to={this.state.referer} className="button small-white">Retour à la recherche</Link> : null}
@@ -146,7 +149,7 @@ class CompanyDetails extends Component {
                     </div>
 
                     <div className="company-footer">
-                        <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
+                        <UpdateCompanyLink recruiterAccessUrl={this.state.recruiterAccessUrl} />
                     </div>
                 </main>
 

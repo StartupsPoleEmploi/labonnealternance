@@ -291,12 +291,32 @@
         text-align: center;
         padding: 10px 0;
         margin-top: 20px;
-        a {
+
+        .anti-spam {
+            padding: 20px 0;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button, a {
             color: white;
             text-decoration: none;
             font-size: .85em;
             &:hover { text-decoration: underline; }
+            &.button {
+                color: $blue;
+                display: inline;
+                max-width: 400px;
+                font-weight: normal;
+                margin-left: 20px;
+                font-size: 1.2em;
+                padding: 15px;
+            }
         }
+
     }
 
     // Mobile
