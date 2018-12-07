@@ -18,7 +18,7 @@ module.exports = {
             .setValue(".form-step-container #job-input", 'maçon')
             .pause(3000)
             .click('.form-step-container .submit-container button')
-            .pause(1000)
+            .pause(10000)
             .execute(client.resizeWindow(1200, 3000))
 
             // Jobs select step
@@ -34,7 +34,7 @@ module.exports = {
             .pause(2000)
             .click('#location-form-step ul.suggestions button.44000')
             .click('.form-step-container .submit-container button')
-            .pause(10000)
+            .pause(30000)
             .execute(client.resizeWindow(1200, 3000))
 
             // Check text
