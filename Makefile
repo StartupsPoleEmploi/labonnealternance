@@ -25,4 +25,4 @@ clear-build:
 
 # End to end testing
 test-e2e:
-	nightwatch -c tests-e2e/browserstack.conf.js -e safariHighSierra
+	./node_modules/nightwatch/bin/nightwatch -c tests-e2e/browserstack.conf.js -e chrome
