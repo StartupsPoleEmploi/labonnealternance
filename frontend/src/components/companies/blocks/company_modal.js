@@ -10,9 +10,8 @@ import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareA
 import { GoogleAdwordsService } from '../../../services/google_adword.service';
 import throttle from 'lodash/throttle';
 import Modal from '../../shared/modal';
+import UpdateCompanyLink from '../../shared/update-company-link';
 
-
-const FOOTER_HEIGHT_DELTA = 50;
 
 export class CompanyModal extends Component {
 
@@ -120,7 +119,8 @@ export class CompanyModal extends Component {
         if (modalHeight < modalScrollHeight + coordinatesHeight) {
             let newTopValue = modalHeight + scrollTop - coordinatesHeight;
             // If scrollbar is near to the bottom, we decrease the top value in order to see the company footer
-            if (modalHeight + scrollTop + FOOTER_HEIGHT_DELTA / 2 >= modalScrollHeight) newTopValue -= FOOTER_HEIGHT_DELTA;
+            let footerHeight = document.querySelector('.company-footer').offsetHeight;
+            if (modalHeight + scrollTop + footerHeight / 2 >= modalScrollHeight) newTopValue -= footerHeight;
 
             this.setState({ coordinateTop: { 'position': 'absolute', 'left': 0, 'top': newTopValue } });
             this.forceUpdate();
@@ -168,7 +168,7 @@ export class CompanyModal extends Component {
                 </div>
 
                 <div className="company-footer">
-                    <a href={this.state.recruiterAccessUrl} target="blank" title="Ouverture dans une nouvelle fenêtre">C'est mon entreprise et je souhaite en modifier les informations</a>
+                    <UpdateCompanyLink recruiterAccessUrl={this.state.recruiterAccessUrl} onOpen={this.updateCoordinatesBlock}/>
                 </div>
             </Modal>
         );

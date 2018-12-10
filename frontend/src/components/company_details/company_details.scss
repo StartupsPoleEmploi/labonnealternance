@@ -55,15 +55,36 @@
         margin-top: 70px;
         background-color: $lightgray;
         font-size: .8em;
-        a {
+
+        .reset {
             display: block;
             width: 100%;
             height: 100%;
+        }
+
+        .anti-spam {
+            padding: 20px 0;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button, a {
             text-decoration: none;
-            color: black;
             &:hover {
                 text-decoration: underline;
                 cursor: pointer;
+            }
+
+            &.button {
+                display: inline;
+                max-width: 400px;
+                font-weight: normal;
+                margin-left: 20px;
+                font-size: 1.3em;
+                padding: 15px;
             }
         }
     }
