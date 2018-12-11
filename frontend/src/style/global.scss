@@ -481,9 +481,14 @@ header#global-header {
             border-radius: 10px;
             margin-top: 5px;
             li {
-                padding: 6px;
                 text-align: center;
                 border-bottom: solid 1px lightgray;
+                button {
+                    width: 100%;
+                    padding: 6px;
+                    border: none;
+                    background: none;
+                }
                 &:hover { cursor: pointer; }
                 &:last-child { border-bottom: none; }
             }
