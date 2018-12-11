@@ -41,13 +41,17 @@ export class SearchFormData {
     callSearch(historyContext) {
         let urlJobs = this.jobs.map(job => job.slug).join(',');
 
+        // If the search term constains a '/', Django is confused because it got a new param !
+        // For example: /gestion%2Fadministrative become /gestion/administrative
+        const searchTerm = this.term.replace(/\//g,' ')
+
         let url = '';
         if (this.location.isGeolocated) {
             url = formatString('/entreprises/{jobSlug}/{longitude}/{latitude}/{term}', {
                 longitude: this.location.longitude,
                 latitude: this.location.latitude,
                 jobSlug: urlJobs,
-                term: encodeURIComponent(this.term)
+                term: encodeURIComponent(searchTerm)
             })
         }
         // If user use geolocalisation
@@ -55,7 +59,7 @@ export class SearchFormData {
             url = formatString('/entreprises/{jobSlug}/{citySlug}/{term}', {
                 citySlug: this.location.slug,
                 jobSlug: urlJobs,
-                term: encodeURIComponent(this.term)
+                term: encodeURIComponent(searchTerm)
             })
         }
 
