@@ -587,3 +587,54 @@
         }
     }
 }
+
+
+#promote-la-poste {
+    text-align: left;
+    display: flex;
+    margin-top: 10px;
+
+    > button {
+        display: flex;
+        align-items: center;
+        > img {
+            width: 125px;
+            margin-right: 20px;
+        }
+
+        padding: 15px 20px 10px 10px;
+        width: 100%;
+        text-align: left;
+        font-size: 1.3em;
+        border-top: solid 2px lightblue;
+        border-bottom: solid 2px lightblue;
+
+        span {
+            display: block;
+            margin-top: 5px;
+        }
+        .text { font-size: 14px; }
+        .more {
+            font-size: 13px;
+            color: $pink;
+        }
+    }
+
+    &:hover {
+        button {
+            text-decoration: underline;
+        }
+    }
+
+    .modal {
+        @include mx-modal();
+    }
+
+}
+#modal-la-poste {
+    .logo {
+        margin-top: -20px;
+        margin-bottom: 20px;
+    }
+    .button-container { margin-top: 50px; }
+}

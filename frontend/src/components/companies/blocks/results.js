@@ -18,6 +18,7 @@ import { FILTERS_STORE } from '../../../services/filters/filters.store';
 import { VIEWS } from '../../../services/view/views.reducers';
 import { VIEWS_STORE } from '../../../services/view/views.store';
 import { REQUEST_OCCURING_STORE } from '../../../services/requests_occuring/request_occuring.store';
+import { PromoteLaPoste } from './promote_la_poste';
 
 export class Results extends Component {
 
@@ -217,6 +218,7 @@ export class Results extends Component {
                 {/* When removing CompanyFilters from DOM, it removes the current filters, so we have a show property*/}
                 {/* FIXME: we add the service instead of the method... because _this_ will refer to the childComponent if we pass the method... */}
                 <CompanyFilters jobs={this.props.jobs} isFiltering={this.state.isFiltering} mapBoxService={this.mapBoxService} />
+                <PromoteLaPoste jobs={this.props.jobs} />
                 {this.state.currentView !== VIEWS.FILTERS ? this.renderResultList() : null}
             </div>
         );
