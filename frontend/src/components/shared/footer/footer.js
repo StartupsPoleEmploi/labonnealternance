@@ -35,7 +35,7 @@ export class Footer extends Component {
 
                     <div className="links">
                         <ul className="list-unstyled inline-list">
-                            <li><a href="https://labonneboite.pole-emploi.fr/informations-entreprise?origin=labonnealternance">Accès recruteur</a></li>
+                            <li><a href="https://labonneboite.pole-emploi.fr/connexion-recruteur?origin=labonnealternance">Accès recruteur</a></li>
                             <li><Link to="/qui-sommes-nous">Qui sommes-nous ?</Link></li>
                             <li className="small"><button onClick={this.showRGPDModal} title="Consulter notre politique sur les données personnelles">RGPD</button></li>
                             <li className="small"><Link to="/faq">FAQ</Link></li>
