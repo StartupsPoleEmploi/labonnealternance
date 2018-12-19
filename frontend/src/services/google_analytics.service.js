@@ -6,7 +6,7 @@ export class GoogleAnalyticsService {
 
     static initGoogleAnalytics() {
         if(environment.GA_ID && environment.GA_ID !== '') {
-            ReactGA.initialize(environment.GA_ID);
+            ReactGA.initialize(environment.GA_ID, { gaOptions: { cookieExpires: 31536000 }});
             // Anonymous mode : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
             if(!RGPDService.userAcceptsRGPD()) ReactGA.set('anonymizeIp', true);
         }
