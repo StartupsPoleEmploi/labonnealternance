@@ -7,7 +7,6 @@ import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
 import { SoftSkillsService } from '../../../services/soft_skills/soft_skills.service';
 import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../../shared/company_details_commun/company_details_commun';
-import { GoogleAdwordsService } from '../../../services/google_adword.service';
 import throttle from 'lodash/throttle';
 import Modal from '../../shared/modal';
 import UpdateCompanyLink from '../../shared/update-company-link';
@@ -91,7 +90,6 @@ export class CompanyModal extends Component {
     showCoordinates = () => {
         // Recording event in GA
         ReactGA.event({ category: 'Company', action: 'Open coordinates block' });
-        GoogleAdwordsService.sendCompanyCoordinatesConversion();
 
         this.setState({ showCoordinates: true }, () => this.computeCoordinatesTopValue());
     }
