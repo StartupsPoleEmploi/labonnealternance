@@ -31,7 +31,7 @@ export const CompanyCoordinates =  (props) => {
                 <ul className="list-unstyled">
                     <li>
                         <span className="icon phone">&nbsp;</span>
-                        {company.phone ? company.phone : '<a href=http://www.google.fr/search?q={company.label} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">Trouver le numéro</a>'}
+                        {company.phone ? company.phone : <a href={company.getGoogleUrl()} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">Trouver le numéro</a>}
                     </li>
                     <li className="no-break-word">
                         <span className="icon email">&nbsp;</span>
@@ -83,7 +83,6 @@ export const PrepareApplication = (props) => {
 
     if (!softSkills && rome) return <div className="loader"><Loader /></div>;
 
-    // FIXME
     return (
         <div className="prepare-application">
             <div className="line responsive-column">

@@ -43,6 +43,8 @@ export class Company {
         return this.address !== undefined || this.email !== undefined || this.phone !== undefined || this.website !== undefined || this.officeName !== undefined;
     }
 
+    getGoogleUrl() { return 'http://www.google.fr/search?q=' + this.officeName }
+
     setExtraInfos(address, email, phone, officeName, website) {
         this.address = address;
         this.email = email;
