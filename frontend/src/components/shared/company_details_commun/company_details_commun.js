@@ -75,6 +75,7 @@ export const PrepareApplication = (props) => {
 
     if (!softSkills && rome) return <div className="loader"><Loader /></div>;
 
+    // FIXME
     return (
         <div className="prepare-application">
             <div className="line responsive-column">
