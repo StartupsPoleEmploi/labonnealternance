@@ -10,7 +10,7 @@ export class CompanyDetailsCommon {
     static renderTitle(company) {
         return (
             <div className="title">
-                <h1>{company.label} a recruté en alternance en 2017.</h1>
+                <h1>{company.label} a recruté des alternants en 2018.</h1>
                 <strong>Tentez votre chance, postulez avant que l'offre ne soit publiée !</strong>
             </div>
 
@@ -26,18 +26,24 @@ export const CompanyCoordinates =  (props) => {
 
     return (
         <div className="company-coordinates">
+            <div className="contact">
+                <h4>Contact</h4>
+                <ul className="list-unstyled">
+                    <li>
+                        <span className="icon phone">&nbsp;</span>
+                        {company.phone ? company.phone : '<a href=http://www.google.fr/search?q={company.label} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">Trouver le numéro</a>'}
+                    </li>
+                    <li className="no-break-word">
+                        <span className="icon email">&nbsp;</span>
+                        {company.email ? company.email : 'Non renseigné'}
+                    </li>
+                </ul>
+            </div>
             <div className="address">
                 <h4>Adresse</h4>
                 <ul className="list-unstyled">
                     <li>{address.street}</li>
                     <li>{address.city}</li>
-                </ul>
-            </div>
-            <div className="contact">
-                <h4>Contact</h4>
-                <ul className="list-unstyled">
-                    <li><span className="icon phone">&nbsp;</span>{company.phone ? company.phone : 'Non renseigné'}</li>
-                    <li className="no-break-word"><span className="icon email">&nbsp;</span>{company.email ? company.email : 'Non renseigné'}</li>
                 </ul>
             </div>
         </div>
@@ -57,13 +63,15 @@ export const CompanyIntroduction = (props) => {
             </div>
 
             <div className="line">
-                {company.officeName ? <div className="office-name"><h4>Enseigne</h4><div>{company.officeName}</div></div> : null}
+                {company.officeName ? <div className="office-name"><h4>Raison sociale</h4><div>{company.officeName}</div></div> : null}
                 <div className="headcount">
                     <h4>Taille</h4>
-                    {company.headcount ? <p>{company.headcount}</p> : 'Inconnu'}
+                    {company.headcount ? <p>{company.headcount}</p> : 'Non renseigné'}
                 </div>
 
-                {company.website ? <div className="hire-rate"><h4>Site Internet</h4><a href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">{company.website}</a></div> : ''}
+                <div className="hire-rate"><h4>Site Internet</h4>
+                    {company.website ? <a href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">{company.website}</a> : 'Non renseigné'}
+                </div>
             </div>
         </div>
     );
