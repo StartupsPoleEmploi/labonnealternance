@@ -136,7 +136,7 @@ export class CompanyModal extends Component {
         return (
             <div className="how-to-apply" style={this.state.coordinateTop}>
                 <div className="flex-big">
-                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
+                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Je veux postuler</button></div>}
                     <FavoriteButton company={this.state.company} />
                 </div>
             </div>
@@ -161,7 +161,10 @@ export class CompanyModal extends Component {
 
                     <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
                     <PrepareApplication company={company} rome={company.job.rome} />
+                    <hr />
 
+                    <h2><span className="badge">3</span>Je veux postuler</h2>
+                    <p>FIXME MODAL dynamic text</p>
                     {this.renderHowToApply(company)}
                 </div>
 

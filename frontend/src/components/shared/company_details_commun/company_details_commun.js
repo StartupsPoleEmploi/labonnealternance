@@ -87,32 +87,24 @@ export const PrepareApplication = (props) => {
         <div className="prepare-application">
             <div className="line responsive-column">
                 {softSkills && rome ? <div className="soft-skills">
-                    <h4>Connaissez-vous les qualités requises pour ce métier ?</h4>
+                    <h4>Connaissez-vous les qualités qu'il faut pour ce métier ?</h4>
                     <ul className="list-unstyled two-columns">
                         {softSkills.map((skill, index) => <li key={index}>- {skill}</li>)}
                     </ul>
                 </div> : null}
                 <div className="application-advices">
-                    <h4>Faites une candidature spontanée efficace</h4>
+                    <h4>C'est quoi une candidature spontanée ?</h4>
                     <div>
-                        <h5>1. Faites la différence</h5>
-                        <p>Montrez au recruteur que vous vous intéressez à l’entreprise en faisant des recherche sur l’entreprise.</p>
+                        <p>FIXME static text</p>
+                    </div>
+                    <h4>Passez à l'action</h4>
+                    <div>
+                        <p>FIXME dynamic text</p>
                     </div>
                     <div>
-                        <h5>2. Préparez votre candidature</h5>
+                        <h5>1. Header</h5>
                         <ul className="list-unstyled">
-                            <li>- Utilisez les informations recueillies sur l’entreprise</li>
-                            <li>- Mettez en avant vos compétences et les qualités attendues pour ce poste</li>
-                            <li>- Parlez de vous : vous faites un sport collectif (foot / basket..) ? Mettez en avant votre esprit d’équipe ! Vous êtes passionné d’art ? Parlez de votre créativité !</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h5>3. Postulez maintenant !</h5>
-                        <ul className="list-unstyled">
-                            <li>- Aucune offre n’a été déposée, donc soyez clair sur ce que vous cherchez et votre projet</li>
-                            <li>- Objet de mail clair : candidature au poste de (…) en alternance</li>
-                            <li>- Présentez-vous et parlez de votre projet et expliquez à l’employeur pourquoi vous avez choisi SON entreprise</li>
-                            <li>- Vérifiez que vous n’avez pas fait de faute ! </li>
+                            <li>- List item</li>
                         </ul>
                     </div>
                 </div>

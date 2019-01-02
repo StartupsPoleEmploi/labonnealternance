@@ -109,7 +109,7 @@ class CompanyDetails extends Component {
         return (
             <div className="line responsive-column how-to-apply">
                 <div className="flex-big">
-                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
+                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Je veux postuler</button></div>}
                 </div>
             </div>
         );
@@ -142,7 +142,8 @@ class CompanyDetails extends Component {
                         <PrepareApplication company={company} rome={this.state.rome} />
                         <hr />
 
-                        <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
+                        <h2><span className="badge">3</span>Je veux postuler</h2>
+                        <p>FIXME DETAILS dynamic text</p>
                         {this.renderHowToApply(company)}
                     </div>
 
