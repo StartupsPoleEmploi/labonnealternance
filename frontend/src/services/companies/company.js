@@ -1,5 +1,5 @@
 export class Company {
-    constructor(siret, job, label, longitude, latitude, city, distance, nafSection, nafText, headcount) {
+    constructor(siret, job, label, longitude, latitude, city, distance, nafSection, nafText, headcount, contactMode) {
         this.siret = siret;
         this.job = job; // Job(rome+label) associated to the company
         this.label = label;
@@ -10,6 +10,7 @@ export class Company {
         this.nafSection = nafSection;
         this.nafText = nafText;
         this.headcount = headcount;
+        this.contactMode = contactMode;
 
 
         // Should be display in Front (meaning not filtered)
@@ -18,15 +19,14 @@ export class Company {
 
 
     copy() {
-        let copy = new Company(this.siret, this.job, this.label, this.longitude, this.latitude, this.city, this.distance, this.nafSection, this.nafText);
+        let copy = new Company(this.siret, this.job, this.label, this.longitude, this.latitude, this.city, this.distance, this.nafSection, this.nafText, this.headcount, this.contactMode);
 
-        copy.officeName =  this.officeName;
-        copy.headcount = this.headcount;
         copy.softSkills = this.softSkills;
+        
         copy.address = this.address;
         copy.email = this.email;
         copy.phone = this.phone;
-        copy.headcount = this.headcount;
+        copy.officeName =  this.officeName;
         copy.website = this.website;
 
         copy.visible = this.visible;

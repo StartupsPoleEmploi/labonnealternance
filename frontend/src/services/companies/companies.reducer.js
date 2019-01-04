@@ -30,7 +30,7 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
                     // Get the job
                     let job = action.data.jobs.find(job => job.rome === company.matched_rome_code)
 
-                    let companyTemp = new Company(company.siret, job, company.name, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
+                    let companyTemp = new Company(company.siret, job, company.name, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text, company.contact_mode);
 
                     if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
                     companies.set(company.siret, companyTemp);

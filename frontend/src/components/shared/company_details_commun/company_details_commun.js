@@ -83,6 +83,13 @@ export const PrepareApplication = (props) => {
 
     if (!softSkills && rome) return <div className="loader"><Loader /></div>;
 
+    var goActText;
+    if (company.contactMode == 'Envoyer un CV et une lettre de motivation') {
+        goActText = 'email blabla';
+    } else {
+        goActText = 'other'
+    }
+
     return (
         <div className="prepare-application">
             <div className="line responsive-column">
@@ -99,7 +106,8 @@ export const PrepareApplication = (props) => {
                     </div>
                     <h4>Passez à l'action</h4>
                     <div>
-                        <p>FIXME dynamic text</p>
+                        <p>contactMode={company.contactMode}</p>
+                        <p>FIXME dynamic_text={goActText}</p>
                     </div>
                     <div>
                         <h5>1. Header</h5>
