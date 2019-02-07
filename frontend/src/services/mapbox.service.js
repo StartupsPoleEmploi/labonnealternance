@@ -72,11 +72,11 @@ export class MapBoxService {
     }
 
     createMap(longitude, latitude, distance=undefined) {
-        window.L.mapbox.accessToken = this.accessToken;
-
         this.currentCenter = { lat: latitude, lng: longitude };
 
-        this.map = window.L.mapbox.map(this.id, 'mapbox.streets').setView([latitude, longitude], this.DEFAULT_ZOOM).setMinZoom(7);
+        this.map = window.L.map(this.id).setView([latitude, longitude], this.DEFAULT_ZOOM).setMinZoom(7);
+
+        window.L.tileLayer('https://maps.labonneboite.pole-emploi.fr/styles/osm-bright/{z}/{x}/{y}.png').addTo(this.map);
 
         // Compute viewBox
         if(distance) this.setFitBounds(distance);
