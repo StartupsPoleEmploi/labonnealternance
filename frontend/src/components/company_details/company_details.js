@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import ReactGA from 'react-ga';
-import { withRouter } from 'react-router-dom';
+import { navigate } from '@reach/router';
 
 
 import { Loader } from '../shared/loader/loader';
@@ -30,7 +30,7 @@ class CompanyDetails extends Component {
 
         SoftSkillsService.getSoftSkillsFromLocalStorage();
 
-        let siret = this.props.match.params.companySiret;
+        let siret = this.props.companySiret;
 
         this.state = {
             referer: this.getReferer(),
@@ -77,10 +77,7 @@ class CompanyDetails extends Component {
             CompanyDetailsService.initFromWindowObject();
         } else {
             CompanyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true)
-                .catch(() => {
-                    this.props.history.push('/not-found');
-                    this.props.history.go();
-                });
+                .catch(() => navigate('/not-found'));
         }
     }
 
@@ -157,4 +154,4 @@ class CompanyDetails extends Component {
     }
 }
 
-export default withRouter(CompanyDetails);
+export default CompanyDetails;

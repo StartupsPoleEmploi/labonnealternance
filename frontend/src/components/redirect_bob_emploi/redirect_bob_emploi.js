@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from '@reach/router';
 import { LoaderScreen } from '../shared/loader/loader_screen';
 import { subJobLabel } from '../../services/helpers';
 import { constants } from '../../constants';
@@ -13,8 +13,8 @@ export default class RedirectionBobEmploi extends Component {
 
         this.state = {
             loading: true,
-            cityCode: this.props.match.params.cityCode,
-            romeCode: this.props.match.params.romeCode,
+            cityCode: this.props.cityCode,
+            romeCode: this.props.romeCode,
             hasError: false,
             url: ''
         }
@@ -59,9 +59,9 @@ export default class RedirectionBobEmploi extends Component {
     }
 
     render() {
-        if (this.state.hasError) return <Redirect to="/not-found" />;
+        if (this.state.hasError) return <Redirect to="/not-found" noThrow />;
         if (this.state.loading || this.state.url === '') return (<LoaderScreen />);
 
-        return <Redirect to={this.state.url} />;
+        return <Redirect to={this.state.url} noThrow />;
     }
 }

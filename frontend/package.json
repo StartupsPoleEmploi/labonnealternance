@@ -4,6 +4,7 @@
     "private": true,
     "proxy": "http://127.0.0.1:8000/",
     "dependencies": {
+        "@reach/router": "^1.2.1",
         "babel-polyfill": "^6.26.0",
         "eslint": "^5.12.0",
         "leaflet.markercluster": "^1.4.1",
@@ -11,7 +12,6 @@
         "react": "^16.8.3",
         "react-dom": "^16.8.3",
         "react-ga": "^2.5.7",
-        "react-router-dom": "^4.3.1",
         "redux": "^3.7.2"
     },
     "scripts": {

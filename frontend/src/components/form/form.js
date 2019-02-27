@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { navigate } from '@reach/router';
 
 import { Header } from '../shared/header/header';
 
@@ -34,7 +34,8 @@ class Form extends Component {
 
     sendForm = () => {
         SearchFormService.saveSearchFormValues(this.state.searchForm);
-        this.state.searchForm.callSearch(this.props.history);
+        navigate(this.state.searchForm.computeSearchUrlSearch());
+        window.history.go();
     }
 
     nextStep = () => {
@@ -61,4 +62,4 @@ class Form extends Component {
 
 }
 
-export default withRouter(Form);
+export default Form;
