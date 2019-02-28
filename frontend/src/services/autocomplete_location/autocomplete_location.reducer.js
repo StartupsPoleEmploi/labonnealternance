@@ -1,8 +1,8 @@
 import { AutocompleteLocation } from './autocomplete_location';
 
 export const AUTOCOMPLETE_LOCATION_ACTIONS = {
-    CLEAR_SUGGESTIONS: 'CLEAR_SUGGESTIONS',
-    SET_SUGGESTIONS: 'SET_SUGGESTIONS'
+    CLEAR_SUGGESTIONS: 'LOCATION_CLEAR_SUGGESTIONS',
+    SET_SUGGESTIONS: 'LOCATION_SET_SUGGESTIONS'
 };
 
 let initialState = [];

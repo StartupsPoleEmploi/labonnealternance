@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 
-import { Header } from '../shared/header/header';
+import Header from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
 import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';

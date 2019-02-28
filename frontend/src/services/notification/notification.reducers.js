@@ -5,10 +5,10 @@ export const NOTIFICATION_ACTIONS = {
     CREATE_WARNING: 'CREATE_WARNING',
     CREATE_ERROR: 'CREATE_ERROR',
     CREATE_SUCCESS: 'CREATE_SUCCESS',
-    DELETE: 'DELETE'
+    DELETE: 'DELETE_NOTIFICATION'
 };
 
-export const NOTIFICATION_REDUCERS = (state = null, action) => {
+export const NOTIFICATION_REDUCER = (state = null, action) => {
 
     switch (action.type) {
         case (NOTIFICATION_ACTIONS.CREATE_INFO):
@@ -36,7 +36,7 @@ export const NOTIFICATION_REDUCERS = (state = null, action) => {
             );
 
         case (NOTIFICATION_ACTIONS.DELETE):
-            return undefined;
+            return null;
 
         default:
             return state;

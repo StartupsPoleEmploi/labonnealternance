@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
 
-import { Job } from '../../../services/search_form/job';
+import store from '../../../services/store';
 
+import { Job } from '../../../services/search_form/job';
 import { NotificationService } from '../../../services/notification/notification.service';
 
 import { AutocompleteJobService } from '../../../services/autocomplete_job/autocomplete_job.service';
-import { AUTOCOMPLETE_JOB_STORE } from '../../../services/autocomplete_job/autocomplete_job.store';
 import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 const PLACEHOLDER_TEXT = 'Graphiste, maçon, second de cuisine...';
@@ -53,18 +53,19 @@ export class JobFormStep extends Component {
     componentWillMount() {
         NotificationService.deleteNotification();
 
-        this.jobStoreUnsubscribeFn = AUTOCOMPLETE_JOB_STORE.subscribe(() => {
+        this.jobStoreUnsubscribeFn = store.subscribe(() => {
 
-            let suggestions = AUTOCOMPLETE_JOB_STORE.getState();
+            let suggestions = store.getState().jobSuggestions;
             if (suggestions.length === 0) {
                 this.setState({ requestNumber: this.state.requestNumber - 1, suggestedJobs: [] });
             } else {
                 // We decrease the number of request occuring
                 let requestNumber = this.state.requestNumber - 1;
                 // RequestNumber can't be negative (could happen when we get datas from localStorage)
-                if (this.state.requestNumber !== 0) this.setState({ requestNumber });
+                if (this.state.requestNumber > 0) this.setState({ requestNumber });
+                else if (this.state.requestNumber < 0) this.setState({ requestNumber: 0 });
 
-                if (this.state.requestNumber === 0) {
+                if (requestNumber < 0) {
                     let jobs = [];
                     suggestions.forEach((suggest, index) => {
                         let score = suggest.score || 10;

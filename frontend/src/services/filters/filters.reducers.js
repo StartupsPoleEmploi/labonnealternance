@@ -3,7 +3,7 @@ export const FILTERS_ACTIONS = {
 };
 
 let initialState = { headcount: 'all', naf: 'all', rome: 'all' };
-export const FILTERS_REDUCERS = (state = initialState, action) => {
+export const FILTERS_REDUCER = (state = initialState, action) => {
 
     switch (action.type) {
         case FILTERS_ACTIONS.SET_FILTERS: {

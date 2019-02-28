@@ -1,7 +1,8 @@
 import { constants } from '../../constants';
 
-import { COMPANY_DETAILS_STORE } from './company_details.store';
+import store from '../store';
 import { COMPANY_DETAILS_ACTIONS } from './company_details.reducer';
+import { isEmpty } from '../helpers';
 
 class CompanyDetailsServiceFactory {
 
@@ -10,7 +11,7 @@ class CompanyDetailsServiceFactory {
     }
 
     setCompany(company) {
-        COMPANY_DETAILS_STORE.dispatch({
+        store.dispatch({
             type: COMPANY_DETAILS_ACTIONS.SET_COMPANY,
             data: company
         });
@@ -46,7 +47,7 @@ class CompanyDetailsServiceFactory {
     }
 
     dispatch(companyData, allDetails = false) {
-        COMPANY_DETAILS_STORE.dispatch({
+        store.dispatch({
             type: allDetails ? COMPANY_DETAILS_ACTIONS.ADD_ALL_COMPANY_DETAILS : COMPANY_DETAILS_ACTIONS.ADD_COMPANY_DETAILS,
             data: {
                 // This elements will be used only if action = ADD_ALL_COMPANY_DETAILS
@@ -73,11 +74,12 @@ class CompanyDetailsServiceFactory {
     }
 
     getCompany() {
-        return COMPANY_DETAILS_STORE.getState();
+        const companyDetails = store.getState().companyDetails;
+        return isEmpty(companyDetails) ? undefined : companyDetails;
     }
 
     unsetCompany() {
-        COMPANY_DETAILS_STORE.dispatch({ type: COMPANY_DETAILS_ACTIONS.DELETE_COMPANY });
+        store.dispatch({ type: COMPANY_DETAILS_ACTIONS.DELETE_COMPANY });
     }
 }
 

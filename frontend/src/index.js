@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, createHistory, LocationProvider  } from '@reach/router';
+import { Provider } from 'react-redux';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 import 'babel-polyfill';
 
 
+import store from './services/store';
 import { environment } from './environment';
 
 // Based on https://www.linkedin.com/pulse/google-analytics-working-your-react-app-make-work-just-choudhary/
@@ -33,7 +35,7 @@ require('./style/global.css');
 
 // Why do you update plugin
 if (process.env.NODE_ENV !== 'production') {
-    const {whyDidYouUpdate} = require('why-did-you-update')
+    const { whyDidYouUpdate } = require('why-did-you-update')
     whyDidYouUpdate(React)
 }
 
@@ -43,38 +45,39 @@ export default class App extends Component {
 
     render() {
         return (
-            <div id="app">
-                <LocationProvider history={history}>
-                    <Router>
-                        <Home exact path="/" />
-                        <Form exact path="/recherche" />
+            <Provider store={store}>
+                <div id="app">
+                    <LocationProvider history={history}>
+                        <Router>
+                            <Home exact path="/" />
+                            <Form exact path="/recherche" />
 
-                        <RedirectBobEmploi exact path="/entreprises/commune/:cityCode/rome/:romeCode" />
+                            <RedirectBobEmploi exact path="/entreprises/commune/:cityCode/rome/:romeCode" />
 
-                        <Companies exact path="/entreprises/:jobSlugs/:citySlug/:term" />
-                        <Companies exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
+                            <Companies exact path="/entreprises/:jobSlugs/:citySlug/:term" />
+                            <Companies exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
 
-                        <CompanyDetails path="/details-entreprises/:companySiret" />
+                            <CompanyDetails path="/details-entreprises/:companySiret" />
 
-                        <AsyncRecruiterForm exact path="/acces-recruteur" />
-                        <AsyncCGU exact path="/conditions-generales-utilisation" />
-                        <AsyncWhoWeAre exact path="/qui-sommes-nous" />
-                        <AsyncFAQ exact path="/faq" />
+                            <AsyncRecruiterForm exact path="/acces-recruteur" />
+                            <AsyncCGU exact path="/conditions-generales-utilisation" />
+                            <AsyncWhoWeAre exact path="/qui-sommes-nous" />
+                            <AsyncFAQ exact path="/faq" />
 
 
-                        {/* Not found route */}
-                        <NotFound type={404} default />
-                    </Router>
-                </LocationProvider>
-            </div>
+                            {/* Not found route */}
+                            <NotFound type={404} default />
+                        </Router>
+                    </LocationProvider>
+                </div>
+            </Provider>
         );
     }
 }
 history.listen(({ location, action }) => {
-    //if(!GoogleAnalyticsService.isGASetup()) return;
+    if(!GoogleAnalyticsService.isGASetup()) return;
 
     let pageView = location.pathname + location.search;
-    console.log(pageView)
 
     // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
     if(startsWith(location.pathname, '/entreprises')) {
@@ -92,7 +95,7 @@ history.listen(({ location, action }) => {
 });
 
 // Initialise Raven for Sentry
-if(environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
+if (environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
     window.Raven.config(environment.SENTRY_CODE).install();
 }
 

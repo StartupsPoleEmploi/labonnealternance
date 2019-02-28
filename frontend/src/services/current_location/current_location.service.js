@@ -2,7 +2,7 @@ import { constants } from '../../constants';
 
 import { NotificationService } from '../notification/notification.service';
 
-import { CURRENT_LOCATION_STORE } from './current_location.store';
+import store from '../store';
 import { CURRENT_LOCATION_ACTIONS } from './current_location.reducer';
 
 import { formatString } from '../helpers';
@@ -29,7 +29,7 @@ class CurrentLocationServiceFactory {
                 }
 
                 let addressData = response.features[0].properties;
-                CURRENT_LOCATION_STORE.dispatch({
+                store.dispatch({
                     type: CURRENT_LOCATION_ACTIONS.SET_CURRENT_LOCATION,
                     data: {
                         address: addressData.label,

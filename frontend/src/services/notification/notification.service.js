@@ -1,5 +1,5 @@
 import { NOTIFICATION_ACTIONS } from './notification.reducers';
-import { NOTIFICATION_STORE } from './notification.store';
+import store from '../store';
 
 class NotificationServiceFactory {
 
@@ -27,7 +27,7 @@ class NotificationServiceFactory {
         let createNotification = this._handleKey(key);
         if (!createNotification) return;
 
-        NOTIFICATION_STORE.dispatch({
+        store.dispatch({
             type: NOTIFICATION_ACTIONS.CREATE_INFO,
             data: { messages }
         });
@@ -37,7 +37,7 @@ class NotificationServiceFactory {
         let createNotification = this._handleKey(key);
         if (!createNotification) return;
 
-        NOTIFICATION_STORE.dispatch({
+        store.dispatch({
             type: NOTIFICATION_ACTIONS.CREATE_WARNING,
             data: { messages }
         });
@@ -47,7 +47,7 @@ class NotificationServiceFactory {
         let createNotification = this._handleKey(key);
         if (!createNotification) return;
 
-        NOTIFICATION_STORE.dispatch({
+        store.dispatch({
             type: NOTIFICATION_ACTIONS.CREATE_ERROR,
             data: { messages }
         });
@@ -57,14 +57,14 @@ class NotificationServiceFactory {
         let createNotification = this._handleKey(key);
         if (!createNotification) return;
 
-        NOTIFICATION_STORE.dispatch({
+        store.dispatch({
             type: NOTIFICATION_ACTIONS.CREATE_SUCCESS,
             data: { messages }
         });
     }
 
     deleteNotification() {
-        NOTIFICATION_STORE.dispatch({
+        store.dispatch({
             type: NOTIFICATION_ACTIONS.DELETE
         });
     }

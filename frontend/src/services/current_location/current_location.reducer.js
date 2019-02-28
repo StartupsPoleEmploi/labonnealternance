@@ -4,7 +4,7 @@ export const CURRENT_LOCATION_ACTIONS = {
     SET_CURRENT_LOCATION: 'SET_CURRENT_LOCATION'
 };
 
-export const CURRENT_LOCATION_REDUCER = (state = undefined, action) => {
+export const CURRENT_LOCATION_REDUCER = (state = null, action) => {
 
     switch (action.type) {
 

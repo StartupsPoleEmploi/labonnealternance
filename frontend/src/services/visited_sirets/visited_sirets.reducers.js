@@ -2,7 +2,7 @@ export const VISITED_SIRETS_ACTIONS = {
     ADD_SIRET: 'ADD_SIRET'
 };
 
-export const VISITED_SIRETS_REDUCERS = (state = new Map(), action) => {
+export const VISITED_SIRETS_REDUCER = (state = new Map(), action) => {
 
     switch (action.type) {
         case VISITED_SIRETS_ACTIONS.ADD_SIRET: {

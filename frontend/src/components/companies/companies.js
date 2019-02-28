@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 import ReactGA from 'react-ga';
 
+import store from '../../services/store';
+
 // Components
 import { Results } from './blocks/results';
 import { CompanyModal } from './blocks/company_modal';
 import { LoaderScreen } from '../shared/loader/loader_screen';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
-import { Header } from './blocks/header/header';
+import Header from './blocks/header/header';
 
 // Services
 import { SEOService } from '../../services/seo.service';
@@ -17,9 +19,6 @@ import { FavoritesService } from '../../services/favorites/favorites.service';
 import { NotificationService } from '../../services/notification/notification.service';
 import { FiltersService } from '../../services/filters/filters.service';
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
-
-import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
-import { VIEWS_STORE } from '../../services/view/views.store';
 
 import { Job } from '../../services/search_form/job';
 import { formatString, unSlug, getParameterByName } from '../../services/helpers';
@@ -74,6 +73,7 @@ class Companies extends Component {
 
             // Some Javascript action depend on the mobile
             mobileVersion: window.innerWidth < constants.MOBILE_MAX_WIDTH,
+            currentView: store.getState().currentView,
             animateMagnifier: false,
             showForm: false,
         };
@@ -131,7 +131,7 @@ class Companies extends Component {
     // Handle when user use Go back / Go forward buttons
     handleBackForwardEvent(event) {
         // Handle companySiret (if in history.state)
-        let company = COMPANY_DETAILS_STORE.getState();
+        let company = store.getState().companyDetails;
         if (company) {
             event.preventDefault();
             event.stopPropagation();
@@ -182,8 +182,8 @@ class Companies extends Component {
 
 
         // When a company is selected
-        this.companyDetailsStore = COMPANY_DETAILS_STORE.subscribe(() => {
-            let company = COMPANY_DETAILS_STORE.getState();
+        this.companyDetailsStore = store.subscribe(() => {
+            let company = store.getState().companyDetails;
 
             if (company) {
                 // Update URL in browser
@@ -206,8 +206,9 @@ class Companies extends Component {
         });
 
         // When a view is selected
-        this.viewsStore = VIEWS_STORE.subscribe(() => {
-            this.setState({ animateMagnifier: false });
+        this.viewsStore = store.subscribe(() => {
+            const currentView = store.getState().currentView;
+            if(currentView !== this.state.currentView) this.setState({ currentView, animateMagnifier: false });
         });
     }
 
@@ -221,10 +222,10 @@ class Companies extends Component {
     }
 
     searchCity() {
-        if(!isNaN(this.state.latitude) && !isNaN(this.state.longitude)) {
+        /*if(!isNaN(this.state.latitude) && !isNaN(this.state.longitude)) {
             this.searchJobs();
             return;
-        }
+        }*/
 
         // Get city
         if (!this.state.citySlug) {
@@ -299,7 +300,7 @@ class Companies extends Component {
 
                 <main>
                     <NotificationModal />
-                    <Results distance={distance} longitude={longitude} latitude={latitude} jobs={jobs} searchTerm={searchTerm} cityName={cityName} handleCompanyCount={this.handleCompanyCount} />
+                    {<Results distance={distance} longitude={longitude} latitude={latitude} jobs={jobs} searchTerm={searchTerm} cityName={cityName} handleCompanyCount={this.handleCompanyCount} />}
                     <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
             </div>

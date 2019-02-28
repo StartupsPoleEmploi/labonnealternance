@@ -6,7 +6,7 @@ export const COMPANY_DETAILS_ACTIONS = {
     DELETE_COMPANY: 'DELETE_COMPANY',
 
     // When we get SoftSkills from localStorage, we have SoftSkills object
-    ADD_SOFT_SKILLS: 'ADD_SOFT_SKILLS',
+    ADD_SOFT_SKILLS: 'COMPANY_DETAILS_ADD_SOFT_SKILLS',
     // When we get softSkills from an API request, we have to handle the response JSON format
     ADD_SOFT_SKILLS_FROM_REQUEST: 'ADD_SOFT_SKILLS_FROM_REQUEST',
 
@@ -14,7 +14,7 @@ export const COMPANY_DETAILS_ACTIONS = {
     ADD_ALL_COMPANY_DETAILS: 'ADD_ALL_COMPANY_DETAILS',
 };
 
-export const COMPANY_DETAILS_REDUCER = (state = undefined, action) => {
+export const COMPANY_DETAILS_REDUCER = (state = null, action) => {
 
     switch (action.type) {
 
@@ -74,7 +74,7 @@ export const COMPANY_DETAILS_REDUCER = (state = undefined, action) => {
         }
 
         case COMPANY_DETAILS_ACTIONS.DELETE_COMPANY:
-            return undefined;
+            return null;
 
         default:
             return state;

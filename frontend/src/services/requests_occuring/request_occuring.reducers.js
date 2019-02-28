@@ -3,7 +3,7 @@ export const REQUEST_OCCURING_ACTIONS = {
     REMOVE_REQUEST: 'REMOVE_REQUEST',
 };
 
-export const REQUEST_OCCURING_REDUCERS = (state = 0, action) => {
+export const REQUEST_OCCURING_REDUCER = (state = 0, action) => {
 
     switch (action.type) {
         case REQUEST_OCCURING_ACTIONS.ADD_REQUEST:

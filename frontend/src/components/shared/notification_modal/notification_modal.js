@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { NOTIFICATION_STORE } from '../../../services/notification/notification.store';
+import store from '../../../services/store';
 import { NotificationService } from '../../../services/notification/notification.service';
 import Modal from '../modal';
 
@@ -23,8 +23,8 @@ export class NotificationModal extends Component {
     }
 
     componentWillMount() {
-        this.notificationStore = NOTIFICATION_STORE.subscribe(() => {
-            let notification = NOTIFICATION_STORE.getState();
+        this.notificationStore = store.subscribe(() => {
+            let notification = store.getState().notification;
 
             // Remove notification ?
             if (!notification) {

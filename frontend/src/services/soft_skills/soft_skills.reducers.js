@@ -1,11 +1,11 @@
 import { SoftSkills } from './soft_skill';
 
 export const SOFT_SKILLS_ACTIONS = {
-    ADD_SOFT_SKILLS: 'ADD_SOFT_SKILLS',
+    ADD_SOFT_SKILLS: 'SOFT_SKILLS_ADD_SOFT_SKILLS',
     ADD_ALL_SOFT_SKILLS: 'ADD_ALL_SOFT_SKILLS',
 };
 
-export const SOFT_SKILLS_REDUCERS = (state = new Map(), action) => {
+export const SOFT_SKILLS_REDUCER = (state = new Map(), action) => {
 
     switch (action.type) {
         case SOFT_SKILLS_ACTIONS.ADD_SOFT_SKILLS: {
