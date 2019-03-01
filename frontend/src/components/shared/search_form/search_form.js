@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { navigate } from '@reach/router';
 
 import { SearchFormData } from '../../../services/search_form/search_form_data';
 import { LocationFormStep } from '../../form/blocks/location_form_step';
@@ -31,7 +31,8 @@ class SearchForm extends Component {
     callNewSearch = () => {
         if (this.isValid()) {
             SearchFormService.saveSearchFormValues(this.state.searchForm);
-            this.state.searchForm.callSearch(this.props.history);
+            navigate(this.state.searchForm.computeSearchUrlSearch());
+            window.history.go();
         }
     }
 
@@ -61,4 +62,4 @@ class SearchForm extends Component {
 }
 
 
-export default withRouter(SearchForm);
+export default SearchForm;

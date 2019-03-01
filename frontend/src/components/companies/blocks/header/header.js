@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import ReactGA from 'react-ga';
 
 import { FavoritesList } from './favorites_list';

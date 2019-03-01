@@ -38,7 +38,7 @@ export class SearchFormData {
     setDistance(distance) { this.distance = distance; }
     getDistance() { return this.distance; }
 
-    callSearch(historyContext) {
+    computeSearchUrlSearch() {
         let urlJobs = this.jobs.map(job => job.slug).join(',');
 
         // If the search term constains a '/', Django is confused because it got a new param !
@@ -66,7 +66,6 @@ export class SearchFormData {
         // Add distance
         if(this.distance) url = url.concat('?distance=').concat(this.distance);
 
-        historyContext.push(url);
-        historyContext.go();
+        return url;
     }
 }

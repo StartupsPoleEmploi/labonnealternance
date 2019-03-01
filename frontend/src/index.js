@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, createHistory, LocationProvider  } from '@reach/router';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 import 'babel-polyfill';
 
@@ -37,66 +37,59 @@ if (process.env.NODE_ENV !== 'production') {
     whyDidYouUpdate(React)
 }
 
-// Init Google Analytics
+const history = createHistory(window);
 
 export default class App extends Component {
 
     render() {
         return (
             <div id="app">
-                <BrowserRouter>
-                    <div>
-                        {/* Google Analytics component */}
-                        { GoogleAnalyticsService.isGASetup ?  <Route path="/" component={GoogleAnalytics} /> : null }
+                <LocationProvider history={history}>
+                    <Router>
+                        <Home exact path="/" />
+                        <Form exact path="/recherche" />
 
-                        <Switch>
-                            <Route component={Home} exact path="/" />
-                            <Route component={Form} exact path="/recherche" />
+                        <RedirectBobEmploi exact path="/entreprises/commune/:cityCode/rome/:romeCode" />
 
-                            <Route component={RedirectBobEmploi} exact path="/entreprises/commune/:cityCode/rome/:romeCode" />
+                        <Companies exact path="/entreprises/:jobSlugs/:citySlug/:term" />
+                        <Companies exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
 
-                            <Route component={Companies} exact path="/entreprises/:jobSlugs/:citySlug/:term" />
-                            <Route component={Companies} exact path="/entreprises/:jobSlugs/:longitude/:latitude/:term" />
+                        <CompanyDetails path="/details-entreprises/:companySiret" />
 
-                            <Route component={CompanyDetails} path="/details-entreprises/:companySiret" />
-
-                            <Route component={AsyncRecruiterForm} exact path="/acces-recruteur" />
-                            <Route component={AsyncCGU} exact path="/conditions-generales-utilisation" />
-                            <Route component={AsyncWhoWeAre} exact path="/qui-sommes-nous" />
-                            <Route component={AsyncFAQ} exact path="/faq" />
+                        <AsyncRecruiterForm exact path="/acces-recruteur" />
+                        <AsyncCGU exact path="/conditions-generales-utilisation" />
+                        <AsyncWhoWeAre exact path="/qui-sommes-nous" />
+                        <AsyncFAQ exact path="/faq" />
 
 
-                            {/* Not found route */}
-                            <Route component={NotFound} status={404} />
-                        </Switch>
-                    </div>
-                </BrowserRouter>
+                        {/* Not found route */}
+                        <NotFound type={404} default />
+                    </Router>
+                </LocationProvider>
             </div>
         );
     }
 }
+history.listen(({ location, action }) => {
+    //if(!GoogleAnalyticsService.isGASetup()) return;
 
-
-function GoogleAnalytics(props){
-    let pageView = props.location.pathname + props.location.search;
+    let pageView = location.pathname + location.search;
+    console.log(pageView)
 
     // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
-    if(startsWith(props.location.pathname, '/entreprises')) {
-        pageView = GoogleAnalyticsService.handleCompanyUrl(props.location.pathname);
+    if(startsWith(location.pathname, '/entreprises')) {
+        pageView = GoogleAnalyticsService.handleCompanyUrl(location.pathname);
     }
     // Format /details-entreprises/xx to /details-entreprises?siret=xx
-    else if(startsWith(props.location.pathname, '/details-entreprises')) {
-        pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(props.location.pathname);
+    else if(startsWith(location.pathname, '/details-entreprises')) {
+        pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(location.pathname);
     }
 
-
-    if(environment.GA_ID && environment.GA_ID !== '') {
-        ReactGA.set({ page: pageView });
-        ReactGA.pageview(pageView);
-    }
+    ReactGA.set({ page: pageView });
+    ReactGA.pageview(pageView);
 
     return null;
-}
+});
 
 // Initialise Raven for Sentry
 if(environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {

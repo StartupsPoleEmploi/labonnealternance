@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { navigate } from '@reach/router';
 import ReactGA from 'react-ga';
 
 // Components
@@ -36,7 +36,7 @@ class Companies extends Component {
     constructor(props) {
         super(props);
 
-        this.baseUrl = this.props.match.url.concat(window.location.search);
+        this.baseUrl = this.props.location.pathname.concat(this.props.location.search);
 
         let distance = getParameterByName('distance') || undefined;
         if (distance) {
@@ -44,10 +44,10 @@ class Companies extends Component {
         }
 
         // Get longitude,latitude & jobs from window object (and populate server-side)
-        let longitude = parseFloat(this.props.match.params.longitude);
+        let longitude = parseFloat(this.props.longitude);
         if (isNaN(longitude) && window.longitude) longitude = window.longitude;
 
-        let latitude = parseFloat(this.props.match.params.latitude);
+        let latitude = parseFloat(this.props.latitude);
         if (isNaN(latitude) && window.latitude) latitude = window.latitude;
 
         let defaultJobs = [];
@@ -62,15 +62,15 @@ class Companies extends Component {
             inputError: undefined,
             loading: true,
 
-            citySlug: this.props.match.params.citySlug,
+            citySlug: this.props.citySlug,
             longitude: longitude,
             latitude: latitude,
             distance: distance,
             cityName: undefined,
 
-            jobSlugs: this.props.match.params.jobSlugs,
+            jobSlugs: this.props.jobSlugs,
             jobs: defaultJobs,
-            searchTerm: this.props.match.params.term || '',
+            searchTerm: this.props.term || '',
 
             // Some Javascript action depend on the mobile
             mobileVersion: window.innerWidth < constants.MOBILE_MAX_WIDTH,
@@ -238,7 +238,7 @@ class Companies extends Component {
                     longitude: response.city.longitude,
                     cityName: response.city.name,
                 }, this.searchJobs());
-            }).catch(err => this.props.history.push('/not-found'));
+            }).catch(err => navigate('/not-found'));
         }
     }
 
@@ -254,7 +254,7 @@ class Companies extends Component {
 
                     // Save values
                     this.setState({ jobs });
-                }).catch(err => this.props.history.push('/not-found'));
+                }).catch(err => navigate('/not-found'));
         }
 
     }
@@ -307,4 +307,4 @@ class Companies extends Component {
     }
 }
 
-export default withRouter(Companies);
+export default Companies;
