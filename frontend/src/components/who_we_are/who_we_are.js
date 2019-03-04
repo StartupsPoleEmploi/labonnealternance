@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Footer } from '../shared/footer/footer';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 
-import { Header } from '../companies/blocks/header/header';
+import Header from '../companies/blocks/header/header';
 import { SEOService } from '../../services/seo.service';
 import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 

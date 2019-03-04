@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 
-export class Header extends Component {
+class Header extends Component {
     render() {
         return (
             <header>
@@ -16,3 +16,5 @@ export class Header extends Component {
         );
     }
 }
+
+export default Header;

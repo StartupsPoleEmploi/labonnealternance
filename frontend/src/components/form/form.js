@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
 
-import { Header } from '../shared/header/header';
+import Header from '../shared/header/header';
 
 import { JobFormStep } from './blocks/job_form_step';
 import { LocationFormStep } from './blocks/location_form_step';

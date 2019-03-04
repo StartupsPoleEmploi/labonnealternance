@@ -3,12 +3,13 @@ import { Link } from '@reach/router';
 import ReactGA from 'react-ga';
 import { navigate } from '@reach/router';
 
+import store from '../../services/store';
 
 import { Loader } from '../shared/loader/loader';
 import { Footer } from '../shared/footer/footer';
 import { NotificationModal } from '../shared/notification_modal/notification_modal';
 
-import { Header } from '../companies/blocks/header/header';
+import Header from '../companies/blocks/header/header';
 import FavoriteButton from '../shared/favorite_button/favorite_button';
 
 import { SEOService } from '../../services/seo.service';
@@ -16,8 +17,6 @@ import { CompanyDetailsService } from '../../services/company_details/company_de
 
 import { getParameterByName } from '../../services/helpers';
 
-import { FAVORITES_STORE } from '../../services/favorites/favorites.store';
-import { COMPANY_DETAILS_STORE } from '../../services/company_details/company_details.store';
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
 import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
 import UpdateCompanyLink from '../shared/update-company-link';
@@ -44,8 +43,8 @@ class CompanyDetails extends Component {
     }
 
     componentWillMount() {
-        COMPANY_DETAILS_STORE.subscribe(() => {
-            let company = COMPANY_DETAILS_STORE.getState();
+        this.companyDetailsStore = store.subscribe(() => {
+            let company = store.getState().companyDetails;
             if (company) {
                 SEOService.displayNoFollow(false);
                 SEOService.setTitle('Offres probables d\'alternance société ' + company.label);
@@ -63,11 +62,6 @@ class CompanyDetails extends Component {
             }
         });
 
-        // When a favorite is added/deleted => force update if needed
-        this.favoritesStore = FAVORITES_STORE.subscribe(() => {
-            if (this.state.company) this.forceUpdate();
-        });
-
         // Set canonical URL
         let canonical = window.location.origin.concat(window.location.pathname);
         SEOService.setCanonical(canonical);
@@ -79,6 +73,10 @@ class CompanyDetails extends Component {
             CompanyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true)
                 .catch(() => navigate('/not-found'));
         }
+    }
+
+    componentWillUnmount() {
+        this.companyDetailsStore();
     }
 
 

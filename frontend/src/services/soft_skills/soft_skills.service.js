@@ -1,8 +1,7 @@
-import { SOFT_SKILLS_ACTIONS } from './soft_skills.reducers';
-import { SOFT_SKILLS_STORE } from './soft_skills.store';
+import store from '../store';
 
+import { SOFT_SKILLS_ACTIONS } from './soft_skills.reducers';
 import { COMPANY_DETAILS_ACTIONS } from '../company_details/company_details.reducer';
-import { COMPANY_DETAILS_STORE } from '../company_details/company_details.store';
 
 import { constants } from '../../constants';
 import { SoftSkills } from './soft_skill';
@@ -15,9 +14,9 @@ class SoftSkillsServiceFactory {
 
     constructor() {
         // Save soft_skills
-        SOFT_SKILLS_STORE.subscribe(() => {
+        store.subscribe(() => {
             let softSkills = [];
-            SOFT_SKILLS_STORE.getState().forEach(value => {
+            store.getState().softSkills.forEach(value => {
                 softSkills.push(value)
             });
             localStorage.setItem(SOFT_SKILLS_STORAGE_KEY, JSON.stringify(softSkills))
@@ -36,7 +35,7 @@ class SoftSkillsServiceFactory {
                     softSkills.push(new SoftSkills(data.rome, data.skills));
                 });
 
-                SOFT_SKILLS_STORE.dispatch({
+                store.dispatch({
                     type: SOFT_SKILLS_ACTIONS.ADD_ALL_SOFT_SKILLS,
                     data: { softSkills }
                 });
@@ -49,9 +48,9 @@ class SoftSkillsServiceFactory {
 
     getSoftSkills(rome) {
         // No request if we already have the soft skills
-        let softSkillsMap = SOFT_SKILLS_STORE.getState();
+        let softSkillsMap = store.getState().softSkills;
         if(softSkillsMap.has(rome)) {
-            COMPANY_DETAILS_STORE.dispatch({
+            store.dispatch({
                 type: COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS,
                 data: { softSkills: softSkillsMap.get(rome) }
             });
@@ -76,12 +75,12 @@ class SoftSkillsServiceFactory {
                     if (skills[key].score > 0.5) softSkills.push(skills[key]);
                 });
 
-                SOFT_SKILLS_STORE.dispatch({
+                store.dispatch({
                     type: SOFT_SKILLS_ACTIONS.ADD_SOFT_SKILLS,
                     data: { rome, softSkills }
                 });
 
-                COMPANY_DETAILS_STORE.dispatch({
+                store.dispatch({
                     type: COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS_FROM_REQUEST,
                     data: softSkills
                 });

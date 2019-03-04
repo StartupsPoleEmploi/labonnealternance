@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
 import ReactGA from 'react-ga';
 
+import store from '../../../services/store';
 import { AutocompleteLocationService } from '../../../services/autocomplete_location/autocomplete_location.service';
-import { AUTOCOMPLETE_LOCATION_STORE } from '../../../services/autocomplete_location/autocomplete_location.store';
 import { CurrentLocationService } from '../../../services/current_location/current_location.service';
-import { CURRENT_LOCATION_STORE } from '../../../services/current_location/current_location.store';
 
 import { Location } from '../../../services/search_form/location';
 import { NotificationService } from '../../../services/notification/notification.service';
@@ -58,13 +57,13 @@ export class LocationFormStep extends Component {
     componentWillMount() {
         NotificationService.deleteNotification();
 
-        this.autocompleteLocationStore = AUTOCOMPLETE_LOCATION_STORE.subscribe(() => {
-            this.setState({ suggestions: AUTOCOMPLETE_LOCATION_STORE.getState() });
+        this.autocompleteLocationStore = store.subscribe(() => {
+            this.setState({ suggestions: store.getState().locationSuggestions });
         });
 
         // When we get the user position and address
-        this.currentLocationStore = CURRENT_LOCATION_STORE.subscribe(() => {
-            let locationSaved = CURRENT_LOCATION_STORE.getState() || undefined;
+        this.currentLocationStore = store.subscribe(() => {
+            let locationSaved = store.getState().currentLocation;
 
             if (!locationSaved) return;
 

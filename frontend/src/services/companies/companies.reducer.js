@@ -1,7 +1,8 @@
 import { Company } from './company';
-import { FILTERS_STORE } from '../filters/filters.store';
+
 import { determineNafSection } from './naf_section';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
+import store from '../store';
 
 export const COMPANIES_ACTIONS = {
     ADD_COMPANIES: 'ADD_COMPANIES',
@@ -19,7 +20,7 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
             if (action.data === undefined) return state;
 
             // Filters
-            let filters = FILTERS_STORE.getState();
+            let filters = store.getState().filters;
             let filtersActive = isFiltersActive(filters);
 
             // Note : to not check duplicates here (because distance can change)

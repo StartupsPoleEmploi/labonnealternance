@@ -3,22 +3,16 @@ import React, { Component } from 'react';
 
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
-import { VISITED_SIRETS_STORE } from '../../../services/visited_sirets/visited_sirets.store';
-import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
+import store from '../../../services/store';
 
 export class CompanyListItem extends Component {
-
-    componentWillMount() {
-        // When a favorite is added/deleted
-        this.favoritesStore = FAVORITES_STORE.subscribe(() => this.forceUpdate());
-    }
 
     selectCompany = () => {
         CompanyDetailsService.setCompany(this.props.company);
     }
 
     hasBeenVisited = (siret) => {
-        return VISITED_SIRETS_STORE.getState().has(siret);
+        return store.getState().visitedSirets.has(siret);
     }
 
     blurItem = (event) => {
@@ -44,9 +38,6 @@ export class CompanyListItem extends Component {
         return this.props.company.siret !== nextProps.company.siret;
     }
 
-    componentWillUnmount() {
-        this.favoritesStore();
-    }
 
     // RENDER
     render() {

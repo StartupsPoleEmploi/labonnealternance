@@ -5,13 +5,10 @@ import ReactGA from 'react-ga';
 import { leaflet } from 'mapbox.js';
 import { MarkerClusterGroup } from 'leaflet.markercluster';
 
+import store from './store';
 import { CompanyDetailsService } from './company_details/company_details.service';
-import { COMPANY_DETAILS_STORE } from './company_details/company_details.store';
 
 import { VisitedSiretService } from '../services/visited_sirets/visited_sirets.service';
-import { VISITED_SIRETS_STORE } from '../services/visited_sirets/visited_sirets.store';
-
-import { FAVORITES_STORE } from './favorites/favorites.store';
 
 import { computeDistance, computeViewBox } from '../services/distance-helpers';
 
@@ -56,17 +53,27 @@ export class MapBoxService {
 
         // Store the visited companies
         this.siretsVisited = new Map();
-        VISITED_SIRETS_STORE.subscribe(() => this.siretsVisited = VISITED_SIRETS_STORE.getState());
+        store.subscribe(() => {
+            const newSiretsVisited = store.getState().visitedSirets;
+            if(newSiretsVisited.size !== this.siretsVisited.size) {
+                this.siretsVisited = store.getState().visitedSirets;
+            }
+        });
 
 
         // LISTENERS
         // When a company is selected, we saved it (for gray marker)
-        COMPANY_DETAILS_STORE.subscribe(() => {
-            let company = COMPANY_DETAILS_STORE.getState();
-            if (company) {
-                let siret = company.siret;
-                VisitedSiretService.addVisited(siret);
-                this.markers.get(siret).setIcon(this.determineMarkerIcon(siret));
+        this.companySelected = null;
+        store.subscribe(() => {
+            const company = store.getState().companyDetails;
+            if (company === null && this.companySelected !== null) {
+                this.companySelected = null;
+            } else if(company !== null && this.companySelected === null) {
+                this.setAsSelected(company);
+            } else if(company === null && this.companySelected !== null && this.companySelected.siret !== company.siret) {
+                this.setAsSelected(company);
+            } else {
+                this.companySelected = null;
             }
         });
     }
@@ -121,10 +128,16 @@ export class MapBoxService {
         this.map.addLayer(this.clusters);
     }
 
+    setAsSelected(company) {
+        this.companySelected = company;
+        VisitedSiretService.addVisited(company.siret);
+        this.markers.get(company.siret).setIcon(this.determineMarkerIcon(company.siret));
+    }
+
     // Favorite Icon ? Gray icon ? Default icon ?
     determineMarkerIcon(siret) {
-        if (FAVORITES_STORE.getState().has(siret)) return this.favoriteIcon;
-        if (VISITED_SIRETS_STORE.getState().has(siret)) return this.grayIcon;
+        if (store.getState().favorites.has(siret)) return this.favoriteIcon;
+        if (store.getState().visitedSirets.has(siret)) return this.grayIcon;
         return this.blueIcon;
     }
 

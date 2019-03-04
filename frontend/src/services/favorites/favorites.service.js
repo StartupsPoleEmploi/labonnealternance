@@ -1,7 +1,7 @@
 import ReactGA from 'react-ga';
 
 import { FAVORITES_ACTIONS } from './favorites.reducers';
-import { FAVORITES_STORE } from './favorites.store';
+import store from '../store';
 import { Favorite } from './favorite';
 
 import { CompanyDetailsService } from '../company_details/company_details.service';
@@ -17,14 +17,14 @@ class FavoritesServiceFactory {
 
     constructor() {
         // Save favorites to local storage when favorites change
-        FAVORITES_STORE.subscribe(() => {
+        store.subscribe(() => {
             this.saveFavoritesToLocalStorage();
         });
     }
 
     addFavorite(company) {
         // Check if we already have reach the favorites limit
-        let favorites = FAVORITES_STORE.getState();
+        let favorites = store.getState().favorites;
         if (favorites.size >= MAX_FAVORITES) {
             NotificationService.createError('Désolé, vous ne pouvez pas sauvegardé plus de ' + MAX_FAVORITES + ' favoris.');
         }
@@ -33,7 +33,7 @@ class FavoritesServiceFactory {
         let response = CompanyDetailsService.getCompanyDetailsFromLBB(company.siret);
 
         response.then(companyData => {
-            FAVORITES_STORE.dispatch({
+            store.dispatch({
                 type: FAVORITES_ACTIONS.ADD_FAVORITE,
                 data: {
                     company: {
@@ -55,7 +55,7 @@ class FavoritesServiceFactory {
     }
 
     removeFavorite(siret) {
-        FAVORITES_STORE.dispatch({
+        store.dispatch({
             type: FAVORITES_ACTIONS.REMOVE_FAVORITE,
             data: { siret }
         });
@@ -92,7 +92,7 @@ class FavoritesServiceFactory {
         }
 
         // Save favorites
-        FAVORITES_STORE.dispatch({
+        store.dispatch({
             type: FAVORITES_ACTIONS.ADD_ALL_FAVORITES,
             data: { favorites }
         });
@@ -143,7 +143,7 @@ class FavoritesServiceFactory {
     saveFavoritesToLocalStorage() {
         // Transform the favorite map to an array
         let favorites = [];
-        FAVORITES_STORE.getState().forEach((favorite, siret) => favorites.push(favorite));
+        store.getState().favorites.forEach((favorite, siret) => favorites.push(favorite));
 
         localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
     }
