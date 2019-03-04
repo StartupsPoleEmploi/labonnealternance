@@ -11,13 +11,8 @@ import { CompanyListItem } from './company_list_item';
 import { CompanyFilters } from './company_filters';
 import { ViewChooser } from './view-chooser';
 
-import { COMPANIES_STORE } from '../../../services/companies/companies.store';
-import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
-import { FILTERS_STORE } from '../../../services/filters/filters.store';
-
+import store from '../../../services/store';
 import { VIEWS } from '../../../services/view/views.reducers';
-import { VIEWS_STORE } from '../../../services/view/views.store';
-import { REQUEST_OCCURING_STORE } from '../../../services/requests_occuring/request_occuring.store';
 
 export class Results extends Component {
 
@@ -37,6 +32,7 @@ export class Results extends Component {
 
             showFilters: false,
             isFiltering: false,
+            filters: store.getState().filters,
 
             modalNoResult: false,
 
@@ -54,11 +50,11 @@ export class Results extends Component {
 
     componentWillMount() {
         // Listen to the company store
-        this.companiesStore = COMPANIES_STORE.subscribe(() => {
+        this.companiesStore = store.subscribe(() => {
             // Detect if a filter is active
             let filterActive = FiltersService.isFiltersActive();
 
-            let companiesStored = COMPANIES_STORE.getState();
+            let companiesStored = store.getState().companies;
             let companies = this.state.companies;
 
             companiesStored.forEach((company, siret) => {
@@ -90,7 +86,7 @@ export class Results extends Component {
 
 
             // If we don't expect other request result
-            if (REQUEST_OCCURING_STORE.getState() === 0) {
+            if (store.getState().requestOccuring === 0) {
                 // Hide or show the no-result modal
                 if (companies.size === 0 && !filterActive) this.setState({ modalNoResult: true });
                 else this.setState({ modalNoResult: false });
@@ -100,21 +96,22 @@ export class Results extends Component {
             }
         });
 
-        // When a favorite is added/deleted => force update of the list
-        this.favoritesStore = FAVORITES_STORE.subscribe(() => {
-            this.forceUpdate();
-        });
-
         // When filters are saved, automatically filter results
-        this.filterStore = FILTERS_STORE.subscribe(() => {
-            this.applyFilters(FILTERS_STORE.getState());
+        this.filterStore = store.subscribe(() => {
+            const filters = store.getState().filters;
+
+            const hasChanged = FiltersService.checkIfDiff(this.state.filters, filters);
+            if(hasChanged) {
+                this.setState({ filters });
+                this.applyFilters(filters);
+            }
         });
 
         // When view change
-        VIEWS_STORE.subscribe(() => {
-            let view = VIEWS_STORE.getState() || VIEWS.MAP;
-            this.setState({ currentView: view });
-        })
+        this.viewStore = store.subscribe(() => {
+            let view = store.getState().currentView || VIEWS.MAP;
+            if(this.state.currentView !== view) this.setState({ currentView: view });
+        });
     }
 
     componentDidMount() {
@@ -131,7 +128,6 @@ export class Results extends Component {
     componentWillUnmount() {
         // Unsubscribe
         this.companiesStore();
-        this.favoritesStore();
         this.filterStore();
     }
 

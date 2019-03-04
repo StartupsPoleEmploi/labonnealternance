@@ -7,7 +7,7 @@ export const FAVORITES_ACTIONS = {
     ADD_ALL_FAVORITES: 'ADD_ALL_FAVORITES',
 };
 
-export const FAVORITES_REDUCERS = (state = new Map(), action) => {
+export const FAVORITES_REDUCER = (state = new Map(), action) => {
 
     switch (action.type) {
         case FAVORITES_ACTIONS.ADD_FAVORITE: {

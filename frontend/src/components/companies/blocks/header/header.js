@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import ReactGA from 'react-ga';
 
+import { connect } from 'react-redux';
 import { FavoritesList } from './favorites_list';
 import SearchForm from '../../../shared/search_form/search_form';
-import { FAVORITES_STORE } from '../../../../services/favorites/favorites.store';
 
-export class Header extends Component {
+class Header extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = ({
-            favoritesNumber: 0,
-
             // Avoid auto-close of search form
             showFormClicked: false,
 
@@ -42,33 +40,15 @@ export class Header extends Component {
         }
     }
 
-    componentWillMount() {
-        // When a favorite is added/remove
-        this.favoritesStore = FAVORITES_STORE.subscribe(() => {
-            let favorites = FAVORITES_STORE.getState() || [];
-            this.setState({ favoritesNumber: favorites.size });
-        });
-    }
-
-    componentDidMount() {
-        // On mount, we init the number of favorites
-        let favorites = FAVORITES_STORE.getState() || [];
-        this.setState({ favoritesNumber: favorites.size });
-    }
-
-    componentWillUnmount() {
-        // Unsubscribe to listeners
-        this.favoritesStore();
-    }
 
     // CLOSE/OPEN
-    closeSearchForm = (event) => { this.setState({ showSearchForm: false, showFavorites: false, animateMagnifier: false, showFormClicked: false }); }
-    openSearchForm  = (event) => {
+    closeSearchForm = () => { this.setState({ showSearchForm: false, showFavorites: false, animateMagnifier: false, showFormClicked: false }); }
+    openSearchForm  = () => {
         ReactGA.event({ category: 'Search', action: 'Open search form' });
         this.setState({ showSearchForm: true, showFavorites: false, animateMagnifier: false, showFormClicked: true });
     }
-    closeFavorites  = (event) => { this.setState({ showSearchForm: false, showFavorites: false, showFormClicked: false }); }
-    openFavorites   = (event) => {
+    closeFavorites  = () => { this.setState({ showSearchForm: false, showFavorites: false, showFormClicked: false }); }
+    openFavorites   = () => {
         ReactGA.event({ category: 'Favorites', action: 'Open favorites list' });
         this.setState({ showSearchForm: false, showFavorites: true, showFormClicked: false });
     }
@@ -78,7 +58,7 @@ export class Header extends Component {
     computeFavoriteClasses() {
         let classes = 'icon large-favorite';
 
-        if (this.state.favoritesNumber) classes = classes.concat(' heart-active');
+        if (this.props.favoritesNumber) classes = classes.concat(' heart-active');
         else classes = classes.concat(' empty-heart');
 
         return classes;
@@ -108,7 +88,7 @@ export class Header extends Component {
     renderFavoriteButton() {
         return(
             <button className={this.computeFavoriteClasses()} onClick={this.state.showFavorites ? this.closeFavorites:this.openFavorites} title={this.state.showSearchForm ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
-                <span className={this.state.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.state.favoritesNumber}</span>
+                <span className={this.props.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.props.favoritesNumber}</span>
                 <span className="sub">Mes favoris</span>
             </button>
         );
@@ -134,3 +114,6 @@ export class Header extends Component {
         );
     }
 }
+
+
+export default connect(store => ({ favoritesNumber: store.favorites.size }))(Header);

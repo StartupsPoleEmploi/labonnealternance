@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
 
-import { VIEWS_STORE } from '../../../services/view/views.store';
+import store from '../../../services/store';
 import { VIEWS } from '../../../services/view/views.reducers';
 import { ViewsService } from '../../../services/view/views.service';
 
@@ -16,8 +16,8 @@ export class ViewChooser extends Component {
     }
 
     componentDidMount() {
-        this.viewsStore = VIEWS_STORE.subscribe(() => {
-            let view = VIEWS_STORE.getState();
+        this.viewsStore = store.subscribe(() => {
+            let view = store.getState().currentView;
             this.setState({ view });
         });
     }

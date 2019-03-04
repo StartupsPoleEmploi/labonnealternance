@@ -1,6 +1,6 @@
 import { constants } from '../../constants';
 
-import { COMPANIES_STORE } from './companies.store';
+import store from '../store';
 import { COMPANIES_ACTIONS } from './companies.reducer';
 
 import { NotificationService } from '../notification/notification.service';
@@ -14,7 +14,7 @@ class CompaniesServiceFactory {
     }
 
     applyFilters(filters) {
-        COMPANIES_STORE.dispatch({
+        store.dispatch({
             type: COMPANIES_ACTIONS.APPLY_FILTERS,
             data: { filters }
         });
@@ -65,7 +65,7 @@ class CompaniesServiceFactory {
     }
 
     getCompaniesFromWindowObject(jobs) {
-        COMPANIES_STORE.dispatch({
+        store.dispatch({
             type: COMPANIES_ACTIONS.ADD_COMPANIES,
             data: { companies: window.__companies.companies, jobs }
         });
@@ -108,7 +108,7 @@ class CompaniesServiceFactory {
                     this.getCompanies(jobs, longitude, latitude, { page: page+1, distance });
                 }
 
-                COMPANIES_STORE.dispatch({
+                store.dispatch({
                     type: COMPANIES_ACTIONS.ADD_COMPANIES,
                     data: { companies: response.companies, jobs }
                 });
@@ -116,9 +116,9 @@ class CompaniesServiceFactory {
     }
 
     clearCompanies() {
-        if(COMPANIES_STORE.getState().size === 0) return;
+        if(store.getState().companies.size === 0) return;
 
-        COMPANIES_STORE.dispatch({
+        store.dispatch({
             type: COMPANIES_ACTIONS.CLEAR_COMPANIES
         });
     }

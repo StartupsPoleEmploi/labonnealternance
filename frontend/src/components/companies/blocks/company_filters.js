@@ -5,8 +5,7 @@ import toArray from 'lodash/toArray';
 import { FiltersService } from '../../../services/filters/filters.service';
 import { ViewsService } from '../../../services/view/views.service';
 
-import { COMPANIES_STORE } from '../../../services/companies/companies.store';
-import { VIEWS_STORE } from '../../../services/view/views.store';
+import store from '../../../services/store';
 
 import { VIEWS } from '../../../services/view/views.reducers';
 import { Loader } from '../../shared/loader/loader';
@@ -43,11 +42,22 @@ export class CompanyFilters extends Component {
         };
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.state.showFilters || nextState.showFilters) return true;
+        if(this.state.showFilters !== nextState.showFilters) return true;
+        return false;
+    }
+
     componentWillMount() {
         // FILTERS : Extract NAF text when we get companies
-        this.companiesStore = COMPANIES_STORE.subscribe(() => {
+        this.storeSubscription = store.subscribe(() => {
 
-            let companies = COMPANIES_STORE.getState();
+            // Check if we need filter view on mobile
+            if (store.getState().currentView === VIEWS.FILTERS) this.setState({ showFilters: true });
+            else this.setState({ showFilters: false });
+
+            // Check for companies update
+            let companies = store.getState().companies;
 
             // No companies : clear filters
             if (companies.size === 0) {
@@ -76,18 +86,10 @@ export class CompanyFilters extends Component {
                 romesSelected: this.updateRomesSelected(),
             });
         });
-
-        // Handle filter view on mobile
-        this.viewStore = VIEWS_STORE.subscribe(() => {
-            if (VIEWS_STORE.getState() === VIEWS.FILTERS) this.setState({ showFilters: true });
-            else this.setState({ showFilters: false });
-        });
     }
 
     componentWillUnmount() {
-        // Unsubscribe to listeners
-        this.companiesStore();
-        this.viewStore();
+        this.storeSubscription();
     }
 
     isSelected(filtersCollections, index) {

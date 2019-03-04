@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Footer } from '../shared/footer/footer';
-import { Header } from '../companies/blocks/header/header';
+import Header from '../companies/blocks/header/header';
 
 import { NotificationService } from '../../services/notification/notification.service';
 import { Notification } from '../shared/notification/notification';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+
+import store from '../../../../services/store';
 import { FavoritesService } from '../../../../services/favorites/favorites.service';
-import { FAVORITES_STORE } from '../../../../services/favorites/favorites.store';
 import { isEmail } from '../../../../services/helpers';
 import { NotificationService } from '../../../../services/notification/notification.service';
 
@@ -20,7 +21,7 @@ export class FavoritesList extends Component {
     componentDidMount() {
         // First values
         this.updateFavorites();
-        this.favoriteStore = FAVORITES_STORE.subscribe(() => this.updateFavorites());
+        this.favoriteStore = store.subscribe(() => this.updateFavorites());
     }
 
     componentWillUnmount() {
@@ -29,7 +30,9 @@ export class FavoritesList extends Component {
     }
 
     updateFavorites() {
-        let favoritesStored = FAVORITES_STORE.getState();
+        let favoritesStored = store.getState().favorites;
+        if(this.state.favorites.length === favoritesStored.length) return;
+
         let favorites = [];
 
         favoritesStored.forEach((favorite, siret) => {

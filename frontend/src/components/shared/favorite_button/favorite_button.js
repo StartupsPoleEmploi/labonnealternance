@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { FAVORITES_STORE } from '../../../services/favorites/favorites.store';
+import { connect } from 'react-redux';
+
+import store from '../../../services/store';
 import { FavoritesService } from '../../../services/favorites/favorites.service';
 import ReactGA from 'react-ga';
 
-export default class FavoriteButton extends Component {
+
+class FavoriteButton extends Component {
 
     addFavorite = (event) => {
         event.stopPropagation();
@@ -17,7 +20,7 @@ export default class FavoriteButton extends Component {
     }
 
     isFavorite() {
-        return FAVORITES_STORE.getState().has(this.props.company.siret);
+        return store.getState().favorites.has(this.props.company.siret);
     }
 
     // RENDER
@@ -35,3 +38,5 @@ export default class FavoriteButton extends Component {
         );
     }
 }
+
+export default connect(store => ({ favorites: store.favorites }))(FavoriteButton);

@@ -10,8 +10,8 @@ export const VIEWS_ACTIONS = {
     SET_FILTERS_VIEW: 'SET_FILTERS_VIEW',
 };
 
-let initialState = VIEWS.MAPS;
-export const VIEWS_REDUCERS = (state = initialState, action) => {
+let initialState = VIEWS.MAP;
+export const VIEWS_REDUCER = (state = initialState, action) => {
 
     switch (action.type) {
         case VIEWS_ACTIONS.SET_MAP_VIEW:

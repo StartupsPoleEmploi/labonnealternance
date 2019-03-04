@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { NOTIFICATION_TYPE } from '../../../services/notification/notification';
-import { NOTIFICATION_STORE } from '../../../services/notification/notification.store';
+import store from '../../../services/store';
 
 require('./notification.css');
 
@@ -28,12 +28,12 @@ export class Notification extends Component {
 
     componentWillMount() {
         // Check if a notification exists
-        let notification = NOTIFICATION_STORE.getState();
+        let notification = store.getState().notification;
         if (notification && !notification.display) this.setState({ notification });
 
 
-        this.notificationStore = NOTIFICATION_STORE.subscribe(() => {
-            let notification = NOTIFICATION_STORE.getState();
+        this.notificationStore = store.subscribe(() => {
+            let notification = store.getState().notification;
 
             // Remove notification ?
             if (!notification) {

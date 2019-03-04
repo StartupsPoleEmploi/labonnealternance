@@ -1,8 +1,8 @@
 import { AutocompleteJob } from './autocomplete_job';
 
 export const AUTOCOMPLETE_JOB_ACTIONS = {
-    CLEAR_SUGGESTIONS: 'CLEAR_SUGGESTIONS',
-    SET_SUGGESTIONS: 'SET_SUGGESTIONS'
+    CLEAR_SUGGESTIONS: 'JOB_CLEAR_SUGGESTIONS',
+    SET_SUGGESTIONS: 'JOB_SET_SUGGESTIONS'
 };
 
 let initialState = [];
