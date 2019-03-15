@@ -63,11 +63,13 @@ def suggest_cities(request):
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
     try:
-        response = lbb_client.autocomplete_city(text)
+        lbb_response = lbb_client.autocomplete_city(text)
     except HTTPError:
         return HttpResponseNotFound()
 
-    return add_cors(response.read()) if token else response.read()
+    lba_response = HttpResponse(lbb_response.read())
+
+    return add_cors(lba_response) if token else lba_response
 
 
 def company_details(request):
