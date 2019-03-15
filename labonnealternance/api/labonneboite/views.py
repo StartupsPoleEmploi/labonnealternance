@@ -12,11 +12,21 @@ from .custom_search_jobs import CustomSearchJob
 CUSTOM_SEARCH_JOB_RESULTS = CustomSearchJob()
 DISTANCE_DEFAULT = 50
 
+
+def add_cors(response):
+    response["Access-Control-Allow-Origin"] =  "*"
+    response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+    response["Access-Control-Max-Age"] = "1000"
+    response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+    return response
+
 def suggest_romes(request):
     """
     Auto-complete for a giving job label
     """
     text = request.GET.get('term', None)
+    token = request.GET.get('token', None)
+
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
@@ -36,8 +46,10 @@ def suggest_romes(request):
         escape = re.compile(re.escape(word), re.IGNORECASE)
         text = escape.sub('', text)
 
-    response = lbb_client.autocomplete_job(text)
-    return HttpResponse(response.read())
+    lbb_response = lbb_client.autocomplete_job(text)
+    lba_response = HttpResponse(lbb_response.read())
+
+    return add_cors(lba_response) if token else lba_response
 
 
 def suggest_cities(request):
@@ -45,6 +57,8 @@ def suggest_cities(request):
     Auto-complete for a giving location
     """
     text = request.GET.get('term', None)
+    token = request.GET.get('token', None)
+
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
@@ -52,7 +66,8 @@ def suggest_cities(request):
         response = lbb_client.autocomplete_city(text)
     except HTTPError:
         return HttpResponseNotFound()
-    return HttpResponse(response.read())
+
+    return add_cors(response.read()) if token else response.read()
 
 
 def company_details(request):
