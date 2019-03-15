@@ -1,45 +1,45 @@
-"COMMERCE,COMMERCIAL",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-"COMMERCE,COMMERCIAL",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-"COMMERCE,COMMERCIAL",D1401,Assistanat commercial,assistanat-commercial
-"COMMERCE,COMMERCIAL",E1101,Animation de site multimédia ( Web commercial / commerciale),animation-de-site-multimedia
-"COMMERCE,COMMERCIAL",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-"COMMERCE,COMMERCIAL",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
-"COMMERCE,COMMERCIAL",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-"COMMERCE,COMMERCIAL",D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-"COMMERCE,COMMERCIAL",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-"COMMERCE,COMMERCIAL",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-"COMMERCE,COMMERCIAL",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-"COMMERCE,COMMERCIAL",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-"COMMERCE,COMMERCIAL",M1705,Marketing (Assistant / Assistante marketing….),marketing
-"COMMERCE,COMMERCIAL",M1101,Achats (Acheteur / Acheteuse junior….),achats
-"COMMERCE,COMMERCIAL",D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
-"COMMERCE,COMMERCIAL",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-"COMMERCE,COMMERCIAL",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-"COMMERCE,COMMERCIAL",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-"COMMERCE,COMMERCIAL",D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
-"COMMERCE,COMMERCIAL",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-"COMMERCE,COMMERCIAL",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-"VENDEUR,VENDEUSE",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
-"VENDEUR,VENDEUSE",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
-"VENDEUR,VENDEUSE",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
-"VENDEUR,VENDEUSE",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
-"VENDEUR,VENDEUSE",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
-"VENDEUR,VENDEUSE",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
-"VENDEUR,VENDEUSE",G1303,Vente de voyages,vente-de-voyages
-"VENDEUR,VENDEUSE",D1201,"Achat vente d'objets d'art, anciens ou d'occasion (Vendeur / Vendeuse en antiquités…)",achat-vente-d-objets-d-art-anciens-ou-d-occasion
-"VENDEUR,VENDEUSE",D1209,Vente en végétaux,vente-en-vegetaux
-"VENDEUR,VENDEUSE",D1210,Vente en animalerie,vente-en-animalerie
-"VENDEUR,VENDEUSE",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
-"VENDEUR,VENDEUSE",D1401,Assistanat commercial,assistanat-commercial
-"VENDEUR,VENDEUSE",D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
-"VENDEUR,VENDEUSE",D1211,Vente en gros de matériel et équipement (Vendeur en grossiste….),vente-en-articles-de-sport-et-loisirs
-"VENDEUR,VENDEUSE",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
-"VENDEUR,VENDEUSE",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
-"VENDEUR,VENDEUSE",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
-"VENDEUR,VENDEUSE",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
-"VENDEUR,VENDEUSE",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
-"VENDEUR,VENDEUSE",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
-"VENDEUR,VENDEUSE",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1401,Assistanat commercial,assistanat-commercial
+"COMMERCE,COMMERCIAL,COMMERCIALE",E1101,Animation de site multimédia ( Web commercial / commerciale),animation-de-site-multimedia
+"COMMERCE,COMMERCIAL,COMMERCIALE",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
+"COMMERCE,COMMERCIAL,COMMERCIALE",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1407,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"COMMERCE,COMMERCIAL,COMMERCIALE",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
+"COMMERCE,COMMERCIAL,COMMERCIALE",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
+"COMMERCE,COMMERCIAL,COMMERCIALE",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
+"COMMERCE,COMMERCIAL,COMMERCIALE",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
+"COMMERCE,COMMERCIAL,COMMERCIALE",M1705,Marketing (Assistant / Assistante marketing….),marketing
+"COMMERCE,COMMERCIAL,COMMERCIALE",M1101,Achats (Acheteur / Acheteuse junior….),achats
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1406,Management en force de vente (Manager commercial junior / Manageuse commerciale junior des forces de vente….),management-en-force-de-vente
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1211,"Vente en articles de sport et loisirs (Vendeur / Vendeuse en équipement de sport, en jeux en jeux électroniquesen papeterie….)",vente-en-articles-de-sport-et-loisirs
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
+"COMMERCE,COMMERCIAL,COMMERCIALE",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
+"VENDEUR,VENDEUSE,VENTE",D1404,Relation commerciale en vente de véhicules (Vendeur / Vendeuse automobile…),relation-commerciale-en-vente-de-vehicules
+"VENDEUR,VENDEUSE,VENTE",D1214,Vente en habillement et accessoires de la personne (Vendeur / Vendeuse en prêt-à-porter masculin….),vente-en-habillement-et-accessoires-de-la-personne
+"VENDEUR,VENDEUSE,VENTE",D1212,"Vente en décoration et équipement du foyer ( Vendeur/ Vendeuse de cuisine, de produits mutimédia, d'électroménager….)",vente-en-decoration-et-equipement-du-foyer
+"VENDEUR,VENDEUSE,VENTE",D1501,Animation de vente(Animateur / Animatrice de vente…),animation-de-vente
+"VENDEUR,VENDEUSE,VENTE",D1408,Téléconseil et télévente (Conseiller / Conseillère clientèle à distance…),teleconseil-et-televente
+"VENDEUR,VENDEUSE,VENTE",D1106,"Vente en alimentation ( Vendeur/Vendeuse en fruits et légumes, en boulangerie….)",vente-en-alimentation
+"VENDEUR,VENDEUSE,VENTE",G1303,Vente de voyages,vente-de-voyages
+"VENDEUR,VENDEUSE,VENTE",D1201,"Achat vente d'objets d'art, anciens ou d'occasion (Vendeur / Vendeuse en antiquités…)",achat-vente-d-objets-d-art-anciens-ou-d-occasion
+"VENDEUR,VENDEUSE,VENTE",D1209,Vente en végétaux,vente-en-vegetaux
+"VENDEUR,VENDEUSE,VENTE",D1210,Vente en animalerie,vente-en-animalerie
+"VENDEUR,VENDEUSE,VENTE",C1504,Transaction immobilière (Agent / Agente immobilier….),transaction-immobiliere
+"VENDEUR,VENDEUSE,VENTE",D1401,Assistanat commercial,assistanat-commercial
+"VENDEUR,VENDEUSE,VENTE",D1507,Relation technico-commerciale (Technico-commercial / Technico-commerciale…),relation-technico-commerciale
+"VENDEUR,VENDEUSE,VENTE",D1211,Vente en gros de matériel et équipement (Vendeur en grossiste….),vente-en-articles-de-sport-et-loisirs
+"VENDEUR,VENDEUSE,VENTE",D1403,Relation commerciale auprès de particuliers (Commercial / Commerciale auprès des particuliers),relation-commerciale-aupres-de-particuliers
+"VENDEUR,VENDEUSE,VENTE",M1701,Administration des ventes (Responsable de la gestion des commandes….),administration-des-ventes
+"VENDEUR,VENDEUSE,VENTE",M1704,Management relation clientèle (Chargé / Chargée de clientèle e-commerce…),management-relation-clientele
+"VENDEUR,VENDEUSE,VENTE",M1707,Stratégie commerciale (Responsable du développement commercial…),strategie-commerciale
+"VENDEUR,VENDEUSE,VENTE",D1402,Relation commerciale grands comptes et entreprises (Commercial / Commerciale en publicité auprès des entreprises....),relation-commerciale-grands-comptes-et-entreprises
+"VENDEUR,VENDEUSE,VENTE",C1102,Conseil clientèle en assurances ( Collaborateur commercial / Collaboratrice commerciale en assurances...),conseil-clientele-en-assurances
+"VENDEUR,VENDEUSE,VENTE",C1201,Accueil et services bancaires (Chargé / Chargée d'accueil et de services clientèle bancaire...),accueil-et-services-bancaires
 INFORMATIQUE,I1401,Maintenance informatique et bureautique (Installateur dépanneur / Installatrice dépanneuse en informatique,maintenance-informatique-et-bureautique
 INFORMATIQUE,M1805,Études et développement informatique (Développeur / Développeuse informatique…),etudes-et-developpement-informatique
 INFORMATIQUE,M1801,Administration de systèmes d'information(Administrateur / Administratrice de site Web….),administration-de-systemes-d-information
@@ -64,7 +64,7 @@ MARKETING,M1403,Études et prospectives socio-économiques (Chargé / Chargée d
 MARKETING,M1705,Marketing (Assistant / Assistante marketing…),marketing
 MARKETING,M1703,Management et gestion de produit (Assistant / Assistante chef de produit…),management-et-gestion-de-produit
 "SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1607,Secrétariat (Secrétaire administratif / administrative…),secretariat
-"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1608,Secrétariat comptable ,secretariat-comptable
+"SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1608,Secrétariat comptable,secretariat-comptable
 "SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1609,Secrétariat et assistanat médical ou médico-social (Secrétaire médical / médicale…),secretariat-et-assistanat-medical-ou-medico-social
 "SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1604,Assistanat de direction (Secrétaire de direction…),assistanat-de-direction
 "SECRETAIRE,SECRETARIAT,ASSISTANT ADMINISTRATIF",M1501,Assistanat en ressources humaines (Secrétaire du service personnel…),assistanat-en-ressources-humaines
@@ -122,7 +122,29 @@ RH,M1501,Assistanat en ressources humaines,assistanat-en-ressources-humaines
 RH,M1502,"Développement des ressources humaines (Chargé / Chargée des recrutements, des formations…)",developpement-des-ressources-humaines
 RH,M1503,Management des ressources humaines (Adjoint / Adjointe au responsable RH…),management-des-ressources-humaines
 "CUISINE,CUISINIER",G1602,Personnel de cuisine,personnel-de-cuisine
-"CUISINE,CUISINIER",G1603 ,Personnel polyvalent en restauration,personnel-polyvalent-en-restauration
+"CUISINE,CUISINIER",G1603,Personnel polyvalent en restauration,personnel-polyvalent-en-restauration
 "CUISINE,CUISINIER",G1604,Fabrication de crêpes ou pizzas,fabrication-de-crêpes-ou-pizzas
 "CUISINE,CUISINIER",G1605,Plonge en restauration,plonge-en-restauration
 "CUISINE,CUISINIER",G1601,Management du personnel de cuisine (chef de cuisine...),management-du personnel-de-cuisine
+"ACCUEIL,RELATION CLIENTS,USAGERS ",M1601,Accueil et renseignements (Chargé / Chargée d'accueil...),accueil-et-renseignement
+AMENAGEMENT ET FINITION DU BATIMENT,F1606,"Application et décoration en plâtre, stuc et staff (Plâtrier / Plâtrière.....)",application-de-decoration-en platre-stuc-et-staff
+MAINTENANCE DE MATERIELS OPTION PARCS ET JARDINS ,I1607,"Réparation de cycles, motocycles et motoculteurs de loisirs",reparation-de-cycles-motocycles-motoculteurs-de-loisirs
+MAINTENANCE DE VEHICULES AUTOMOBILES,I1604,Mécanique automobile et entretien de véhicules,mecanique-automobile-et-entretien-de-véhicules
+PROTHESE DENTAIRE,J1410,Prothèses dentaires (Modeleur / Modeleuse en prothèse dentaire...),protheses-dentaires
+SYSTEMES ELECTRONIQUES NUMERIQUES AUDIOVISUEL ET MULTIMEDIA,L1505,Image cinématographique et télévisuelle (Assistant opérateur / Assistante opératrice de prise de vues....),image-cinematographique-et-televisuelle
+SYSTEMES ELECTRONIQUES NUMERIQUES ELECTRODOMESTIQUE,I1402,Réparation de biens électrodomestiques (Technicien / Technicienne de maintenance en appareils électroménagers...),
+SYSTEMES ELECTRONIQUES NUMERIQUES TELECOMMUNICATION ET RESEAUX,I1401,Maintenance informatique et bureautique (Agent / Agente de maintenance en informatique...),maintenance -informatique-et-bureautique
+GRAPHISTE,L1510,Graphiste films d'animation et effets spéciaux,films-d-animation-et-effets-spéciaux
+GRAPHISTE,E1205,"Réalisation de contenus multimedia ( Web designer,Infographiste web master, UI - user interface designer,UX - user experience designer…..)",realisation-de-contenus-multimédias
+GRAPHISTE,E1306,"Prépresse (Graphiste metteur / metteuse en page ,Graphiste en Publication Assistée par Ordinateur -PAO-)",prepresse
+"DEVELOPPEUR WEB,DEVELOPPEUR,DEVELOPPEUSE",M1805,Développeur / Développeuse web,etudes-et-developpement-informatique
+WEB,M1806,Développeur / Développeuse web,etudes-et-developpement-informatique
+WEB,D1402,Commercial vendeur / Commerciale vendeuse d'espaces publicitaires web,relation-commerciale-grands-comptes-et-entreprises
+WEB,E1101,Community manager,animation-de-site-multimedia
+WEB,E1103,Chargé / Chargée de communication web,communication
+WEB,E1104,Webmaster concepteur / conceptrice de site web,conception-de-contenus-multimedias
+WEB,E1106,Journaliste Web,journalisme-et-information-media
+WEB,E1205,"Réalisation de contenus multimedia ( Web designer,Infographiste web master, UI - user interface designer,UX - user experience designer…..)",realisation-de-contenus-multimédias
+WEB,E1402,"Référenceur / Référenceuse web , Web planneur / planneuse",elaboration-de-plan-media
+WEB,M1703,Chef de produit digital,management-et-gestion-de-produit
+WEB,M1705,"Web marketer, business developpeur/développeuse,Chargé / Chargée de mission marketing",marketing

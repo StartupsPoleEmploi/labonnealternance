@@ -65,7 +65,7 @@ export class JobFormStep extends Component {
                 if (this.state.requestNumber > 0) this.setState({ requestNumber });
                 else if (this.state.requestNumber < 0) this.setState({ requestNumber: 0 });
 
-                if (requestNumber < 0) {
+                if (requestNumber <= 0) {
                     let jobs = [];
                     suggestions.forEach((suggest, index) => {
                         let score = suggest.score || 10;
