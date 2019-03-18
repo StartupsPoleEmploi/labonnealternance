@@ -2,11 +2,17 @@ import ReactGA from 'react-ga';
 import { environment } from '../environment';
 import RGPDService from '../services/rgpd.service';
 
+const LBA_TRACKER_NAME = "LBA_TRACKER";
+const SEO_TRACKER_NAME = "SEO_TRACKER";
+
 export class GoogleAnalyticsService {
 
     static initGoogleAnalytics() {
         if(environment.GA_ID && environment.GA_ID !== '') {
-            ReactGA.initialize(environment.GA_ID, { gaOptions: { cookieExpires: 31536000 }});
+            let ids = [{ trackingId: environment.GA_ID, gaOptions: { name: LBA_TRACKER_NAME } }];
+            if(environment.SEO_GA_ID && environment.SEO_GA_ID !== '') ids.push({ trackingId: environment.SEO_GA_ID, gaOptions: { name: SEO_TRACKER_NAME } });
+
+            ReactGA.initialize(ids, { gaOptions: { cookieExpires: 31536000 }});
             // Anonymous mode : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
             if(!RGPDService.userAcceptsRGPD()) ReactGA.set('anonymizeIp', true);
         }
@@ -55,7 +61,10 @@ export class GoogleAnalyticsService {
     }
 
     static setPageView(pageView) {
+        let trackers = [LBA_TRACKER_NAME]
+        if(environment.SEO_GA_ID && environment.SEO_GA_ID !== '') trackers.push(SEO_TRACKER_NAME);
+
         ReactGA.set({ page: pageView });
-        ReactGA.pageview(pageView);
+        ReactGA.pageview(pageView, trackers);
     }
 }
