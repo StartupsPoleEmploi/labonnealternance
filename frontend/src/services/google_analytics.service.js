@@ -64,7 +64,7 @@ export class GoogleAnalyticsService {
         let trackers = [LBA_TRACKER_NAME]
         if(environment.SEO_GA_ID && environment.SEO_GA_ID !== '') trackers.push(SEO_TRACKER_NAME);
 
-        ReactGA.set({ page: pageView });
+        ReactGA.set({ page: pageView }, trackers);
         ReactGA.pageview(pageView, trackers);
     }
 }
