@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import ReactGA from 'react-ga';
 import { navigate } from '@reach/router';
 
 import store from '../../services/store';
@@ -18,8 +17,9 @@ import { CompanyDetailsService } from '../../services/company_details/company_de
 import { getParameterByName } from '../../services/helpers';
 
 import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
-import { CompanyDetailsCommon, CompanyCoordinates, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
+import { CompanyDetailsCommon, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
 import UpdateCompanyLink from '../shared/update-company-link';
+import { PhoneEmailCompany } from '../shared/company_details_commun/company_phone_email';
 
 require('./company_details.css');
 
@@ -34,8 +34,6 @@ class CompanyDetails extends Component {
         this.state = {
             referer: this.getReferer(),
             rome: getParameterByName('rome') || undefined,
-
-            showCoordinates: false,
             siret: siret,
             company: undefined,
             recruiterAccessUrl: CompanyDetailsService.getRecruteurAccessUrl(siret)
@@ -79,6 +77,10 @@ class CompanyDetails extends Component {
         this.companyDetailsStore();
     }
 
+    deleteCurrentCompany = () => {
+        CompanyDetailsService.unsetCompany();
+    }
+
 
     getReferer() {
         let referer = getParameterByName('referer') || undefined;
@@ -91,24 +93,7 @@ class CompanyDetails extends Component {
         return referer;
     }
 
-    // When user click on "Show coordinates"
-    showCoordinates = () => {
-        // Recording event in GA
-        ReactGA.event({ category: 'Company', action: 'Open coordinates block' });
-
-        this.setState({ showCoordinates: true });
-    }
-
     // RENDER
-    renderHowToApply() {
-        return (
-            <div className="line responsive-column how-to-apply">
-                <div className="flex-big">
-                    {this.state.showCoordinates ? <CompanyCoordinates company={this.state.company} /> : <div className="text-center"><button className="button" onClick={this.showCoordinates}>Affichez les coordonnées</button></div>}
-                </div>
-            </div>
-        );
-    }
     render() {
         if (!this.state.company) return <Loader />;
 
@@ -121,25 +106,18 @@ class CompanyDetails extends Component {
                 <NotificationModal />
                 <main className="content">
                     <div className="actions-zone">
-                        {this.state.referer ? <Link to={this.state.referer} className="button small-white">Retour à la recherche</Link> : null}
+                        {this.state.referer ? <Link to={this.state.referer} onClick={this.deleteCurrentCompany} className="button small-white">Retour à la recherche</Link> : null}
                         <FavoriteButton company={company} />
                     </div>
-                    {CompanyDetailsCommon.renderTitle(company)}
-
-                    <small className="siret">SIRET: {company.siret}</small>
 
                     <div>
-                        <h2><span className="badge">1</span>Informez-vous sur l'entreprise</h2>
                         <CompanyIntroduction company={company} />
-                        <hr />
-
-                        <h2><span className="badge">2</span>Préparez votre candidature spontanée</h2>
                         <PrepareApplication company={company} rome={this.state.rome} />
-                        <hr />
-
-                        <h2><span className="badge">3</span>Comment postuler auprès de {company.label} ?</h2>
-                        {this.renderHowToApply(company)}
                     </div>
+
+                    {CompanyDetailsCommon.renderTitle(company)}
+
+                    <PhoneEmailCompany company={company} />
 
                     <div className="company-footer">
                         <UpdateCompanyLink recruiterAccessUrl={this.state.recruiterAccessUrl} />

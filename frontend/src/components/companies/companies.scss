@@ -203,12 +203,6 @@
             &.pink { font-weight: bold; color: $pink; }
         }
     }
-
-    /*.leaflet-control-attribution {
-        position: absolute;
-        left: -10000px;
-        top: -10000px;
-    }*/
 }
 
 
@@ -451,115 +445,34 @@
 .modal { @include mx-modal(); }
 
 .modal {
-    .line {
-        display: flex;
-        margin-bottom: 20px;
-        > div {
-            flex: 1;
-            &.flex-big { flex: 2; }
-        }
-        &.column { flex-direction: column; }
-
-        // Column on mobile
-        &.responsive-column {
-            @media (max-width: $min-width-mobile) {
-                flex-direction: column;
-                > div {
-                    margin-top: 20px;
-                    &:first-child { margin-top: 0; }
-                }
-            }
-        }
-    }
-
     .heart {
         width: 32px !important;
         background-size: 100% !important;
         height: 27px !important;
     }
 
-    h2 {
-        position: relative;
-        left: -35px;
-        @media (max-width: $min-width-mobile) {
-            left: 0;
+    .company-promotion { margin-top: -20px !important; }
+    @media (max-width: $min-width-mobile) {
+        .company-promotion { margin-top: 0 !important; }
+    }
+
+    button.favorite-button {
+        position: absolute;
+        right: 65px;
+        top: 10px;
+
+        border: none;
+        background: none;
+
+        .heart {
+            height: 35px !important;
+            width: 35px !important;
         }
     }
 
-    small {
-        text-align: right;
-        font-size: .8em;
-        color: gray;
-        margin-bottom: 5px;
-        display: block;
-        padding-right: 10px;
-    }
+    .company { margin-top: 60px !important; }
 
-    hr {
-        position: relative;
-        left: -45px;
-        width: 130%;
-        margin-top: 5px;
-        margin-bottom: 15px;
-    }
-
-    .company, .prepare-application {
-        // On IE, we need to force the element repaints
-        // if not, the rotated animation of the loader is still apply to the content...
-        zoom: 1;
-    }
-
-    .prepare-application {
-        p, li {
-            font-size: .95em;
-            line-height: 20px;
-        }
-
-        .soft-skills, .application-advices { padding: 0 10px; }
-        .soft-skills {
-            h4 { margin-bottom: 5px; }
-        }
-        .application-advices {
-            h5 { margin: 5px 0; }
-            > div { margin-bottom: 25px; }
-        }
-    }
-
-    .how-to-apply {
-        width: 100%;
-        background-color: white;
-        text-align: center;
-        transition: top .1s linear;
-
-        button.favorite-button {
-            border: none;
-            background: none;
-            float: right;
-
-            .heart {
-                height: 47px !important;
-                width: 47px !important;
-            }
-        }
-
-        > div.flex-big {
-            display: flex;
-            justify-content: center;
-            margin: 10px 10px;
-            text-align: center;
-            @media (max-width: $min-width-small-mobile) {
-                flex-direction: column;
-                > .text-center { width: 100%; margin-bottom: 15px; }
-            }
-            > div {
-                width: 80%;
-                max-width: 600px;
-                @media (max-width: $min-width-mobile) {
-                    > div { padding: 0 10px; }
-                }
-            }
-        }
-    }
+    @include mx-company-details();
 
     .contact-mode {
         font-weight: bold;

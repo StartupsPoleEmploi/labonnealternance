@@ -246,30 +246,15 @@
         max-height: 90vh;
     }
 
-    .title {
-        position: relative;
-        min-height: 50px;
-        padding: 20px 45px 45px 45px;
-
-        h1, strong {
-            color: $blue;
-            font-size: 1.5em;
-            margin: 0;
-        }
-        strong {
-            display: block;
-            margin-top: 30px;
-        }
-    }
-
     .modal-body {
-        padding: 0 45px 40px 45px;
+        padding: 0 15px 40px 15px;
         min-height: 100px;
         overflow: hidden;
 
         h2 {
             color: black;
-            font-size: 1.2em;
+            font-size: 1em;
+            font-weight: normal;
             margin: 0 0 20px 0;
         }
 
@@ -289,8 +274,8 @@
     .company-footer {
         background: black;
         text-align: center;
-        padding: 10px 0;
-        margin-top: 20px;
+        padding: 5px 0;
+        margin-top: 5px;
 
         .anti-spam {
             padding: 20px 0;
@@ -379,6 +364,156 @@
             vertical-align: text-top;
             margin-top: 3px;
             margin-right: 5px;
+        }
+    }
+}
+
+
+@mixin mx-company-details() {
+    .company {
+        margin: 30px 0;
+        font-size: 1.1em;
+
+        .grey { background: rgba(155,155,155,0.12); }
+        .office-name, .website {
+            margin-right: 1px;
+            @media (max-width: $min-width-mobile) {
+                margin-bottom: 1px;
+                margin-right: 0;
+            }
+        }
+        .website a { color: $blue; text-decoration: none; }
+        .padding { padding: 15px 0; }
+
+        h1 {
+            margin: 5px 0 0 0;
+            font-weight: normal;
+            color: black;
+            font-size: 1.5em;
+        }
+        h2 { margin: 5px 0 0 0; }
+
+        .line {
+            display: flex;
+            margin-bottom: 1px;
+            > div { flex: 1; }
+
+            @media (max-width: $min-width-mobile) { flex-direction: column; }
+
+            .siret {
+                margin: 7px 0;
+                font-size: .9em;
+            }
+        }
+
+        .icon {
+            height: 25px;
+        }
+    }
+
+    .company-promotion {
+        margin-top: 30px;
+        padding: 20px 45px;
+        font-size: 1.2em;
+        color: black;
+
+        strong {
+            font-weight: normal;
+        }
+    }
+
+    .prepare-application {
+        p, li {
+            line-height: 1.5em;
+        }
+
+        .soft-skills {
+            padding: 0 10px;
+            margin-bottom: 40px;
+            h2 {
+                margin-bottom: 20px;
+                font-size: 1.5em;
+            }
+            li {
+                border: solid 1px $gray-font;
+                color: $gray-font;
+                border-radius: 25px;
+                padding: 2px 15px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .company-phone-email {
+        position: sticky;
+        bottom: 0;
+        padding: 10px 0 25px 0;
+
+        width: 100%;
+        background-color: white;
+        text-align: center;
+        transition: top .1s linear;
+
+        ul {
+            display: flex;
+            max-width: 70%;
+            margin: auto;
+            padding: 0;
+
+            > li {
+                margin: auto;
+                text-align: center;
+
+                a, button, p {
+                    padding: 7px 50px;
+                    margin: auto;
+                }
+
+                p {
+                    padding: 16px 20px;
+                    display: block;
+                    .icon {
+                        margin-right: 15px;
+                        position: relative;
+                        &.mail { height: 19px; }
+                        &.tel { width: 25px; height: 25px; }
+                    }
+                }
+
+                &.no-email {
+                    p {
+                        font-size: .7em;
+                        padding-top: 5px;
+                        position: absolute;
+                        padding: 5px 6px 0 7px;
+                    }
+                }
+            }
+
+            @media (max-width: $min-width-mobile) {
+                max-width: 95%;
+                li {
+                    margin: 10px auto !important;
+                    button { padding: 7px 25px; }
+                    span { line-height: 1.25em; }
+                }
+            }
+        }
+
+
+        .icon {
+            height: 25px;
+            width: 25px;
+            background-size: contain !important;
+            margin-right: 10px;
+            vertical-align: bottom;
+
+            &.icon-mail { margin-top: 3px; background: url('/static/img/icons/mail/mail-white.svg') no-repeat; }
+            &.icon-phone { background: url('/static/img/icons/phone/phone-call-blue.svg') no-repeat;  }
+        }
+
+        a:hover, button:hover {
+            .icon-phone { background: url('/static/img/icons/phone/phone-call-white.svg') no-repeat; }
         }
     }
 }

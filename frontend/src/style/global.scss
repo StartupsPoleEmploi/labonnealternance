@@ -84,13 +84,17 @@ button.close {
     z-index: 5;
 
     position: absolute;
-    right: 10px;
-    top: 6px;
+    right: 15px;
+    top: 10px;
+
+    .icon.close-icon {
+        height: 35px;
+        width: 35px;
+        background-size: contain;
+    }
 
     &:hover { cursor: pointer; }
 }
-ul.two-columns { columns: 2; }
-ul.three-columns { columns: 3; }
 
 // Loading animation
 .loading-dotted {
@@ -191,6 +195,41 @@ ul.three-columns { columns: 3; }
         }
     }
 
+    /* Special style for modal button */
+    .modal-button {
+        background-color: $blue;
+        color: white;
+        border-radius: 30px;
+        padding: 8px 60px;
+        text-decoration: none;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.25em;
+        font-weight: normal;
+        border: solid 2px transparent;
+        transition: background-color .25s ease-out, color .25s ease-out;
+
+
+        &:disabled {
+            background: $disabled-gray !important;
+            border: solid 2px $disabled-gray !important;
+            cursor: initial !important;
+        }
+
+        &.white {
+            color: $blue;
+            background-color: $white;
+            border: solid 2px $blue;
+        }
+
+        &:hover {
+            border: solid 2px $darkblue;
+            color: $white;
+            background-color: $darkblue;
+        }
+    }
+    a.modal-button { display: block; padding: 11px 20px; }
+
 
 /* Input */
 input[type=text], input[type=email], input[type=tel] {
@@ -218,6 +257,7 @@ textarea {
     background-image: url('/static/img/magnifier/magnifier.svg');
     background-repeat: no-repeat;
     background-color: transparent;
+    background-size: contain;
 
     &.active {
         background-image: url('/static/img/magnifier/magnifier-hover.svg');
@@ -238,6 +278,89 @@ textarea {
     }
 }
 
+/* Flex */
+.line {
+    display: flex;
+    margin-bottom: 20px;
+    > div {
+        flex: 1;
+        &.flex-big { flex: 2; }
+    }
+    &.column { flex-direction: column; }
+
+    // Column on mobile
+    &.responsive-column {
+        @media (max-width: $min-width-mobile) {
+            flex-direction: column;
+            > div {
+                margin-top: 20px;
+                &:first-child { margin-top: 0; }
+            }
+        }
+    }
+}
+
+/* Toggle */
+.toggle-block {
+    box-shadow: 0px 3px 4px lightgrey;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0 0 0 !important;
+
+    h2 {
+        flex: 1;
+        margin: 0 !important;
+        font-weight: normal !important;
+    }
+
+    h2, button { width: 100%; }
+    h2 button {
+        display: flex;
+        align-items: center;
+
+        font-size: 1.25em;
+        font-weight: bold;
+        text-align: left;
+        padding: 15px 10px 15px 15px;
+        line-height: 1.25em;
+
+        &:hover { cursor: pointer; }
+
+        img.intro {
+            margin-right: 15px;
+            height: 25px;
+        }
+
+        span { font-weight: normal; }
+
+        img.icon {
+            float: right;
+            width: 30px;
+            height: 30px;
+            transition: transform .25s;
+        }
+
+        > span { flex: 1; }
+    }
+    > .toggle-content {
+        max-height: 0;
+        margin: 0 20px;
+        overflow: hidden;
+        transition: margin .25s ease-out, max-height .25s ease-out;
+    }
+
+    &.open {
+        > .toggle-content {
+            max-height: 100px;
+            margin: 20px;
+        }
+        h2 button img.icon {
+            transform: rotate(45deg);
+        }
+    }
+}
+
+
 /* Icons */
 .icon {
     display: inline-block;
@@ -252,14 +375,14 @@ textarea {
     &.check-inactive { width: 30px; height: 23px; background: url('/static/img/icons/check-inactive.svg') no-repeat; }
     &.filter-list-icon { width: 24px; height: 23px; background: url('/static/img/icons/filter-list-icon.svg') no-repeat; }
     &.filter-icon { width: 24px; height: 19px; background: url('/static/img/icons/filter-icon.svg') no-repeat; }
-    &.close-icon { width: 20px; height: 25px; background: url('/static/img/icons/close-button.svg') no-repeat; }
+    &.close-icon { width: 24px; height: 25px; background: url('/static/img/icons/close-button.svg') no-repeat; }
 
     &.pink-arrow { width: 15px; height: 16px; background: url('/static/img/icons/pink-arrow.svg') no-repeat; }
     &.phone { width: 15px; height: 15px; background: url('/static/img/icons/phone.svg') no-repeat; }
     &.email { width: 18px; height: 18px; background: url('/static/img/icons/email.svg') no-repeat; }
 
-    &.heart-active { width: 19px; height: 17px; background: url('/static/img/icons/heart-active.svg') no-repeat; }
-    &.empty-heart { width: 21px; height: 19px; background: url('/static/img/icons/empty-heart.svg') no-repeat; }
+    &.heart-active { width: 26px; height: 26px; background: url('/static/img/icons/heart-active.svg') no-repeat; }
+    &.empty-heart { width: 26px; height: 26px; background: url('/static/img/icons/empty-heart.svg') no-repeat; }
 }
 
 
@@ -571,7 +694,7 @@ header#global-header {
         position: relative;
         background-position: center;
         width: 50px;
-        height: 37px;
+        height: 40px;
 
         span.empty { color: $blue; }
         span.not-empty { color: white; }

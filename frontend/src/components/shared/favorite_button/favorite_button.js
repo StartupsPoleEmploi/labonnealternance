@@ -26,13 +26,16 @@ class FavoriteButton extends Component {
     // RENDER
     render() {
         if (this.isFavorite()) {
-            return (<button className="favorite-button heartbeat-animation" onClick={this.removeFavorite} title={'Retirer ' + this.props.company.label + ' des favoris'}>
+            const title = 'Retirer ' + this.props.company.label + ' des favoris';
+
+            return (<button className="favorite-button heartbeat-animation" onClick={this.removeFavorite} aria-label={title} title={title}>
                 <span className="icon heart heart-active">&nbsp;</span>
             </button>);
         }
 
+        const title = 'Ajouter ' + this.props.company.label + ' aux favoris';
         return (
-            <button className="favorite-button" onClick={this.addFavorite} title={'Ajouter ' + this.props.company.label + ' aux favoris'}>
+            <button className="favorite-button" onClick={this.addFavorite} aria-label={title} title={title}>
                 <span className="icon heart empty-heart">&nbsp;</span>
             </button>
         );
