@@ -146,6 +146,7 @@ LBB_URL = '<set it>'
 LBB_BYPASS_SSL_CERTIFICATE = False
 LBB_USE_BETA_FLAG = False
 LBB_API_KEY='<set it>'
+LBB_WIDGET_API_KEY='<set it>'
 ESD_CLIENT_ID='<set it>'
 ESD_CLIENT_SECRET='<set it>'
 
@@ -159,6 +160,8 @@ MANDRILL_API_KEY = '<set it>'
 MANDRILL_FROM_EMAIL = '<set it>'
 MANDRILL_FROM_NAME = '<set it>'
 
+# WIDGET
+WIDGET_PAGE_SIZE = 3
 
 # Overrides settings
 # pylint: disable=wildcard-import,unused-wildcard-import

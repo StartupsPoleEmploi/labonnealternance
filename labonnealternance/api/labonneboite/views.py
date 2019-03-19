@@ -4,6 +4,7 @@ from urllib.error import HTTPError
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound, JsonResponse
 
+from config.settings import WIDGET_PAGE_SIZE
 from . import lbb_client
 from labonnealternance.api.common import siret_validator
 from .custom_search_jobs import CustomSearchJob
@@ -25,7 +26,7 @@ def suggest_romes(request):
     Auto-complete for a giving job label
     """
     text = request.GET.get('term', None)
-    token = request.GET.get('token', None)
+    widget_domain_name = request.GET.get('widget-name', None)
 
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
@@ -49,7 +50,7 @@ def suggest_romes(request):
     lbb_response = lbb_client.autocomplete_job(text)
     lba_response = HttpResponse(lbb_response.read())
 
-    return add_cors(lba_response) if token else lba_response
+    return add_cors(lba_response) if widget_domain_name else lba_response
 
 
 def suggest_cities(request):
@@ -57,7 +58,7 @@ def suggest_cities(request):
     Auto-complete for a giving location
     """
     text = request.GET.get('term', None)
-    token = request.GET.get('token', None)
+    widget_domain_name = request.GET.get('widget-name', None)
 
     if not text:
         return HttpResponseBadRequest('<h1>Bad request</h1>')
@@ -69,7 +70,7 @@ def suggest_cities(request):
 
     lba_response = HttpResponse(lbb_response.read())
 
-    return add_cors(lba_response) if token else lba_response
+    return add_cors(lba_response) if widget_domain_name else lba_response
 
 
 def company_details(request):
@@ -112,6 +113,10 @@ def get_city_slug_from_city_code(request):
 
 
 def get_companies(request):
+    # We have a token but an invalid one, no need to go further
+    widget_domain_name = request.GET.get('widget-name', None)
+    use_widget_user = True if widget_domain_name else False
+
     # Required values
     Fetcher = collections.namedtuple('Fetcher', "romes longitude latitude")
     fetcher = Fetcher(request.GET.get('romes'), request.GET.get('longitude'), request.GET.get('latitude'))
@@ -119,7 +124,7 @@ def get_companies(request):
         return HttpResponseBadRequest('<h1>Bad request</h1>')
 
     # Optional value : page
-    page = request.GET.get('page', 1)
+    page = 1 if widget_domain_name else request.GET.get('page', 1)
     try:
         page = int(page)
     except ValueError:
@@ -127,6 +132,16 @@ def get_companies(request):
 
     if page < 1:
         page = 1
+
+    # Optional value : pageSize
+    page_size = WIDGET_PAGE_SIZE if widget_domain_name else request.GET.get('pageSize', 1)
+    try:
+        page_size = int(page_size)
+    except ValueError:
+        page_size = None
+
+    if page_size < 0:
+        page_size = None
 
     # Optional value : distance
     distance = request.GET.get('distance', DISTANCE_DEFAULT)
@@ -137,8 +152,11 @@ def get_companies(request):
 
 
     try:
-        response = lbb_client.get_companies(fetcher.longitude, fetcher.latitude, fetcher.romes, page, distance)
+        response = lbb_client.get_companies(fetcher.longitude, fetcher.latitude, fetcher.romes, page, distance, page_size, use_widget_user)
     except HTTPError:
         return HttpResponseServerError('<h1>Error when proceeded request</h1>', 501)
 
-    return HttpResponse(response.read())
+    response = HttpResponse(response.read())
+
+    return add_cors(response) if widget_domain_name else response
+
