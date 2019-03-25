@@ -724,14 +724,14 @@ header#global-header {
             #new-search, #favorites-list { box-shadow: 0 4px 2px -2px gray; }
         }
         .title {
-            padding: 20px;
+            padding: 10px 20px;
             height: 70px;
             display: flex;
             background: white;
 
             .logo {
                 flex: 10;
-                img { height: 100%; }
+                img { height: 65px; }
             }
         }
 

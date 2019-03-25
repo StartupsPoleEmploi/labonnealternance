@@ -10,7 +10,7 @@ export class OtherStartups extends Component {
 
                 <div>
                     <a href="https://labonneboite.pole-emploi.fr" target="_blank" rel="noopener noreferrer" className="la-bonne-boite">
-                        <img src="/static/s.png" className="lazyload" data-src="/static/img/startups/la_bonne_boite.png" alt="La Bonne Boite"/>
+                        <img src="/static/s.png" className="lazyload" data-src="/static/img/startups/la_bonne_boite.jpg" alt="La Bonne Boite"/>
                         <span>Trouvez les entreprises qui embauchent sans déposer d’offres d’emploi !</span>
                     </a>
                     <a href="https://labonneformation.pole-emploi.fr" target="_blank" rel="noopener noreferrer" className="la-bonne-formation">
