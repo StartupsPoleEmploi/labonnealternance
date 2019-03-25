@@ -34,7 +34,7 @@ export class JobFormStep extends Component {
         if (this.props.searchForm && this.props.searchForm.jobs) {
             term = this.props.searchForm.term;
             requestNumber = 1;
-            if (term.length > 2) AutocompleteJobService.getJobs(term);
+            if (term.length > 2 || term.toLocaleLowerCase() === 'rh') AutocompleteJobService.getJobs(term);
         }
 
         this.enterPressed = false;
@@ -113,7 +113,7 @@ export class JobFormStep extends Component {
     callAutocompleteJobs = () => {
         let term = this.state.term;
 
-        if (term && term.length > 2) {
+        if (term && (term.length > 2 || term.toLocaleLowerCase() === 'rh')) {
             AutocompleteJobService.getJobs(term);
             this.setState({ requestNumber: this.state.requestNumber + 1 });
         }
@@ -126,7 +126,7 @@ export class JobFormStep extends Component {
 
         let term = event.target.value;
         this.setState({ term });
-        if (term && term.length > 2) {
+        if (term && (term.length > 2 || term.toLocaleLowerCase() === 'rh')) {
             this.callAutocompleteJobsFn();
         } else {
             this.props.searchForm.setJobs([]);
