@@ -129,6 +129,7 @@ export class Results extends Component {
         // Unsubscribe
         this.companiesStore();
         this.filterStore();
+        this.viewStore();
     }
 
     closeNoResultModal = () => {

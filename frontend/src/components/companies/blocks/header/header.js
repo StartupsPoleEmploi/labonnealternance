@@ -88,7 +88,6 @@ class Header extends Component {
     renderFavoriteButton() {
         return(
             <button className={this.computeFavoriteClasses()} onClick={this.state.showFavorites ? this.closeFavorites:this.openFavorites} title={this.state.showSearchForm ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
-                <span className={this.props.favoritesNumber === 0 ? 'empty':'not-empty'}>{this.props.favoritesNumber}</span>
                 <span className="sub">Mes favoris</span>
             </button>
         );
