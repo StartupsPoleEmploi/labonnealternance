@@ -134,9 +134,9 @@ def get_companies(request):
         page = 1
 
     # Optional value : pageSize
-    page_size = WIDGET_PAGE_SIZE if widget_domain_name else request.GET.get('pageSize', 1)
     try:
-        page_size = int(page_size)
+        page_size = int(request.GET.get('pageSize', lbb_client.PAGE_SIZE))
+        page_size = WIDGET_PAGE_SIZE if widget_domain_name else page_size
     except ValueError:
         page_size = None
 
