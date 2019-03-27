@@ -3,11 +3,12 @@ import re, ssl
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
 
-from config.settings import LBB_URL, LBB_BYPASS_SSL_CERTIFICATE, LBB_API_KEY
+from config.settings import LBB_URL, LBB_BYPASS_SSL_CERTIFICATE, LBB_API_KEY, LBB_WIDGET_API_KEY
 
 logger = logging.getLogger(__name__)
 
 API_USER = 'labonnealternance'
+WIDGET_USER = 'labonnealternance_widget'
 
 PAGE_SIZE = 100
 
@@ -41,7 +42,9 @@ def make_signature(args, timestamp, user=API_USER):
     args['timestamp'] = timestamp
     ordered_arg_string = get_ordered_argument_string(args)
 
-    signature = hmac.new(bytearray(LBB_API_KEY, 'utf-8'), bytearray(ordered_arg_string, 'utf-8'), hashlib.md5).hexdigest()
+    key = LBB_WIDGET_API_KEY if user == WIDGET_USER else LBB_API_KEY
+
+    signature = hmac.new(bytearray(key, 'utf-8'), bytearray(ordered_arg_string, 'utf-8'), hashlib.md5).hexdigest()
     return signature
 
 
@@ -100,18 +103,21 @@ def get_company(siret):
     return get_url(url)
 
 
-def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page_size=PAGE_SIZE):
+def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page_size=PAGE_SIZE, use_widget_user=False):
     """
     Calling LaBonneBoite API to get all the companies matches the given arguments.
 
     More informations at :
     https://www.emploi-store-dev.fr/portail-developpeur-cms/home/catalogue-des-api/documentation-des-api/api-la-bonne-boite-v1/rechercher-des-entreprises.html
     """
+
+    user = WIDGET_USER if use_widget_user else API_USER
+
     params = {
         'longitude': longitude,
         'latitude': latitude,
         'rome_codes': rome_codes_str,
-        'user': API_USER,
+        'user': user,
         'distance': distance,
         'page': page,
         'contract': 'alternance',
@@ -119,7 +125,7 @@ def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page
     }
 
     timestamp = make_timestamp()
-    signature = make_signature(params, timestamp)
+    signature = make_signature(params, timestamp, user)
     params['timestamp'] = timestamp
     params['signature'] = signature
 
