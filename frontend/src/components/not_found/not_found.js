@@ -17,7 +17,7 @@ export default class NotFound extends Component {
             <div id="not-found">
                 <main className="not-found-content">
                     <Link to="/">
-                        <img className="lba-logo" src="/static/img/logo/logo-noir-lba.svg" alt="La Bonne Alternance" />
+                        <img className="lba-logo" src="/static/img/logo/logo-noir-lba.jpg" alt="La Bonne Alternance" />
                     </Link>
                     <h1 className="sr-only">Page non trouvée</h1>
 

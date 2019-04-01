@@ -89,9 +89,10 @@
     img.lba-logo {
         padding-top: 30px;
         padding-left: 30px;
+        height: 150px;
     }
     .loader-logo {
-        padding-top: 25vh;
+        padding-top: 20vh;
         @media (max-width: $min-width-small-mobile) { padding-top: 20vh; }
         margin-bottom: 50px;
         text-align: center;
@@ -417,6 +418,7 @@
         #new-search { box-shadow: none; }
         .title-container {
             box-shadow: 0 4px 2px -2px gray;
+            height: 90px;
         }
 
         #map-results, #list-results {

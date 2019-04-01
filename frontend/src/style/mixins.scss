@@ -82,16 +82,9 @@
             display: inline-block;
         }
 
-        .logo-lba {
-            padding-right: 20px;
-            border-right: solid 1px white;
-            img { max-width: 100%; }
-        }
-
-        .logo-pe {
-            margin-left: 15px;
-            height: 45px;
-            img { height: 45px; }
+        .logo-lba img {
+            width: 250px;
+            max-width: 100%;
         }
 
         @media (max-width: $min-width-mobile) { padding-left: 20px; }
