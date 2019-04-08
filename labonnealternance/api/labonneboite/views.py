@@ -39,7 +39,9 @@ def suggest_romes(request):
     if results:
         # Note: by default, only dict are handle by JsonResponse
         # So we set safe=False to handle an array
-        return JsonResponse(results, safe=False)
+        lba_response = JsonResponse(results, safe=False)
+        return add_cors(lba_response) if widget_domain_name else lba_response
+
 
     # Remove some cursus words
     escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap', 'cqp', 'titre', 'cqp', 'bp', 'professionnelle']
