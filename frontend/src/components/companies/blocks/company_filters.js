@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactGA from 'react-ga';
 import toArray from 'lodash/toArray';
 
 import { FiltersService } from '../../../services/filters/filters.service';
@@ -10,6 +9,7 @@ import store from '../../../services/store';
 import { VIEWS } from '../../../services/view/views.reducers';
 import { Loader } from '../../shared/loader/loader';
 import { getNafSessionLabel } from '../../../services/companies/naf_section';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 const HEADCOUNT_VALUES = [
     ['0', '1 ou 2', '3 à 5', '6 à 9', '10 à 19'],
@@ -100,7 +100,7 @@ export class CompanyFilters extends Component {
     }
 
     showFilters = () => {
-        ReactGA.event({ category: 'Views', action: 'Select filters view' });
+        GoogleAnalyticsService.sendEvent({ category: 'Views', action: 'Select filters view' });
         ViewsService.setFiltersView();
     }
     hideFilters = () => {

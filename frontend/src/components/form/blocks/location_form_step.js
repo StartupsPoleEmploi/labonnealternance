@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
-import ReactGA from 'react-ga';
 
 import store from '../../../services/store';
 import { AutocompleteLocationService } from '../../../services/autocomplete_location/autocomplete_location.service';
@@ -10,6 +9,7 @@ import { Location } from '../../../services/search_form/location';
 import { NotificationService } from '../../../services/notification/notification.service';
 
 import { Loader } from '../../shared/loader/loader';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 const PLACEHOLDER_TEXT = 'Ecrivez le nom de votre ville';
 
@@ -143,7 +143,7 @@ export class LocationFormStep extends Component {
     getCurrentLocation = () => {
         this.setState({ loading: true });
 
-        ReactGA.event({ category: 'Search', action: 'Use geolocalisation' });
+        GoogleAnalyticsService.sendEvent({ category: 'Search', action: 'Use geolocalisation' });
 
         navigator.geolocation.getCurrentPosition((position) => {
             CurrentLocationService.getCurrentLocation(position.coords.longitude, position.coords.latitude);

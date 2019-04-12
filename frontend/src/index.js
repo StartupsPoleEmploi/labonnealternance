@@ -10,7 +10,6 @@ import store from './services/store';
 import { environment } from './environment';
 
 // Based on https://www.linkedin.com/pulse/google-analytics-working-your-react-app-make-work-just-choudhary/
-import ReactGA from 'react-ga';
 import { GoogleAnalyticsService } from './services/google_analytics.service';
 import { HotjarService } from './services/hotjar.service';
 
@@ -88,8 +87,7 @@ history.listen(({ location, action }) => {
         pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(location.pathname);
     }
 
-    ReactGA.set({ page: pageView });
-    ReactGA.pageview(pageView);
+    GoogleAnalyticsService.setPageView(pageView);
 
     return null;
 });

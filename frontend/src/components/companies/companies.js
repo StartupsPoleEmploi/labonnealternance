@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { navigate } from '@reach/router';
-import ReactGA from 'react-ga';
 
 import store from '../../services/store';
 
@@ -192,14 +191,14 @@ class Companies extends Component {
                 if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + encodeURIComponent(referer) + "&rome=" + company.job.rome);
 
                 // Register event in GA
-                ReactGA.pageview(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
+                GoogleAnalyticsService.setPageView(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
 
                 this.setState({ company });
             } else {
                 window.history.pushState({}, '', this.baseUrl);
 
                 // Register event in GA
-                ReactGA.pageview(this.baseUrl);
+                GoogleAnalyticsService.setPageView(this.baseUrl);
 
                 this.setState({ company: undefined });
             }

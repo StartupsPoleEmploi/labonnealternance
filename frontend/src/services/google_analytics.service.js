@@ -60,11 +60,21 @@ export class GoogleAnalyticsService {
         return environment.GA_ID && environment.GA_ID !== '';
     }
 
-    static setPageView(pageView) {
+    static getTrackers() {
         let trackers = [LBA_TRACKER_NAME]
         if(environment.SEO_GA_ID && environment.SEO_GA_ID !== '') trackers.push(SEO_TRACKER_NAME);
+        return trackers;
+    }
 
+
+    static setPageView(pageView) {
+        const trackers = GoogleAnalyticsService.getTrackers();
         ReactGA.set({ page: pageView }, trackers);
         ReactGA.pageview(pageView, trackers);
+    }
+
+    static sendEvent({ category, action }) {
+        const trackers = GoogleAnalyticsService.getTrackers();
+        ReactGA.event({ category, action }, trackers);
     }
 }

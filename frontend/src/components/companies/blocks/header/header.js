@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import ReactGA from 'react-ga';
 
 import { connect } from 'react-redux';
 import { FavoritesList } from './favorites_list';
 import SearchForm from '../../../shared/search_form/search_form';
+import { GoogleAnalyticsService } from '../../../../services/google_analytics.service';
 
 class Header extends Component {
 
@@ -44,12 +44,12 @@ class Header extends Component {
     // CLOSE/OPEN
     closeSearchForm = () => { this.setState({ showSearchForm: false, showFavorites: false, animateMagnifier: false, showFormClicked: false }); }
     openSearchForm  = () => {
-        ReactGA.event({ category: 'Search', action: 'Open search form' });
+        GoogleAnalyticsService.sendEvent({ category: 'Search', action: 'Open search form' });
         this.setState({ showSearchForm: true, showFavorites: false, animateMagnifier: false, showFormClicked: true });
     }
     closeFavorites  = () => { this.setState({ showSearchForm: false, showFavorites: false, showFormClicked: false }); }
     openFavorites   = () => {
-        ReactGA.event({ category: 'Favorites', action: 'Open favorites list' });
+        GoogleAnalyticsService.sendEvent({ category: 'Favorites', action: 'Open favorites list' });
         this.setState({ showSearchForm: false, showFavorites: true, showFormClicked: false });
     }
 

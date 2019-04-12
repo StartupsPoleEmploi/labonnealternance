@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactGA from 'react-ga';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 
 export const PhoneEmailCompany = ({ company }) => {
@@ -34,10 +34,10 @@ export const PhoneEmailCompany = ({ company }) => {
     }
     function showPhoneButton() {
         setPhoneVisible(true);
-        ReactGA.event({ category: 'Company', action: 'Click show phone button' });
+        GoogleAnalyticsService.sendEvent({ category: 'Company', action: 'Click show phone button' });
     }
     function showPhoneLink() {
-        ReactGA.event({ category: 'Company', action: 'Click show phone button' });
+        GoogleAnalyticsService.sendEvent({ category: 'Company', action: 'Click show phone button' });
     }
     function renderPhone() {
         return (<p><img className="icon tel" src="/static/img/icons/phone/phone-call-pink.svg" alt="Téléphone" />{ company.phone }</p>);
@@ -58,7 +58,7 @@ export const PhoneEmailCompany = ({ company }) => {
     }
     function showEmailButton() {
         setEmailVisible(true);
-        ReactGA.event({ category: 'Company', action: 'Click show email button' });
+        GoogleAnalyticsService.sendEvent({ category: 'Company', action: 'Click show email button' });
     }
     function renderEmail() {
         return (<p><img className="icon mail" src="/static/img/icons/mail/mail-pink.svg" alt="Email" />{ company.email }</p>);

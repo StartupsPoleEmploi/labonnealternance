@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ReactGA from 'react-ga';
 
 import store from '../../../services/store';
 import { VIEWS } from '../../../services/view/views.reducers';
 import { ViewsService } from '../../../services/view/views.service';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 export class ViewChooser extends Component {
 
@@ -32,15 +32,15 @@ export class ViewChooser extends Component {
     }
 
     setFiltersView = () => {
-        ReactGA.event({ category: 'Views', action: 'Select filters view' });
+        GoogleAnalyticsService.sendEvent({ category: 'Views', action: 'Select filters view' });
         ViewsService.setFiltersView();
     }
     setMapView = () => {
-        ReactGA.event({ category: 'Views', action: 'Select map view' });
+        GoogleAnalyticsService.sendEvent({ category: 'Views', action: 'Select map view' });
         ViewsService.setMapView();
     }
     setListView = () => {
-        ReactGA.event({ category: 'Views', action: 'Select list view' });
+        GoogleAnalyticsService.sendEvent({ category: 'Views', action: 'Select list view' });
         ViewsService.setListView();
     }
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import toArray from 'lodash/toArray';
-import ReactGA from 'react-ga';
 
 import { MapBoxService } from '../../../services/mapbox.service';
 import { CompaniesService } from '../../../services/companies/companies.service';
@@ -13,6 +12,7 @@ import { ViewChooser } from './view-chooser';
 
 import store from '../../../services/store';
 import { VIEWS } from '../../../services/view/views.reducers';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 export class Results extends Component {
 
@@ -178,7 +178,7 @@ export class Results extends Component {
     move = (event) => {
         let direction = event.target.attributes['data-direction'].value;
         event.preventDefault();
-        ReactGA.event({ category: 'Map', action: 'Use map arrow' });
+        GoogleAnalyticsService.sendEvent({ category: 'Map', action: 'Use map arrow' });
         this.mapBoxService.move(direction);
     }
 

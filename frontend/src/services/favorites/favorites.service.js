@@ -1,5 +1,3 @@
-import ReactGA from 'react-ga';
-
 import { FAVORITES_ACTIONS } from './favorites.reducers';
 import store from '../store';
 import { Favorite } from './favorite';
@@ -8,6 +6,7 @@ import { CompanyDetailsService } from '../company_details/company_details.servic
 import { NotificationService } from '../notification/notification.service';
 import { constants } from '../../constants';
 import { getCookie } from '../helpers';
+import { GoogleAnalyticsService } from '../google_analytics.service';
 
 const FAVORITES_STORAGE_KEY = 'FAVORITES';
 const EMAIL_STORAGE_KEY = 'EMAIL';
@@ -120,7 +119,7 @@ class FavoritesServiceFactory {
                 })
             }).then(response => {
                 if(response.status === 200) {
-                    ReactGA.event({ category: 'Favorites', action: 'Send favorites by email' });
+                    GoogleAnalyticsService.sendEvent({ category: 'Favorites', action: 'Send favorites by email' });
 
                     resolve();
                     return;

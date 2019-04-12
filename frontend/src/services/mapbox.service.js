@@ -1,5 +1,4 @@
 import debounce from 'lodash/debounce';
-import ReactGA from 'react-ga';
 
 // Initiate the window.L variable
 import { leaflet } from 'mapbox.js';
@@ -11,6 +10,7 @@ import { CompanyDetailsService } from './company_details/company_details.service
 import { VisitedSiretService } from '../services/visited_sirets/visited_sirets.service';
 
 import { computeDistance, computeViewBox } from '../services/distance-helpers';
+import { GoogleAnalyticsService } from './google_analytics.service';
 
 // Trigger when the user click on the popup
 window.selectSiret = (el) => {
@@ -94,7 +94,7 @@ export class MapBoxService {
 
         this.map.on('dragend', () => this.newCompaniesFn());
         this.map.on('zoomend', () => {
-            ReactGA.event({ category: 'Map', action: 'Use zoom' });
+            GoogleAnalyticsService.sendEvent({ category: 'Map', action: 'Use zoom' });
             this.newCompaniesFn(true)
         });
     }

@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 import store from '../../../services/store';
 import { FavoritesService } from '../../../services/favorites/favorites.service';
-import ReactGA from 'react-ga';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 
 class FavoriteButton extends Component {
 
     addFavorite = (event) => {
         event.stopPropagation();
-        ReactGA.event({ category: 'Favorites', action: 'Add favorite' });
+        GoogleAnalyticsService.sendEvent({ category: 'Favorites', action: 'Add favorite' });
         FavoritesService.addFavorite(this.props.company);
     }
 
