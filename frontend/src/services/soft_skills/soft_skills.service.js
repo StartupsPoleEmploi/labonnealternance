@@ -84,7 +84,7 @@ class SoftSkillsServiceFactory {
                     type: COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS_FROM_REQUEST,
                     data: softSkills
                 });
-            });
+            }).catch(err => { /* Do nothing */ });
     }
 }
 
