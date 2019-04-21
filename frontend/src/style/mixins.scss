@@ -321,7 +321,7 @@
 // Mixin when no job found
 @mixin no-job($font-size: 1.25em) {
 
-    .no-job-popin {
+    .no-job-popin, .no-job-selected-popin {
         background-color: white;
         border-radius: 5px;
         position: relative;
@@ -342,6 +342,10 @@
             border: none;
             background: none;
         }
+    }
+
+    .no-job-selected-popin {
+        margin-top: 20px;
     }
 }
 

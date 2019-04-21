@@ -44,6 +44,7 @@ export class JobFormStep extends Component {
             placeholder: PLACEHOLDER_TEXT,
             suggestedJobs: [],
             currentPage: 0,
+            showNoJobSelectedPopin: false,
 
             hasSubmitting: false,
             formStep: AUTOCOMPLETE_STEP
@@ -122,7 +123,7 @@ export class JobFormStep extends Component {
     // Trigger when filling the job input
     autocompleteJobs = (event) => {
         NotificationService.deleteNotification();
-        this.setState({ hasSubmitting: false });
+        this.setState({ hasSubmitting: false, showNoJobSelectedPopin: false });
 
         let term = event.target.value;
         this.setState({ term });
@@ -154,6 +155,8 @@ export class JobFormStep extends Component {
         }
 
         this.props.searchForm.setJobs(jobs);
+        this.setState({ showNoJobSelectedPopin: false });
+
         // Notifify parent (if form is include in a bigger component. Ex: new search in header)
         if (this.props.onChange) this.props.onChange();
         this.forceUpdate();
@@ -187,7 +190,7 @@ export class JobFormStep extends Component {
                 GoogleAnalyticsService.setPageView(JOBS_FILTER_URL);
             }
 
-            this.setState({ formStep: JOB_SELECTION_STEP });
+            this.setState({ formStep: JOB_SELECTION_STEP, showNoJobSelectedPopin: false });
         }
     }
 
@@ -198,8 +201,8 @@ export class JobFormStep extends Component {
     }
 
     validateStep = () => {
-        if (!this.props.searchForm.jobs.length === 0) {
-            NotificationService.createError('Aucun métier renseigné');
+        if (this.props.searchForm.jobs.length === 0) {
+            this.setState({ showNoJobSelectedPopin: true })
             return;
         }
         if (!this.props.searchForm.areJobsValid()) {
@@ -231,13 +234,24 @@ export class JobFormStep extends Component {
     hideNoJobPopin = () => {
         this.setState({ hasSubmitting: false });
     }
+    hideNoJobSelectedPopin = () => {
+        this.setState({ showNoJobSelectedPopin: false });
+    }
 
 
     // RENDER PART
+    renderNotJobSelected() {
+        return (
+            <div className="no-job-selected-popin" role="alertdialog">
+                <button className="close-container" onClick={this.hideNoJobSelectedPopin} title="Fermer le message d'erreur"><span className="icon close-icon">&nbsp;</span></button>
+                Pour passer à l'étape suivante,<br />vous devez choisir au moins un métier
+            </div>
+        )
+    }
     renderNotJobFound() {
         return (
-            <div className="no-job-popin">
-                <button className="close-container" onClick={this.hideNoJobPopin} title="Fermer les filtres"><span className="icon close-icon">&nbsp;</span></button>
+            <div className="no-job-popin" role="alertdialog">
+                <button className="close-container" onClick={this.hideNoJobPopin} title="Fermer le message d'erreur"><span className="icon close-icon">&nbsp;</span></button>
                 Nous n'avons pas compris<br />le métier que vous recherchez.<br />Essayez avec une autre orthographe
             </div>
         )
@@ -281,16 +295,18 @@ export class JobFormStep extends Component {
 
         return (
             <div className="job-form-step">
-                <h2 className="small"><label htmlFor="job_input">Choisissez les métiers qui vous intéressent</label></h2>
+                <h2 className="small"><label htmlFor="job_input">Sélectionnez les métiers qui vous intéressent</label></h2>
 
                 <ul className="list-unstyled">
                     { suggestedJobs.map(job => this.renderJob(job))}
                 </ul>
                 { this.state.suggestedJobs.length > PAGE_SIZE ? this.renderPagination() : null }
+                {this.state.showNoJobSelectedPopin ? this.renderNotJobSelected() : null}
 
                 { showSubmit ? <div className="submit-container">
-                    <button className="button go-button" disabled={!this.isStepValid()} onClick={this.validateStep}>Valider</button>
+                    <button className="button go-button" onClick={this.validateStep}>Valider</button>
                 </div> : null }
+
 
                 { !this.props.compactMode ? <button className="return" onClick={this.returnToAutocomplete}>Retour</button> : null }
             </div>
@@ -326,6 +342,7 @@ export class JobFormStep extends Component {
                 <>
                     {this.renderAutocompleteBlock()}
                     {this.noJobFound() ? null : this.renderSelectJobsBlock()}
+                    {this.state.showNoJobSelectedPopin ? this.renderNotJobSelected() : null }
                 </>
             );
         } else {
