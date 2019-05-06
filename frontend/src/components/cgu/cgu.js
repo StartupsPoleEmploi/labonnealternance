@@ -4,6 +4,8 @@ import Header from '../companies/blocks/header/header';
 import { SEOService } from '../../services/seo.service';
 import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
+require('./cgu.css');
+
 export default class CGU extends Component {
 
     componentDidMount() {
@@ -13,7 +15,7 @@ export default class CGU extends Component {
 
     render() {
         return (
-            <div id="who-we-are" className="max-size-1000">
+            <div id="cgu" className="max-size-1000">
                 <Header showOffset={false} />
 
                 <main className="content">
@@ -95,7 +97,20 @@ export default class CGU extends Component {
                         <ol>
                             <li>
                                 <h3>Accessibilité et utilisation du service</h3>
-                                <p>Pôle emploi ne peut être tenu pour responsable vis-à-vis de l’utilisateur des dommages de toute nature, directs ou indirects, résultant de l’utilisation du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a>, ni de l’impossibilité d’y accéder.</p>
+
+                                <p>L'accès au Site Internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> se fait notamment à partir d'un ordinateur, d’un téléphone, d’un assistant personnel ou d’un terminal nomade connecté à un réseau de télécommunication selon les protocoles de communication utilisés sur le réseau Internet.</p>
+
+                                <p>Le Site Internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est accessible 24h/7j, sauf cas de force majeure ou d’événement hors du contrôle de Pôle emploi.</p>
+
+                                <p>Pôle emploi décline toute responsabilité :</p>
+
+                                <ul>
+                                    <li>pour toute interruption du Site pour raison de maintenance technique ou de mise à jour nécessaire au bon fonctionnement du Site Internet.</li>
+                                    <li>pour survenance de bogues.</li>
+                                </ul>
+
+                                <p>Pôle emploi ne peut être tenu pour responsable vis-à-vis de l’utilisateur des dommages de toute nature, directs ou indirects.</p>
+
                             </li>
                             <li>
                                 <h3>Résultats de recherche</h3>
