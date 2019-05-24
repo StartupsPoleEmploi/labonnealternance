@@ -1,5 +1,19 @@
 .PHONY: dev
 
+start-frontend:
+	cd frontend && npm run start
+
+start-backend: build dev
+
+update-local-dev:
+	pip install --upgrade pip
+	pip install -r requirements.txt
+	cd frontend && npm install
+	make migrate
+
+show-versions:
+	python -V && npm --version && node --version
+
 dev:
 	python manage.py runserver
 
@@ -10,9 +24,6 @@ sitemap:
 	python create_sitemap.py
 
 # see details of npm commands in frontend/package.json
-
-start:
-	cd frontend && npm run start
 
 build:
 	cd frontend && npm run build
