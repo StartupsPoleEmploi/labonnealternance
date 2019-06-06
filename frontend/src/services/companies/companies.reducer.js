@@ -11,6 +11,8 @@ export const COMPANIES_ACTIONS = {
     APPLY_FILTERS: 'APPLY_FILTERS',
 };
 
+export const SHOW_VISIBLE_MARKET_DEBUG_PREFIX = false;
+
 let initialState = new Map();
 export const COMPANIES_REDUCER = (state = initialState, action) => {
 
@@ -31,7 +33,12 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
                     // Get the job
                     let job = action.data.jobs.find(job => job.rome === company.matched_rome_code)
 
-                    let companyTemp = new Company(company.siret, job, company.name, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
+                    let companyName = company.name
+                    if (SHOW_VISIBLE_MARKET_DEBUG_PREFIX === true && company.offers_count !== undefined) {
+                        companyName = `[OFFRES=${company.offers_count}] ${companyName}`
+                    }
+
+                    let companyTemp = new Company(company.siret, job, companyName, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
 
                     if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
                     companies.set(company.siret, companyTemp);

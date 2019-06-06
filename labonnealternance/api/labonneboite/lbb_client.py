@@ -15,7 +15,8 @@ PAGE_SIZE = 100
 JOB_SLUG_REGEX = r"^[a-z,-]*$"
 
 LBB_COMPANY_DETAILS_URL = '{}/api/v1/office/{}/details?{}'
-LBB_COMPANIES_URL = '{}/api/v1/company/?{}'
+LBB_HIDDEN_MARKET_COMPANIES_URL = '{}/api/v1/company/?{}'
+LBB_VISIBLE_MARKET_COMPANIES_URL = '{}/api/v1/offers/offices/?{}'
 LBB_JOB_SLUG_DETAILS_URL = '{}/job_slug_details?job-slug={}'
 LBB_CITY_SLUG_DETAILS_URL = '{}/city_slug_details?city-slug={}'
 LBB_CITY_SLUG_FROM_CITY_CODE_URL = '{}/city_code_details?city-code={}'
@@ -103,7 +104,35 @@ def get_company(siret):
     return get_url(url)
 
 
-def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page_size=PAGE_SIZE, use_widget_user=False):
+def get_visible_market_companies(citycode, rome_codes_str, distance=50, page_size=PAGE_SIZE, use_widget_user=False):
+    user = WIDGET_USER if use_widget_user else API_USER
+
+    params = {
+        'commune_id': citycode,
+        'rome_codes': rome_codes_str,
+        'user': user,
+        'distance': distance,
+        'contract': 'alternance',
+        'page_size': page_size,
+    }
+
+    timestamp = make_timestamp()
+    signature = make_signature(params, timestamp)
+    params['timestamp'] = timestamp
+    params['signature'] = signature
+
+    url = LBB_VISIBLE_MARKET_COMPANIES_URL.format(LBB_URL, urllib.parse.urlencode(params))
+
+    try:
+        response = get_url(url)
+    except HTTPError as e:
+        logger.error('Error when calling URL : {} - Exception: {}'.format(url, e))
+        raise(e)
+
+    return response
+
+
+def get_hidden_market_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page_size=PAGE_SIZE, use_widget_user=False):
     """
     Calling LaBonneBoite API to get all the companies matches the given arguments.
 
@@ -121,7 +150,7 @@ def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page
         'distance': distance,
         'page': page,
         'contract': 'alternance',
-        'page_size': page_size
+        'page_size': page_size,
     }
 
     timestamp = make_timestamp()
@@ -129,7 +158,7 @@ def get_companies(longitude, latitude, rome_codes_str, page=1, distance=50, page
     params['timestamp'] = timestamp
     params['signature'] = signature
 
-    url = LBB_COMPANIES_URL.format(LBB_URL, urllib.parse.urlencode(params))
+    url = LBB_HIDDEN_MARKET_COMPANIES_URL.format(LBB_URL, urllib.parse.urlencode(params))
 
     try:
         response = get_url(url)

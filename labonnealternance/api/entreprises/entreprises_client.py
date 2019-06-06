@@ -19,7 +19,7 @@ class EntreprisesClient(Singleton, ClientBase):
             self.token, self.token_expiration_date = super().get_token(ESD_SCOPES)
 
         # Call to Emploi Store Developpeur
-        headers = { 'Authorization': 'Bearer ' + self.token }
+        headers = {'Authorization': 'Bearer ' + self.token}
 
         url = ENTREPRISES_API_URL.format(siret)
 

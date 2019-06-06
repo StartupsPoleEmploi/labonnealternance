@@ -33,6 +33,7 @@ class CurrentLocationServiceFactory {
                     type: CURRENT_LOCATION_ACTIONS.SET_CURRENT_LOCATION,
                     data: {
                         address: addressData.label,
+                        // Note that citycode is an INSEE code, not a zipcode!
                         zipcode: addressData.citycode,
                         longitude,
                         latitude
