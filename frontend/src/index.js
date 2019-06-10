@@ -81,10 +81,12 @@ history.listen(({ location, action }) => {
     // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
     if(startsWith(location.pathname, '/entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyUrl(location.pathname);
+        GoogleAnalyticsService.setPageView('/recherche/resultat');
     }
     // Format /details-entreprises/xx to /details-entreprises?siret=xx
     else if(startsWith(location.pathname, '/details-entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(location.pathname);
+        GoogleAnalyticsService.setPageView('/recherche/fiche');
     }
 
     GoogleAnalyticsService.setPageView(pageView);
