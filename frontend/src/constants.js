@@ -24,6 +24,9 @@ export const constants = {
     // Match
     GET_SOFTSKILLS_URL: '/api/match/get_soft_skills?rome=',
 
-    // Api-adresse : get address from longitude/latitude
+    // https://adresse.data.gouv.fr/api : get address from GPS coordinates
     API_ADRESSE_URL: 'https://api-adresse.data.gouv.fr/reverse/?lon={longitude}&lat={latitude}&type=street',
+
+    // https://geo.api.gouv.fr/docs/communes : get commune_id closest to given GPS coordinates
+    GEO_API_URL: 'https://geo.api.gouv.fr/communes?lon={longitude}&lat={latitude}',
 };
