@@ -254,6 +254,32 @@
         border-bottom: solid 2px #EDEDED;
         &:last-child { border-bottom: none; }
 
+        .label-hidden-market {
+            background-color: #51128A;
+            color: white;
+            border-radius: 15px;
+            padding: 5px 10px;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border: none;
+            display: inline-block;
+        }
+
+        .label-visible-market {
+            background-color: #CF0096;
+            color: white;
+            border-radius: 15px;
+            padding: 5px 10px;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 5px;
+            border: none;
+            display: inline-block;
+        }
+
         .distance {
             font-size: .8em;
             margin-bottom: 5px;

@@ -192,7 +192,7 @@ class Companies extends Component {
 
                 // Register event in GA
                 GoogleAnalyticsService.setPageView(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
-                GoogleAnalyticsService.setPageView('/recherche/fiche');
+                GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/fiche');
 
                 this.setState({ company });
             } else {

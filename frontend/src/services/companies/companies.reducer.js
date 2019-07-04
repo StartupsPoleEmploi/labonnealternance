@@ -38,7 +38,11 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
                         companyName = `[OFFRES=${company.offers_count}] ${companyName}`
                     }
 
-                    let companyTemp = new Company(company.siret, job, companyName, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text);
+                    let companyOffers = [];
+                    if (company.offers_count !== undefined) {
+                        companyOffers = company.offers;
+                    }
+                    let companyTemp = new Company(company.siret, job, companyName, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text, companyOffers);
 
                     if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
                     companies.set(company.siret, companyTemp);

@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { Experiment, Variant } from '@marvelapp/react-ab-test';
 
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
@@ -41,9 +42,28 @@ export class CompanyListItem extends Component {
 
     // RENDER
     render() {
+        const offers_count = this.props.company.offers.length;
+
+        let label_class = "label-hidden-market";
+        let label_text = "Entreprise à contacter";
+        if (offers_count >= 2) {
+            label_class = "label-visible-market";
+            label_text = "Offres d'emploi en alternance (" + offers_count + ")";
+        } else if (offers_count === 1) {
+            label_class = "label-visible-market";
+            label_text = "Offre d'emploi en alternance";
+        }
+
         return (
             <li data-siret={this.props.company.siret} className={this.computeCssClasses()} onClick={this.selectCompany} onMouseLeave={this.blurItem} onMouseEnter={this.hoverItem}>
                 <div>
+                    <Experiment name="offres">
+                        <Variant name="visibles">
+                            <div className={label_class}>{label_text}</div>
+                        </Variant>
+                        <Variant name="invisibles">
+                        </Variant>
+                    </Experiment>
                     <div className="distance"><span className="icon pink-arrow">&nbsp;</span>{this.props.company.distance} km du lieu de recherche</div>
                     <div className="title">
                         <span className="title" aria-level="3">{this.props.company.label}</span>

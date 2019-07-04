@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Experiment, Variant } from '@marvelapp/react-ab-test';
 import { Loader } from '../loader/loader';
 import { slug } from '../../../services/helpers';
 
@@ -40,8 +41,6 @@ export const CompanyCoordinates =  (props) => {
 }
 
 export const CompanyIntroduction = ({ company }) => {
-    if (!company.address) return <div className="loader"><Loader /></div>;
-
     const address = company.address;
 
     return (
@@ -87,6 +86,29 @@ export const CompanyIntroduction = ({ company }) => {
                 </div>
 
             </div>
+
+            { company.offers.length >= 1 &&
+                <Experiment name="offres">
+                    <Variant name="visibles">
+                        <div className="line offers column grey padding">
+                            <h2>Voici { company.offers.length >= 2 ? "les offres" : "l'offre" } en lien avec cette entreprise</h2>
+                            <ul className="list-unstyled">
+                                { company.offers.map(function(listValue){
+                                    return (
+                                        <li key={ listValue.id }>
+                                            <a href={ listValue.url } target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
+                                                { listValue.name } - offre n° { listValue.id }
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </Variant>
+                    <Variant name="invisibles">
+                    </Variant>
+                </Experiment>
+            }
 
             <div className="line text-center grey">
                 <div className="siret">
