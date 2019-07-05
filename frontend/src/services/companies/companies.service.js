@@ -171,7 +171,7 @@ class CompaniesServiceFactory {
     }
 
     getCityCodeByCoordinates(longitude, latitude) {
-        let url = formatString(constants.GEO_API_URL, { longitude, latitude });
+        let url = formatString(constants.API_ADRESSE_URL, { longitude, latitude });
 
         return new Promise((resolve, reject) => {
             fetch(url)
@@ -179,11 +179,11 @@ class CompaniesServiceFactory {
                     if (response.status === 200) return response.json();
                     reject();
                 }).then(response => {
-                    if (!response || response[0] === undefined || response[0].code === undefined) {
+                    if (!response || response.features === undefined || response.features[0] === undefined) {
                         reject();
                         return;
                     }
-                    resolve(response[0].code);
+                    resolve(response.features[0].properties.citycode);
                 });
         });
     }
