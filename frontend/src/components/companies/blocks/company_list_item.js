@@ -44,13 +44,13 @@ export class CompanyListItem extends Component {
     render() {
         const offers_count = this.props.company.offers.length;
 
-        let label_class = "label-hidden-market";
+        let label_class = "label hidden-market";
         let label_text = "Entreprise à contacter";
         if (offers_count >= 2) {
-            label_class = "label-visible-market";
+            label_class = "label visible-market";
             label_text = "Offres d'emploi en alternance (" + offers_count + ")";
         } else if (offers_count === 1) {
-            label_class = "label-visible-market";
+            label_class = "label visible-market";
             label_text = "Offre d'emploi en alternance";
         }
 
