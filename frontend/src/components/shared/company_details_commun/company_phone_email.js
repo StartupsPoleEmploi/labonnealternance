@@ -35,15 +35,15 @@ export const PhoneEmailCompany = ({ company }) => {
     function showPhoneButton() {
         setPhoneVisible(true);
         GoogleAnalyticsService.sendEvent({ category: 'Company', action: 'Click show phone button' });
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero_direct');
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero');
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero_ou_email');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero_direct');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero_ou_email');
     }
     function showPhoneLink() {
         GoogleAnalyticsService.sendEvent({ category: 'Company', action: 'Click show phone button' });
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero_google');
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero');
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero_ou_email');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero_google');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero_ou_email');
     }
     function renderPhone() {
         return (<p><img className="icon tel" src="/static/img/icons/phone/phone-call-pink.svg" alt="Téléphone" />{ company.phone }</p>);
@@ -65,8 +65,8 @@ export const PhoneEmailCompany = ({ company }) => {
     function showEmailButton() {
         setEmailVisible(true);
         GoogleAnalyticsService.sendEvent({ category: 'Company', action: 'Click show email button' });
-        GoogleAnalyticsService.setPageView('/recherche/voir_email');
-        GoogleAnalyticsService.setPageView('/recherche/voir_numero_ou_email');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_email');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/voir_numero_ou_email');
     }
     function renderEmail() {
         return (<p><img className="icon mail" src="/static/img/icons/mail/mail-pink.svg" alt="Email" />{ company.email }</p>);

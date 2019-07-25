@@ -4,6 +4,7 @@
     "private": true,
     "proxy": "http://127.0.0.1:8000/",
     "dependencies": {
+        "@marvelapp/react-ab-test": "^2.2.0",
         "@reach/router": "^1.2.1",
         "babel-polyfill": "^6.26.0",
         "leaflet.markercluster": "1.4.0",

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, createHistory, LocationProvider  } from '@reach/router';
 import { Provider } from 'react-redux';
+import { emitter } from '@marvelapp/react-ab-test';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 import 'babel-polyfill';
 
@@ -86,7 +87,7 @@ history.listen(({ location, action }) => {
     // Format /details-entreprises/xx to /details-entreprises?siret=xx
     else if(startsWith(location.pathname, '/details-entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(location.pathname);
-        GoogleAnalyticsService.setPageView('/recherche/fiche');
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/fiche');
     }
 
     GoogleAnalyticsService.setPageView(pageView);
@@ -106,3 +107,11 @@ registerServiceWorker();
 
 // Hotjar
 HotjarService.initHotjar();
+
+// Send AB testing events to GA
+emitter.addPlayListener((experimentName, variantName) => {
+    console.log(`Displaying experiment ${experimentName} variant ${variantName}`);
+    let eventCategory = `ab-${experimentName}`
+    let eventAction = `ab-${experimentName}-${variantName}`
+    GoogleAnalyticsService.sendEvent({ category: eventCategory, action: eventAction });
+});

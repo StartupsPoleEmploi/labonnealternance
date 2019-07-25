@@ -1,6 +1,7 @@
 import ReactGA from 'react-ga';
 import { environment } from '../environment';
 import RGPDService from '../services/rgpd.service';
+import store from './store';
 
 const LBA_TRACKER_NAME = "LBA_TRACKER";
 const SEO_TRACKER_NAME = "SEO_TRACKER";
@@ -71,6 +72,18 @@ export class GoogleAnalyticsService {
         const trackers = GoogleAnalyticsService.getTrackers();
         ReactGA.set({ page: pageView }, trackers);
         ReactGA.pageview(pageView, trackers);
+    }
+
+    static setPageViewWithOfferInfo(pageView) {
+        this.setPageView(pageView);
+        let company = store.getState().companyDetails;
+        if (company) {
+            if (company.offers.length >= 1) {
+                GoogleAnalyticsService.setPageView(`${pageView}/avec-offres`);
+            } else {
+                GoogleAnalyticsService.setPageView(`${pageView}/sans-offres`);
+            }
+        }
     }
 
     static sendEvent({ category, action }) {
