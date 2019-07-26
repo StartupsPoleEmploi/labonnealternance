@@ -90,4 +90,9 @@ export class GoogleAnalyticsService {
         const trackers = GoogleAnalyticsService.getTrackers();
         ReactGA.event({ category, action }, trackers);
     }
+
+    static setDimension({ name, value }) {
+        const trackers = GoogleAnalyticsService.getTrackers();
+        ReactGA.set({ [name]: value }, trackers);
+    }
 }

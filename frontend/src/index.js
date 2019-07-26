@@ -110,8 +110,7 @@ HotjarService.initHotjar();
 
 // Send AB testing events to GA
 emitter.addPlayListener((experimentName, variantName) => {
-    console.log(`Displaying experiment ${experimentName} variant ${variantName}`);
-    let eventCategory = `ab-${experimentName}`
-    let eventAction = `ab-${experimentName}-${variantName}`
-    GoogleAnalyticsService.sendEvent({ category: eventCategory, action: eventAction });
+    let dimensionName = 'dimension1';
+    let dimensionValue = `ab-${experimentName}-${variantName}`;
+    GoogleAnalyticsService.setDimension({ name: dimensionName, value: dimensionValue });
 });
