@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Experiment, Variant } from '@marvelapp/react-ab-test';
 import { Loader } from '../loader/loader';
 import { slug } from '../../../services/helpers';
+import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 
 /**
@@ -42,6 +43,10 @@ export const CompanyCoordinates =  (props) => {
 
 export const CompanyIntroduction = ({ company }) => {
     const address = company.address;
+
+    function trackOfferLink() {
+        GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/clic_offre');
+    }
 
     return (
         <div className="company text-center">
@@ -96,7 +101,7 @@ export const CompanyIntroduction = ({ company }) => {
                                 { company.offers.map(function(listValue){
                                     return (
                                         <li key={ listValue.id }>
-                                            <a href={ listValue.url } target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
+                                            <a href={ listValue.url } target="_blank" onClick={trackOfferLink} rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
                                                 { listValue.name } - offre n° { listValue.id }
                                             </a>
                                         </li>
