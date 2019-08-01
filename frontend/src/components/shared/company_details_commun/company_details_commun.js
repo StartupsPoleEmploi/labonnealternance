@@ -87,7 +87,7 @@ export const CompanyIntroduction = ({ company }) => {
 
             </div>
 
-            { company.offers.length >= 1 &&
+            { company.offers && company.offers.length >= 1 &&
                 <Experiment name="offres">
                     <Variant name="visibles">
                         <div className="line offers column grey padding">
