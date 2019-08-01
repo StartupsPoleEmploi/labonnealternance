@@ -8,6 +8,7 @@
         "node": ">=9.0.0 <12.0.0"
     },
     "dependencies": {
+        "babel-core": "7.0.0-bridge.0",
         "@marvelapp/react-ab-test": "^2.2.0",
         "@reach/router": "^1.2.1",
         "babel-polyfill": "^6.26.0",
