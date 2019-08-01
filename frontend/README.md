@@ -16,6 +16,33 @@ To fix ``Error: `fsevents` unavailable (this watcher can only be used on Darwin)
 
     npm r -g watchman && brew install watchman
 
+### Trouble shooting
+
+
+#### Error with an unsupported version of NPM
+
+Example:
+```
+Unsupported engine for eslint-plugin-compat@2.7.0: wanted: {"node":">=8.x","npm":">=6.7.0"} (current: {"node":"11.9.0","npm":"6.5.0"})
+```
+
+Upgrade to the last NPM version using NVM: `nvm install-latest-npm`.
+
+
+
+
+#### Error `System limit for number of file watchers reached`
+
+Example:
+
+```
+Error: ENOSPC: System limit for number of file watchers reached, watch '/home/foldername/abcrypto/static'
+```
+
+Type this: `echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`.
+[More details here](https://github.com/gatsbyjs/gatsby/issues/11406).
+
+
 ## Run the environment
 
     cd frontend/
