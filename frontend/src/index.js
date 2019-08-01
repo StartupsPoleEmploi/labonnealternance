@@ -64,7 +64,6 @@ export default class App extends Component {
                             <AsyncWhoWeAre exact path="/qui-sommes-nous" />
                             <AsyncFAQ exact path="/faq" />
 
-
                             {/* Not found route */}
                             <NotFound type={404} default />
                         </Router>

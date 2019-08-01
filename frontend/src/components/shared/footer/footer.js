@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from '@reach/router';
 import RGPDModal from '../rgpd_bar/rgpd_modal';
+import { Experiment, Variant } from '@marvelapp/react-ab-test';
 
 export class Footer extends Component {
 
@@ -61,6 +62,15 @@ export class Footer extends Component {
                             </li>
                         </ul>
                     </div>
+
+                    {/* Trigger AB testing tracking on all pages */}
+                    <Experiment name="offres">
+                        <Variant name="visibles">
+                        </Variant>
+                        <Variant name="invisibles">
+                        </Variant>
+                    </Experiment>
+
                 </footer>
 
                 { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.closeRGPDModal} /> : null }
