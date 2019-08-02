@@ -6,7 +6,6 @@ import { emitter } from '@marvelapp/react-ab-test';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
 import 'babel-polyfill';
 
-
 import store from './services/store';
 import { environment } from './environment';
 
