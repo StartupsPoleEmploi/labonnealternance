@@ -3,14 +3,14 @@ module.exports = {
         client
             .url('http://labonnealternance.beta.pole-emploi.fr')
             .waitForElementPresent('body', 1000)
-            .execute(client.resizeWindow(1200, 3000))
             .assert.containsText('h1.introduction', 'Trouvez ici les entreprises')
             .click('.rgpd-banner ul li button:first-child')
-            .pause(200)
+            .waitForElementVisible('footer#global-footer a[href="/qui-sommes-nous"]')
 
             // Qui sommes-nous ?
+            .moveToElement('footer#global-footer a[href="/qui-sommes-nous"]', 10, 10)
             .click('footer#global-footer a[href="/qui-sommes-nous"]')
-            .pause(1000)
+            .waitForElementNotPresent('#home', 1000)
             .assert.containsText('main h1', 'Qui sommes-nous ?')
 
             // FAQ

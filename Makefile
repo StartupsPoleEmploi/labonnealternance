@@ -36,4 +36,4 @@ clear-build:
 
 # End to end testing
 test-e2e:
-	./node_modules/nightwatch/bin/nightwatch -c tests-e2e/browserstack.conf.js -e chrome
+	./frontend/node_modules/nightwatch/bin/nightwatch -c tests-e2e/browserstack.conf.js -e chrome
