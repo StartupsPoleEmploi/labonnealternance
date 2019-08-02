@@ -15,6 +15,7 @@
         "create-react-app": "^3.0.1",
         "leaflet.markercluster": "1.4.0",
         "mapbox.js": "3.1.1",
+        "mixpanel-browser": "^2.29.0",
         "nightwatch": "^1.0.14",
         "react": "^16.8.3",
         "react-dom": "^16.8.3",
