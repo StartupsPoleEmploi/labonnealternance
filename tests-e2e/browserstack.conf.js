@@ -14,7 +14,7 @@ nightwatch_config = {
         'browserstack.user': browserStackCredentials.user,
         'browserstack.key': browserStackCredentials.key,
         'browserstack.console': "errors",
-        'browserstack.project': "labonnealternance"
+        'project': 'labonnealternance'
     },
 
     // For generating new capabilities

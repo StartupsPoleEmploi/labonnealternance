@@ -28,12 +28,19 @@ sitemap:
 build:
 	cd frontend && npm run build
 
-test:
-	cd frontend && npm run test
-
 clear-build:
 	rm -rfv frontend/build
 
+#######################################
+############# TESTS ###################
+#######################################
+
+unit-tests:
+	cd frontend && npm run tests # watch mode activated
+
+ci-unit-tests:
+	cd frontend && npm run ci-unit-tests # tests will stop after run
+
 # End to end testing
-test-e2e:
+e2e-tests:
 	./frontend/node_modules/nightwatch/bin/nightwatch -c tests-e2e/browserstack.conf.js -e chrome
