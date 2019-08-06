@@ -22,5 +22,5 @@ before_script:
 
 # Tests to be run
 script:
-  - cd $TRAVIS_BUILD_DIR && make e2e-tests
-  - cd $TRAVIS_BUILD_DIR && make ci-unit-tests
+  - cd $TRAVIS_BUILD_DIR && make test-e2e
+  - cd $TRAVIS_BUILD_DIR && make test-unit-ci

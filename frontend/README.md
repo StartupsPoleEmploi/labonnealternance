@@ -16,7 +16,7 @@ To fix ``Error: `fsevents` unavailable (this watcher can only be used on Darwin)
 
     npm r -g watchman && brew install watchman
 
-### Trouble shooting
+### Troubleshooting
 
 
 #### Error with an unsupported version of NPM

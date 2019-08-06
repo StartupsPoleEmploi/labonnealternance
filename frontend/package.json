@@ -30,8 +30,8 @@
         "build-js": "react-scripts build",
         "build": "./node_modules/.bin/npm-run-all build-css build-js",
         "lint": "eslint src",
-        "unit-tests": "react-scripts test --env=jsdom --watchAll",
-        "ci-unit-tests": "react-scripts test --env=jsdom --no-watch",
+        "test-unit": "react-scripts test --env=jsdom --watchAll",
+        "test-unit-ci": "react-scripts test --env=jsdom --no-watch",
         "eject": "react-scripts eject"
     },
     "devDependencies": {

@@ -35,12 +35,14 @@ clear-build:
 ############# TESTS ###################
 #######################################
 
-unit-tests:
-	cd frontend && npm run tests # watch mode activated
+test-unit:
+	cd frontend && npm run test-unit # watch mode activated
 
-ci-unit-tests:
-	cd frontend && npm run ci-unit-tests # tests will stop after run
+test-unit-ci:
+	cd frontend && npm run test-unit-ci # tests will stop after run
 
 # End to end testing
-e2e-tests:
+test-e2e:
 	./frontend/node_modules/nightwatch/bin/nightwatch -c tests-e2e/browserstack.conf.js -e chrome
+
+test-all: test-unit-ci test-e2e
