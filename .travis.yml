@@ -1,0 +1,26 @@
+language: node_js
+
+# NodeJS version is set in the following files:
+# - frontend/package.json
+# - Dockerfile
+# Make sure they match!
+node_js:
+  - "9"
+
+# Cache NPM packages to make builds faster.
+cache: npm
+
+# Install dependencies listed in frontend/package.json
+install:
+  - cd $TRAVIS_BUILD_DIR/frontend && npm install
+
+# Browserstack needs credentials to run.
+# They are set in a Travis CI environment variable as a base64-encoded string.
+# This command decodes it and stores the result in a file.
+before_script:
+  - echo $BROWSERSTACK_FILE | base64 -d > $TRAVIS_BUILD_DIR/tests-e2e/browserstack.credentials.js
+
+# Tests to be run
+script:
+  - cd $TRAVIS_BUILD_DIR && make test-e2e
+  - cd $TRAVIS_BUILD_DIR && make test-unit-ci

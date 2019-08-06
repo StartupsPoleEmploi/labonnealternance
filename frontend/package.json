@@ -8,12 +8,14 @@
         "node": ">=9.0.0 <12.0.0"
     },
     "dependencies": {
+        "babel-core": "7.0.0-bridge.0",
         "@marvelapp/react-ab-test": "^2.2.0",
         "@reach/router": "^1.2.1",
         "babel-polyfill": "^6.26.0",
         "create-react-app": "^3.0.1",
         "leaflet.markercluster": "1.4.0",
         "mapbox.js": "3.1.1",
+        "nightwatch": "^1.0.14",
         "react": "^16.8.3",
         "react-dom": "^16.8.3",
         "react-ga": "^2.5.7",
@@ -28,7 +30,8 @@
         "build-js": "react-scripts build",
         "build": "./node_modules/.bin/npm-run-all build-css build-js",
         "lint": "eslint src",
-        "test": "react-scripts test --env=jsdom --watchAll",
+        "test-unit": "react-scripts test --env=jsdom --watchAll",
+        "test-unit-ci": "react-scripts test --env=jsdom --no-watch",
         "eject": "react-scripts eject"
     },
     "devDependencies": {

@@ -22,4 +22,7 @@ config/overrides/settings.py
 venv/
 **/__init__.py
 
+# Tests
+selenium-debug.log
+tests_output/*
 tests-e2e/browserstack.credentials.js
