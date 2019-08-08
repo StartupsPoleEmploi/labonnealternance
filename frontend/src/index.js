@@ -8,6 +8,7 @@ import 'babel-polyfill';
 
 import store from './services/store';
 import { environment } from './environment';
+import { constants } from './constants';
 
 // Based on https://www.linkedin.com/pulse/google-analytics-working-your-react-app-make-work-just-choudhary/
 import { GoogleAnalyticsService } from './services/google_analytics.service';
@@ -97,6 +98,21 @@ history.listen(({ location, action }) => {
 if (environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
     window.Raven.config(environment.SENTRY_CODE).install();
 }
+
+// Define weights of AB testing of offers:
+// [100, 0] : disable AB testing, all users see the offres-invisibles variant.
+// [50, 50] : enable AB testing.
+// WARNING everytime you change this, you have to also change the experiment
+// name stored in constants.OFFERS_ABTEST_EXPERIMENT_NAME (frontend/src/constants.js)
+// otherwise your change will only affect new users and old users will stay attached
+// to their former variant.
+// WARNING this command has to be executed *before* starting the application below,
+// otherwise it will be silently ineffective in some situations e.g. the homepage.
+emitter.defineVariants(
+    constants.OFFERS_ABTEST_EXPERIMENT_NAME,
+    ['invisibles', 'visibles'],
+    [50, 50],
+);
 
 // Start the application
 GoogleAnalyticsService.initGoogleAnalytics();

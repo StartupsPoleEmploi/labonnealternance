@@ -3,7 +3,7 @@ import { Experiment, Variant } from '@marvelapp/react-ab-test';
 import { Loader } from '../loader/loader';
 import { slug } from '../../../services/helpers';
 import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
-
+import { constants } from '../../../constants';
 
 /**
  * Contain commun templates between the company_modal.js & company_details.js
@@ -93,7 +93,7 @@ export const CompanyIntroduction = ({ company }) => {
             </div>
 
             { company.offers && company.offers.length >= 1 &&
-                <Experiment name="offres">
+                <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
                     <Variant name="visibles">
                         <div className="line offers column grey padding">
                             <h2>Voici { company.offers.length >= 2 ? "les offres" : "l'offre" } en lien avec cette entreprise</h2>

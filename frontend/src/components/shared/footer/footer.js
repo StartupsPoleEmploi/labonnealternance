@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from '@reach/router';
 import RGPDModal from '../rgpd_bar/rgpd_modal';
 import { Experiment, Variant } from '@marvelapp/react-ab-test';
+import { constants } from '../../../constants';
 
 export class Footer extends Component {
 
@@ -64,7 +65,7 @@ export class Footer extends Component {
                     </div>
 
                     {/* Trigger AB testing tracking on all pages */}
-                    <Experiment name="offres">
+                    <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
                         <Variant name="visibles">
                         </Variant>
                         <Variant name="invisibles">
