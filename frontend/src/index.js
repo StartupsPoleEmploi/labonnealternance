@@ -111,7 +111,7 @@ if (environment.SENTRY_CODE && environment.SENTRY_CODE !== '') {
 emitter.defineVariants(
     constants.OFFERS_ABTEST_EXPERIMENT_NAME,
     ['invisibles', 'visibles'],
-    [50, 50],
+    [100, 0],
 );
 
 // Start the application

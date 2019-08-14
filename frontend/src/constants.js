@@ -31,5 +31,5 @@ export const constants = {
     // Change it everytime you enable or disable the AB testing
     // or change the weights of its two groups.
     // We suggest simply incrementing the suffix number everytime.
-    OFFERS_ABTEST_EXPERIMENT_NAME: 'offres-005',
+    OFFERS_ABTEST_EXPERIMENT_NAME: 'offres-006',
 };
