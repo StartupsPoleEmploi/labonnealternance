@@ -16,9 +16,16 @@
 [![Travis CI build status](https://travis-ci.org/StartupsPoleEmploi/labonnealternance.svg?branch=master)](https://travis-ci.org/StartupsPoleEmploi/labonnealternance)
 
 
-# Technical documentation
+# Table of contents
 
-## Install a new development environment
+- [Install a new local development environment](#install)
+- [Run the tests](#testing)
+- [Backend main libraries](#backend-libs)
+- [Frontend main libraries](#frontend-libs)
+- [Hidden market vs visible market (job offers)](#offers)
+- [AB testing of making offers visible](#offers-ab)
+
+## Install a new development environment <a name="install"></a>
 
 - Create a new virtualenvwrapper for Python 3.5.2
 - Install the python requirements: `pip install -r requirements.txt`
@@ -31,7 +38,7 @@
     - `npm run start`
 
 
-## Testing
+## Run the tests <a name="testing"></a>
 For end-to-end testing, we use [BrowserStack](https://www.browserstack.com/).
 
 ![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780)
@@ -48,9 +55,7 @@ Running a build is as simple as typing `make test-all` ! Read the output in your
 
 ![Browserstack UI](/readme_img/browserstack.png)
 
-
-
-## Backend main libraries
+## Backend main libraries <a name="backend-libs"></a>
 
 - Python 3.6.8
 - [Django 2.0.1](https://www.djangoproject.com/)
@@ -58,9 +63,21 @@ Running a build is as simple as typing `make test-all` ! Read the output in your
 
 To know more, read `requirements.txt`.
 
-## Frontend main libraries
+## Frontend main libraries <a name="frontend-libs"></a>
 
 - [NodeJS 9.0.0](https://nodejs.org)
 - [React 16.8.3](https://reactjs.org)
 
 To know more, read `frontend/package.json`.
+
+## Hidden market vs visible market (job offers) <a name="offers"></a>
+
+We call companies potentially hiring and not having published any job offer the "hidden job market". LBa motivation is mainly to push candidates to apply directly to these companies without waiting for any job offer to be published first.
+
+We call companies which are hiring and have already published official job offers on pole-emploi.fr the "visible job market". Although it is not the main focus of LBa, we also display these companies in the search results. Their volume represents roughly 15% of the results and by default they are indistiguishables from their hidden market counterparts. We do not display the offers themselves, only the company itself.
+
+## AB testing of making job offers visible <a name="offers-ab"></a>
+
+During August 2019 for a few weeks we AB tested the impact of distinguishing hidden market companies vs visible market companies using labels with different colors and showing direct links to the job offers on the detail page when presents.
+
+To enable/disable this AB testing you will have to change `emitter.defineVariants` in `frontend/src/index.js` and `constants.OFFERS_ABTEST_EXPERIMENT_NAME` in `frontend/src/constants.js`. Be sure to read thoroughly the associated documentation.
