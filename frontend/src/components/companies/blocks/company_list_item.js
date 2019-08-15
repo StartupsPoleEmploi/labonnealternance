@@ -5,6 +5,7 @@ import { Experiment, Variant } from '@marvelapp/react-ab-test';
 import { CompanyDetailsService } from '../../../services/company_details/company_details.service';
 import FavoriteButton from '../../shared/favorite_button/favorite_button';
 import store from '../../../services/store';
+import { constants } from '../../../constants';
 
 export class CompanyListItem extends Component {
 
@@ -57,7 +58,7 @@ export class CompanyListItem extends Component {
         return (
             <li data-siret={this.props.company.siret} className={this.computeCssClasses()} onClick={this.selectCompany} onMouseLeave={this.blurItem} onMouseEnter={this.hoverItem}>
                 <div>
-                    <Experiment name="offres">
+                    <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
                         <Variant name="visibles">
                             <div className={label_class}>{label_text}</div>
                         </Variant>

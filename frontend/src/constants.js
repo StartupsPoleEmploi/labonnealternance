@@ -26,4 +26,10 @@ export const constants = {
 
     // Api-adresse : get address from longitude/latitude
     API_ADRESSE_URL: 'https://api-adresse.data.gouv.fr/reverse/?lon={longitude}&lat={latitude}&type=street',
+
+    // Offers AB testing experiment name.
+    // Change it everytime you enable or disable the AB testing
+    // or change the weights of its two groups.
+    // We suggest simply incrementing the suffix number everytime.
+    OFFERS_ABTEST_EXPERIMENT_NAME: 'offres-006',
 };

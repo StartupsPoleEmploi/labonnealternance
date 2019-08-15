@@ -67,7 +67,6 @@ export class GoogleAnalyticsService {
         return trackers;
     }
 
-
     static setPageView(pageView) {
         const trackers = GoogleAnalyticsService.getTrackers();
         ReactGA.set({ page: pageView }, trackers);
