@@ -1,3 +1,6 @@
+sudo: required
+dist: trusty
+
 language: node_js
 
 # NodeJS version is set in the following files:
@@ -7,18 +10,35 @@ language: node_js
 node_js:
   - "9"
 
-# Cache NPM packages to make builds faster.
-cache: npm
+# Cache NPM and PIP packages to make builds faster.
+cache:
+  directories:
+    - $TRAVIS_BUILD_DIR/frontend/node_modules
+    - $TRAVIS_BUILD_DIR/venv
 
-# Install dependencies listed in frontend/package.json
+before_install:
+  # Install Python, PIP and Virtualenv
+  - sudo apt-get update
+    && sudo apt-get install -y software-properties-common curl
+    && sudo add-apt-repository -y ppa:deadsnakes/ppa
+    && sudo apt-get update
+    && sudo apt-get -y install python3.6
+    && curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
+  - sudo pip3 install virtualenv
+  - virtualenv --python=python3.6 $TRAVIS_BUILD_DIR/venv
+
+# Install dependencies
 install:
-  - cd $TRAVIS_BUILD_DIR/frontend && npm install
+  - source venv/bin/activate
+  - cd $TRAVIS_BUILD_DIR/frontend/ && npm install
+  - cd $TRAVIS_BUILD_DIR && pip install -r requirements.txt
 
-# Browserstack needs credentials to run.
-# They are set in a Travis CI environment variable as a base64-encoded string.
-# This command decodes it and stores the result in a file.
+# This app needs secret values to run such as credentials.
+# They are set in Travis CI environment variables as base64-encoded strings.
+# This command decodes them and stores the corresponding results in files.
 before_script:
-  - echo $BROWSERSTACK_FILE | base64 -d > $TRAVIS_BUILD_DIR/tests-e2e/browserstack.credentials.js
+  - echo $BROWSERSTACK_FILE | base64 -d > $TRAVIS_BUILD_DIR/frontend/tests-e2e/browserstack.credentials.js
+  - echo $SETTINGS_FILE | base64 -d > $TRAVIS_BUILD_DIR/config/overrides/settings.py
 
 # Tests to be run
 script:

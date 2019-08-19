@@ -5,7 +5,7 @@ module.exports = {
 
         client
             // Get search results
-            .url('https://labonnealternance.pole-emploi.fr/entreprises/maconnerie/nantes-44000/maçon?distance=60')
+            .url('localhost:8000/entreprises/maconnerie/nantes-44000/maçon?distance=60')
 
             // Wait for a first result to be visible
             .waitForElementPresent('#results .company-list-item:first-child', 10000)

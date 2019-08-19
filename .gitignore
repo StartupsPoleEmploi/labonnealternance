@@ -24,5 +24,7 @@ venv/
 
 # Tests
 selenium-debug.log
-tests_output/*
-tests-e2e/browserstack.credentials.js
+frontend/tests_output/*
+frontend/tests-e2e/browserstack.credentials.js
+frontend/local.log
+nohup.out

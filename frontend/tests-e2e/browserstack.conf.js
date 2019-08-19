@@ -1,7 +1,7 @@
 const browserStackCredentials = require("./browserstack.credentials.js");
 
 nightwatch_config = {
-    src_folders: ["tests-e2e"],
+    src_folders: ["tests"],
 
     selenium: {
         "start_process": false,
@@ -13,6 +13,7 @@ nightwatch_config = {
         'build': 'nightwatch-browserstack',
         'browserstack.user': browserStackCredentials.user,
         'browserstack.key': browserStackCredentials.key,
+        'browserstack.local': true,
         'browserstack.console': "errors",
         'project': 'labonnealternance'
     },

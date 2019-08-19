@@ -1,7 +1,7 @@
 module.exports = {
     'Search "maçon" in "Nantes"': function (client) {
         client
-            .url('http://labonnealternance.beta.pole-emploi.fr')
+            .url('localhost:8000')
             .waitForElementPresent('body', 1000)
             .assert.containsText('h1.introduction', 'Trouvez ici les entreprises')
             .click('.rgpd-banner ul li button:first-child')
