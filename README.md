@@ -45,9 +45,27 @@ For end-to-end testing, we use [BrowserStack](https://www.browserstack.com/).
 
 ### First run
 
-Before you run your first build, you need some credentials. Ask one of your coworkers for them, create a new file `tests-e2e/browserstack.credentials.js` and paste them there.
+Before you run your first build, you need to create two new files:
+- `frontend/tests-e2e/browserstack.credentials.js`
+- `config/overrides/settings.py`
+
+The second one should have the following values:
+
+```
+# config/overrides/settings.py
+
+LBB_URL = 'set_me'
+LBB_USE_BETA_FLAG= True
+LBB_API_KEY='set_me'
+LBB_WIDGET_API_KEY='set_me'
+ESD_CLIENT_ID='set_me'
+ESD_CLIENT_SECRET='set_me'
+```
+
+Ask one of your coworkers for them!
 
 Make sure all your Javascript libraries have been properly installed. If not, read [the Frontend documentation](/frontend) before you continue.
+
 
 ### Usage
 
