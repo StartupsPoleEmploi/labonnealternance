@@ -43,6 +43,19 @@ test-unit-ci:
 
 # End to end testing
 test-e2e:
-	./frontend/node_modules/nightwatch/bin/nightwatch -c tests-e2e/browserstack.conf.js -e chrome
+	# Build front-end files
+	# Set CI to a blank string to disable warnings on CI.
+	# See https://github.com/facebook/create-react-app/issues/2453
+	cd frontend && CI="" npm run build
+
+	# Run Django server and detach it. Then store its process id in a temporary file.
+	{ nohup ./manage.py runserver & echo $$! > e2e_server_pid.txt; }
+
+	# Run end-to-end tests
+	cd frontend && node tests-e2e/local.runner.js -c tests-e2e/browserstack.conf.js -e chrome
+
+	# Kill Django server using its process id.
+	kill -9 `cat e2e_server_pid.txt`
+	rm e2e_server_pid.txt
 
 test-all: test-unit-ci test-e2e
