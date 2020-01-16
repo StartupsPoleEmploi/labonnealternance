@@ -45,7 +45,7 @@ def suggest_romes(request):
 
 
     # Remove some cursus words
-    escape_words = ['alternance', 'bts', 'licence', 'master', 'brevet', 'cap', 'cqp', 'titre', 'cqp', 'bp', 'professionnelle']
+    escape_words = ['alternance', 'bts', 'iut', 'licence', 'master', 'brevet', 'cap', 'cqp', 'titre', 'cqp', 'bp', 'professionnelle']
     for word in escape_words:
         escape = re.compile(re.escape(word), re.IGNORECASE)
         text = escape.sub('', text)
