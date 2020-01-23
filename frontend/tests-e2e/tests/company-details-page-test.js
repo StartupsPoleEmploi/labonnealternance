@@ -8,7 +8,7 @@ module.exports = {
             .url('localhost:8000/entreprises/maconnerie/nantes-44000/maçon?distance=60')
 
             // Wait for a first result to be visible
-            .waitForElementPresent('#results .company-list-item:first-child', 10000)
+            .waitForElementPresent('#results .company-list-item:first-child', 40000)
 
             // Get some information about the first result: company siret and company name.
             .getAttribute('#results .company-list-item:first-child', 'data-siret', function (result) {
