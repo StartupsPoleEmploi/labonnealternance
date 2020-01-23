@@ -27,16 +27,13 @@
 
 ## Install a new development environment <a name="install"></a>
 
-- Create a new virtualenvwrapper for Python 3.5.2
+- Create a new virtualenvwrapper for Python 3.6.8
 - Install the python requirements: `pip install -r requirements.txt`
 - Create a `settings.py` file in the `config/overrides` folder
 - Modify the `config/overrides/settings.py` file to fill parameters with `<set-it>` (ask a colleague)
 - Apply migrations : `./manage.py migrate`
 - To start the environnement `make dev`
-- See `frontend/README.md` for the frontend installation
-    - `cd frontend/`
-    - `npm run start`
-
+- See [frontend/README.md](https://github.com/StartupsPoleEmploi/labonnealternance/blob/master/frontend/README.md) for the frontend installation, troobleshooting and how-to about running frontend tests.
 
 ## Run the tests <a name="testing"></a>
 For end-to-end testing, we use [BrowserStack](https://www.browserstack.com/).
@@ -48,6 +45,8 @@ For end-to-end testing, we use [BrowserStack](https://www.browserstack.com/).
 Before you run your first build, you need to create two new files:
 - `frontend/tests-e2e/browserstack.credentials.js`
 - `config/overrides/settings.py`
+
+The first one should have your browserstack credentials (open a browserstack account or ask a coworker).
 
 The second one should have the following values:
 
@@ -62,7 +61,7 @@ ESD_CLIENT_ID='set_me'
 ESD_CLIENT_SECRET='set_me'
 ```
 
-Ask one of your coworkers for them!
+Ask a coworker for those values!
 
 Make sure all your Javascript libraries have been properly installed. If not, read [the Frontend documentation](/frontend) before you continue.
 
@@ -76,14 +75,14 @@ Running a build is as simple as typing `make test-all` ! Read the output in your
 ## Backend main libraries <a name="backend-libs"></a>
 
 - Python 3.6.8
-- [Django 2.0.1](https://www.djangoproject.com/)
+- [Django 2.1.7](https://www.djangoproject.com/)
 - [Mandrill](https://mandrillapp.com/api/docs/index.python.html)
 
 To know more, read `requirements.txt`.
 
 ## Frontend main libraries <a name="frontend-libs"></a>
 
-- [NodeJS 9.0.0](https://nodejs.org)
+- [NodeJS 9.x](https://nodejs.org)
 - [React 16.8.3](https://reactjs.org)
 
 To know more, read `frontend/package.json`.

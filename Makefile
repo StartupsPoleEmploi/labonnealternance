@@ -12,7 +12,9 @@ update-local-dev:
 	make migrate
 
 show-versions:
-	python -V && npm --version && node --version
+	which python && python --version
+	which npm && npm --version
+	which node && node --version
 
 dev:
 	python manage.py runserver

@@ -9,6 +9,7 @@ RUN apt-get -y install python3 python3-pip
 RUN pip3 install --upgrade pip
 
 # Install NodeJS and create-react-app
+# Freeze NodeJS to version 9.x (production, staging but not local dev)
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g create-react-app
