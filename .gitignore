@@ -28,3 +28,4 @@ frontend/tests_output/*
 frontend/tests-e2e/browserstack.credentials.js
 frontend/local.log
 nohup.out
+e2e_server_pid.txt

@@ -42,5 +42,5 @@ before_script:
 
 # Tests to be run
 script:
-  - cd $TRAVIS_BUILD_DIR && make test-e2e
   - cd $TRAVIS_BUILD_DIR && make test-unit-ci
+  - cd $TRAVIS_BUILD_DIR && make test-e2e

@@ -1,8 +1,10 @@
 # La Bonne Alternance
 
+This is the README about the frontent component of the app. Go [here](https://github.com/StartupsPoleEmploi/labonnealternance) for the main README about the backend component and other stuff.
+
 ## Installation
 
-Note: we assume that you already have NodeJs and npm installed in your environment.
+Note: we assume that you already have NodeJs 9.11.1 and thus npm 5.6.0 installed in your environment. If you need to manage several versions of NodeJs on your computer, feel free to use a node version manager like nvm.
 
 Install the `create-react-app` package:
 
