@@ -57,7 +57,7 @@ test-e2e:
 	cd frontend && node tests-e2e/local.runner.js -c tests-e2e/browserstack.conf.js -e chrome
 
 	# Kill Django server using its process id.
-	kill -9 `cat e2e_server_pid.txt`
-	rm e2e_server_pid.txt
+	kill -9 `cat e2e_server_pid.txt` ; echo avoid finishing with an error exit code
+	rm e2e_server_pid.txt ; echo avoid finishing with an error exit code
 
 test-all: test-unit-ci test-e2e
