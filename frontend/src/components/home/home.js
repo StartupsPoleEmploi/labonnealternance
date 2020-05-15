@@ -60,7 +60,7 @@ export default class Home extends Component {
                         <section className="more">
                             <div className="how-it-works max-size-1000">
                                 <h2 className="big">Comment ça marche ?</h2>
-                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/Jqs6QTHSJkY" backgroundImage="/static/img/youtube/home.jpg" />
+                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/UgxlKSs5K_c" backgroundImage="/static/img/youtube/home.jpg" />
                             </div>
 
                             <div className="how-it-works max-size-1000">
