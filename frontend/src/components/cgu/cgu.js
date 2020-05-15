@@ -20,8 +20,10 @@ export default class CGU extends Component {
 
                 <main className="content">
                     <h1>Conditions d'utilisation</h1>
+                    <p>L’utilisateur du service doit respecter ces conditions générales d’utilisation. Elles peuvent être modifiées par Pôle emploi. L’utilisateur est donc invité à consulter régulièrement la dernière version mise à jour.</p>
+                    <div><em>Dernière mise à jour le : 15/05/2020</em></div>
 
-                    <h2>1. Informations légales</h2>
+                    <h2>1. Mentions légales</h2>
                     <h3>Editeur</h3>
                     <p>
                         Pôle emploi<br />
@@ -41,102 +43,66 @@ export default class CGU extends Component {
                         Tél. 09 72 10 10 07<br />
                     </p>
 
-                    <h2>2. Object du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a></h2>
-                    <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les démarches de candidatures spontanée de l’utilisateur en l’aidant à identifier des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et un secteur géographique donnés.</p>
-                    <p>La détermination de l'adresse en fonction de la position actuelle est réalisée via le site : <a href="https://adresse.data.gouv.fr/" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">https://adresse.data.gouv.fr/</a></p>
+                    <h2>2. Object du site</h2>
+                    <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les démarches de candidatures spontanées de l’utilisateur en l’aidant à identifier des entreprises ou organismes ayant un potentiel d’embauche de contrats en alternance dans un secteur d’emploi et un secteur géographique donnés.
 
-                    <h2>3. Données collectées</h2>
-                    <p>Les seules données collectées, pour permettre le fonctionnement du service, sont le type d’emploi recherché et le périmètre géographique souhaité. Ces données sont collectées et traitées par Pôle emploi pour la seule finalité définie à l’article 2 et ne sont pas conservées.</p>
-                    <p>Toutefois, l’utilisateur est informé que conformément aux articles 39 et suivants de la loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, il dispose d’un droit d’accès aux informations le concernant, en s’adressant :</p>
+                    <h2>3. Fonctionnement de La bonne alternance</h2>
+                    <p>Le service proposé sur le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher des entreprises ou organismes susceptibles de recruter en alternance des profils similaires au sien, en fonction des données qu’il a saisi (métier, secteur géographique).<p>
+                    <p>Les entreprises ou organismes qui apparaissent dans les résultats de recherche peuvent être classés en fonction de leur proximité géographique par rapport au périmètre défini par l’utilisateur. </p>
+                    <p>Lorsque celles-ci sont renseignées, l’utilisateur peut entrer en contact avec l’entreprise ou l’organisme au moyen des coordonnées indiquées sur la fiche de l’entreprise ou de l’organisme. </p>
+                    <p>À tout moment, chaque entreprise peut d’une part s’opposer à ce que son nom apparaisse dans les résultats de recherche ou d’autre part, demander à être mise en avant. <br />
+                    Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées) sur le site La bonne alternance en remplissant le formulaire disponible via le lien « Modifier ces informations » présent sur la fiche la concernant ou en accédant au <a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action?origin=labonnealternance">formulaire recruteur</a> directement depuis la page d’accueil du site.</p>
+
+                    <h2>4. Protection des données à caractère personnel</h2>
+                    <p>L’utilisation du moteur de recherche disponible sur le site internet La bonne alternance nécessite d’indiquer le(s) métier(s) recherché(s) ainsi que le périmètre géographique souhaité. <br />
+                    Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises. <br />
+                    Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné ainsi que leurs coordonnées de contact. S’agissant des coordonnées de contact, les destinataires des données sont les utilisateurs du site internet La bonne alternance. S’agissant des données relatives aux utilisateurs concernant leur recherche, seul Pôle emploi a accès aux données. </p>
+                    <p>Pôle emploi est le responsable de ce traitement. Ses coordonnées sont les suivantes : Pôle Emploi, 1-5 rue du docteur Gley, 75987, Paris cedex 20. Au titre de la licéité du traitement exigée par l’article 6 du règlement général (UE) sur la protection des données n°2016/679 du 27 avril 2016 (RGPD), le fondement juridique du traitement est la mission d’intérêt public dont est investi Pôle emploi en vertu de l’article L.5312-1 du code du travail qui consiste notamment à mettre en relation l’offre et la demande d’emploi. </p>
+                    <p>Conformément aux articles 12 à 23 du règlement général (UE) sur la protection des données n°2016/679 du 27 avril 2016 et à la loi Informatique et libertés n°78-17 du 6 janvier 1978 modifiée, vous bénéficiez d’un droit d’accès, de rectification, de limitation, de définir des directives sur le sort des données après votre mort et le droit de porter une réclamation devant la Commission nationale de l’informatique et des libertés pour les données vous concernant. Pour exercer vos droits, vous pouvez vous adresser au délégué à la protection des données de Pôle emploi (1 avenue du Docteur Gley, 75987 Paris cedex 20 ; <a href="mailto:courriers-cnil@pole-emploi.fr">courriers-cnil@pole-emploi.fr</a>)</p>
+
+                    <h2>5. Cookies </h2>
+                    <h3>5.1 Qu'est-ce qu'un cookie ?</h3>
+                    <p>Un cookie est un petit fichier texte déposé sur le terminal des utilisateurs (par exemple, un ordinateur, une tablette, un smartphone, etc.) lors de la visite d’un site internet.<br />
+                    Il contient plusieurs données : le nom du serveur qui l’a déposé, un identifiant sous forme de numéro unique, et une date d’expiration. Les cookies ont différentes fonctionnalités. Ils ont pour but d’enregistrer les paramètres de langue d’un site, de collecter des informations relatives à votre navigation sur les sites, d’adresser des services personnalisés, etc.<br />
+                    Seul l’émetteur d’un cookie est susceptible de lire, enregistrer ou de modifier les informations qui y sont contenues.</p>
+
+                    <h3>5.2 Les cookies déposés sur La bonne alternance</h3>
+                    <p><strong>Les cookies strictement nécessaires au fonctionnement du site internet</strong></p>
+                    <p>Des cookies sont utilisés sur le site internet La bonne alternance pour permettre le bon fonctionnement du site internet et l’utilisation des principales fonctionnalités du site (ex. le maintien de la connexion, stockage du consentement, etc.).  </p>
+                    <p>Sans ces cookies, l’utilisation du site peut être dégradée. L’utilisateur peut cependant s’opposer à leur dépôt en suivant les indications données au point 5.3.</p>
+
+                    <p><strong>Les cookies statistiques ou de mesure d’audience</strong></p>
+                    <p>Le site internet La bonne alternance utilise des cookies, y compris des cookies déposés par des tiers (ex. Google, Hotjar), ayant pour finalité la mesure d’audience dans le but d'améliorer l'expérience utilisateur et la performance du site internet. L’utilisateur peut paramétrer le dépôt des cookies en suivant les indications données au point 5.3.</p>
+
+                    <h3>5.3 Accepter ou refuser les cookies</h3>
+                    <p>L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé : 
                     <ul>
-                        <li>s’il est demandeur d’emploi : à son agence Pôle emploi, par voie postale ou électronique</li>
-                        <li>pour toute autre personne : au correspondant informatique et libertés de Pôle Emploi aux coordonnées suivantes : Pôle emploi, Correspondant informatique et libertés, 1-5 avenue du Docteur Gley, 75987 Paris cedex 20 (adresse électronique Courriers-cnil@pole-emploi.fr).</li>
-                    </ul>
-                    <p>Il est possible pour les entreprises voulant ne plus apparaître dans les résultats de La Bonne Alternance, ou voulant modifier leurs coordonnées ou tout renseignement qui leur paraîtrait inexact, de <a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action?origin=labonnealternance">faire une demande de modification</a>.</p>
-
-                    <h2>4. Cookies</h2>
-                    <p>Pôle emploi utilise des cookies permettant d’enregistrer des informations relatives à la navigation de l’utilisateur de manière anonyme et dans un but d’analyses statistiques. Les cookies générés ont une durée de conservation limitée à 12 mois. Ces cookies sont émis par les sociétés Google et Hotjar. L’utilisateur peut s’opposer à l'enregistrement de cookies sur son ordinateur :</p>
-                        <ul>
-                            <li>en configurant son poste informatique de la manière suivante :
-                                <p><strong>Pour Microsoft Internet Explorer 6.0 et + :</strong></p>
-                                <ol>
-                                    <li>Choisir le menu "Outils" (ou "Tools"), puis "Options Internet" (ou "Internet Options")</li>
-                                    <li>Cliquer sur l'onglet "Confidentialité" (ou "Confidentiality")</li>
-                                    <li>Sélectionner le niveau souhaité à l'aide du curseur ou cliquer sur le bouton "Avancé" pour personnaliser la gestion des cookies.</li>
-                                </ol>
-                                <p><strong>Pour Firefox 3.5 et + :</strong></p>
-                                <ol>
-                                    <li>Choisir le menu "Outils" (ou "Tools"), puis "Options "</li>
-                                    <li>Cliquer sur l'onglet "Vie privée"</li>
-                                    <li>Dans « Règles de conservation », sélectionner « Utiliser les paramètres personnalisés pour l’historique » et décocher le bouton "Accepter les cookies".</li>
-                                </ol>
-                                <p><strong>Pour Chrome :</strong></p>
-                                <ol>
-                                    <li>Choisir le menu "Outils" (ou "Tools"), puis "Options " </li>
-                                    <li>Cliquer sur l'onglet "Options avancées" </li>
-                                    <li>Dans « Paramètres de contenu », cocher le bouton « Interdire à tous les sites de stocker les données».</li>
-                                </ol>
-                                <p><strong>Pour Netscape 6.X et 7.X :</strong></p>
-                                <ol>
-                                    <li>Choisir le menu "Edition">"Préférences"</li>
-                                    <li>Confidentialité et Sécurité</li>
-                                    <li>Cookies</li>
-                                </ol>
-                                <p><strong>Pour Opéra 6.0 et au-delà :</strong></p>
-                                <ol>
-                                    <li>Choisir le menu "Fichier">"Préférences"</li>
-                                    <li>Vie Privée</li>
-                                </ol>
-                            </li>
+                        <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr" target=_blank>https://support.google.com/chrome/answer/95647?hl=fr</a></li>
+                        <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target=_blank>https://support.microsoft.com/fr-fr/help/17442</a></li>
+                        <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target=_blank>https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
+                        <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target=_blank>https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
                         </ul>
+                    </p>
+                    <p>Pour information, la plupart des navigateurs acceptent par défaut le dépôt de cookies.<br />
+                    Pour plus d’informations sur les cookies et les moyens permettant d’empêcher leur installation, l’utilisateur peut se rendre sur la page dédiée sur le site internet de la CNIL : <a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser" target=_blank>www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser</a>.</p>
 
-                        <h2>5. Fonctionnement du service</h2>
-                        <p>Le service proposé sur le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher dans les bases de données de Pôle emploi, des entreprises susceptibles de recruter des profils similaires au sien en fonction des critères qu’il a défini.</p>
+                    <h2>6. Responsabilité</h2>
+                    <p>Les informations publiées sur le site internet La bonne alternance sont fournies à titre indicatif et peuvent être modifiées à tout moment. Pôle emploi ne garantit pas l’exhaustivité des résultats de recherche ni l’absence d’erreurs dans les résultats communiqués.</p>
+                    <p>Pôle emploi ne saurait être tenu pour responsable vis-à-vis de l’utilisateur des dommages résultant de l’utilisation du site internet La bonne alternance, de l’impossibilité d’y accéder et de l’utilisation des sites tiers vers lesquels le site redirige.</p>
 
-                        <h2>6. Responsabilités</h2>
-                        <ol>
-                            <li>
-                                <h3>Accessibilité et utilisation du service</h3>
+                    <h2>7. Obligations de l'utilisateur</h2>
+                    <p>L’utilisation du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est soumise au respect par  l’utilisateur : 
+                    <ul>
+                        <li>de la législation française;</li>
+                        <li>des présentes conditions d’utilisation;</li>
+                        <li>des conditions d’utilisation de l’Emploi store disponibles à l’adresse suivante : <a href="http://www.emploi-store.fr/portail/conditionsgeneralesutilisation" target=_blank>http://www.emploi-store.fr/portail/conditionsgeneralesutilisation</a>.</li>
+                    </ul>
+                    </p>
 
-                                <p>L'accès au Site Internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> se fait notamment à partir d'un ordinateur, d’un téléphone, d’un assistant personnel ou d’un terminal nomade connecté à un réseau de télécommunication selon les protocoles de communication utilisés sur le réseau Internet.</p>
-
-                                <p>Le Site Internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est accessible 24h/7j, sauf cas de force majeure ou d’événement hors du contrôle de Pôle emploi.</p>
-
-                                <p>Pôle emploi décline toute responsabilité :</p>
-
-                                <ul>
-                                    <li>pour toute interruption du Site pour raison de maintenance technique ou de mise à jour nécessaire au bon fonctionnement du Site Internet.</li>
-                                    <li>pour survenance de bogues.</li>
-                                </ul>
-
-                                <p>Pôle emploi ne peut être tenu pour responsable vis-à-vis de l’utilisateur des dommages de toute nature, directs ou indirects.</p>
-
-                            </li>
-                            <li>
-                                <h3>Résultats de recherche</h3>
-                                <p>Pôle emploi décline toute responsabilité, envers l’utilisateur et/ou envers les entreprises ou organismes, concernant notamment :</p>
-                                <ul>
-                                    <li>l’absence de résultat au regard des critères définis par l’utilisateur</li>
-                                    <li>la non-exhaustivité des résultats obtenus</li>
-                                    <li>la présence d’erreurs dans les résultats communiqués</li>
-                                    <li>le positionnement d’une entreprise dans les résultats de recherche</li>
-                                    <li>le contenu et la disponibilité des sites tiers vers lesquels le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> renvoie.</li>
-                                </ul>
-                                <p>Une entreprise ou un organisme peut s’opposer à ce que son nom apparaisse dans les résultats de recherche et/ou modifier les informations communiquées sur le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> en remplissant le formulaire disponible via le lien présent sur la fiche la concernant.</p>
-                            </li>
-                        </ol>
-
-                        <h2>7. Obligations de l'utilisateur</h2>
-                        <p>L’utilisateur du site reconnaît avoir pris connaissance et accepter les présentes conditions d’utilisation avant toute utilisation du site.</p>
-                        <p>L’utilisation du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est soumise au respect par  l’utilisateur de : la législation française, les présentes conditions d’utilisation, les conditions d’utilisation de l’Emploi store disponibles à l’adresse suivante : <a href="http://www.emploi-store.fr/portail/conditionsgeneralesutilisation">http://www.emploi-store.fr/portail/conditionsgeneralesutilisation</a>.
-                            </p>
-                        <p>Les présentes conditions d’utilisation peuvent être modifiées à tout moment ; la date de mise à jour est mentionnée. Ces modifications sont opposables à l’utilisateur dès leur mise en ligne sur le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a>. L’utilisateur est donc invité à consulter régulièrement la dernière version mise à jour.</p>
-
-                        <h2>8. Propriété intellectuelle</h2>
-                        <p>Le site web <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est protégé au titre des dispositions relatives au droit d’auteur défini aux articles L.111-1 et suivants du code de la propriété intellectuelle et au titre des dispositions relatives aux bases de données définies aux articles L.341-1 et suivants du même code. Pôle emploi est titulaire de l’ensemble des droits de propriété intellectuelle sur les éléments composant le site et la base de données relative aux offres d’emploi.</p>
-                        <p>Sans préjudice des dispositions prévues à l’article L.122-5 du code de la propriété intellectuelle, toute représentation, reproduction ou diffusion, intégrale ou partielle du site, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné au titre des articles L.335-2 et L.335.3 du même code.</p>
-                        <p>Sans préjudice des dispositions prévues à l’article L.342-3 du code de la propriété intellectuelle, toute représentation, reproduction ou diffusion, intégrale ou partielle de la base de données, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi est sanctionné au titre des articles L.343-1 et suivants du même code.</p>
-                        <p>Par ailleurs, la marque Pôle emploi est protégée au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Pôle emploi, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné au titre des articles L.716-1 du même code.</p>
+                    <h2>8. Propriété intellectuelle</h2>
+                    <p>Les marques Pôle emploi et La bonne alternance sont protégées au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Pôle emploi et/ou de la marque La bonne alternance, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné en application de l’article L.716-1 du même code.<br />
+                    Par ailleurs, le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> contient des contenus sur lesquels des tiers détiennent des droits de propriété intellectuelle (dessin, graphisme, marque, etc.) ou un droit à l’image (photo, visuel mettant en scène une personne physique, vidéo, etc.). Les internautes ne sont pas autorisés à réutiliser ces contenus en l’absence de l’autorisation préalable et expresse de ces tiers.</p>
+                   
                 </main>
 
                 <RGPDBar />
