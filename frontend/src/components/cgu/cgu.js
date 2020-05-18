@@ -44,7 +44,7 @@ export default class CGU extends Component {
                     </p>
 
                     <h2>2. Object du site</h2>
-                    <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les démarches de candidatures spontanées de l’utilisateur en l’aidant à identifier des entreprises ou organismes ayant un potentiel d’embauche de contrats en alternance dans un secteur d’emploi et un secteur géographique donnés.
+                    <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les démarches de candidatures spontanées de l’utilisateur en l’aidant à identifier des entreprises ou organismes ayant un potentiel d’embauche de contrats en alternance dans un secteur d’emploi et un secteur géographique donnés.</p>
 
                     <h2>3. Fonctionnement de La bonne alternance</h2>
                     <p>Le service proposé sur le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher des entreprises ou organismes susceptibles de recruter en alternance des profils similaires au sien, en fonction des données qu’il a saisi (métier, secteur géographique).<p>
@@ -81,7 +81,7 @@ export default class CGU extends Component {
                         <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target="_blank">https://support.microsoft.com/fr-fr/help/17442</a></li>
                         <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
                         <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
-                        </ul>
+                    </ul>
                     </p>
                     <p>Pour information, la plupart des navigateurs acceptent par défaut le dépôt de cookies.<br />
                     Pour plus d’informations sur les cookies et les moyens permettant d’empêcher leur installation, l’utilisateur peut se rendre sur la page dédiée sur le site internet de la CNIL : <a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser" target="_blank">www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser</a>.</p>
