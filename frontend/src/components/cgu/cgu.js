@@ -139,7 +139,7 @@ export default class CGU extends Component {
                         <p>Par ailleurs, la marque Pôle emploi est protégée au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Pôle emploi, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné au titre des articles L.716-1 du même code.</p>
                 </main>
 
-                <RGPDBar />
+                <RGPDBar /> 
 
                 <Footer />
             </div>
