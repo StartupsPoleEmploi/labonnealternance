@@ -75,14 +75,13 @@ export default class CGU extends Component {
                     <p>Le site internet La bonne alternance utilise des cookies, y compris des cookies déposés par des tiers (ex. Google, Hotjar), ayant pour finalité la mesure d’audience dans le but d'améliorer l'expérience utilisateur et la performance du site internet. L’utilisateur peut paramétrer le dépôt des cookies en suivant les indications données au point 5.3.</p>
 
                     <h3>5.3 Accepter ou refuser les cookies</h3>
-                    <p>L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé : 
+                    <p>L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé :</p> 
                     <ul>
                         <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr" target="_blank">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
                         <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target="_blank">https://support.microsoft.com/fr-fr/help/17442</a></li>
                         <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
                         <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
                     </ul>
-                    </p>
                     <p>Pour information, la plupart des navigateurs acceptent par défaut le dépôt de cookies.<br />
                     Pour plus d’informations sur les cookies et les moyens permettant d’empêcher leur installation, l’utilisateur peut se rendre sur la page dédiée sur le site internet de la CNIL : <a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser" target="_blank">www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser</a>.</p>
 
@@ -91,13 +90,12 @@ export default class CGU extends Component {
                     <p>Pôle emploi ne saurait être tenu pour responsable vis-à-vis de l’utilisateur des dommages résultant de l’utilisation du site internet La bonne alternance, de l’impossibilité d’y accéder et de l’utilisation des sites tiers vers lesquels le site redirige.</p>
 
                     <h2>7. Obligations de l'utilisateur</h2>
-                    <p>L’utilisation du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est soumise au respect par  l’utilisateur : 
+                    <p>L’utilisation du site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> est soumise au respect par  l’utilisateur : </p>
                     <ul>
                         <li>de la législation française;</li>
                         <li>des présentes conditions d’utilisation;</li>
                         <li>des conditions d’utilisation de l’Emploi store disponibles à l’adresse suivante : <a href="http://www.emploi-store.fr/portail/conditionsgeneralesutilisation" target="_blank">http://www.emploi-store.fr/portail/conditionsgeneralesutilisation</a>.</li>
                     </ul>
-                    </p>
 
                     <h2>8. Propriété intellectuelle</h2>
                     <p>Les marques Pôle emploi et La bonne alternance sont protégées au titre des articles L.712-1 et suivants du code de la propriété intellectuelle. Toute représentation, reproduction ou diffusion, intégrale ou partielle de la marque Pôle emploi et/ou de la marque La bonne alternance, sur quelque support que ce soit, sans l'autorisation expresse et préalable de Pôle emploi constitue un acte de contrefaçon, sanctionné en application de l’article L.716-1 du même code.<br />
