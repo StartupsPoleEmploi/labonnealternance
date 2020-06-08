@@ -17,7 +17,7 @@ export default class RedirectionBobEmploi extends Component {
             romeCode: this.props.romeCode,
             hasError: false,
             url: ''
-        }
+        };
 
     }
 
@@ -26,12 +26,12 @@ export default class RedirectionBobEmploi extends Component {
         let jobPromise = fetch(`${constants.SUGGEST_JOBS_URL}${this.state.romeCode}`);
 
         Promise.all([cityPromise, jobPromise])
-            .then(responses => { this.computeUrl(responses); this.setState({ loading: false }) })
+            .then(responses => { this.computeUrl(responses); this.setState({ loading: false }); })
             .catch(err => this.setState({ hasError: true, loading: false }));
     }
 
     computeUrl(responses) {
-        if(responses[0].status !== 200 || responses[1].status !== 200) {
+        if (responses[0].status !== 200 || responses[1].status !== 200) {
             this.setState({ hasError: true });
             return;
         }
@@ -51,7 +51,7 @@ export default class RedirectionBobEmploi extends Component {
                     // URL is : /entreprises/:jobSlugs/:citySlug/:term
                     let url = `/entreprises/${job.occupation}/${city.slug}/${term}`;
                     this.setState({ url });
-                } catch(Exception) {
+                } catch (Exception) {
                     this.setState({ hasError: true });
                 }
             })

@@ -66,15 +66,15 @@ export default class Home extends Component {
                             <div className="how-it-works max-size-1000">
                                 <h2 className="big">La Bonne Alternance</h2>
                                 <div className="img-right">
-                                    <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br/>Il est essentiel dans votre recherche de proposer <br/>votre candidature à des entreprises n’ayant pas <br/>forcément déposé d’offres d’emploi en alternance.</p>
+                                    <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br />Il est essentiel dans votre recherche de proposer <br />votre candidature à des entreprises n’ayant pas <br />forcément déposé d’offres d’emploi en alternance.</p>
                                     <div className="recruteurs"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
                                 </div>
                                 <div className="img-left">
                                     <div className="diagramme"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
-                                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br/>recrutements des 5 dernières années pour vous proposer les <br/>entreprises qui recrutent régulièrement en alternance (contrat <br/> d'apprentissage ou contrat de professionnalisation).</p>
+                                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br />recrutements des 5 dernières années pour vous proposer les <br />entreprises qui recrutent régulièrement en alternance (contrat <br /> d'apprentissage ou contrat de professionnalisation).</p>
                                 </div>
                                 <div className="img-right">
-                                    <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br/>carte et en liste. Vous pouvez affiner la liste des entreprises par <br/>taille, métier et domaine. En cliquant sur une entreprise, vous <br/>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
+                                    <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br />carte et en liste. Vous pouvez affiner la liste des entreprises par <br />taille, métier et domaine. En cliquant sur une entreprise, vous <br />accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
                                     <div className="map"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt="" /></div>
                                 </div>
 
@@ -92,7 +92,7 @@ export default class Home extends Component {
                                         <img  src="/static/s.png" className="lazyload img-responsive" data-src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
                                     </a>
                                     <p>
-                                        Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
+                                        Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br />
                                         <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
                                     </p>
                                 </div>

@@ -13,7 +13,7 @@ export class RGPDBar extends Component {
         this.state = {
             show: !RGPDService.userAcceptsRGPD(),
             showRGPDModal: false,
-        }
+        };
     }
 
     showRGPDModal = () => {
@@ -34,9 +34,9 @@ export class RGPDBar extends Component {
     }
 
     render() {
-        if(!this.state.show) return null;
+        if (!this.state.show) return null;
 
-        return(
+        return (
             <Fragment>
 
                 <div className="rgpd-banner">

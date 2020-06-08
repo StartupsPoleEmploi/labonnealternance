@@ -75,7 +75,7 @@ export default class CGU extends Component {
                     <p>Le site internet La bonne alternance utilise des cookies, y compris des cookies déposés par des tiers (ex. Google, Hotjar), ayant pour finalité la mesure d’audience dans le but d'améliorer l'expérience utilisateur et la performance du site internet. L’utilisateur peut paramétrer le dépôt des cookies en suivant les indications données au point 5.3.</p>
 
                     <h3>5.3 Accepter ou refuser les cookies</h3>
-                    <p>L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé :</p> 
+                    <p>L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé :</p>
                     <ul>
                         <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr" target="_blank">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
                         <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target="_blank">https://support.microsoft.com/fr-fr/help/17442</a></li>
@@ -107,6 +107,6 @@ export default class CGU extends Component {
 
                 <Footer />
             </div>
-                );
-            }
+        );
+    }
 }

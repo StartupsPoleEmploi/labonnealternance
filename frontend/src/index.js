@@ -35,8 +35,8 @@ require('./style/global.css');
 
 // Why do you update plugin
 if (process.env.NODE_ENV !== 'production') {
-    const { whyDidYouUpdate } = require('why-did-you-update')
-    whyDidYouUpdate(React)
+    const { whyDidYouUpdate } = require('why-did-you-update');
+    whyDidYouUpdate(React);
 }
 
 const history = createHistory(window);
@@ -74,17 +74,17 @@ export default class App extends Component {
     }
 }
 history.listen(({ location, action }) => {
-    if(!GoogleAnalyticsService.isGASetup()) return;
+    if (!GoogleAnalyticsService.isGASetup()) return;
 
     let pageView = location.pathname + location.search;
 
     // Format /entreprises/:jobSlugs/:longitude/:latitude/:term to /entreprises?city=xx&job=xx&job=xx&term=xx
-    if(startsWith(location.pathname, '/entreprises')) {
+    if (startsWith(location.pathname, '/entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyUrl(location.pathname);
         GoogleAnalyticsService.setPageView('/recherche/resultat');
     }
     // Format /details-entreprises/xx to /details-entreprises?siret=xx
-    else if(startsWith(location.pathname, '/details-entreprises')) {
+    else if (startsWith(location.pathname, '/details-entreprises')) {
         pageView = GoogleAnalyticsService.handleCompanyDetailsUrl(location.pathname);
         GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/fiche');
     }

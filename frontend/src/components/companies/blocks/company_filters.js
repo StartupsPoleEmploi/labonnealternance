@@ -43,8 +43,8 @@ export class CompanyFilters extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if(this.state.showFilters || nextState.showFilters) return true;
-        if(this.state.showFilters !== nextState.showFilters) return true;
+        if (this.state.showFilters || nextState.showFilters) return true;
+        if (this.state.showFilters !== nextState.showFilters) return true;
         return false;
     }
 

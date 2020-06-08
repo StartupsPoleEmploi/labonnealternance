@@ -6,7 +6,7 @@ export class HotjarService {
     static initHotjar() {
         if (environment.HOTJAR_CODE && environment.HOTJAR_CODE !== '' && RGPDService.userAcceptsRGPD()) {
             (function (h, o, t, j, a, r) {
-                h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+                h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments); };
                 h._hjSettings = { hjid: environment.HOTJAR_CODE, hjsv: 6 };
                 a = o.getElementsByTagName('head')[0];
                 r = o.createElement('script'); r.async = 1;

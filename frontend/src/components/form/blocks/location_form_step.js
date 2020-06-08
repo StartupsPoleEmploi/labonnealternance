@@ -18,7 +18,7 @@ export class LocationFormStep extends Component {
     constructor(props) {
         super(props);
 
-        this.callAutocompleteCityFn = debounce(this.callAutocompleteCity, 250)
+        this.callAutocompleteCityFn = debounce(this.callAutocompleteCity, 250);
 
         // Get search form register values
         let term = ''; let autocompleteLocation; let currentLocation;
@@ -276,7 +276,8 @@ export class LocationFormStep extends Component {
                 <div className="or hide-desktop">ou</div>
 
                 <input id="location-input" type="text" onBlur={this.setPlaceholder} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder} placeholder={this.state.placeholder}
-                    value={this.state.term} onChange={this.autocompleteCity} />
+                    value={this.state.term} onChange={this.autocompleteCity}
+                />
 
                 {this.renderSuggestions()}
                 <div className="distance">dans un rayon de</div>

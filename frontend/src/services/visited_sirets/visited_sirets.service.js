@@ -7,7 +7,7 @@ class VisitedSiretServiceFactory {
         store.dispatch({
             type: VISITED_SIRETS_ACTIONS.ADD_SIRET,
             data: { siret }
-        })
+        });
     }
 }
 

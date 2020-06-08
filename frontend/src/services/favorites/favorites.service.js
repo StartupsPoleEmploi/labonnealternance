@@ -105,9 +105,9 @@ class FavoritesServiceFactory {
 
         return new Promise((resolve, reject) => {
             fetch(constants.SEND_FAVORITES_URL, {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    'Accept':'application/json',
+                    Accept: 'application/json',
                     'Content-Type': 'application/json; charset=utf-8',
                     'X-CSRFToken': getCookie('csrftoken'),
                     'X-Requested-With': 'XMLHttpRequest',
@@ -115,10 +115,10 @@ class FavoritesServiceFactory {
                 credentials: 'include',
                 body: JSON.stringify({
                     email,
-                    favorites : favoriteSiret,
+                    favorites: favoriteSiret,
                 })
             }).then(response => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     GoogleAnalyticsService.sendEvent({ category: 'Favorites', action: 'Send favorites by email' });
 
                     resolve();
@@ -126,10 +126,10 @@ class FavoritesServiceFactory {
                 }
 
                 // Send exception to Sentry (for further analysis)
-                window.Raven.captureException(new Error("Error when exporting favorites : " + response.status + " " + response.statusText));
+                window.Raven.captureException(new Error('Error when exporting favorites : ' + response.status + ' ' + response.statusText));
 
                 reject();
-            })
+            });
         });
 
     }
