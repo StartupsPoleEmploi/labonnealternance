@@ -833,11 +833,12 @@ footer#global-footer {
             display: flex;
             text-align: center;
             flex-wrap: wrap;
-            justify-content: center;
+            @media (max-width: $min-width-mobile) {
+              justify-content: center;
+            }
             line-height: 2;
             width: 100%;
             li {
-                &.small { flex: 1; }
                 padding: 10px;
             }
         }
@@ -851,6 +852,7 @@ footer#global-footer {
         ul {
             text-align: right;
             width: 100%;
+            min-width: 350px;
 
             li {
                 padding-top: 10px;
