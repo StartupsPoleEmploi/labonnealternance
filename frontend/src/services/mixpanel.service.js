@@ -6,29 +6,29 @@
 
 import mixpanel from 'mixpanel-browser';
 
-let mixpanelToken = '604cf53e1016c01fc175039738b888f1';
-mixpanel.init(mixpanelToken);
+let mixpanel_token = '604cf53e1016c01fc175039738b888f1';
+mixpanel.init(mixpanel_token);
 
-let envCheck = process.env.NODE_ENV === 'production';
+let env_check = process.env.NODE_ENV === 'production';
 
 // Uncomment this to test in staging and/or local dev.
-// envCheck = true;
+// env_check = true;
 
 let actions = {
-    identify: (id) => {
-        if (envCheck) mixpanel.identify(id);
+  identify: (id) => {
+    if (env_check) mixpanel.identify(id);
+  },
+  alias: (id) => {
+    if (env_check) mixpanel.alias(id);
+  },
+  track: (name, props) => {
+    if (env_check) mixpanel.track(name, props);
+  },
+  people: {
+    set: (props) => {
+      if (env_check) mixpanel.people.set(props);
     },
-    alias: (id) => {
-        if (envCheck) mixpanel.alias(id);
-    },
-    track: (name, props) => {
-        if (envCheck) mixpanel.track(name, props);
-    },
-    people: {
-        set: (props) => {
-            if (envCheck) mixpanel.people.set(props);
-        },
-    },
+  },
 };
 
 export let Mixpanel = actions;

@@ -18,22 +18,22 @@ class Header extends Component {
             showSearchForm: false,
             showFavorites: false,
             animateMagnifier: false,
-        });
+        })
     }
 
 
     componentWillReceiveProps(nextProps, nextContent) {
         // No changes ? Do nothing !
-        if (this.animateMagnifier === nextProps.animateMagnifier && this.showForm === nextProps.showForm) return;
+        if(this.animateMagnifier === nextProps.animateMagnifier && this.showForm === nextProps.showForm) return;
 
-        if (nextProps.animateMagnifier === true && this.state.animateMagnifier === false) {
+        if(nextProps.animateMagnifier === true && this.state.animateMagnifier === false) {
             this.setState({ animateMagnifier: true });
-        } else if (nextProps.animateMagnifier === false && this.state.animateMagnifier === true) {
+        } else if(nextProps.animateMagnifier === false && this.state.animateMagnifier === true) {
             this.setState({ animateMagnifier: false });
         }
 
         // Show/hide new form
-        if (nextProps.showForm === true && this.state.showSearchForm === false) {
+        if(nextProps.showForm === true && this.state.showSearchForm === false) {
             this.setState({ showSearchForm: true });
         } else if (nextProps.showForm === false && this.state.showSearchForm === true && this.state.showFormClicked === false) {
             this.setState({ showSearchForm: false });
@@ -79,22 +79,22 @@ class Header extends Component {
 
     // RENDER
     renderNewSearchButton() {
-        return (
+        return(
             <button className={this.computeMagnifierClasses()} onClick={this.state.showSearchForm ? this.closeSearchForm:this.openSearchForm} title={this.state.showFavorites ? 'Fermer le bloc de recherche':'Afficher le bloc de recherche'}>
                 <span className="sub">Recherche</span>
             </button>
         );
     }
     renderFavoriteButton() {
-        return (
+        return(
             <button className={this.computeFavoriteClasses()} onClick={this.state.showFavorites ? this.closeFavorites:this.openFavorites} title={this.state.showSearchForm ? 'Fermer la liste des favoris':'Afficher la liste des favoris'}>
                 <span className="sub">Mes favoris</span>
             </button>
         );
     }
     render() {
-        let showOffset = this.props.showOffset !== false;
-        let showButtons = this.props.showButtons !== false;
+        let showOffset = this.props.showOffset === false ? false : true;
+        let showButtons = this.props.showButtons === false ? false : true;
 
         return (
             <header id="global-header">

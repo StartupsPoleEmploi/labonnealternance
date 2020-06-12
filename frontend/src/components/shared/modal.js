@@ -48,7 +48,7 @@ export default class Modal extends Component {
         this.state = {
             role: this.props.role || 'dialog',
             hideClose: this.props.hideClose || false
-        };
+        }
     }
 
     componentDidMount() {
@@ -114,9 +114,7 @@ export default class Modal extends Component {
         const { role, hideClose } = this.state;
 
         return ReactDOM.createPortal(
-            <div id={id} className="modal" aria-modal="true" tabIndex="-1" role={role} aria-label={title}
-	onKeyDown={this.onKeyDown}
-            >
+            <div id={id} className="modal" aria-modal="true" tabIndex="-1" role={role} aria-label={title} onKeyDown={this.onKeyDown}>
                 <div className="modal-bg" onClick={this.closeModal}>&nbsp;</div>
                 <div className="modal-content">
                     {

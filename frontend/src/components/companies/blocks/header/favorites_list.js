@@ -5,7 +5,7 @@ import { FavoritesService } from '../../../../services/favorites/favorites.servi
 import { isEmail } from '../../../../services/helpers';
 import { NotificationService } from '../../../../services/notification/notification.service';
 
-const PLACEHOLDER_TEXT = 'Votre adresse e-mail';
+const PLACEHOLDER_TEXT = "Votre adresse e-mail";
 
 export class FavoritesList extends Component {
     constructor(props) {
@@ -31,7 +31,7 @@ export class FavoritesList extends Component {
 
     updateFavorites() {
         let favoritesStored = store.getState().favorites;
-        if (this.state.favorites.length === favoritesStored.length) return;
+        if(this.state.favorites.length === favoritesStored.length) return;
 
         let favorites = [];
 
@@ -53,15 +53,15 @@ export class FavoritesList extends Component {
         event.preventDefault();
         NotificationService.deleteNotification();
 
-        if (!this.state.email || !isEmail(this.state.email)) {
+        if(!this.state.email || !isEmail(this.state.email)) {
             NotificationService.createError("Votre e-mail n'est pas valide");
             return;
         }
 
         let promise = FavoritesService.sendFavorites(this.state.email, this.state.favorites.map(favorite => favorite.siret));
         promise
-            .then(() => { NotificationService.createSuccess("Vos favoris ont été envoyés à l'adresse : " + this.state.email); this.setState({ email: '' }); })
-            .catch(() => NotificationService.createError("Erreur lors de l'envoi de vos favoris. Veuillez réessayer ultérieurement."));
+            .then(() => { NotificationService.createSuccess("Vos favoris ont été envoyés à l'adresse : " + this.state.email); this.setState({ 'email': "" }); })
+            .catch(() => NotificationService.createError("Erreur lors de l'envoi de vos favoris. Veuillez réessayer ultérieurement."))
     }
 
 
@@ -71,7 +71,7 @@ export class FavoritesList extends Component {
 
     // RENDER
     removeTitle(favorite) {
-        return 'Supprimer ' + favorite.label + ' de vos favoris';
+        return "Supprimer " + favorite.label + " de vos favoris";
     }
     renderFavorite(favorite) {
         return (
@@ -99,8 +99,8 @@ export class FavoritesList extends Component {
         );
     }
     render() {
-        if (this.state.favorites.length === 0) {
-            return (<div id="favorites-list"><h2 className="empty">Vous n'avez aucune entreprise en favori :-(</h2></div>);
+        if(this.state.favorites.length === 0) {
+            return(<div id="favorites-list"><h2 className="empty">Vous n'avez aucune entreprise en favori :-(</h2></div>);
         }
 
         return (

@@ -78,7 +78,7 @@ export class CompanyModal extends Component {
         const company = this.state.company;
 
         return (
-            <Modal title={"Détails de l'entreprise : " + company.label} onClose={this.closeModal}>
+            <Modal title={"Détails de l'entreprise : " + company.label } onClose={this.closeModal}>
                 <div>
                     <FavoriteButton company={this.state.company} />
 
@@ -94,7 +94,7 @@ export class CompanyModal extends Component {
                 <PhoneEmailCompany company={company} />
 
                 <div className="company-footer">
-                    <UpdateCompanyLink recruiterAccessUrl={this.state.recruiterAccessUrl} onOpen={this.updateCoordinatesBlock} />
+                    <UpdateCompanyLink recruiterAccessUrl={this.state.recruiterAccessUrl} onOpen={this.updateCoordinatesBlock}/>
                 </div>
             </Modal>
         );

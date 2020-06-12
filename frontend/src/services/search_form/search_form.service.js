@@ -18,7 +18,7 @@ class SearchFormServiceFactory {
             let values = JSON.parse(rawValues);
             let searchForm = new SearchFormData();
 
-            if (values.distance) searchForm.setDistance(values.distance);
+            if(values.distance) searchForm.setDistance(values.distance);
 
             searchForm.setTerm(values.term);
 

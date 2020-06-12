@@ -47,7 +47,7 @@ export class Results extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state !== nextState) return true;
 
-        let fields = ['distance', 'handleCompanyCount', 'jobs', 'latitude', 'longitude', 'searchTerm'];
+        let fields = ['distance', 'handleCompanyCount', 'jobs', 'latitude', 'longitude', 'searchTerm']
         return fields.some(field => this.state[field] !== nextState[field]);
     }
 
@@ -84,7 +84,7 @@ export class Results extends Component {
 
             // Wait before remove loading
             setTimeout(() => {
-                this.setState({ loading: false, isFiltering: false });
+                this.setState({ loading: false, isFiltering: false })
             }, 1000);
 
 
@@ -104,7 +104,7 @@ export class Results extends Component {
             const filters = store.getState().filters;
 
             const hasChanged = FiltersService.checkIfDiff(this.state.filters, filters);
-            if (hasChanged) {
+            if(hasChanged) {
                 this.setState({ filters });
                 this.applyFilters(filters);
             }
@@ -113,7 +113,7 @@ export class Results extends Component {
         // When view change
         this.viewStore = store.subscribe(() => {
             let view = store.getState().currentView || VIEWS.MAP;
-            if (this.state.currentView !== view) this.setState({ currentView: view });
+            if(this.state.currentView !== view) this.setState({ currentView: view });
         });
     }
 

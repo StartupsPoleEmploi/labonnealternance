@@ -17,15 +17,15 @@ class SoftSkillsServiceFactory {
         store.subscribe(() => {
             let softSkills = [];
             store.getState().softSkills.forEach(value => {
-                softSkills.push(value);
+                softSkills.push(value)
             });
-            localStorage.setItem(SOFT_SKILLS_STORAGE_KEY, JSON.stringify(softSkills));
-        });
+            localStorage.setItem(SOFT_SKILLS_STORAGE_KEY, JSON.stringify(softSkills))
+        })
     }
 
     getSoftSkillsFromLocalStorage() {
         let softSkillsStored = localStorage.getItem(SOFT_SKILLS_STORAGE_KEY);
-        if (softSkillsStored !== null) {
+        if(softSkillsStored != null) {
 
             try {
                 let values = JSON.parse(softSkillsStored);
@@ -49,7 +49,7 @@ class SoftSkillsServiceFactory {
     getSoftSkills(rome) {
         // No request if we already have the soft skills
         let softSkillsMap = store.getState().softSkills;
-        if (softSkillsMap.has(rome)) {
+        if(softSkillsMap.has(rome)) {
             store.dispatch({
                 type: COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS,
                 data: { softSkills: softSkillsMap.get(rome) }
@@ -84,7 +84,7 @@ class SoftSkillsServiceFactory {
                     type: COMPANY_DETAILS_ACTIONS.ADD_SOFT_SKILLS_FROM_REQUEST,
                     data: softSkills
                 });
-            }).catch(err => {/* Do nothing */});
+            }).catch(err => { /* Do nothing */ });
     }
 }
 

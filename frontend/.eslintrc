@@ -14,9 +14,7 @@
         "indent": [2, 4, {"SwitchCase": 1}],
         "react/prefer-stateless-function": 0,
         "react/sort-comp": 0,
-        "react/jsx-indent-props": 0,
-        "brace-style": 0,
-        "no-irregular-whitespace": 0,
+        "brace-style": [2, "1tbs", { "allowSingleLine": true }],
         "comma-dangle": ["error", "only-multiline"]
     }
 }

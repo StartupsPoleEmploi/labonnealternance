@@ -24,17 +24,19 @@ class FiltersServiceFactory {
         const keys = Object.keys(newFilters);
         let hasChanged = false;
 
-        for (let i = 0; i < keys.length; i++) {
+        for(let i = 0; i < keys.length; i++) {
             const key = keys[i];
 
             const oldValues = oldFilters[key];
             const newValues = newFilters[key];
 
-            if (oldValues === 'all' && newValues === 'all') continue;
-            else if (oldValues !== 'all' && newValues === 'all') { hasChanged=true; break; } else if (oldValues === 'all' && newValues !== 'all') { hasChanged=true; break; } else {
+            if(oldValues === 'all' && newValues === 'all') continue;
+            else if(oldValues !== 'all' && newValues === 'all') { hasChanged=true; break; }
+            else if(oldValues === 'all' && newValues !== 'all') { hasChanged=true; break; }
+            else {
                 // We need to compare the two arrays
-                if (isArray(oldValues) && isArray(newValues)) {
-                    if (oldValues.length !== newValues.length) { hasChanged = true; break; }
+                if(isArray(oldValues) && isArray(newValues)) {
+                    if(oldValues.length !== newValues.length) { hasChanged = true; break; }
                 } else {
                     hasChanged = true;
                     break;

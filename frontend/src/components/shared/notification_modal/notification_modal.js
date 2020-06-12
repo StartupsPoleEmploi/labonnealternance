@@ -17,8 +17,8 @@ export class NotificationModal extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (!this.state.notification && !nextState.notification) return false;
-        if (this.state.notification === nextState.notification) return false;
+        if(!this.state.notification && !nextState.notification) return false;
+        if(this.state.notification === nextState.notification) return false;
         return true;
     }
 

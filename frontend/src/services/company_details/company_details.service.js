@@ -43,7 +43,7 @@ class CompanyDetailsServiceFactory {
                     resolve(companyData);
                     this.dispatch(companyData, allDetails);
                 });
-        });
+        })
     }
 
     dispatch(companyData, allDetails = false) {

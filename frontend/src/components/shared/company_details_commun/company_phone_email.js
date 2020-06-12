@@ -13,11 +13,11 @@ export const PhoneEmailCompany = ({ company }) => {
     // PHONE
     function renderPhoneLink() {
         let url = `http://google.fr/search?q=${company.officeName}`;
-        if (company.address) url = url.concat('+', company.address.city);
+        if(company.address) url = url.concat('+', company.address.city);
 
         return (
             <a href={url} rel="noopener noreferrer" onClick={showPhoneLink} className="modal-button white" target="_blank" aria-label="Recherche le numéro de téléphone sur Google (ouverture d'une nouvelle fenêtre)">
-                <span className="icon icon-phone hide-mobile" aria-hidden="true" />
+                <span className="icon icon-phone hide-mobile" aria-hidden="true"></span>
                 <span className="hide-mobile">Voir le numéro</span>
                 <span className="hide-tablet hide-desktop">N° de téléphone</span>
             </a>
@@ -26,7 +26,7 @@ export const PhoneEmailCompany = ({ company }) => {
     function renderPhoneButton() {
         return (
             <button onClick={showPhoneButton} className="modal-button white" aria-label="Voir le numéro de téléphone">
-                <span className="icon icon-phone hide-mobile" aria-hidden="true" />
+                <span className="icon icon-phone hide-mobile" aria-hidden="true"></span>
                 <span className="hide-mobile">Voir le numéro</span>
                 <span className="hide-tablet hide-desktop">N° de téléphone</span>
             </button>
@@ -54,7 +54,7 @@ export const PhoneEmailCompany = ({ company }) => {
         return (
             <>
                 <button onClick={showEmailButton} className="modal-button" aria-label="Voir l'e-mail" disabled={disabled}>
-                    <span className="icon icon-mail hide-mobile" aria-hidden="true" />
+                    <span className="icon icon-mail hide-mobile" aria-hidden="true"></span>
                     <span className="hide-mobile">Voir l'e-mail</span>
                     <span className="hide-tablet hide-desktop">E-mail</span>
                 </button>
@@ -79,10 +79,10 @@ export const PhoneEmailCompany = ({ company }) => {
                 <li>
                     { !phoneVisible ? (phoneExists ? renderPhoneButton() : renderPhoneLink()) : renderPhone() }
                 </li>
-                <li className={!emailExists ? 'no-email' : ''}>
+                <li className={ !emailExists ? 'no-email' : '' }>
                     { !emailVisible ? renderEmailButton(!emailExists) : renderEmail() }
                 </li>
             </ul>
         </div>
-    );
-};
+    )
+}

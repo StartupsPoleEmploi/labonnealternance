@@ -12,7 +12,7 @@ require('./who_we_are.css');
 export default class FAQ extends Component {
 
     componentDidMount() {
-        SEOService.setTitle('Qui sommes-nous ?');
+        SEOService.setTitle("Qui sommes-nous ?");
     }
 
     render() {

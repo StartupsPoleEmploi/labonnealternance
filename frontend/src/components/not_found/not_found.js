@@ -9,7 +9,7 @@ export default class NotFound extends Component {
 
     componentDidMount() {
         SEOService.displayNoFollow(true);
-        SEOService.setTitle('Page non trouvée');
+        SEOService.setTitle("Page non trouvée");
     }
 
     render() {
@@ -24,7 +24,7 @@ export default class NotFound extends Component {
                     <div className="text-container">
                         <div className="images">
                             <h1>
-                                <span>Erreur</span><br />
+                                <span>Erreur</span><br/>
                                 <span className="text-404">404</span>
                             </h1>
 

@@ -49,7 +49,7 @@ class Companies extends Component {
         if (isNaN(latitude) && window.latitude) latitude = window.latitude;
 
         let defaultJobs = [];
-        if (window.jobs && window.jobs.length > 0) {
+        if(window.jobs && window.jobs.length > 0) {
             window.jobs.forEach(job => defaultJobs.push(new Job(job.rome_code, job.label, ''))); // No slug needed
         }
         // Ensure that this content will not be re-used through navigation
@@ -61,9 +61,9 @@ class Companies extends Component {
             loading: true,
 
             citySlug: this.props.citySlug,
-            longitude,
-            latitude,
-            distance,
+            longitude: longitude,
+            latitude: latitude,
+            distance: distance,
             cityName: undefined,
 
             jobSlugs: this.props.jobSlugs,
@@ -79,7 +79,7 @@ class Companies extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (this.props !== nextProps) return true;
+        if(this.props !== nextProps) return true;
 
         let fields= ['inputError', 'loading', 'citySlug', 'longitude', 'latitude', 'distance', 'cityName', 'jobSlugs', 'jobs', 'searchTerm', 'mobileVersion', 'animateMagnifier', 'showForm'];
 
@@ -92,8 +92,10 @@ class Companies extends Component {
             if (this.state.mobileVersion === false) {
                 this.setState({ mobileVersion: true });
             }
-        } else if (this.state.mobileVersion === true) {
-            this.setState({ mobileVersion: false });
+        } else {
+            if (this.state.mobileVersion === true) {
+                this.setState({ mobileVersion: false });
+            }
         }
     }
 
@@ -120,7 +122,8 @@ class Companies extends Component {
             this.setState({ animateMagnifier: false, showForm: false });
 
             // If user is gelocated, do not index the page (priority to URLs with citySlug)
-            if (this.state.citySlug) { SEOService.displayNoFollow(false); } else { SEOService.displayNoFollow(true); }
+            if (this.state.citySlug) { SEOService.displayNoFollow(false); }
+            else { SEOService.displayNoFollow(true); }
         }
     }
 
@@ -136,7 +139,7 @@ class Companies extends Component {
         }
 
         // Native behavior
-        if (window.location.pathname.startsWith('/entreprises')) {
+        if(window.location.pathname.startsWith('/entreprises')) {
             window.history.back();
             // Disbale pop state
             window.onpopstate = undefined;
@@ -167,10 +170,10 @@ class Companies extends Component {
         if (!jobOk && !locationOk) {
             this.setState({ inputError: true });
             return;
+        } else {
+            // Start search
+            this.searchCity();
         }
-        // Start search
-        this.searchCity();
-        
 
         // Get favorites and soft skills from localStorage
         FavoritesService.getFavoritesFromLocalStorage();
@@ -185,7 +188,7 @@ class Companies extends Component {
                 // Update URL in browser
                 let referer = this.baseUrl;
                 let newUrl = '/details-entreprises/' + company.siret;
-                if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + '?referer=' + encodeURIComponent(referer) + '&rome=' + company.job.rome);
+                if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + encodeURIComponent(referer) + "&rome=" + company.job.rome);
 
                 // Register event in GA
                 GoogleAnalyticsService.setPageView(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
@@ -206,7 +209,7 @@ class Companies extends Component {
         // When a view is selected
         this.viewsStore = store.subscribe(() => {
             const currentView = store.getState().currentView;
-            if (currentView !== this.state.currentView) this.setState({ currentView, animateMagnifier: false });
+            if(currentView !== this.state.currentView) this.setState({ currentView, animateMagnifier: false });
         });
     }
 
@@ -220,7 +223,6 @@ class Companies extends Component {
     }
 
     searchCity() {
-
         /*if(!isNaN(this.state.latitude) && !isNaN(this.state.longitude)) {
             this.searchJobs();
             return;
@@ -299,9 +301,7 @@ class Companies extends Component {
 
                 <main>
                     <NotificationModal />
-                    {<Results distance={distance} longitude={longitude} latitude={latitude} jobs={jobs} searchTerm={searchTerm} cityName={cityName}
-	handleCompanyCount={this.handleCompanyCount}
-                    />}
+                    {<Results distance={distance} longitude={longitude} latitude={latitude} jobs={jobs} searchTerm={searchTerm} cityName={cityName} handleCompanyCount={this.handleCompanyCount} />}
                     <CompanyModal searchTerm={this.state.searchTerm} />
                 </main>
             </div>

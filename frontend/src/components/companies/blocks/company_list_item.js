@@ -13,7 +13,9 @@ export class CompanyListItem extends Component {
         CompanyDetailsService.setCompany(this.props.company);
     }
 
-    hasBeenVisited = (siret) => store.getState().visitedSirets.has(siret)
+    hasBeenVisited = (siret) => {
+        return store.getState().visitedSirets.has(siret);
+    }
 
     blurItem = (event) => {
         this.props.hoverFn();
@@ -29,8 +31,8 @@ export class CompanyListItem extends Component {
     }
 
     computeCssClasses = () => {
-        let cssClasses = 'company-list-item';
-        if (this.hasBeenVisited(this.props.company.siret)) cssClasses += ' visited';
+        let cssClasses = "company-list-item";
+        if(this.hasBeenVisited(this.props.company.siret)) cssClasses += " visited";
         return cssClasses;
     }
 
@@ -41,16 +43,16 @@ export class CompanyListItem extends Component {
 
     // RENDER
     render() {
-        const offersCount = this.props.company.offers.length;
+        const offers_count = this.props.company.offers.length;
 
-        let labelClass = 'label hidden-market';
-        let labelText = 'Entreprise à contacter';
-        if (offersCount >= 2) {
-            labelClass = 'label visible-market';
-            labelText = "Offres d'emploi en alternance (" + offersCount + ')';
-        } else if (offersCount === 1) {
-            labelClass = 'label visible-market';
-            labelText = "Offre d'emploi en alternance";
+        let label_class = "label hidden-market";
+        let label_text = "Entreprise à contacter";
+        if (offers_count >= 2) {
+            label_class = "label visible-market";
+            label_text = "Offres d'emploi en alternance (" + offers_count + ")";
+        } else if (offers_count === 1) {
+            label_class = "label visible-market";
+            label_text = "Offre d'emploi en alternance";
         }
 
         return (
@@ -58,9 +60,10 @@ export class CompanyListItem extends Component {
                 <div>
                     <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
                         <Variant name="visibles">
-                            <div className={labelClass}>{labelText}</div>
+                            <div className={label_class}>{label_text}</div>
                         </Variant>
-                        <Variant name="invisibles" />
+                        <Variant name="invisibles">
+                        </Variant>
                     </Experiment>
                     <div className="distance"><span className="icon pink-arrow">&nbsp;</span>{this.props.company.distance} km du lieu de recherche</div>
                     <div className="title">

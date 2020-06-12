@@ -11,7 +11,7 @@ export class Footer extends Component {
 
         this.state = {
             showRGPDModal: false,
-        };
+        }
     }
 
     showRGPDModal = () => {
@@ -69,8 +69,10 @@ export class Footer extends Component {
 
                     {/* Trigger AB testing tracking on all pages */}
                     <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
-                        <Variant name="visibles" />
-                        <Variant name="invisibles" />
+                        <Variant name="visibles">
+                        </Variant>
+                        <Variant name="invisibles">
+                        </Variant>
                     </Experiment>
 
                 </footer>
@@ -78,7 +80,7 @@ export class Footer extends Component {
                 { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.closeRGPDModal} /> : null }
 
             </Fragment>
-        );
+        )
     }
 
 }

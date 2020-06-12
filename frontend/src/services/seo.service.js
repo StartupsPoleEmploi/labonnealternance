@@ -31,7 +31,7 @@ class SEOServiceFactory {
 
     displayNoFollow(addNoFollow) {
         let followMeta = document.getElementById('robots-meta');
-        if (!followMeta) return;
+        if(!followMeta) return;
 
         if (addNoFollow) {
             followMeta.content = 'noindex,follow';

@@ -55,7 +55,7 @@ export class MapBoxService {
         this.siretsVisited = new Map();
         store.subscribe(() => {
             const newSiretsVisited = store.getState().visitedSirets;
-            if (newSiretsVisited.size !== this.siretsVisited.size) {
+            if(newSiretsVisited.size !== this.siretsVisited.size) {
                 this.siretsVisited = store.getState().visitedSirets;
             }
         });
@@ -68,9 +68,9 @@ export class MapBoxService {
             const company = store.getState().companyDetails;
             if (company === null && this.companySelected !== null) {
                 this.companySelected = null;
-            } else if (company !== null && this.companySelected === null) {
+            } else if(company !== null && this.companySelected === null) {
                 this.setAsSelected(company);
-            } else if (company === null && this.companySelected !== null && this.companySelected.siret !== company.siret) {
+            } else if(company === null && this.companySelected !== null && this.companySelected.siret !== company.siret) {
                 this.setAsSelected(company);
             } else {
                 this.companySelected = null;
@@ -86,7 +86,7 @@ export class MapBoxService {
         window.L.tileLayer('https://maps.labonneboite.pole-emploi.fr/styles/osm-bright/{z}/{x}/{y}.png').addTo(this.map);
 
         // Compute viewBox
-        if (distance) this.setFitBounds(distance);
+        if(distance) this.setFitBounds(distance);
 
         // Add the search center
         this.currentPositionMarker = window.L.marker([ latitude , longitude ], { icon: this.cyanIcon, interactive: false });
@@ -95,7 +95,7 @@ export class MapBoxService {
         this.map.on('dragend', () => this.newCompaniesFn());
         this.map.on('zoomend', () => {
             GoogleAnalyticsService.sendEvent({ category: 'Map', action: 'Use zoom' });
-            this.newCompaniesFn(true);
+            this.newCompaniesFn(true)
         });
     }
 
@@ -171,10 +171,13 @@ export class MapBoxService {
         let center = this.map.getCenter();
         let newCenter = { lat: center.lat, lng: center.lng };
 
-        let longitudeDelta = center.lng - this.map.getBounds().getNorthWest().lng;
-        let latitudeDelta  = center.lat - this.map.getBounds().getNorthWest().lat;
+        let longitude_delta = center.lng - this.map.getBounds().getNorthWest().lng;
+        let latitude_delta  = center.lat - this.map.getBounds().getNorthWest().lat;
 
-        if (direction === 'left') { newCenter.lng -= longitudeDelta; } else if (direction === 'top') { newCenter.lat -= latitudeDelta; } else if (direction === 'right') { newCenter.lng += longitudeDelta; } else if (direction === 'bottom') { newCenter.lat += latitudeDelta; }
+        if(direction === 'left') { newCenter.lng -= longitude_delta; }
+        else if(direction === 'top') { newCenter.lat -= latitude_delta; }
+        else if(direction === 'right') { newCenter.lng += longitude_delta; }
+        else if(direction === 'bottom') { newCenter.lat += latitude_delta; }
 
         this.center = newCenter;
         this.map.flyTo([newCenter.lat, newCenter.lng]);
@@ -185,7 +188,7 @@ export class MapBoxService {
         let center = this.map.getCenter();
 
         // Reload if distance between the last center is at least x km
-        if (!force) {
+        if(!force) {
             let distanceLastCenter = computeDistance(center, this.currentCenter);
             if (distanceLastCenter <= this.DISTANCE_GAP_FOR_RELOAD) return;
         }

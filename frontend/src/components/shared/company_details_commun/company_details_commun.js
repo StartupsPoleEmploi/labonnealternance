@@ -21,12 +21,12 @@ export class CompanyDetailsCommon {
                 </p>
             </div>
 
-        );
+        )
     }
 }
 
 export const CompanyCoordinates =  (props) => {
-    const { company } = props;
+    const {company} = props;
 
     return (
         <div className="company-coordinates">
@@ -39,7 +39,7 @@ export const CompanyCoordinates =  (props) => {
             </div>
         </div>
     );
-};
+}
 
 export const CompanyIntroduction = ({ company }) => {
     const address = company.address;
@@ -96,19 +96,22 @@ export const CompanyIntroduction = ({ company }) => {
                 <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
                     <Variant name="visibles">
                         <div className="line offers column grey padding">
-                            <h2>Voici { company.offers.length >= 2 ? 'les offres' : "l'offre" } en lien avec cette entreprise</h2>
+                            <h2>Voici { company.offers.length >= 2 ? "les offres" : "l'offre" } en lien avec cette entreprise</h2>
                             <ul className="list-unstyled">
-                                { company.offers.map((listValue) => (
-                                    <li key={listValue.id}>
-                                        <a href={listValue.url} target="_blank" onClick={trackOfferLink} rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
-                                            { listValue.name } - offre n° { listValue.id }
-                                        </a>
-                                    </li>
-                                ))}
+                                { company.offers.map(function(listValue){
+                                    return (
+                                        <li key={ listValue.id }>
+                                            <a href={ listValue.url } target="_blank" onClick={trackOfferLink} rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
+                                                { listValue.name } - offre n° { listValue.id }
+                                            </a>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                     </Variant>
-                    <Variant name="invisibles" />
+                    <Variant name="invisibles">
+                    </Variant>
                 </Experiment>
             }
 
@@ -119,7 +122,7 @@ export const CompanyIntroduction = ({ company }) => {
             </div>
         </div>
     );
-};
+}
 
 export const PrepareApplication = ({ company, rome }) => {
     const softSkills = company.softSkills;
@@ -153,7 +156,8 @@ export const PrepareApplication = ({ company, rome }) => {
             </div>
         </div>
     );
-};
+}
+
 
 
 class ToggleBlock extends Component {
@@ -162,7 +166,7 @@ class ToggleBlock extends Component {
         this.state = {
             open: false,
             id: slug(this.props.title)
-        };
+        }
     }
 
     setOpen = () => {
@@ -175,16 +179,16 @@ class ToggleBlock extends Component {
         const { open, id } = this.state;
 
         return (
-            <div className={open ? 'toggle-block open' : 'toggle-block'}>
+            <div className={ open ? "toggle-block open" : "toggle-block" }>
                 <h2>
-                    <button className="btn reset" onClick={this.setOpen} aria-controls={'#' + id} aria-expanded={open}>
-                        <img src={iconPath} alt="" className="intro" />
+                    <button className="btn reset" onClick={this.setOpen} aria-controls={ '#' + id } aria-expanded={open}>
+                        <img src={ iconPath } alt="" className="intro" />
                         <span>{ title }</span>
                         <img src="/static/img/icons/cross.svg" alt="" className="icon" />
                     </button>
                 </h2>
-                <div id={id} className={open ? 'toggle-content open' : 'toggle-content'}>{this.props.children}</div>
+                <div id={id} className={ open ? 'toggle-content open' : 'toggle-content' }>{this.props.children}</div>
             </div>
-        );
+        )
     }
 }

@@ -9,7 +9,7 @@ export default class FAQ extends Component {
 
     componentDidMount() {
         SEOService.displayNoFollow(false);
-        SEOService.setTitle('Questions fréquentes');
+        SEOService.setTitle("Questions fréquentes");
     }
 
     render() {

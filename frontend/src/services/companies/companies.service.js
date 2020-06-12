@@ -81,7 +81,7 @@ class CompaniesServiceFactory {
                 let options = opts || {};
 
                 // Create URL for LBB
-                let romes = jobs.map(job => job.rome || job.rome_code).join(',');
+                let romes = jobs.map(job => job.rome || job.rome_code).join(',')
 
                 let url = constants.GET_VISIBLE_MARKET_COMPANIES_URL;
                 url = url.concat('romes=', romes)
@@ -117,7 +117,7 @@ class CompaniesServiceFactory {
         let options = opts || {};
 
         // Create URL for LBB
-        let romes = jobs.map(job => job.rome || job.rome_code).join(',');
+        let romes = jobs.map(job => job.rome || job.rome_code).join(',')
 
         let url = constants.GET_HIDDEN_MARKET_COMPANIES_URL;
         url = url.concat('romes=', romes)
@@ -156,7 +156,7 @@ class CompaniesServiceFactory {
     }
 
     clearCompanies() {
-        if (store.getState().companies.size === 0) return;
+        if(store.getState().companies.size === 0) return;
 
         store.dispatch({
             type: COMPANIES_ACTIONS.CLEAR_COMPANIES

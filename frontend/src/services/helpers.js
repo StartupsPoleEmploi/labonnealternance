@@ -10,7 +10,7 @@ export function cleanTerm(term) {
         let b = ['a', 'a', 'a', 'a', 'a', 'a', 'ae', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'oe'];
 
         let i = a.length;
-        while (i--) str = str.replace(a[i], b[i]);
+        while(i--) str = str.replace(a[i], b[i]);
     }
 
     return str;
@@ -26,19 +26,19 @@ export function unSlug(str) {
     str = str.replace(/-/g, ' ');
 
     // Capitalize all words
-    str = str.split(' ');
-    let result = [];
+    str = str.split(" ");
+    let result = []
     for (let i = 0, x = str.length; i < x; i++) {
-        if (str[i].length === 0) continue;
+        if(str[i].length === 0) continue;
         result.push(str[i][0].toUpperCase() + str[i].substr(1));
     }
-    return result.join(' ');
+    return result.join(" ");
 }
 
 // When we get Boulangerie - viennoiserie (Chef boulanger / boulangère, ...) => Boulangerie - viennoiserie
 export function subJobLabel(jobLabel) {
     let ogrStart = jobLabel.lastIndexOf('(');
-    if (ogrStart === -1) ogrStart = jobLabel.length;
+    if(ogrStart === -1) ogrStart = jobLabel.length;
 
     return jobLabel.substr(0, ogrStart);
 }
@@ -54,7 +54,7 @@ export function formatString(string, data) {
 }
 
 export function isSiret(str) {
-    let pattern = new RegExp('^[0-9]{14}$');
+    let pattern = new RegExp("^[0-9]{14}$");
     return pattern.test(str);
 }
 
@@ -67,11 +67,11 @@ export function isEmail(email) {
 // See : https://docs.djangoproject.com/en/2.0/ref/csrf/#ajax
 // Note : The jQuery dependency has been removed
 export function getCookie(name) {
-    let cookieValue = null;
+    var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
-        let cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            let cookie = cookies[i].trim();
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
             // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -84,11 +84,11 @@ export function getCookie(name) {
 
 // Return param value from URL
 export function getParameterByName(name) {
-    let match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
 // Detect if the given object is empty
 export function isEmpty(obj) {
-    return obj === undefined || obj === null || Object.keys(obj).length === 0;
+  return obj === undefined || obj === null || Object.keys(obj).length === 0;
 }

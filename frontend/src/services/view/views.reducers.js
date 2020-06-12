@@ -2,7 +2,7 @@ export const VIEWS = {
     MAP: 'map',
     LIST: 'list',
     FILTERS: 'filters',
-};
+}
 
 export const VIEWS_ACTIONS = {
     SET_MAP_VIEW: 'SET_MAP_VIEW',

@@ -12,7 +12,7 @@ export class ViewChooser extends Component {
 
         this.state = ({
             view: VIEWS.MAP
-        });
+        })
     }
 
     componentDidMount() {
@@ -62,8 +62,8 @@ export class ViewChooser extends Component {
     }
 
     render() {
-        if (this.state.view === VIEWS.MAP) return this.renderMapViewButtons();
-        else if (this.state.view === VIEWS.LIST) return this.renderListViewButtons();
+        if(this.state.view === VIEWS.MAP) return this.renderMapViewButtons();
+        else if(this.state.view === VIEWS.LIST) return this.renderListViewButtons();
 
         // Default case
         return null;

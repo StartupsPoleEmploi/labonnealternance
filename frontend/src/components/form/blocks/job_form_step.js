@@ -10,15 +10,15 @@ import { AutocompleteJobService } from '../../../services/autocomplete_job/autoc
 import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
 
 const PLACEHOLDER_TEXT = 'Graphiste, maçon, second de cuisine...';
-const SCORE_MIN = 2;
-const AUTOCOMPLETE_STEP = 'autocomplete';
-const JOB_SELECTION_STEP = 'jobSelection';
+const SCORE_MIN = 2
+const AUTOCOMPLETE_STEP = 'autocomplete'
+const JOB_SELECTION_STEP = 'jobSelection'
 
-const JOB_SEARCH_URL = '/recherche';
-const JOBS_FILTER_URL = '/recherche/filtre-metiers';
-const CITY_SEARCH_URL = '/recherche/choix-ville';
+const JOB_SEARCH_URL = '/recherche'
+const JOBS_FILTER_URL = '/recherche/filtre-metiers'
+const CITY_SEARCH_URL = '/recherche/choix-ville'
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 10
 
 export class JobFormStep extends Component {
 
@@ -26,7 +26,7 @@ export class JobFormStep extends Component {
         super(props);
 
 
-        this.callAutocompleteJobsFn = debounce(this.callAutocompleteJobs, 100);
+        this.callAutocompleteJobsFn = debounce(this.callAutocompleteJobs, 100)
 
         // Get search form register values
         let term = '';
@@ -105,7 +105,7 @@ export class JobFormStep extends Component {
     }
 
     returnToAutocomplete = (event) => {
-        if (!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+        if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
             GoogleAnalyticsService.setPageView(JOB_SEARCH_URL);
         }
         this.setState({ formStep: AUTOCOMPLETE_STEP });
@@ -145,7 +145,7 @@ export class JobFormStep extends Component {
         let rome = target.attributes['data-rome'].value;
         let jobs = this.props.searchForm.getJobs() || [];
 
-        if (this.props.searchForm.hasJob(rome)) {
+        if(this.props.searchForm.hasJob(rome)) {
             // Remove the job
             jobs = jobs.filter(job => job.rome !== rome);
         } else {
@@ -178,7 +178,7 @@ export class JobFormStep extends Component {
     validateAutocompleteStep = () => {
         this.setState({ hasSubmitting: true });
 
-        if (!this.isAutocompleteStepValid()) return;
+        if(!this.isAutocompleteStepValid()) return;
         this.props.searchForm.setJobs([]);
 
         if (this.state.suggestedJobs.length === 1) {
@@ -186,7 +186,7 @@ export class JobFormStep extends Component {
             this.props.next();
         } else {
             // Save URL for GA
-            if (!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+            if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
                 GoogleAnalyticsService.setPageView(JOBS_FILTER_URL);
             }
 
@@ -202,7 +202,7 @@ export class JobFormStep extends Component {
 
     validateStep = () => {
         if (this.props.searchForm.jobs.length === 0) {
-            this.setState({ showNoJobSelectedPopin: true });
+            this.setState({ showNoJobSelectedPopin: true })
             return;
         }
         if (!this.props.searchForm.areJobsValid()) {
@@ -211,9 +211,9 @@ export class JobFormStep extends Component {
         }
 
         // Save values and call next step
-        if (this.isStepValid()) {
+        if(this.isStepValid()) {
             // Save URL for GA
-            if (!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
+            if(!this.props.compactMode && GoogleAnalyticsService.isGASetup()) {
                 GoogleAnalyticsService.setPageView(CITY_SEARCH_URL);
             }
 
@@ -224,10 +224,10 @@ export class JobFormStep extends Component {
     noJobFound = () => {
         const term = this.state.term;
 
-        if (!term) return false;
-        if (term.length <= 2) return false;
-        if (this.state.requestNumber !== 0) return false;
-        if (this.isAutocompleteStepValid()) return false;
+        if(!term) return false;
+        if(term.length <= 2) return false;
+        if(this.state.requestNumber !== 0) return false;
+        if(this.isAutocompleteStepValid()) return false;
 
         return true;
     }
@@ -246,7 +246,7 @@ export class JobFormStep extends Component {
                 <button className="close-container" onClick={this.hideNoJobSelectedPopin} title="Fermer le message d'erreur"><span className="icon close-icon">&nbsp;</span></button>
                 Pour passer à l'étape suivante,<br />vous devez choisir au moins un métier
             </div>
-        );
+        )
     }
     renderNotJobFound() {
         return (
@@ -254,7 +254,7 @@ export class JobFormStep extends Component {
                 <button className="close-container" onClick={this.hideNoJobPopin} title="Fermer le message d'erreur"><span className="icon close-icon">&nbsp;</span></button>
                 Nous n'avons pas compris<br />le métier que vous recherchez.<br />Essayez avec une autre orthographe
             </div>
-        );
+        )
     }
     renderAutocompleteBlock() {
         return (
@@ -263,8 +263,7 @@ export class JobFormStep extends Component {
 
                 <div>
                     <input id="job-input" type="text" value={this.state.term} onChange={this.autocompleteJobs} onKeyPress={this.nextIfEnter} onFocus={this.removePlaceholder}
-                        onBlur={this.setPlaceholder} placeholder={this.state.placeholder}
-                    />
+                        onBlur={this.setPlaceholder} placeholder={this.state.placeholder} />
                 </div>
 
                 { !this.isAutocompleteStepValid() && this.state.hasSubmitting ? this.renderNotJobFound() : null }
@@ -281,7 +280,7 @@ export class JobFormStep extends Component {
     renderPagination() {
         return (
             <div className="pagination">
-                { [0,1].map(page => (<button key={page} className={this.state.currentPage === page ? 'selected' : ''} data-page={page} onClick={this.setPage}>{page + 1}</button>)) }
+                { [0,1].map(page=> (<button key={page} className={ this.state.currentPage === page ? 'selected' : '' } data-page={page} onClick={this.setPage}>{page + 1}</button>)) }
             </div>
         );
     }
@@ -346,9 +345,9 @@ export class JobFormStep extends Component {
                     {this.state.showNoJobSelectedPopin ? this.renderNotJobSelected() : null }
                 </>
             );
+        } else {
+            if (this.state.formStep === AUTOCOMPLETE_STEP) return this.renderAutocompleteBlock();
+            if (this.state.formStep === JOB_SELECTION_STEP) return this.renderSelectJobsBlock();
         }
-        if (this.state.formStep === AUTOCOMPLETE_STEP) return this.renderAutocompleteBlock();
-        if (this.state.formStep === JOB_SELECTION_STEP) return this.renderSelectJobsBlock();
-        
     }
 }
