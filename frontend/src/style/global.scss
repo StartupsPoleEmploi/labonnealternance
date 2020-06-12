@@ -809,6 +809,7 @@ footer#global-footer {
     z-index: 2;
     font-size: .95em;
     display: flex;
+    justify-content: space-between;
 
     a, button {
         border: none;
@@ -828,16 +829,17 @@ footer#global-footer {
         }
     }
     .links {
-        flex: 4;
-
         ul {
             display: flex;
             text-align: center;
+            flex-wrap: wrap;
+            @media (max-width: $min-width-mobile) {
+              justify-content: center;
+            }
+            line-height: 2;
             width: 100%;
             li {
-                flex: 3;
-                &.small { flex: 1; }
-                @media (max-width: 1000px) { margin-right: 8px }
+                padding: 10px;
             }
         }
     }
@@ -850,6 +852,7 @@ footer#global-footer {
         ul {
             text-align: right;
             width: 100%;
+            min-width: 350px;
 
             li {
                 padding-top: 10px;
