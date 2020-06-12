@@ -15,18 +15,18 @@ export default class RecruiterForm extends Component {
         super(props);
 
         this.state = {
-            action: "promote",
-            siret: getParameterByName('siret') || "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            comment: "",
+            action: 'promote',
+            siret: getParameterByName('siret') || '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            comment: '',
         };
     }
 
     componentWillMount() {
-        SEOService.setTitle("Accès recruteurs");
+        SEOService.setTitle('Accès recruteurs');
         SEOService.setCanonical(window.location.origin.concat(window.location.pathname));
     }
 
@@ -41,16 +41,16 @@ export default class RecruiterForm extends Component {
 
     validateForm = (event) => {
         let messages = [];
-        if(!this.state.action || this.state.action === '') messages.push('Aucun souhait d\'action indiqué. Veuillez remplir ce champ.');
+        if (!this.state.action || this.state.action === '') messages.push('Aucun souhait d\'action indiqué. Veuillez remplir ce champ.');
 
-        if(!this.state.siret || this.state.siret === '') messages.push('Aucun siret. Veuillez remplir ce champ.');
+        if (!this.state.siret || this.state.siret === '') messages.push('Aucun siret. Veuillez remplir ce champ.');
         else if (!isSiret(this.state.siret)) messages.push('Le siret n\'est pas au format. Il doit se composer de 14 chiffres.');
 
-        if(!this.state.firstName || this.state.firstName === '') messages.push('Aucun prénom. Veuillez remplir ce champ.');
-        if(!this.state.lastName || this.state.lastName === '') messages.push('Aucun nom. Veuillez remplir ce champ.');
+        if (!this.state.firstName || this.state.firstName === '') messages.push('Aucun prénom. Veuillez remplir ce champ.');
+        if (!this.state.lastName || this.state.lastName === '') messages.push('Aucun nom. Veuillez remplir ce champ.');
 
-        if(!this.state.email || this.state.email === '') messages.push('Aucun email. Veuillez remplir ce champ.');
-        else if(!isEmail(this.state.email)) messages.push('L\'adresse e-mail n\'est pas au bon format, veuillez vérifiez sa valeur.');
+        if (!this.state.email || this.state.email === '') messages.push('Aucun email. Veuillez remplir ce champ.');
+        else if (!isEmail(this.state.email)) messages.push('L\'adresse e-mail n\'est pas au bon format, veuillez vérifiez sa valeur.');
 
         return messages;
     }
@@ -75,11 +75,11 @@ export default class RecruiterForm extends Component {
         });
         promise
             .then(() => {
-                NotificationService.createSuccess("Merci pour votre message, nous reviendrons vers vous dès que possible.");
+                NotificationService.createSuccess('Merci pour votre message, nous reviendrons vers vous dès que possible.');
                 // Reset form
-                this.setState({ action: "promote", siret: getParameterByName('siret') || "", firstName: "", lastName: "", email: "", phone: "", comment: "" });
+                this.setState({ action: 'promote', siret: getParameterByName('siret') || '', firstName: '', lastName: '', email: '', phone: '', comment: '' });
             })
-            .catch(() => NotificationService.createError("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"))
+            .catch(() => NotificationService.createError("Erreur lors de l'envoi. Vous êtes libre d'essayer ultérieurement ou nous contacter directement à l'adresse suivante : labonnealternance@pole-emploi.fr"));
     }
 
     render() {
@@ -125,13 +125,13 @@ export default class RecruiterForm extends Component {
 
                         <div>
                             <label htmlFor="phone">Téléphone</label>
-                            <input id="phone" name="phone" type="tel" onChange={this.setPhone} value={this.state.phone} maxLength="15"/>
+                            <input id="phone" name="phone" type="tel" onChange={this.setPhone} value={this.state.phone} maxLength="15" />
                             <p className="form-help-text">Exemples: 01 77 86 39 49, +33 1 77 86 39 49</p>
                         </div>
 
                         <div>
                             <label htmlFor="comment">Commentaire</label>
-                            <textarea id="comment" name="comment" maxLength="15000"></textarea>
+                            <textarea id="comment" name="comment" maxLength="15000" />
 
                             <p className="form-help-text">15 000 caractères maximum</p>
                         </div>

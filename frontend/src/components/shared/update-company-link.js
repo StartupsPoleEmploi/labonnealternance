@@ -13,21 +13,21 @@ export default class UpdateCompanyLink extends Component {
 
     componentDidUpdate() {
         // Accessibility: focus on first link when opening
-        if(this.state.showDisclaimer && this.myCompanyRef.current) {
-            this.myCompanyRef.current.focus()
+        if (this.state.showDisclaimer && this.myCompanyRef.current) {
+            this.myCompanyRef.current.focus();
         }
     }
 
     openAntiSpam = (e) => {
         e.preventDefault();
-        if(!this.state.showDisclaimer) this.setState({ showDisclaimer : true })
+        if (!this.state.showDisclaimer) this.setState({ showDisclaimer: true });
     }
 
     showNoApplication = (e) => {
         e.preventDefault();
         NotificationService.createError(
-            "Vous souhaitez postuler auprès de cette entreprise mais nous ne proposons pas encore cette fonctionnalité. " +
-            "Vous devez donc contacter directement l’entreprise en vous aidant des informations présentes sur cette page."
+            'Vous souhaitez postuler auprès de cette entreprise mais nous ne proposons pas encore cette fonctionnalité. ' +
+            'Vous devez donc contacter directement l’entreprise en vous aidant des informations présentes sur cette page.'
         );
     }
 
@@ -51,7 +51,7 @@ export default class UpdateCompanyLink extends Component {
                     </div> : null
                 }
             </>
-        )
+        );
     }
 
 }

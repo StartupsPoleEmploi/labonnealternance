@@ -11,7 +11,7 @@ export const SOFT_SKILLS_REDUCER = (state = new Map(), action) => {
         case SOFT_SKILLS_ACTIONS.ADD_SOFT_SKILLS: {
             let softSkillsMap = new Map(state);
 
-            if(!softSkillsMap.has(action.data.rome)) {
+            if (!softSkillsMap.has(action.data.rome)) {
                 // Extract skills
                 let skills = [];
                 action.data.softSkills.forEach(skill => skills.push(skill.summary));

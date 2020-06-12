@@ -14,20 +14,20 @@ import { VISITED_SIRETS_REDUCER } from './visited_sirets/visited_sirets.reducers
 import { COMPANIES_REDUCER } from './companies/companies.reducer';
 
 let store = createStore(
-  combineReducers({
-    jobSuggestions: AUTOCOMPLETE_JOB_REDUCER,
-    locationSuggestions: AUTOCOMPLETE_LOCATION_REDUCER,
-    companies: COMPANIES_REDUCER,
-    companyDetails: COMPANY_DETAILS_REDUCER,
-    currentLocation: CURRENT_LOCATION_REDUCER,
-    favorites: FAVORITES_REDUCER,
-    filters: FILTERS_REDUCER,
-    notification: NOTIFICATION_REDUCER,
-    requestOccuring: REQUEST_OCCURING_REDUCER,
-    softSkills: SOFT_SKILLS_REDUCER,
-    currentView: VIEWS_REDUCER,
-    visitedSirets: VISITED_SIRETS_REDUCER,
-  })
+    combineReducers({
+        jobSuggestions: AUTOCOMPLETE_JOB_REDUCER,
+        locationSuggestions: AUTOCOMPLETE_LOCATION_REDUCER,
+        companies: COMPANIES_REDUCER,
+        companyDetails: COMPANY_DETAILS_REDUCER,
+        currentLocation: CURRENT_LOCATION_REDUCER,
+        favorites: FAVORITES_REDUCER,
+        filters: FILTERS_REDUCER,
+        notification: NOTIFICATION_REDUCER,
+        requestOccuring: REQUEST_OCCURING_REDUCER,
+        softSkills: SOFT_SKILLS_REDUCER,
+        currentView: VIEWS_REDUCER,
+        visitedSirets: VISITED_SIRETS_REDUCER,
+    })
 );
 
 export default store;

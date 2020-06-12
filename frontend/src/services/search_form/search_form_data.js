@@ -16,7 +16,7 @@ export class SearchFormData {
     setJobs(jobs) { this.jobs = jobs; }
     getJobs() { return this.jobs; }
     hasJob(rome) {
-        if(this.jobs === undefined) return false;
+        if (this.jobs === undefined) return false;
         return this.jobs.filter(job => job.rome === rome).length > 0;
     }
     hasJobs() { return this.jobs !== undefined && this.jobs.length !== 0; }
@@ -43,7 +43,7 @@ export class SearchFormData {
 
         // If the search term constains a '/', Django is confused because it got a new param !
         // For example: /gestion%2Fadministrative become /gestion/administrative
-        const searchTerm = this.term.replace(/\//g,' ')
+        const searchTerm = this.term.replace(/\//g,' ');
 
         let url = '';
         if (this.location.isGeolocated) {
@@ -52,7 +52,7 @@ export class SearchFormData {
                 latitude: this.location.latitude,
                 jobSlug: urlJobs,
                 term: encodeURIComponent(searchTerm)
-            })
+            });
         }
         // If user use geolocalisation
         else {
@@ -60,11 +60,11 @@ export class SearchFormData {
                 citySlug: this.location.slug,
                 jobSlug: urlJobs,
                 term: encodeURIComponent(searchTerm)
-            })
+            });
         }
 
         // Add distance
-        if(this.distance) url = url.concat('?distance=').concat(this.distance);
+        if (this.distance) url = url.concat('?distance=').concat(this.distance);
 
         return url;
     }

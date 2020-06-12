@@ -52,27 +52,27 @@ export function determineNafSection(naf) {
     // The session can be deterline with the two first letters
     let text = naf.substring(0,2);
 
-    if(A_NUMBERS.indexOf(text) !== -1) return 'A';
-    if(B_NUMBERS.indexOf(text) !== -1) return 'B';
-    if(C_NUMBERS.indexOf(text) !== -1) return 'C';
-    if(D_NUMBERS.indexOf(text) !== -1) return 'D';
-    if(E_NUMBERS.indexOf(text) !== -1) return 'E';
-    if(F_NUMBERS.indexOf(text) !== -1) return 'F';
-    if(G_NUMBERS.indexOf(text) !== -1) return 'G';
-    if(H_NUMBERS.indexOf(text) !== -1) return 'H';
-    if(I_NUMBERS.indexOf(text) !== -1) return 'I';
-    if(J_NUMBERS.indexOf(text) !== -1) return 'J';
-    if(K_NUMBERS.indexOf(text) !== -1) return 'K';
-    if(L_NUMBERS.indexOf(text) !== -1) return 'L';
-    if(M_NUMBERS.indexOf(text) !== -1) return 'M';
-    if(N_NUMBERS.indexOf(text) !== -1) return 'N';
-    if(O_NUMBERS.indexOf(text) !== -1) return 'O';
-    if(P_NUMBERS.indexOf(text) !== -1) return 'P';
-    if(Q_NUMBERS.indexOf(text) !== -1) return 'Q';
-    if(R_NUMBERS.indexOf(text) !== -1) return 'R';
-    if(S_NUMBERS.indexOf(text) !== -1) return 'S';
-    if(T_NUMBERS.indexOf(text) !== -1) return 'T';
-    if(U_NUMBERS.indexOf(text) !== -1) return 'U';
+    if (A_NUMBERS.indexOf(text) !== -1) return 'A';
+    if (B_NUMBERS.indexOf(text) !== -1) return 'B';
+    if (C_NUMBERS.indexOf(text) !== -1) return 'C';
+    if (D_NUMBERS.indexOf(text) !== -1) return 'D';
+    if (E_NUMBERS.indexOf(text) !== -1) return 'E';
+    if (F_NUMBERS.indexOf(text) !== -1) return 'F';
+    if (G_NUMBERS.indexOf(text) !== -1) return 'G';
+    if (H_NUMBERS.indexOf(text) !== -1) return 'H';
+    if (I_NUMBERS.indexOf(text) !== -1) return 'I';
+    if (J_NUMBERS.indexOf(text) !== -1) return 'J';
+    if (K_NUMBERS.indexOf(text) !== -1) return 'K';
+    if (L_NUMBERS.indexOf(text) !== -1) return 'L';
+    if (M_NUMBERS.indexOf(text) !== -1) return 'M';
+    if (N_NUMBERS.indexOf(text) !== -1) return 'N';
+    if (O_NUMBERS.indexOf(text) !== -1) return 'O';
+    if (P_NUMBERS.indexOf(text) !== -1) return 'P';
+    if (Q_NUMBERS.indexOf(text) !== -1) return 'Q';
+    if (R_NUMBERS.indexOf(text) !== -1) return 'R';
+    if (S_NUMBERS.indexOf(text) !== -1) return 'S';
+    if (T_NUMBERS.indexOf(text) !== -1) return 'T';
+    if (U_NUMBERS.indexOf(text) !== -1) return 'U';
 
 
     console.error(`Cannot determine section for the text : ${text}`);

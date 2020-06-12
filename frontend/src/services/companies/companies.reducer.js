@@ -31,11 +31,11 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
             action.data.companies.forEach(company => {
                 if (!companies.has(company.siret)) {
                     // Get the job
-                    let job = action.data.jobs.find(job => job.rome === company.matched_rome_code)
+                    let job = action.data.jobs.find(job => job.rome === company.matched_rome_code);
 
-                    let companyName = company.name
+                    let companyName = company.name;
                     if (SHOW_VISIBLE_MARKET_DEBUG_PREFIX === true && company.offers_count !== undefined) {
-                        companyName = `[OFFRES=${company.offers_count}] ${companyName}`
+                        companyName = `[OFFRES=${company.offers_count}] ${companyName}`;
                     }
 
                     let companyOffers = [];
@@ -88,7 +88,7 @@ function computeFilters(filters, company) {
         // At least, one headcount filter matches with company.headcount
         let hasHeadcount = false;
         for (let i = 0; i < filters.headcount.length; i++) {
-            if(startsWith(company.headcount, filters.headcount[i])){
+            if (startsWith(company.headcount, filters.headcount[i])){
                 hasHeadcount = true;
                 break;
             }

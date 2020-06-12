@@ -1,6 +1,6 @@
+import { VIEWS, VIEWS_ACTIONS } from './views.reducers';
 import store from '../store';
-import { VIEWS_ACTIONS } from './views.reducers';
-import { VIEWS } from './views.reducers';
+
 
 class ViewsServiceFactory {
     setMapView() {

@@ -34,7 +34,7 @@ class CompanyDetails extends Component {
         this.state = {
             referer: this.getReferer(),
             rome: getParameterByName('rome') || undefined,
-            siret: siret,
+            siret,
             company: undefined,
             recruiterAccessUrl: CompanyDetailsService.getRecruteurAccessUrl(siret)
         };
@@ -88,7 +88,7 @@ class CompanyDetails extends Component {
         if (referer) {
             // Should start with '/entreprises'
             let re = /^\/entreprises\//;
-            if (!re.test(referer)) referer = "";
+            if (!re.test(referer)) referer = '';
         }
         return referer;
     }
