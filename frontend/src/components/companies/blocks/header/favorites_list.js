@@ -116,7 +116,7 @@ export class FavoritesList extends Component {
                         <label htmlFor="export-mail" className="block sr-only">Exportez vos favoris à l'adresse suivante :</label>
                         <input id="export-mail" type="email" name="email" value={this.state.email} onChange={this.inputEmail} placeholder={this.state.placeholder} />
 
-                        <button type="submit" className="button" title="Envoyez vos favoris">Récupérez ma liste de favoris</button>
+                        <button type="submit" className="button" title="Envoyez vos favoris">Récupérer ma liste de favoris</button>
                     </form>
                 </div>
 
