@@ -2,7 +2,7 @@ module.exports = {
     'Navigation test': function (client) {
         client
             .url('localhost:8000')
-            .waitForElementPresent('body', 10000)
+            .waitForElementPresent('body', 60000)
             .assert.containsText('h1.introduction', 'Trouvez ici les entreprises')
             .click('.rgpd-banner ul li button:first-child')
             .waitForElementVisible('footer#global-footer a[href="/qui-sommes-nous"]')
