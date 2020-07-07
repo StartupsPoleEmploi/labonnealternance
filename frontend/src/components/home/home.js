@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import Header from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
@@ -8,7 +8,7 @@ import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 import { SEOService } from '../../services/seo.service';
 import LazyLoadYoutube from '../shared/lazyload-youtube/lazyload-youtube';
 
-require('./home.css');
+import './home.css';
 
 export default class Home extends Component {
     componentWillMount() {

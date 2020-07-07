@@ -7,7 +7,7 @@ import Header from '../companies/blocks/header/header';
 import { SEOService } from '../../services/seo.service';
 import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
-require('./who_we_are.css');
+import './who_we_are.css';
 
 export default class FAQ extends Component {
 

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { NOTIFICATION_TYPE } from '../../../services/notification/notification';
 import store from '../../../services/store';
 
-require('./notification.css');
+import './notification.css';
 
 export class Notification extends Component {
     constructor(props) {

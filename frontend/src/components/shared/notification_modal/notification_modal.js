@@ -4,7 +4,7 @@ import store from '../../../services/store';
 import { NotificationService } from '../../../services/notification/notification.service';
 import Modal from '../modal';
 
-require('./notification_modal.css');
+import './notification_modal.css';
 
 export class NotificationModal extends Component {
 

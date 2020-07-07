@@ -4,7 +4,7 @@ import Header from '../companies/blocks/header/header';
 import { SEOService } from '../../services/seo.service';
 import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
 
-require('./cgu.css');
+import './cgu.css';
 
 export default class CGU extends Component {
 

@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import RGPDModal from './rgpd_modal';
 import RGPDService from '../../../services/rgpd.service';
 
-require('./rgpd_bar.css');
+import './rgpd_bar.css';
 
 export class RGPDBar extends Component {
 

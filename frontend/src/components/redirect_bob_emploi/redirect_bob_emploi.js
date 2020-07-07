@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Redirect } from '@reach/router';
+import { Redirect, withRouter } from 'react-router-dom';
 import { LoaderScreen } from '../shared/loader/loader_screen';
 import { subJobLabel } from '../../services/helpers';
 import { constants } from '../../constants';
 
-require('./redirect_bob_emploi.css');
+import './redirect_bob_emploi.css';
 
-export default class RedirectionBobEmploi extends Component {
+class RedirectionBobEmploi extends Component {
     constructor(props) {
         super(props);
 
@@ -65,3 +65,9 @@ export default class RedirectionBobEmploi extends Component {
         return <Redirect to={this.state.url} noThrow />;
     }
 }
+
+export default withRouter(({match, location, history}) => <RedirectionBobEmploi
+  history={history}
+  location={location}
+  {...match.params}
+   />);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
-
+import { withRouter } from "react-router-dom";
 import store from '../../services/store';
 
 // Components
@@ -24,7 +23,7 @@ import { formatString, unSlug, getParameterByName } from '../../services/helpers
 import { GoogleAnalyticsService } from '../../services/google_analytics.service';
 import { constants } from '../../constants';
 
-require('./companies.css');
+import './companies.css';
 
 // Constants
 const SHOW_RESULT_POPUP_KEY = 'SHOW_RESULT_POPUP_KEY';
@@ -240,7 +239,7 @@ class Companies extends Component {
                     longitude: response.city.longitude,
                     cityName: response.city.name,
                 }, this.searchJobs());
-            }).catch(err => navigate('/not-found'));
+            }).catch(err => this.props.history.push('/not-found'));
         }
     }
 
@@ -256,7 +255,7 @@ class Companies extends Component {
 
                     // Save values
                     this.setState({ jobs });
-                }).catch(err => navigate('/not-found'));
+                }).catch(err => this.props.history.push('/not-found'));
         }
 
     }
@@ -309,4 +308,8 @@ class Companies extends Component {
     }
 }
 
-export default Companies;
+export default withRouter(({match, location, history}) => <Companies 
+  history={history}
+  location={location}
+  {...match.params}
+   />);
