@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-require('./other_startups.css');
+import './other_startups.css';
 
 export class OtherStartups extends Component {
     render() {

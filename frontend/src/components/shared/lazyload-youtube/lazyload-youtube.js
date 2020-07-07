@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-require('./lazyload-youtube.css');
+import './lazyload-youtube.css';
 
 export default class LazyLoadYoutube extends Component {
 

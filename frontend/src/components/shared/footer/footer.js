@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from '@reach/router';
-import RGPDModal from '../rgpd_bar/rgpd_modal';
 import { Experiment, Variant } from '@marvelapp/react-ab-test';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
 import { constants } from '../../../constants';
+import RGPDModal from '../rgpd_bar/rgpd_modal';
 
 export class Footer extends Component {
 
