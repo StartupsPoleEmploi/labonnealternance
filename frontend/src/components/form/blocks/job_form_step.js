@@ -52,10 +52,15 @@ export class JobFormStep extends Component {
     }
 
     componentWillMount() {
+        // FIXME: __isMounted is a workaround and should not be needed. The callback passed to store.subscribe is called from componentWillUnmount
+        this.__isMounted = true;
         NotificationService.deleteNotification();
 
         this.jobStoreUnsubscribeFn = store.subscribe(() => {
-
+            if(!this.__isMounted) {
+              console.warn('FIXME: this should not be called on an unmounted component');
+              return;
+            }
             let suggestions = store.getState().jobSuggestions;
             if (suggestions.length === 0) {
                 this.setState({ requestNumber: this.state.requestNumber - 1, suggestedJobs: [] });
@@ -89,8 +94,11 @@ export class JobFormStep extends Component {
     }
 
     componentWillUnmount() {
+        // FIXME: __isMounted is a workaround and should not be needed. The callback passed to store.subscribe is called from componentWillUnmount
+        this.__isMounted = false;
         // Unsubscribe to store
         this.jobStoreUnsubscribeFn();
+        this.jobStoreUnsubscribeFn = null;
     }
 
     nextIfEnter = (event) => {
