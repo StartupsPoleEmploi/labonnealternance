@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { environment } from '../../environment';
 import Header from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
@@ -9,6 +10,11 @@ import { SEOService } from '../../services/seo.service';
 import LazyLoadYoutube from '../shared/lazyload-youtube/lazyload-youtube';
 
 import './home.css';
+
+const {
+  CTA1_LABEL, CTA1_TEXT, CTA1_TOOLTIP, CTA1_SLUG,
+  CTA2_LABEL, CTA2_TEXT, CTA2_TOOLTIP, CTA2_SLUG,
+} = environment;
 
 export default class Home extends Component {
     componentWillMount() {
@@ -28,13 +34,22 @@ export default class Home extends Component {
                     <main>
                         <section className="main-landing">
                             <h1 className="introduction">
-                                <span>Trouvez ici les entreprises</span><br />
-                                <span>qui recrutent <strong>régulièrement</strong> en alternance</span>
+                                <span>Trouvez votre alternance</span>
                             </h1>
-
-                            <div className="button-container">
-                                <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
-                            </div>
+                            <ul className="buttons-container">
+                                <li className="button-container">
+                                    <p dangerouslySetInnerHTML={{__html: CTA1_TEXT}}></p>
+                                    <Link className="button" to={CTA1_SLUG} title={CTA1_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA1_LABEL}}></Link>
+                                </li>
+                                <li className="button-container">
+                                    <p dangerouslySetInnerHTML={{__html: CTA2_TEXT}}></p>
+                                    <Link className="button" to={CTA2_SLUG} title={CTA2_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA2_LABEL}}></Link>
+                                </li>
+                                <li className="button-container">
+                                    <p>Je cherche une <strong>entreprise</strong> en alternance</p>
+                                    <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
+                                </li>
+                            </ul>
 
                             <div className="recruiter"><a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action?origin=labonnealternance">Accès recruteur</a></div>
 

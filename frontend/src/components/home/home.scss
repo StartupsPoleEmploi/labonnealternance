@@ -34,29 +34,20 @@
     .introduction {
         display: block;
         text-align: center;
-        margin-top: 20vh;
         font-size: 4em;
         letter-spacing: 1px;
 
         span { font-weight: normal; }
 
         @media(max-width: 1000px) {
-            margin-top: 20vh;
-            margin-bottom: 30px;
-            padding-left: 15px;
             font-size: 3em;
         }
 
         @media(max-width: $min-width-mobile) {
-            text-align: left;
-            margin-top: 25vh;
-            margin-bottom: 30px;
-            padding-left: 15px;
             font-size: 2.7em;
         }
 
         @media(max-width: $min-width-small-mobile) {
-            margin-top: 21vh;
             margin-bottom: 50px;
             padding-left: 10px;
             font-size: 2em;
@@ -64,41 +55,52 @@
         }
 
         @media (max-height: 750px) and (min-width: $min-width-desktop) {
-            margin-top: 20vh;
             font-size: 3em;
         }
         @media (max-height: 750px) and (min-width: $min-width-tablet) {
-            margin-top: 20vh;
             font-size: 3em;
         }
     }
 
-    .button-container {
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        margin-top: 100px;
-        letter-spacing: 1px;
-        font-size: 1.2em;
+    .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        margin: auto;
+        .button-container {
+            text-align: center;
+            letter-spacing: 1px;
+            font-size: 1.2em;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            strong {
+              display: block;
+              color: $fse-blue;
+              font-weight: bold;
+            }
+            .button {
+              margin-top: 40px;
+              font-size: inherit;
+            }
 
-        .loading {
-            color: white;
-        }
-        @media(min-width: 1000px) and (max-width: 1250px) {
-            // Note : 26/04/2018 from 20px to 80px
-            margin-top: 80px;
-        }
-        @media(max-width: $min-width-mobile) {
-            margin-top: 10vh;
-        }
+            .loading {
+                color: white;
+            }
+            @media(max-width: $min-width-mobile) {
+            }
 
-        @media(max-width: $min-width-small-mobile) {
-            margin-top: 50px;
-            letter-spacing: 0;
-        }
-        @media (max-height: 750px) {
-            margin-top: 30px;
-            font-size: .9em;
+            @media(max-width: $min-width-small-mobile) {
+                letter-spacing: 0;
+            }
+            @media (max-height: 750px) {
+                font-size: .9em;
+            }
         }
     }
 
@@ -116,7 +118,7 @@
     }
 
     section.main-landing {
-        height: 100%;
+        margin: 50px 0;
 
         .footer {
             position: absolute;
