@@ -21,7 +21,7 @@ export default class CGU extends Component {
                 <main className="content">
                     <h1>Conditions d'utilisation</h1>
                     <p>L’utilisateur du service doit respecter ces conditions générales d’utilisation. Elles peuvent être modifiées par Pôle emploi. L’utilisateur est donc invité à consulter régulièrement la dernière version mise à jour.</p>
-                    <div><em>Dernière mise à jour le : 15/05/2020</em></div>
+                    <div><em>Dernière mise à jour le : 20/07/2020</em></div>
 
                     <h2>1. Mentions légales</h2>
                     <h3>Editeur</h3>
@@ -44,20 +44,28 @@ export default class CGU extends Component {
                     </p>
 
                     <h2>2. Object du site</h2>
-                    <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les démarches de candidatures spontanées de l’utilisateur en l’aidant à identifier des entreprises ou organismes ayant un potentiel d’embauche de contrats en alternance dans un secteur d’emploi et un secteur géographique donnés.</p>
+                    <p>Le site internet <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> a pour objet de faciliter les entrées en alternance des usagers en informant sur les formations en apprentissage ainsi que les offres d’emplois et entreprises auprès desquelles adresser une candidature.</p>
+					<p>L’utilisateur peut filtrer tout ou partie des informations à l’aide des filtres suivants : niveau de diplôme préparé, secteur d’emploi et secteur géographique.</p>
 
                     <h2>3. Fonctionnement de La bonne alternance</h2>
-                    <p>Le service proposé sur le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher des entreprises ou organismes susceptibles de recruter en alternance des profils similaires au sien, en fonction des données qu’il a saisi (métier, secteur géographique).</p>
-                    <p>Les entreprises ou organismes qui apparaissent dans les résultats de recherche peuvent être classés en fonction de leur proximité géographique par rapport au périmètre défini par l’utilisateur. </p>
-                    <p>Lorsque celles-ci sont renseignées, l’utilisateur peut entrer en contact avec l’entreprise ou l’organisme au moyen des coordonnées indiquées sur la fiche de l’entreprise ou de l’organisme. </p>
+                    <p>Le service proposé sur le site <a href="//labonnealternance.pole-emploi.fr">labonnealternance.pole-emploi.fr</a> permet à l’utilisateur de rechercher des formations et/ou entreprises susceptibles d’embaucher en alternance des profils similaires au sien, en fonction des données qu’il a saisies (domaine/métier, niveau de diplôme, secteur géographique).</p>
+                    <p>Les résultats de recherche sont accessibles en liste et sur une carte.<br />
+					Ils sont classés en fonction de leur proximité géographique par rapport au périmètre défini par l’utilisateur.</p>
+                    <p>Lorsque celles-ci sont renseignées, l’utilisateur peut entrer en contact avec l’entreprise ou l’organisme au moyen des coordonnées indiquées sur la fiche de l’entreprise ou de l’organisme.</p>
                     <p>À tout moment, chaque entreprise peut d’une part s’opposer à ce que son nom apparaisse dans les résultats de recherche ou d’autre part, demander à être mise en avant. <br />
                     Elle peut également demander la modification/suppression des informations communiquées (ex. coordonnées) sur le site La bonne alternance en remplissant le <a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action?origin=labonnealternance">formulaire recruteur</a> directement depuis la page d’accueil du site.</p>
 
                     <h2>4. Protection des données à caractère personnel</h2>
-                    <p>L’utilisation du moteur de recherche disponible sur le site internet La bonne alternance nécessite d’indiquer le(s) métier(s) recherché(s) ainsi que le périmètre géographique souhaité. <br />
-                    Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises. <br />
-                    Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, la liste des entreprises ou organismes ayant un potentiel d’embauche dans un secteur d’emploi et géographique donné ainsi que leurs coordonnées de contact. S’agissant des coordonnées de contact, les destinataires des données sont les utilisateurs du site internet La bonne alternance. S’agissant des données relatives aux utilisateurs concernant leur recherche, seul Pôle emploi a accès aux données. </p>
-                    <p>Pôle emploi est le responsable de ce traitement. Ses coordonnées sont les suivantes : Pôle Emploi, 1-5 rue du docteur Gley, 75987, Paris cedex 20. Au titre de la licéité du traitement exigée par l’article 6 du règlement général (UE) sur la protection des données n°2016/679 du 27 avril 2016 (RGPD), le fondement juridique du traitement est la mission d’intérêt public dont est investi Pôle emploi en vertu de l’article L.5312-1 du code du travail qui consiste notamment à mettre en relation l’offre et la demande d’emploi. </p>
+					<p>Les moteurs de recherche disponibles sur le site internet La bonne alternance peuvent recueillir :</p>
+					<ul>
+                        <li>le domaine/métier/formation envisagé</li>
+                        <li>le niveau de diplôme souhaité</li>
+                        <li>le périmètre géographique de recherche</li>
+                    </ul>
+					<p>Pôle emploi traite également des données relatives aux entreprises qui peuvent concerner directement des personnes physiques, notamment les coordonnées des interlocuteurs personnes physiques de ces entreprises.</p>
+					<p>Ces données sont collectées et traitées par Pôle emploi uniquement dans le but de fournir, à la requête de l’utilisateur, des résultats de recherche pertinents, correspondant aux attentes de l’usager.</p>
+					<p>S’agissant des coordonnées de contact, les destinataires des données sont les utilisateurs du site internet La bonne alternance. S’agissant des données relatives aux utilisateurs concernant leur recherche, seul Pôle emploi a accès aux données.</p>
+					<p>Pôle emploi est le responsable de ce traitement. Ses coordonnées sont les suivantes : Pôle Emploi, 1-5 rue du docteur Gley, 75987, Paris cedex 20. Au titre de la licéité du traitement exigée par l’article 6 du règlement général (UE) sur la protection des données n°2016/679 du 27 avril 2016 (RGPD), le fondement juridique du traitement est la mission d’intérêt public dont est investi Pôle emploi en vertu de l’article L.5312-1 du code du travail qui consiste notamment à mettre en relation l’offre et la demande d’emploi.</p>
                     <p>Conformément aux articles 12 à 23 du règlement général (UE) sur la protection des données n°2016/679 du 27 avril 2016 et à la loi Informatique et libertés n°78-17 du 6 janvier 1978 modifiée, vous bénéficiez d’un droit d’accès, de rectification, de limitation, de définir des directives sur le sort des données après votre mort et le droit de porter une réclamation devant la Commission nationale de l’informatique et des libertés pour les données vous concernant. Pour exercer vos droits, vous pouvez vous adresser au délégué à la protection des données de Pôle emploi (1 avenue du Docteur Gley, 75987 Paris cedex 20 ; <a href="mailto:courriers-cnil@pole-emploi.fr">courriers-cnil@pole-emploi.fr</a>)</p>
 
                     <h2>5. Cookies </h2>
@@ -68,7 +76,7 @@ export default class CGU extends Component {
 
                     <h3>5.2 Les cookies déposés sur La bonne alternance</h3>
                     <p><strong>Les cookies strictement nécessaires au fonctionnement du site internet</strong></p>
-                    <p>Des cookies sont utilisés sur le site internet La bonne alternance pour permettre le bon fonctionnement du site internet et l’utilisation des principales fonctionnalités du site (ex. le maintien de la connexion, stockage du consentement, etc.).  </p>
+                    <p>Des cookies sont utilisés sur le site internet La bonne alternance pour permettre le bon fonctionnement du site internet et l’utilisation des principales fonctionnalités du site (ex. le maintien de la connexion, stockage du consentement, etc.).</p>
                     <p>Sans ces cookies, l’utilisation du site peut être dégradée. L’utilisateur peut cependant s’opposer à leur dépôt en suivant les indications données au point 5.3.</p>
 
                     <p><strong>Les cookies statistiques ou de mesure d’audience</strong></p>
