@@ -18,6 +18,7 @@ import { GoogleAnalyticsService } from './services/google_analytics.service';
 // Main pages (no async)
 import Home from './components/home/home';
 import Form from './components/form/form';
+import Widget from './components/widget/widget'
 import Companies from './components/companies/companies';
 import NotFound from './components/not_found/not_found';
 import CompanyDetails from './components/company_details/company_details';
@@ -36,6 +37,8 @@ export default function Routes() {
     return <Switch>
         <Route exact path="/"><Home /></Route>
         <Route exact path="/recherche"><Form /></Route>
+        <Route exact path={environment.CTA1_SLUG}><Widget url={environment.CTA1_WIDGET_URL}/></Route>
+        <Route exact path={environment.CTA2_SLUG}><Widget url={environment.CTA2_WIDGET_URL}/></Route>
 
         <Route exact path="/entreprises/commune/:cityCode/rome/:romeCode"><RedirectBobEmploi /></Route>
 
