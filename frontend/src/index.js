@@ -9,8 +9,6 @@ import { Provider } from 'react-redux';
 
 import store from './services/store';
 
-import { HotjarService } from './services/hotjar.service';
-
 import registerServiceWorker from './registerServiceWorker';
 
 import Routes from './routes';
@@ -34,8 +32,4 @@ export default class App extends Component {
 // Start the application
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
-
-// Hotjar
-HotjarService.initHotjar();
-
 

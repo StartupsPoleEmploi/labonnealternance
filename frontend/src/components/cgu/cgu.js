@@ -77,13 +77,13 @@ export default class CGU extends Component {
                     <h3>5.3 Accepter ou refuser les cookies</h3>
                     <p>L’utilisateur peut accepter ou refuser le dépôt de tout ou partie des cookies, à tout moment, en modifiant les paramètres de son navigateur (consulter la fonction « Aide » du navigateur pour en savoir plus) ou en se rendant sur l’une des pages suivantes, selon le navigateur utilisé :</p> 
                     <ul>
-                        <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr" target="_blank">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
-                        <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target="_blank">https://support.microsoft.com/fr-fr/help/17442</a></li>
-                        <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
-                        <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
+                        <li>Google Chrome : <a href="https://support.google.com/chrome/answer/95647?hl=fr" target="_blank" rel="noopener noreferrer">https://support.google.com/chrome/answer/95647?hl=fr</a></li>
+                        <li>Internet Explorer : <a href="https://support.microsoft.com/fr-fr/help/17442" target="_blank" rel="noopener noreferrer">https://support.microsoft.com/fr-fr/help/17442</a></li>
+                        <li>Mozilla Firefox : <a href="https://support.mozilla.org/fr/kb/activer-desactiver-cookies" target="_blank" rel="noopener noreferrer">https://support.mozilla.org/fr/kb/activer-desactiver-cookies</a></li>
+                        <li>Safari : <a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">https://support.apple.com/fr-fr/guide/safari/sfri11471/mac</a></li>
                     </ul>
                     <p>Pour information, la plupart des navigateurs acceptent par défaut le dépôt de cookies.<br />
-                    Pour plus d’informations sur les cookies et les moyens permettant d’empêcher leur installation, l’utilisateur peut se rendre sur la page dédiée sur le site internet de la CNIL : <a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser" target="_blank">www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser</a>.</p>
+                    Pour plus d’informations sur les cookies et les moyens permettant d’empêcher leur installation, l’utilisateur peut se rendre sur la page dédiée sur le site internet de la CNIL : <a href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser" target="_blank" rel="noopener noreferrer">www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser</a>.</p>
 
                     <h2>6. Responsabilité</h2>
                     <p>Les informations publiées sur le site internet La bonne alternance sont fournies à titre indicatif et peuvent être modifiées à tout moment. Pôle emploi ne garantit pas l’exhaustivité des résultats de recherche ni l’absence d’erreurs dans les résultats communiqués.</p>
@@ -94,7 +94,7 @@ export default class CGU extends Component {
                     <ul>
                         <li>de la législation française;</li>
                         <li>des présentes conditions d’utilisation;</li>
-                        <li>des conditions d’utilisation de l’Emploi store disponibles à l’adresse suivante : <a href="http://www.emploi-store.fr/portail/conditionsgeneralesutilisation" target="_blank">http://www.emploi-store.fr/portail/conditionsgeneralesutilisation</a>.</li>
+                        <li>des conditions d’utilisation de l’Emploi store disponibles à l’adresse suivante : <a href="http://www.emploi-store.fr/portail/conditionsgeneralesutilisation" target="_blank" rel="noopener noreferrer">http://www.emploi-store.fr/portail/conditionsgeneralesutilisation</a>.</li>
                     </ul>
 
                     <h2>8. Propriété intellectuelle</h2>
