@@ -1,6 +1,7 @@
 import debounce from 'lodash/debounce';
 
 // Initiate the window.L variable
+// eslint-disable-next-line
 import { leaflet } from 'mapbox.js';
 import { MarkerClusterGroup } from 'leaflet.markercluster';
 

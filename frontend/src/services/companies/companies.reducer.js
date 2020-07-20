@@ -2,7 +2,6 @@ import { Company } from './company';
 
 import { determineNafSection } from './naf_section';
 import startsWith from 'lodash/startsWith'; // Use for IE11 compat
-import store from '../store';
 
 export const COMPANIES_ACTIONS = {
     ADD_COMPANIES: 'ADD_COMPANIES',

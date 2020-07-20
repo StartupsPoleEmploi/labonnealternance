@@ -1,6 +1,5 @@
 import { environment } from '../environment';
 import { GoogleAnalyticsService } from './google_analytics.service';
-import { HotjarService } from './hotjar.service';
 
 const RGPD_CONSENT = 'RGPD_CONSENT';
 const RGPD_DATE = 'RGPD_DATE';
@@ -34,10 +33,6 @@ export default class RGPDService {
         if(userReponse === true) {
             // TODO : serviceGA & serviceHotjar => init
             GoogleAnalyticsService.initGoogleAnalytics();
-
-            // Hotjar download 80Ko of JS, so we delay it by one second
-            // to prioritize other downloads
-            setTimeout(() => HotjarService.initHotjar(), 1000);
         } else {
             // Reload the page : GA and hotjar will not installed after
             if(reload) window.location = environment.HOME_PAGE;
