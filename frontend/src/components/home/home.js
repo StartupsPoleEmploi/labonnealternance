@@ -19,7 +19,7 @@ const {
 export default class Home extends Component {
     componentWillMount() {
         SEOService.displayNoFollow(false);
-        SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
+        SEOService.setTitle('La Bonne Alternance | Trouvez votre alternance');
     }
 
     render() {
