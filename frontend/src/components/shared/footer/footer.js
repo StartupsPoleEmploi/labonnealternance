@@ -46,8 +46,7 @@ export class Footer extends Component {
                             <li className="small"><Link to="/pages/accessibility">Accessibilité</Link></li>
                             <li className="small"><Link to="/conditions-generales-utilisation">CGU</Link></li>
                             <li><a href="mailto:l%61bo%6En%65al%74e%72nance@p%6Fle%2Demploi.%66r">Contact</a></li>
-                            <li className="hide-mobile"><a href="https://github.com/StartupsPoleEmploi/labonnealternance" target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">Code source ouvert</a></li>
-                            <li className="hide-mobile"><a href="/pages/dev" title="Documentation de notre API pour développeurs">Développeurs</a></li>
+                            <li><a href="/pages/dev" title="Documentation de notre API pour développeurs">Développeurs</a></li>
                         </ul>
                     </div>
 

@@ -47,7 +47,7 @@ export default class Home extends Component {
                                 </li>
                                 <li className="button-container">
                                     <p>Je cherche une <strong>entreprise</strong> en alternance</p>
-                                    <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
+                                    <Link className="button" to="/recherche" title="Chercher une entreprise">C'est parti !</Link>
                                 </li>
                             </ul>
 

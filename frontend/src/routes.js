@@ -39,9 +39,18 @@ export default function Routes() {
     return <Switch>
         <Route exact path="/"><Home /></Route>
         <Route exact path="/recherche"><Form /></Route>
-        <Route exact path={environment.CTA1_SLUG}><Widget url={environment.CTA1_WIDGET_URL}/></Route>
-        <Route exact path={environment.CTA2_SLUG}><Widget url={environment.CTA2_WIDGET_URL}/></Route>
-
+        <Route exact path={environment.CTA1_SLUG}>
+            <Widget
+                url={environment.CTA1_WIDGET_URL}
+                title={environment.CTA1_TITLE}
+                />
+        </Route>
+        <Route exact path={environment.CTA2_SLUG}>
+            <Widget
+                url={environment.CTA2_WIDGET_URL}
+                title={environment.CTA2_TITLE}
+                />
+        </Route>
         <Route exact path="/entreprises/commune/:cityCode/rome/:romeCode"><RedirectBobEmploi /></Route>
 
         <Route exact path="/entreprises/:jobSlugs/:citySlug/:term"><Companies /></Route>
