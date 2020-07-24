@@ -27,9 +27,11 @@ import RedirectBobEmploi from './components/redirect_bob_emploi/redirect_bob_emp
 // Async component
 import asyncComponent from './components/shared/asyncComponent';
 const AsyncRecruiterForm = asyncComponent(() => import('./components/recruiter_form/recruiter_form'));
-const AsyncCGU = asyncComponent(() => import('./components/cgu/cgu'));
-const AsyncWhoWeAre = asyncComponent(() => import('./components/who_we_are/who_we_are'));
-const AsyncFAQ = asyncComponent(() => import('./components/faq/faq'));
+const AsyncCGU = asyncComponent(() => import('./components/pages/cgu'));
+const AsyncWhoWeAre = asyncComponent(() => import('./components/pages/who_we_are'));
+const AsyncFAQ = asyncComponent(() => import('./components/pages/faq'));
+const AsyncAccessibility = asyncComponent(() => import('./components/pages/accessibility'));
+const AsyncDev = asyncComponent(() => import('./components/pages/dev'));
 
 
 export default function Routes() {
@@ -51,6 +53,8 @@ export default function Routes() {
         <Route exact path="/conditions-generales-utilisation"><AsyncCGU /></Route>
         <Route exact path="/qui-sommes-nous"><AsyncWhoWeAre /></Route>
         <Route exact path="/faq"><AsyncFAQ /></Route>
+        <Route exact path="/pages/accessibility"><AsyncAccessibility /></Route>
+        <Route exact path="/pages/dev"><AsyncDev /></Route>
 
         {/* Not found route */}
         <Route type={404} default><NotFound /></Route>
