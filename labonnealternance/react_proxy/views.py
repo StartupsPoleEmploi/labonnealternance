@@ -17,6 +17,8 @@ URLS_TO_TITLE = {
     '/conditions-generales-utilisation': 'Conditions Générales d\'utilisation | La Bonne Alternance',
     '/qui-sommes-nous': 'Qui sommes-nous ? | La Bonne Alternance',
     '/faq': 'Questions fréquentes | La Bonne Alternance',
+    '/recherche-apprentissage': 'Offres de formations et d\'emplois en alternance | La Bonne Alternance',
+    '/recherche-apprentissage-formation': 'Offres de formations en alternance | La Bonne Alternance',
 }
 DEFAULT_TITLE = 'La Bonne Alternance | Trouvez votre alternance'
 COMPANY_DETAILS_TITLE = 'Offres probables d\'alternance société {}'
