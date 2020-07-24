@@ -113,6 +113,17 @@ During August 2019 for a few weeks we AB tested the impact of distinguishing hid
 
 To enable/disable this AB testing you will have to change `emitter.defineVariants` in `frontend/src/index.js` and `constants.OFFERS_ABTEST_EXPERIMENT_NAME` in `frontend/src/constants.js`. Be sure to read thoroughly the associated documentation.
 
+## Dev notes
+
+### Server side rendering
+
+The pages are prerendered with a basic markup thanks to the python class [ReactProxyAppView](labonnealternance/react_proxy/views.py).
+
+Therefore we have 2 different systems to set a title to a page:
+
+1. at build time, `ReactProxyAppView` uses an array of titles to generate the prerendered pages with the right title
+2. during navigation in the react components: `SEOService.setTitle("...title here...");` in the react components
+
 ## How to contribute
 
 For devs in the core team, this repo follows the [Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow). 
