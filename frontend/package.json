@@ -27,9 +27,9 @@
     "scripts": {
         "build-css": "node-sass-chokidar src/ -o src/",
         "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-        "start-js": "react-scripts start",
+        "start-js": "REACT_APP_BUILD_DATE=$(date +%d/%m/%Y) react-scripts start",
         "start": "./node_modules/.bin/npm-run-all -p watch-css start-js",
-        "build-js": "react-scripts build",
+        "build-js": "REACT_APP_BUILD_DATE=$(date +%d/%m/%Y) react-scripts build",
         "build": "./node_modules/.bin/npm-run-all build-css build-js",
         "lint": "eslint src",
         "test-unit": "react-scripts test --env=jsdom --watchAll",
