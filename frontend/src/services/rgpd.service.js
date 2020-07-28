@@ -14,6 +14,7 @@ export default class RGPDService {
 
     static shouldDisplayRGPD() {
         if(localStorage.getItem(RGPD_CONSENT) === null) return true;
+        // FIXME: this is wrong
         if(!localStorage.getItem(RGPD_DATE) === null) return true;
 
         let dateSaved = localStorage.getItem(RGPD_DATE);

@@ -13,7 +13,7 @@ export class RGPDBar extends Component {
         this.state = {
             show: !RGPDService.userAcceptsRGPD(),
             showRGPDModal: false,
-        }
+        };
     }
 
     showRGPDModal = () => {
@@ -21,6 +21,9 @@ export class RGPDBar extends Component {
     }
     closeRGPDModal = () => {
         this.setState({ showRGPDModal: false });
+        if (RGPDService.shouldDisplayRGPD() === false) {
+          this.setState({ show: false });
+        }
     }
 
     denyRGPD = () => {
@@ -49,7 +52,7 @@ export class RGPDBar extends Component {
                     </ul>
                 </div>
 
-                { this.state.showRGPDModal ? <RGPDModal closeModalFn={this.hideBar} /> : null }
+                { this.state.showRGPDModal ? <RGPDModal closeModalFn={() => this.closeRGPDModal()} /> : null }
             </Fragment>
         );
     }
