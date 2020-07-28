@@ -74,12 +74,7 @@ export default class Home extends Component {
 
                         <section className="more">
                             <div className="how-it-works max-size-1000">
-                                <h2 className="big">Comment ça marche ?</h2>
-                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/UgxlKSs5K_c" backgroundImage="/static/img/youtube/home.jpg" />
-                            </div>
-
-                            <div className="how-it-works max-size-1000">
-                                <h2 className="big">La Bonne Alternance</h2>
+                                <h2 className="big">Comment repère-t-on les entreprises ?</h2>
                                 <div className="img-right">
                                     <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br/>Il est essentiel dans votre recherche de proposer <br/>votre candidature à des entreprises n’ayant pas <br/>forcément déposé d’offres d’emploi en alternance.</p>
                                     <div className="recruteurs"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
@@ -93,10 +88,10 @@ export default class Home extends Component {
                                     <div className="map"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt="" /></div>
                                 </div>
 
-                                <div className="text-center go-container">
-                                    <p>Maximisez vos chances ! Postulez auprès des entreprises qui recrutent régulièrement <br />en alternance sans forcément avoir déposé d’offres.</p>
-                                    <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
-                                </div>
+                            </div>
+
+                            <div className="how-it-works max-size-1000">
+                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/UgxlKSs5K_c" backgroundImage="/static/img/youtube/home.jpg" />
                             </div>
 
                             <div className="form-2"><div>&nbsp;</div></div>
@@ -107,7 +102,7 @@ export default class Home extends Component {
                                         <img  src="/static/s.png" className="lazyload img-responsive" data-src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
                                     </a>
                                     <p>
-                                        Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
+                                        Pôle Emploi innove et propose ce service pour vous permettre notamment de trouver des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
                                         <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
                                     </p>
                                 </div>
