@@ -36,11 +36,11 @@ export default class RGPDModal extends Component {
 
                         <p>
                             La Bonne Alternance dépose des cookies nécessaires au bon fonctionnement du site :<br />
-                                <ul>
-                                    <li>des cookies de mesure d'audience via les sites Google Analytics et Hotjar</li>
-                                    <li>des cookies techniques pour permettre l'enregistrement de vos préférences ou de l'état de votre interface</li>
-                                </ul>
                         </p>
+                        <ul>
+                            <li>des cookies de mesure d'audience via les sites Google Analytics et Hotjar</li>
+                            <li>des cookies techniques pour permettre l'enregistrement de vos préférences ou de l'état de votre interface</li>
+                        </ul>
 
                         <p>Toutes ces informations ont pour but d'assurer le bon fonctionnement du site et nous permettent également d'améliorer l'intérêt et l'ergonomie de nos services.</p>
 
