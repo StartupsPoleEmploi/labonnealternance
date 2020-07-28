@@ -97,7 +97,7 @@ class CompaniesServiceFactory {
                         RequestOccuringService.removeRequest();
                         if (response.status === 200) return response.json();
 
-                        NotificationService.createError('Erreur lors de communication avec le serveur');
+                        NotificationService.createError('Erreur lors de la communication avec le serveur');
                     })
                     .then((response) => {
                         if (!response) return;
@@ -137,7 +137,7 @@ class CompaniesServiceFactory {
                 RequestOccuringService.removeRequest();
                 if (response.status === 200) return response.json();
 
-                NotificationService.createError('Erreur lors de communication avec le serveur');
+                NotificationService.createError('Erreur lors de la communication avec le serveur');
             })
             .then((response) => {
                 if (!response) return;
