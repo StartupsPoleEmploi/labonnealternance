@@ -53,6 +53,9 @@ test-e2e:
 	# Run Django server and detach it. Then store its process id in a temporary file.
 	{ nohup ./manage.py runserver & echo $$! > e2e_server_pid.txt; }
 
+	# Check server is up
+	curl -I http://0.0.0.0:8000 && echo "local server running" && cat e2e_server_pid.txt
+
 	# Run end-to-end tests
 	cd frontend && node tests-e2e/local.runner.js -c tests-e2e/browserstack.conf.js -e chrome
 

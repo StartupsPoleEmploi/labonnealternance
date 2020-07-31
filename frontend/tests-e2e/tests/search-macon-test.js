@@ -1,7 +1,7 @@
 module.exports = {
-    'Search "maçon" in "Nantes"': function (client) {
+    'Search "maçon" in "Metz"': function (client) {
         client
-            .url('localhost:8000')
+            .url('http://localhost:8000')
             .waitForElementPresent('body', 10000)
             .assert.containsText('h1.introduction', 'Trouvez ici les entreprises')
             .click('.rgpd-banner ul li button:first-child')
@@ -26,9 +26,9 @@ module.exports = {
             .waitForElementVisible('#location-input')
 
             // City select step
-            .setValue("#location-form-step #location-input", 'Nantes')
+            .setValue("#location-form-step #location-input", 'Metz')
             .waitForElementVisible('#location-form-step ul.suggestions')
-            .click('#location-form-step ul.suggestions button[data-zipcode="44000"]')
+            .click('#location-form-step ul.suggestions button[data-zipcode="57000"]')
             .click('.form-step-container .submit-container button')
             .waitForElementVisible('#results')
 
