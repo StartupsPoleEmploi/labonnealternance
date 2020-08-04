@@ -74,7 +74,7 @@ export const CompanyIntroduction = ({ company }) => {
                     <img src="/static/img/icons/icon-screen.svg" alt="" className="icon" />
                     <h2>Site Internet</h2>
                     { company.website ?
-                        <a href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
+                        <a id="companydetails-link-companywebsite" href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
                             {company.website}
                         </a> : <span aria-label="Inconnu">-</span>}
                 </div>
