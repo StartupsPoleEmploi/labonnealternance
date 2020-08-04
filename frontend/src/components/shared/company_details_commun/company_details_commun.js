@@ -138,14 +138,14 @@ export const PrepareApplication = ({ company, rome }) => {
                 </div> : <div className="loader"><Loader /></div>}
 
 
-                <ToggleBlock title="C'est quoi une candidature spontanée ?"  iconPath="/static/img/icons/glasses.svg" >
+                <ToggleBlock id="companydetails-button-informationcs" title="C'est quoi une candidature spontanée ?"  iconPath="/static/img/icons/glasses.svg" >
                     <div>
                     L’entreprise n’a pas déposé d’offre d’emploi, vous pouvez tout de même lui envoyer votre Cv pour lui indiquer que vous seriez très intéressé pour intégrer son équipe dans le cadre de votre alternance.
                     Consultez  <a href="https://www.youtube.com/watch?v=1kSosmRpr04" title="Vidéo Youtube de présentation des candidatues spontanées (Ouverture dans une nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">cette courte vidéo</a> pour tout savoir sur la candidature spontanée.
                     </div>
                 </ToggleBlock>
 
-                <ToggleBlock title="Comment se préparer pour une candidature spontanée ?" iconPath="/static/img/icons/like.svg" >
+                <ToggleBlock id="companydetails-button-preparationcs" title="Comment se préparer pour une candidature spontanée ?" iconPath="/static/img/icons/like.svg" >
                     <ul className="list-unstyled">
                         <li>- <strong>Utilisez les informations recueillies : activité, actualités et valeurs</strong> de l’entreprise.</li>
                         <li>- Ayez en tête le <strong>type de poste</strong> que vous pouvez occuper lors de votre alternance.</li>
