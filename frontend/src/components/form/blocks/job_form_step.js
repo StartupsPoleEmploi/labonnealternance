@@ -312,7 +312,7 @@ export class JobFormStep extends Component {
                 {this.state.showNoJobSelectedPopin ? this.renderNotJobSelected() : null}
 
                 { showSubmit ? <div className="submit-container">
-                    <button className="button go-button" onClick={this.validateStep}>Valider</button>
+                    <button id="search-step2-button-submit" className="button go-button" onClick={this.validateStep}>Valider</button>
                 </div> : null }
 
 
