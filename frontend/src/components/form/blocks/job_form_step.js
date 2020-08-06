@@ -270,7 +270,7 @@ export class JobFormStep extends Component {
 
                 {!this.props.compactMode ?
                     <div className="submit-container autocomplete-submit">
-                        <button className="button go-button" onClick={this.validateAutocompleteStep}>Valider</button>
+                        <button id="search-step1-button-submit" className="button go-button" onClick={this.validateAutocompleteStep}>Valider</button>
                     </div> : null
                 }
             </div>
@@ -304,7 +304,7 @@ export class JobFormStep extends Component {
                 {this.state.showNoJobSelectedPopin ? this.renderNotJobSelected() : null}
 
                 { showSubmit ? <div className="submit-container">
-                    <button className="button go-button" onClick={this.validateStep}>Valider</button>
+                    <button id="search-step2-button-submit" className="button go-button" onClick={this.validateStep}>Valider</button>
                 </div> : null }
 
 

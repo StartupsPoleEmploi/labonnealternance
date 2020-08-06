@@ -16,7 +16,7 @@ export const PhoneEmailCompany = ({ company }) => {
         if(company.address) url = url.concat('+', company.address.city);
 
         return (
-            <a href={url} rel="noopener noreferrer" onClick={showPhoneLink} className="modal-button white" target="_blank" aria-label="Recherche le numéro de téléphone sur Google (ouverture d'une nouvelle fenêtre)">
+            <a id="companydetails-link-phone" href={url} rel="noopener noreferrer" onClick={showPhoneLink} className="modal-button white" target="_blank" aria-label="Recherche le numéro de téléphone sur Google (ouverture d'une nouvelle fenêtre)">
                 <span className="icon icon-phone hide-mobile" aria-hidden="true"></span>
                 <span className="hide-mobile">Voir le numéro</span>
                 <span className="hide-tablet hide-desktop">N° de téléphone</span>
@@ -25,7 +25,7 @@ export const PhoneEmailCompany = ({ company }) => {
     }
     function renderPhoneButton() {
         return (
-            <button onClick={showPhoneButton} className="modal-button white" aria-label="Voir le numéro de téléphone">
+            <button id="companydetails-button-phone" onClick={showPhoneButton} className="modal-button white" aria-label="Voir le numéro de téléphone">
                 <span className="icon icon-phone hide-mobile" aria-hidden="true"></span>
                 <span className="hide-mobile">Voir le numéro</span>
                 <span className="hide-tablet hide-desktop">N° de téléphone</span>
@@ -53,7 +53,7 @@ export const PhoneEmailCompany = ({ company }) => {
     function renderEmailButton(disabled) {
         return (
             <>
-                <button onClick={showEmailButton} className="modal-button" aria-label="Voir l'e-mail" disabled={disabled}>
+                <button id="companydetails-button-email" onClick={showEmailButton} className="modal-button" aria-label="Voir l'e-mail" disabled={disabled}>
                     <span className="icon icon-mail hide-mobile" aria-hidden="true"></span>
                     <span className="hide-mobile">Voir l'e-mail</span>
                     <span className="hide-tablet hide-desktop">E-mail</span>
