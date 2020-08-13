@@ -275,7 +275,7 @@ export class LocationFormStep extends Component {
 
         return (
             <div className="submit-container">
-                <button id="search-step3-button-submit" className="button go-button" disabled={!this.isValid()} onClick={this.validateStep}>C'est parti !</button>
+                <button id="gtm_search-step3-button-submit" className="button go-button" disabled={!this.isValid()} onClick={this.validateStep}>C'est parti !</button>
             </div>
         );
     }
