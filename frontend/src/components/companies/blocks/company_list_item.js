@@ -67,11 +67,11 @@ export class CompanyListItem extends Component {
                     </Experiment>
                     <div className="distance"><span className="icon pink-arrow">&nbsp;</span>{this.props.company.distance} km du lieu de recherche</div>
                     <div className="title">
-                        <span id="result-sidebar-link-companylabel" className="title" aria-level="3">{this.props.company.label}</span>
+                        <span id="gtm_result-sidebar-link-companylabel" className="title" aria-level="3">{this.props.company.label}</span>
                         <FavoriteButton company={this.props.company} />
                     </div>
                     <div>{ this.props.company.nafText ? <p>{this.props.company.nafText}</p>:'' }</div>
-                    <button id="result-sidebar-button-seemore" className="see-more">En savoir plus</button>
+                    <button id="gtm_result-sidebar-button-seemore" className="see-more">En savoir plus</button>
                 </div>
             </li>
         );
