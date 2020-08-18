@@ -3,7 +3,7 @@ import re, ssl
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
 
-from config.settings import LBB_URL, LBB_BYPASS_SSL_CERTIFICATE, LBB_API_KEY, LBB_WIDGET_API_KEY
+from config.settings import LBB_URL, LBB_BYPASS_SSL_CERTIFICATE, LBB_API_KEY, LBB_WIDGET_API_KEY, LBB_API_ONLY_ALTERNANCE_COMPANIES
 
 logger = logging.getLogger(__name__)
 
@@ -92,8 +92,9 @@ def get_company(siret):
     """
     params = {
         'user': API_USER,
-        'contract': 'alternance'
     }
+    if LBB_API_ONLY_ALTERNANCE_COMPANIES:
+        params['contract'] = 'alternance'
 
     timestamp = make_timestamp()
     signature = make_signature(params, timestamp)
@@ -149,9 +150,11 @@ def get_hidden_market_companies(longitude, latitude, rome_codes_str, page=1, dis
         'user': user,
         'distance': distance,
         'page': page,
-        'contract': 'alternance',
         'page_size': page_size,
     }
+
+    if LBB_API_ONLY_ALTERNANCE_COMPANIES:
+        params['contract'] = 'alternance'
 
     timestamp = make_timestamp()
     signature = make_signature(params, timestamp, user)
