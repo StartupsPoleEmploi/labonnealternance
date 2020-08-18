@@ -356,7 +356,7 @@ textarea {
 
     &.open {
         > .toggle-content {
-            max-height: 100px;
+            max-height: unset;
             margin: 20px;
         }
         h2 button img.icon {

@@ -1,5 +1,12 @@
+export const CompanyType = {
+    OFFER: 'OFFER',
+    DPAE: 'DPAE',
+    ALTERNANCE: 'ALTERNANCE',
+};
+
 export class Company {
-    constructor(siret, job, label, longitude, latitude, city, distance, nafSection, nafText, headcount, offers, flag_alternance) {
+    constructor(siret, job, label, longitude, latitude, city, distance, nafSection, nafText, headcount, offers) {
+        // FIXME: validate input data
         this.siret = siret;
         this.job = job; // Job(rome+label) associated to the company
         this.label = label;
@@ -11,7 +18,6 @@ export class Company {
         this.nafText = nafText;
         this.headcount = headcount;
         this.offers = offers;
-        this.flag_alternance = flag_alternance;
 
         // Should be display in Front (meaning not filtered)
         this.visible = true;
@@ -48,15 +54,20 @@ export class Company {
         return this.address !== undefined || this.email !== undefined || this.phone !== undefined || this.website !== undefined || this.officeName !== undefined;
     }
 
-    setExtraInfos(address, email, phone, officeName, website) {
+    setExtraInfos(address, email, phone, officeName, website, flag_alternance) {
+        // FIXME: we need to check input data, e.g. if flag_alternance is defined
         this.address = address;
         this.email = email;
         this.phone = phone;
         this.officeName = officeName || ''; // French equivalent : Enseigne
         this.website = website;
+        this.flag_alternance = flag_alternance;
     }
 
     setSoftSkills(softSkills) {
         this.softSkills = softSkills;
+    }
+    getType() {
+      return this.offers && this.offers.length ? CompanyType.OFFER : this.flag_alternance ? CompanyType.ALTERNANCE : CompanyType.DPAE;
     }
 }
