@@ -113,7 +113,7 @@ class ReactProxyAppView(View):
                     'title': title,
                     'store': {
                         'name': '__companyDetails',
-                        'data': company_data
+                        'data': json.dumps(company_data)
                     }
                 })
         return params
