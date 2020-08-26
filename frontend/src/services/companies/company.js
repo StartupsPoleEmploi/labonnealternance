@@ -25,9 +25,8 @@ export class Company {
 
 
     copy() {
-        // FIXME: headcount, offers and flag_alternance are also part of the constructor args
+        // FIXME: headcount, offers and alternance are also part of the constructor args
         let copy = new Company(this.siret, this.job, this.label, this.longitude, this.latitude, this.city, this.distance, this.nafSection, this.nafText);
-
         copy.officeName =  this.officeName;
         copy.headcount = this.headcount;
         copy.softSkills = this.softSkills;
@@ -36,7 +35,7 @@ export class Company {
         copy.phone = this.phone;
         copy.headcount = this.headcount;
         copy.offers = this.offers;
-        copy.flag_alternance = this.flag_alternance;
+        copy.alternance = this.alternance;
 
         copy.website = this.website;
 
@@ -54,20 +53,20 @@ export class Company {
         return this.address !== undefined || this.email !== undefined || this.phone !== undefined || this.website !== undefined || this.officeName !== undefined;
     }
 
-    setExtraInfos(address, email, phone, officeName, website, flag_alternance) {
-        // FIXME: we need to check input data, e.g. if flag_alternance is defined
+    setExtraInfos(address, email, phone, officeName, website, alternance) {
+        // FIXME: we need to check input data, e.g. if alternance is defined
         this.address = address;
         this.email = email;
         this.phone = phone;
         this.officeName = officeName || ''; // French equivalent : Enseigne
         this.website = website;
-        this.flag_alternance = flag_alternance;
+        this.alternance = alternance;
     }
 
     setSoftSkills(softSkills) {
         this.softSkills = softSkills;
     }
     getType() {
-      return this.offers && this.offers.length ? CompanyType.OFFER : this.flag_alternance ? CompanyType.ALTERNANCE : CompanyType.DPAE;
+      return this.offers && this.offers.length ? CompanyType.OFFER : this.alternance ? CompanyType.ALTERNANCE : CompanyType.DPAE;
     }
 }

@@ -70,7 +70,7 @@ class CompanyDetailsServiceFactory {
                 officeName: companyData.raison_sociale,
                 naf: companyData.naf,
                 website: companyData.website,
-                flag_alternance: companyData.flag_alternance
+                alternance: companyData.alternance
             }
         });
     }

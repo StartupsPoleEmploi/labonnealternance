@@ -41,7 +41,7 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
                     if (company.offers_count !== undefined) {
                         companyOffers = company.offers;
                     }
-                    let companyTemp = new Company(company.siret, job, companyName, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text, companyOffers, company.flag_alternance);
+                    let companyTemp = new Company(company.siret, job, companyName, company.lon, company.lat, company.city, company.distance, determineNafSection(company.naf), company.naf_text, company.headcount_text, companyOffers, company.alternance);
 
                     if (filtersActive) companyTemp.visible = computeFilters(filters, companyTemp);
                     companies.set(company.siret, companyTemp);
