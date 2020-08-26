@@ -214,7 +214,7 @@ class ReactProxyAppView(View):
                 'city': company.get('city'),
                 'distance': company.get('distance'),
                 'matched_rome_code': company.get('matched_rome_code'),
-                'flag_alternance': company.get('flag_alternance')
+                'alternance': company.get('alternance')
             } for company in companies_data_temp.get('companies')
         ]
         companies_data_temp.update({ 'companies': filter_results })
