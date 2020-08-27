@@ -39,6 +39,7 @@ class CompanyDetailsServiceFactory {
                     return;
                 })
                 .then(companyData => {
+                    // FIXME: this should resolve or reject!
                     if (!companyData) return;
                     resolve(companyData);
                     this.dispatch(companyData, allDetails);
@@ -47,6 +48,7 @@ class CompanyDetailsServiceFactory {
     }
 
     dispatch(companyData, allDetails = false) {
+        console.log('dispatch', {companyData, allDetails})
         // FIXME: we want to use the company class for that
         store.dispatch({
             type: allDetails ? COMPANY_DETAILS_ACTIONS.ADD_ALL_COMPANY_DETAILS : COMPANY_DETAILS_ACTIONS.ADD_COMPANY_DETAILS,

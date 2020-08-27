@@ -25,6 +25,7 @@ export class Company {
 
 
     copy() {
+        console.trace('Company copy', this.alternance)
         // FIXME: headcount, offers and alternance are also part of the constructor args
         let copy = new Company(this.siret, this.job, this.label, this.longitude, this.latitude, this.city, this.distance, this.nafSection, this.nafText);
         copy.officeName =  this.officeName;
@@ -61,6 +62,7 @@ export class Company {
         this.officeName = officeName || ''; // French equivalent : Enseigne
         this.website = website;
         this.alternance = alternance;
+        console.trace('Company setExtraInfos', this.alternance)
     }
 
     setSoftSkills(softSkills) {

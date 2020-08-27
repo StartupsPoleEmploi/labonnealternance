@@ -1,4 +1,4 @@
-
+import json
 import re, ssl
 import datetime, hmac, hashlib, logging, os, urllib
 from urllib.error import HTTPError
@@ -102,7 +102,11 @@ def get_company(siret):
     params['signature'] = signature
 
     url = LBB_COMPANY_DETAILS_URL.format(LBB_URL, siret, urllib.parse.urlencode(params))
-    return get_url(url)
+    print('xxxxxx', url, siret, urllib.parse.urlencode(params), params)
+    return json.dumps({
+        "url": url,
+        "params": params,
+    })
 
 
 def get_visible_market_companies(citycode, rome_codes_str, distance=50, page_size=PAGE_SIZE, use_widget_user=False):
@@ -163,6 +167,10 @@ def get_hidden_market_companies(longitude, latitude, rome_codes_str, page=1, dis
 
     url = LBB_HIDDEN_MARKET_COMPANIES_URL.format(LBB_URL, urllib.parse.urlencode(params))
 
+    return json.dumps({
+        "url": url,
+        "params": params,
+        })
     try:
         response = get_url(url)
     except HTTPError as e:

@@ -85,7 +85,7 @@ def company_details(request):
         response = lbb_client.get_company(siret)
     except HTTPError:
         return HttpResponseNotFound()
-    return HttpResponse(response.read())
+    return HttpResponse(response)
 
 
 def get_city_slug_values(request):
@@ -182,7 +182,7 @@ def get_hidden_market_companies(request):
     except HTTPError:
         return HttpResponseServerError('<h1>Error while processing request</h1>', 501)
 
-    response = HttpResponse(response.read())
+    response = HttpResponse(response)
 
     return add_cors(response) if widget_domain_name else response
 
