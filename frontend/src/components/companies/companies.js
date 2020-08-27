@@ -20,7 +20,6 @@ import { SoftSkillsService } from '../../services/soft_skills/soft_skills.servic
 
 import { Job } from '../../services/search_form/job';
 import { formatString, unSlug, getParameterByName } from '../../services/helpers';
-import { GoogleAnalyticsService } from '../../services/google_analytics.service';
 import { constants } from '../../constants';
 
 import './companies.css';
@@ -28,7 +27,17 @@ import './companies.css';
 // Constants
 const SHOW_RESULT_POPUP_KEY = 'SHOW_RESULT_POPUP_KEY';
 
+const withOldState = listener => {
+    let oldState = null;
+    return store.subscribe(() => {
+        let currentState = store.getState();
+        listener(oldState, currentState);
+        oldState = currentState;
+    });
+};
+
 class Companies extends Component {
+    
 
     constructor(props) {
         super(props);
@@ -180,26 +189,26 @@ class Companies extends Component {
 
 
         // When a company is selected
-        this.companyDetailsStore = store.subscribe(() => {
-            let company = store.getState().companyDetails;
+        this.companyDetailsStore = withOldState((oldState, state) => {
+            let company = state.companyDetails;
 
-            if (company) {
+            if (company && company !== oldState.company) {
                 // Update URL in browser
                 let referer = this.baseUrl;
                 let newUrl = '/details-entreprises/' + company.siret;
                 if (window.location.pathname !== newUrl) window.history.pushState({ companySiret: company.siret }, '', newUrl + "?referer=" + encodeURIComponent(referer) + "&rome=" + company.job.rome);
 
-                // Register event in GA
-                GoogleAnalyticsService.setPageView(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
-                GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/fiche');
+                // // Register event in GA
+                // GoogleAnalyticsService.setPageView(GoogleAnalyticsService.handleCompanyDetailsUrl(newUrl));
+                // GoogleAnalyticsService.setPageViewWithOfferInfo('/recherche/fiche');
 
                 this.setState({ company });
             } else {
                 window.history.pushState({}, '', this.baseUrl);
 
-                // Register event in GA
-                GoogleAnalyticsService.setPageView(this.baseUrl);
-                GoogleAnalyticsService.setPageView('/recherche/resultat');
+                // // Register event in GA
+                // GoogleAnalyticsService.setPageView(this.baseUrl);
+                // GoogleAnalyticsService.setPageView('/recherche/resultat');
 
                 this.setState({ company: undefined });
             }

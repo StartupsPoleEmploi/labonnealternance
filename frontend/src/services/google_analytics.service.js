@@ -3,20 +3,16 @@ import { environment } from '../environment';
 import RGPDService from '../services/rgpd.service';
 import store from './store';
 
-const LBA_TRACKER_NAME = "LBA_TRACKER";
-const SEO_TRACKER_NAME = "SEO_TRACKER";
-
 export class GoogleAnalyticsService {
+    static initDone = false;
 
     static initGoogleAnalytics() {
-        if(environment.GA_ID && environment.GA_ID !== '') {
-            let ids = [{ trackingId: environment.GA_ID, gaOptions: { name: LBA_TRACKER_NAME } }];
-            if(environment.SEO_GA_ID && environment.SEO_GA_ID !== '') ids.push({ trackingId: environment.SEO_GA_ID, gaOptions: { name: SEO_TRACKER_NAME } });
-
-            ReactGA.initialize(ids, { gaOptions: { cookieExpires: 31536000 }});
+        if (!GoogleAnalyticsService.initDone && environment.GA_ID && environment.GA_ID !== '') {
+            ReactGA.initialize(environment.GA_ID, { gaOptions: { cookieExpires: 31536000 }});
             // Anonymous mode : https://developers.google.com/analytics/devguides/collection/analyticsjs/ip-anonymization
             if(!RGPDService.userAcceptsRGPD()) ReactGA.set('anonymizeIp', true);
         }
+        GoogleAnalyticsService.initDone = true;
     }
 
     static handleCompanyUrl(currentUrl) {
@@ -61,23 +57,17 @@ export class GoogleAnalyticsService {
         return environment.GA_ID && environment.GA_ID !== '';
     }
 
-    static getTrackers() {
-        let trackers = [LBA_TRACKER_NAME]
-        if(environment.SEO_GA_ID && environment.SEO_GA_ID !== '') trackers.push(SEO_TRACKER_NAME);
-        return trackers;
-    }
-
     static setPageView(pageView) {
-        const trackers = GoogleAnalyticsService.getTrackers();
-        ReactGA.set({ page: pageView }, trackers);
-        ReactGA.pageview(pageView, trackers);
+        ReactGA.set({ page: pageView });
+        ReactGA.pageview(pageView);
     }
 
     static setPageViewWithOfferInfo(pageView) {
         this.setPageView(pageView);
         let company = store.getState().companyDetails;
         if (company) {
-            if (company.offers.length >= 1) {
+            // company.offers is undefined when page reloaded
+            if (company.offers && company.offers.length >= 1) {
                 GoogleAnalyticsService.setPageView(`${pageView}/avec-offres`);
             } else {
                 GoogleAnalyticsService.setPageView(`${pageView}/sans-offres`);
@@ -86,12 +76,10 @@ export class GoogleAnalyticsService {
     }
 
     static sendEvent({ category, action }) {
-        const trackers = GoogleAnalyticsService.getTrackers();
-        ReactGA.event({ category, action }, trackers);
+        ReactGA.event({ category, action });
     }
 
     static setDimension({ name, value }) {
-        const trackers = GoogleAnalyticsService.getTrackers();
-        ReactGA.set({ [name]: value }, trackers);
+        ReactGA.set({ [name]: value });
     }
 }
