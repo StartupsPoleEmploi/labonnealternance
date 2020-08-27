@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
-
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import { FavoritesList } from './favorites_list';
-import SearchForm from '../../../shared/search_form/search_form';
 import { GoogleAnalyticsService } from '../../../../services/google_analytics.service';
+import SearchForm from '../../../shared/search_form/search_form';
 
 class Header extends Component {
 

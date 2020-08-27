@@ -1,9 +1,9 @@
+import { withRouter } from "react-router-dom";
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
 
-import { SearchFormData } from '../../../services/search_form/search_form_data';
-import { LocationFormStep } from '../../form/blocks/location_form_step';
 import { JobFormStep } from '../../form/blocks/job_form_step';
+import { LocationFormStep } from '../../form/blocks/location_form_step';
+import { SearchFormData } from '../../../services/search_form/search_form_data';
 import { SearchFormService } from '../../../services/search_form/search_form.service';
 
 class SearchForm extends Component {
@@ -31,7 +31,7 @@ class SearchForm extends Component {
     callNewSearch = () => {
         if (this.isValid()) {
             SearchFormService.saveSearchFormValues(this.state.searchForm);
-            navigate(this.state.searchForm.computeSearchUrlSearch());
+            this.props.history.push(this.state.searchForm.computeSearchUrlSearch());
             window.history.go();
         }
     }
@@ -62,4 +62,4 @@ class SearchForm extends Component {
 }
 
 
-export default SearchForm;
+export default withRouter(SearchForm);

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 import { SEOService } from '../../services/seo.service';
 
-require('./not_found.css');
+import './not_found.css';
 
 export default class NotFound extends Component {
 

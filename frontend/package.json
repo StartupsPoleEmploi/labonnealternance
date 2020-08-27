@@ -8,21 +8,21 @@
         "node": ">=9.0.0 <12.0.0"
     },
     "dependencies": {
-        "@marvelapp/react-ab-test": "^2.2.0",
-        "@reach/router": "^1.2.1",
+        "@marvelapp/react-ab-test": "^2.3.0",
         "babel-core": "7.0.0-bridge.0",
         "babel-polyfill": "^6.26.0",
-        "browserstack-local": "^1.4.2",
-        "create-react-app": "^3.0.1",
-        "leaflet.markercluster": "1.4.0",
-        "mapbox.js": "3.1.1",
-        "mixpanel-browser": "^2.29.0",
-        "nightwatch": "^1.0.14",
-        "react": "^16.8.3",
-        "react-dom": "^16.8.3",
-        "react-ga": "^2.5.7",
-        "react-redux": "^6.0.1",
-        "redux": "^3.7.2"
+        "browserstack-local": "^1.4.5",
+        "create-react-app": "^3.4.1",
+        "leaflet.markercluster": "1.4.1",
+        "mapbox.js": "3.3.1",
+        "mixpanel-browser": "^2.38.0",
+        "nightwatch": "^1.3.6",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-ga": "^3.1.1",
+        "react-redux": "^7.2.0",
+        "react-router-dom": "^5.2.0",
+        "redux": "^4.0.5"
     },
     "scripts": {
         "build-css": "node-sass-chokidar src/ -o src/",
@@ -37,21 +37,9 @@
         "eject": "react-scripts eject"
     },
     "devDependencies": {
-        "babel-eslint": "^9.0.0",
-        "babel-jest": "^23.6.0",
-        "eslint": "5.12.0",
-        "eslint-config-synacor": "^2.1.0",
-        "eslint-plugin-flowtype": "2.50.3",
-        "eslint-plugin-import": "2.14.0",
-        "eslint-plugin-jsx-a11y": "6.1.1",
-        "eslint-plugin-react": "^7.12.4",
-        "jest": "23.6.0",
-        "jest-cli": "^23.6.0",
-        "node-sass-chokidar": "^1.3.4",
+        "node-sass-chokidar": "^1.5.0",
         "npm-run-all": "^4.1.5",
-        "react-scripts": "^2.1.5",
-        "webpack": "4.28.3",
-        "why-did-you-update": "^0.1.1"
+        "react-scripts": "^3.4.1"
     },
     "eslintIgnore": [
         "build/*",

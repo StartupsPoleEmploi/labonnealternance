@@ -162,7 +162,7 @@ export class MapBoxService {
 
         // Clean, remove and create cluster
         this.clusters.eachLayer(layer => this.clusters.removeLayer(layer));
-        this.map.removeLayer(this.CLUSTERS_ID);
+        this.map.removeLayer(this.clusters);
         this.clusters = new MarkerClusterGroup(this.CLUSTERS_OPTS);
         this.map.addLayer(this.clusters);
     }

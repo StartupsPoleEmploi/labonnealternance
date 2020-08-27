@@ -1,27 +1,22 @@
+import { withRouter } from "react-router-dom";
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
-import { navigate } from '@reach/router';
+import { Link } from 'react-router-dom';
 
+import { CompanyDetailsCommon, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
+import { CompanyDetailsService } from '../../services/company_details/company_details.service';
+import { Footer } from '../shared/footer/footer';
+import { Loader } from '../shared/loader/loader';
+import { NotificationModal } from '../shared/notification_modal/notification_modal';
+import { PhoneEmailCompany } from '../shared/company_details_commun/company_phone_email';
+import { SEOService } from '../../services/seo.service';
+import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
+import { getParameterByName } from '../../services/helpers';
+import FavoriteButton from '../shared/favorite_button/favorite_button';
+import Header from '../companies/blocks/header/header';
+import UpdateCompanyLink from '../shared/update-company-link';
 import store from '../../services/store';
 
-import { Loader } from '../shared/loader/loader';
-import { Footer } from '../shared/footer/footer';
-import { NotificationModal } from '../shared/notification_modal/notification_modal';
-
-import Header from '../companies/blocks/header/header';
-import FavoriteButton from '../shared/favorite_button/favorite_button';
-
-import { SEOService } from '../../services/seo.service';
-import { CompanyDetailsService } from '../../services/company_details/company_details.service';
-
-import { getParameterByName } from '../../services/helpers';
-
-import { SoftSkillsService } from '../../services/soft_skills/soft_skills.service';
-import { CompanyDetailsCommon, CompanyIntroduction, PrepareApplication } from '../shared/company_details_commun/company_details_commun';
-import UpdateCompanyLink from '../shared/update-company-link';
-import { PhoneEmailCompany } from '../shared/company_details_commun/company_phone_email';
-
-require('./company_details.css');
+import './company_details.css';
 
 class CompanyDetails extends Component {
     constructor(props) {
@@ -69,7 +64,7 @@ class CompanyDetails extends Component {
             CompanyDetailsService.initFromWindowObject();
         } else {
             CompanyDetailsService.getCompanyDetailsFromLBB(this.state.siret, true)
-                .catch(() => navigate('/not-found'));
+                .catch(() => this.props.history.push('/not-found'));
         }
     }
 
@@ -130,4 +125,8 @@ class CompanyDetails extends Component {
     }
 }
 
-export default CompanyDetails;
+export default withRouter(({match, location, history}) => <CompanyDetails
+  history={history}
+  location={location}
+  {...match.params}
+   />);

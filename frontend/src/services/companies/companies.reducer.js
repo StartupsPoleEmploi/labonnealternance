@@ -22,7 +22,7 @@ export const COMPANIES_REDUCER = (state = initialState, action) => {
             if (action.data === undefined) return state;
 
             // Filters
-            let filters = store.getState().filters;
+            let filters = state.filters;
             let filtersActive = isFiltersActive(filters);
 
             // Note : to not check duplicates here (because distance can change)

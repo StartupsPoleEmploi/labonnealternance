@@ -55,14 +55,26 @@ export class LocationFormStep extends Component {
     }
 
     componentWillMount() {
+        // FIXME: __isMounted is a workaround and should not be needed. The callback passed to store.subscribe is called from componentWillUnmount
+        this.__isMounted = true;
+
         NotificationService.deleteNotification();
 
         this.autocompleteLocationStore = store.subscribe(() => {
+            if(!this.__isMounted) {
+              console.warn('FIXME: this should not be called on an unmounted component');
+              return;
+            }
             this.setState({ suggestions: store.getState().locationSuggestions });
         });
 
         // When we get the user position and address
         this.currentLocationStore = store.subscribe(() => {
+            if(!this.__isMounted) {
+              console.warn('FIXME: this should not be called on an unmounted component');
+              return;
+            }
+
             let locationSaved = store.getState().currentLocation;
 
             if (!locationSaved) return;
@@ -89,6 +101,9 @@ export class LocationFormStep extends Component {
     }
 
     componentWillUnmount() {
+        // FIXME: __isMounted is a workaround and should not be needed. The callback passed to store.subscribe is called from componentWillUnmount
+        this.__isMounted = false;
+
         // Unsubscribe
         this.currentLocationStore();
         this.autocompleteLocationStore();

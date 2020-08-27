@@ -1,19 +1,16 @@
+import { withRouter } from "react-router-dom";
 import React, { Component } from 'react';
-import { navigate } from '@reach/router';
-
-import Header from '../shared/header/header';
 
 import { JobFormStep } from './blocks/job_form_step';
 import { LocationFormStep } from './blocks/location_form_step';
-
 import { Notification } from '../shared/notification/notification';
-
+import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
+import { SEOService } from '../../services/seo.service';
 import { SearchFormData } from '../../services/search_form/search_form_data';
 import { SearchFormService } from '../../services/search_form/search_form.service';
-import { SEOService } from '../../services/seo.service';
-import { RGPDBar } from '../shared/rgpd_bar/rgpd_bar';
+import Header from '../shared/header/header';
 
-require('./form.css');
+import './form.css';
 
 class Form extends Component {
 
@@ -34,8 +31,7 @@ class Form extends Component {
 
     sendForm = () => {
         SearchFormService.saveSearchFormValues(this.state.searchForm);
-        navigate(this.state.searchForm.computeSearchUrlSearch());
-        window.history.go();
+        this.props.history.push(this.state.searchForm.computeSearchUrlSearch());
     }
 
     nextStep = () => {
@@ -62,4 +58,4 @@ class Form extends Component {
 
 }
 
-export default Form;
+export default withRouter(Form);
