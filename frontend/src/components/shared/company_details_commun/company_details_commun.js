@@ -81,7 +81,7 @@ export const CompanyIntroduction = ({ company }) => {
                     <img src="/static/img/icons/icon-screen.svg" alt="" className="icon" />
                     <h2>Site Internet</h2>
                     { company.website ?
-                        <a id="gtm_companydetails-link-companywebsite" href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
+                        <a className="gtm-companydetails-link-companywebsite" href={company.website} target="_blank" rel="noopener noreferrer" title="Ouverture dans une nouvelle fenêtre">
                             {company.website}
                         </a> : <span aria-label="Inconnu">-</span>}
                 </div>
@@ -145,14 +145,14 @@ export const PrepareApplication = ({ company, rome }) => {
                 </div> : <div className="loader"><Loader /></div>}
 
 
-                <ToggleBlock id="gtm_companydetails-button-informationcs" title="C'est quoi une candidature spontanée ?"  iconPath="/static/img/icons/glasses.svg" >
+                <ToggleBlock className="gtm-companydetails-button-informationcs" title="C'est quoi une candidature spontanée ?"  iconPath="/static/img/icons/glasses.svg" >
                     <div>
                     L’entreprise n’a pas déposé d’offre d’emploi, vous pouvez tout de même lui envoyer votre Cv pour lui indiquer que vous seriez très intéressé pour intégrer son équipe dans le cadre de votre alternance.
                     Consultez  <a href="https://www.youtube.com/watch?v=1kSosmRpr04" title="Vidéo Youtube de présentation des candidatues spontanées (Ouverture dans une nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">cette courte vidéo</a> pour tout savoir sur la candidature spontanée.
                     </div>
                 </ToggleBlock>
 
-                <ToggleBlock id="gtm_companydetails-button-preparationcs" title="Comment se préparer pour une candidature spontanée ?" iconPath="/static/img/icons/list.svg" >
+                <ToggleBlock className="gtm-companydetails-button-preparationcs" title="Comment se préparer pour une candidature spontanée ?" iconPath="/static/img/icons/list.svg" >
                     <ul className="list-unstyled">
                         <li>- Adaptez votre lettre de motivation aux informations recueillies sur l'entreprise : Activité, actualités et valeurs. Pour obtenir ces informations, rendez vous sur le site de l'entreprise</li>
                         <li>- Mettez en valeur vos qualités en lien avec le métier recherché et indiquez pourquoi vous souhaitez réaliser votre alternance dans cette entreprise en particulier</li>
