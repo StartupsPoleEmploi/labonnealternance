@@ -47,6 +47,7 @@ class CompanyDetailsServiceFactory {
     }
 
     dispatch(companyData, allDetails = false) {
+        // FIXME: we want to use the company class for that
         store.dispatch({
             type: allDetails ? COMPANY_DETAILS_ACTIONS.ADD_ALL_COMPANY_DETAILS : COMPANY_DETAILS_ACTIONS.ADD_COMPANY_DETAILS,
             data: {
@@ -68,7 +69,8 @@ class CompanyDetailsServiceFactory {
                 phone: companyData.phone,
                 officeName: companyData.raison_sociale,
                 naf: companyData.naf,
-                website: companyData.website
+                website: companyData.website,
+                alternance: companyData.alternance
             }
         });
     }

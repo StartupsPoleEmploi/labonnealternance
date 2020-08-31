@@ -3,6 +3,7 @@ import { Experiment, Variant } from '@marvelapp/react-ab-test';
 import { Loader } from '../loader/loader';
 import { slug } from '../../../services/helpers';
 import { GoogleAnalyticsService } from '../../../services/google_analytics.service';
+import { CompanyType } from '../../../services/companies/company';
 import { constants } from '../../../constants';
 
 /**
@@ -11,17 +12,23 @@ import { constants } from '../../../constants';
 export class CompanyDetailsCommon {
 
     static renderTitle(company) {
-        return (
-            <div className="company-promotion text-center">
+        const type = company.getType();
+        return type === CompanyType.DPAE ? <div className="company-promotion text-center">
+                <p>
+                    <strong>
+                        <span>{company.label}</span> a des salariés qui exercent le métier auquel vous vous destinez. <br />
+                        Faites-lui découvrir les avantages d’un recrutement en alternance dans votre candidature !
+                    </strong>
+                </p>
+            </div>
+            : <div className="company-promotion text-center">
                 <p>
                     <strong>
                         <span>{company.label}</span> a recruté en alternance dans le passé.<br />
                         Tentez votre chance, envoyez votre candidature !
                     </strong>
                 </p>
-            </div>
-
-        )
+            </div>;
     }
 }
 
@@ -92,7 +99,7 @@ export const CompanyIntroduction = ({ company }) => {
 
             </div>
 
-            { company.offers && company.offers.length >= 1 &&
+            { company.getType() === CompanyType.OFFER &&
                 <Experiment name={constants.OFFERS_ABTEST_EXPERIMENT_NAME}>
                     <Variant name="visibles">
                         <div className="line offers column grey padding">
@@ -145,11 +152,25 @@ export const PrepareApplication = ({ company, rome }) => {
                     </div>
                 </ToggleBlock>
 
-                <ToggleBlock id="gtm_companydetails-button-preparationcs" title="Comment se préparer pour une candidature spontanée ?" iconPath="/static/img/icons/like.svg" >
+                <ToggleBlock id="gtm_companydetails-button-preparationcs" title="Comment se préparer pour une candidature spontanée ?" iconPath="/static/img/icons/list.svg" >
                     <ul className="list-unstyled">
-                        <li>- <strong>Utilisez les informations recueillies : activité, actualités et valeurs</strong> de l’entreprise.</li>
-                        <li>- Ayez en tête le <strong>type de poste</strong> que vous pouvez occuper lors de votre alternance.</li>
-                        <li>- Mettez l’accent sur <strong>les raisons qui vont ont convaincu de prendre cette orientation</strong> : une rencontre, un stage, un hobby….</li>
+                        <li>- Adaptez votre lettre de motivation aux informations recueillies sur l'entreprise : Activité, actualités et valeurs. Pour obtenir ces informations, rendez vous sur le site de l'entreprise</li>
+                        <li>- Mettez en valeur vos qualités en lien avec le métier recherché et indiquez pourquoi vous souhaitez réaliser votre alternance dans cette entreprise en particulier</li>
+                        <li>- Besoin d'aide pour concevoir votre CV ? Il existe plusieurs outils gratuits :
+                            <ul>
+                                <li><a href="https://cv.clicnjob.fr/">CLICNJOB</a></li> 
+                                <li><a href="https://cvdesignr.com/fr">CVDesignR</a></li>
+                                <li><a href="https://www.canva.com/fr_fr/creer/cv/">Canva</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ToggleBlock>
+
+                <ToggleBlock title="Quels sont les avantages pour l'employeur ?" iconPath="/static/img/icons/like.svg" >
+                    <ul class="list-unstyled">
+                        <li>- Une embauche à coût très réduit grâce aux aides existantes</li>
+                        <li>- Un moyen de former à ses métiers et d'anticiper un besoin de main d'oeuvre</li>
+                        <li>- La valorisation des compétences de ses salariés, en leur confiant un apprenti et en reconnaissant leur capacité de transmettre un métier</li>
                     </ul>
                 </ToggleBlock>
 

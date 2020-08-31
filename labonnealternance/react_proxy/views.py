@@ -113,7 +113,7 @@ class ReactProxyAppView(View):
                     'title': title,
                     'store': {
                         'name': '__companyDetails',
-                        'data': company_data
+                        'data': json.dumps(company_data)
                     }
                 })
         return params
@@ -213,7 +213,8 @@ class ReactProxyAppView(View):
                 'lat': company.get('lat'),
                 'city': company.get('city'),
                 'distance': company.get('distance'),
-                'matched_rome_code': company.get('matched_rome_code')
+                'matched_rome_code': company.get('matched_rome_code'),
+                'alternance': company.get('alternance')
             } for company in companies_data_temp.get('companies')
         ]
         companies_data_temp.update({ 'companies': filter_results })
