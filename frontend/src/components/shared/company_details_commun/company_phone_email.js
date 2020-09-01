@@ -16,19 +16,19 @@ export const PhoneEmailCompany = ({ company }) => {
         if(company.address) url = url.concat('+', company.address.city);
 
         return (
-            <a id="gtm_companydetails-link-phone" href={url} rel="noopener noreferrer" onClick={showPhoneLink} className="modal-button white" target="_blank" aria-label="Recherche le numéro de téléphone sur Google (ouverture d'une nouvelle fenêtre)">
-                <span id="gtm_companydetails-link-phone" className="icon icon-phone hide-mobile" aria-hidden="true"></span>
-                <span id="gtm_companydetails-link-phone" className="hide-mobile">Voir le numéro</span>
-                <span id="gtm_companydetails-link-phone" className="hide-tablet hide-desktop">N° de téléphone</span>
+            <a href={url} rel="noopener noreferrer" onClick={showPhoneLink} className="modal-button white gtm-companydetails-link-phone" target="_blank" aria-label="Recherche le numéro de téléphone sur Google (ouverture d'une nouvelle fenêtre)">
+                <span className="icon icon-phone hide-mobile" aria-hidden="true"></span>
+                <span className="hide-mobile">Voir le numéro</span>
+                <span className="hide-tablet hide-desktop">N° de téléphone</span>
             </a>
         );
     }
     function renderPhoneButton() {
         return (
-            <button id="gtm_companydetails-button-phone" onClick={showPhoneButton} className="modal-button white" aria-label="Voir le numéro de téléphone">
-                <span id="gtm_companydetails-button-phone" className="icon icon-phone hide-mobile" aria-hidden="true"></span>
-                <span id="gtm_companydetails-button-phone" className="hide-mobile">Voir le numéro</span>
-                <span id="gtm_companydetails-button-phone" className="hide-tablet hide-desktop">N° de téléphone</span>
+            <button id="" onClick={showPhoneButton} className="modal-button white gtm-companydetails-button-phone" aria-label="Voir le numéro de téléphone">
+                <span className="icon icon-phone hide-mobile" aria-hidden="true"></span>
+                <span className="hide-mobile">Voir le numéro</span>
+                <span className="hide-tablet hide-desktop">N° de téléphone</span>
             </button>
         );
     }
@@ -53,10 +53,10 @@ export const PhoneEmailCompany = ({ company }) => {
     function renderEmailButton(disabled) {
         return (
             <>
-                <button id="gtm_companydetails-button-email" onClick={showEmailButton} className="modal-button" aria-label="Voir l'e-mail" disabled={disabled}>
-                    <span id="gtm_companydetails-button-email" className="icon icon-mail hide-mobile" aria-hidden="true"></span>
-                    <span id="gtm_companydetails-button-email" className="hide-mobile">Voir l'e-mail</span>
-                    <span id="gtm_companydetails-button-email" className="hide-tablet hide-desktop">E-mail</span>
+                <button onClick={showEmailButton} className="modal-button gtm-companydetails-button-email" aria-label="Voir l'e-mail" disabled={disabled}>
+                    <span className="icon icon-mail hide-mobile" aria-hidden="true"></span>
+                    <span className="hide-mobile">Voir l'e-mail</span>
+                    <span className="hide-tablet hide-desktop">E-mail</span>
                 </button>
                 { disabled ? <p>L'e-mail de cette entreprise n'est pas disponible</p> : null }
             </>
