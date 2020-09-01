@@ -39,15 +39,15 @@ export default class Home extends Component {
                             <ul className="buttons-container">
                                 <li className="button-container">
                                     <p dangerouslySetInnerHTML={{__html: CTA1_TEXT}}></p>
-                                    <Link className="button" to={CTA1_SLUG} title={CTA1_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA1_LABEL}}></Link>
+                                    <Link className="button gtm-home-button-searchcourses" to={CTA1_SLUG} title={CTA1_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA1_LABEL}}></Link>
                                 </li>
                                 <li className="button-container">
                                     <p dangerouslySetInnerHTML={{__html: CTA2_TEXT}}></p>
-                                    <Link className="button" to={CTA2_SLUG} title={CTA2_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA2_LABEL}}></Link>
+                                    <Link className="button gtm-home-button-searchcoursesandcompanies" to={CTA2_SLUG} title={CTA2_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA2_LABEL}}></Link>
                                 </li>
                                 <li className="button-container">
                                     <p>Je cherche une <strong>entreprise</strong> en alternance</p>
-                                    <Link className="button" to="/recherche" title="Chercher une entreprise">C'est parti !</Link>
+                                    <Link className="button gtm-home-button-searchcompanies" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
                                 </li>
                             </ul>
 

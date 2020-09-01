@@ -40,7 +40,7 @@ export default class FAQ extends Component {
 										<h2 id="ameliorations-et-contact">Améliorations et contact</h2>
 										<p>L'équipe de La bonne alternance reste à votre écoute et entière disposition, si vous souhaitez nous signaler le moindre défaut de conception.</p>
 										<p>Vous pouvez nous aider à améliorer l’accessibilité du site en nous signalant les problèmes éventuels que vous rencontrez :  <a href="mailto:labonnealternance@pole-emploi.fr">Contactez-nous</a></p>
-										<p>Vous pouvez également soumettre vos demandes de modification sur la <a href="https://github.com/StartupsPoleEmploi/labonnealternance/">plate-forme Github</a></p>
+										<p>Vous pouvez également soumettre vos demandes de modification sur la <a href="https://github.com/StartupsPoleEmploi/labonnealternance/" target="_blank">plate-forme Github</a></p>
                 </main>
 
                 <RGPDBar />
