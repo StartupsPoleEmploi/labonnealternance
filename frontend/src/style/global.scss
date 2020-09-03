@@ -100,7 +100,10 @@ button.close {
 
 // Loading animation
 .loading-dotted {
-    color: black;
+    text-align: center;
+    margin: 50px;
+    color: white;
+ 
     &:after {
         display: inline-block;
         animation: dotty steps(1,end) 1s infinite;
@@ -773,7 +776,7 @@ header#global-header {
 .content {
     padding: 0 20px;
     // Avoid superposition with fixed footer
-    margin-bottom: 150px;
+    margin-bottom: 500px;
 
     h1 { color: $blue; font-size: 1.5em; margin: 20px 0; }
     h2 { color: black; font-size: 1.2em; margin: 20px 0; }

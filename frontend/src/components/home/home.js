@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { environment } from '../../environment';
 import Header from '../shared/header/header';
 import { OtherStartups } from '../shared/other_startups/other_startups';
 import { Footer } from '../shared/footer/footer';
@@ -10,10 +11,15 @@ import LazyLoadYoutube from '../shared/lazyload-youtube/lazyload-youtube';
 
 import './home.css';
 
+const {
+  CTA1_LABEL, CTA1_TEXT, CTA1_TOOLTIP, CTA1_SLUG,
+  CTA2_LABEL, CTA2_TEXT, CTA2_TOOLTIP, CTA2_SLUG,
+} = environment;
+
 export default class Home extends Component {
     componentWillMount() {
         SEOService.displayNoFollow(false);
-        SEOService.setTitle('Le site des entreprises qui recrutent en alternance');
+        SEOService.setTitle('La Bonne Alternance | Trouvez votre alternance');
     }
 
     render() {
@@ -28,13 +34,22 @@ export default class Home extends Component {
                     <main>
                         <section className="main-landing">
                             <h1 className="introduction">
-                                <span>Trouvez ici les entreprises</span><br />
-                                <span>qui recrutent <strong>régulièrement</strong> en alternance</span>
+                                <span>Trouvez votre alternance</span>
                             </h1>
-
-                            <div className="button-container">
-                                <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
-                            </div>
+                            <ul className="buttons-container">
+                                <li className="button-container">
+                                    <p dangerouslySetInnerHTML={{__html: CTA1_TEXT}}></p>
+                                    <Link className="button gtm-home-button-searchcourses" to={CTA1_SLUG} title={CTA1_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA1_LABEL}}></Link>
+                                </li>
+                                <li className="button-container">
+                                    <p dangerouslySetInnerHTML={{__html: CTA2_TEXT}}></p>
+                                    <Link className="button gtm-home-button-searchcoursesandcompanies" to={CTA2_SLUG} title={CTA2_TOOLTIP} dangerouslySetInnerHTML={{__html: CTA2_LABEL}}></Link>
+                                </li>
+                                <li className="button-container">
+                                    <p>Je cherche une <strong>entreprise</strong> en alternance</p>
+                                    <Link className="button gtm-home-button-searchcompanies" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
+                                </li>
+                            </ul>
 
                             <div className="recruiter"><a href="https://labonneboite.pole-emploi.fr/informations-entreprise/action?origin=labonnealternance">Accès recruteur</a></div>
 
@@ -59,12 +74,7 @@ export default class Home extends Component {
 
                         <section className="more">
                             <div className="how-it-works max-size-1000">
-                                <h2 className="big">Comment ça marche ?</h2>
-                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/UgxlKSs5K_c" backgroundImage="/static/img/youtube/home.jpg" />
-                            </div>
-
-                            <div className="how-it-works max-size-1000">
-                                <h2 className="big">La Bonne Alternance</h2>
+                                <h2 className="big">Comment repère-t-on les entreprises ?</h2>
                                 <div className="img-right">
                                     <p>7 employeurs sur 10 recrutent sans déposer d’offres d’emploi. <br/>Il est essentiel dans votre recherche de proposer <br/>votre candidature à des entreprises n’ayant pas <br/>forcément déposé d’offres d’emploi en alternance.</p>
                                     <div className="recruteurs"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-recruteurs.svg" alt="" /></div>
@@ -78,10 +88,10 @@ export default class Home extends Component {
                                     <div className="map"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-map.svg" alt="" /></div>
                                 </div>
 
-                                <div className="text-center go-container">
-                                    <p>Maximisez vos chances ! Postulez auprès des entreprises qui recrutent régulièrement <br />en alternance sans forcément avoir déposé d’offres.</p>
-                                    <Link className="button" to="/recherche" title="Commencer à chercher">C'est parti !</Link>
-                                </div>
+                            </div>
+
+                            <div className="how-it-works max-size-1000">
+                                <LazyLoadYoutube iframeTitle="Vidéo de présentation de La Bonne Alternance sur Youtube" youtubeUrl="https://www.youtube.com/embed/UgxlKSs5K_c" backgroundImage="/static/img/youtube/home.jpg" />
                             </div>
 
                             <div className="form-2"><div>&nbsp;</div></div>
@@ -92,7 +102,7 @@ export default class Home extends Component {
                                         <img  src="/static/s.png" className="lazyload img-responsive" data-src="/static/img/logo/pole-emploi-couleur.svg" alt="La Bonne Alternance est un site de Pôle Emploi" title="La Bonne Alternance est un site de Pôle Emploi" />
                                     </a>
                                     <p>
-                                        Pôle Emploi innove et propose ce service pour vous permettre de trouver plus facilement des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
+                                        Pôle Emploi innove et propose ce service pour vous permettre notamment de trouver des entreprises proposant régulièrement des contrats en alternance. La Bonne Alternance est une start-up interne de Pôle Emploi créée et développée par des conseillers.<br/>
                                         <Link to="/qui-sommes-nous" title="En savoir plus sur les startups Pôle Emploi">En savoir plus</Link>
                                     </p>
                                 </div>
