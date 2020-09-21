@@ -232,7 +232,7 @@ export class Results extends Component {
             <div id="map-container">
                 <div id="results" className={this.resultsClasses()}>
 
-                    <div id="map-results">
+                    <div id="map-results" class="gtm-map-results">
                         <div className="map-direction-controls">
                             <button onClick={this.move} data-direction="top" className="top">&nbsp;</button>
                             <button onClick={this.move} data-direction="bottom" className="bottom">&nbsp;</button>
