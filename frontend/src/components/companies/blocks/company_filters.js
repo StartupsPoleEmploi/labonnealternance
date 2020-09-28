@@ -312,7 +312,7 @@ export class CompanyFilters extends Component {
                         <h3>Taille de l'entreprise</h3>
                         {this.state.headcountsSelected.length > 0 ? <button title="Désélectionner toutes les tailles d'entreprise" onClick={this.unselectedAllHeadcount}>Tout déselectionner</button> : null}
                     </div>
-                    <ul className="list-unstyled">
+                    <ul className="list-unstyled gtm-filter-companySize">
                         {this.renderHeadcount('- de 10 salariés', 0)}
                         {this.renderHeadcount('de 10 à 50 salariés', 1)}
                         {this.renderHeadcount('de 50 à 200 salariés', 2)}
@@ -324,7 +324,7 @@ export class CompanyFilters extends Component {
                         <h3>Métiers</h3>
                         {this.state.romesSelected.length > 0 ? <button title="Désélectionner tous les métiers" onClick={this.unselectedAllRome}>Tout déselectionner</button> : null}
                     </div>
-                    <ul className="list-unstyled">
+                    <ul className="list-unstyled gtm-filter-job">
                         {toArray(this.state.romeValues).map(rome => this.renderRome(rome[1], rome[0]))}
                     </ul>
 
@@ -332,7 +332,7 @@ export class CompanyFilters extends Component {
                         <h3>Secteurs d'activité</h3>
                         {this.state.nafsSelected.length > 0 ? <button title="Désélectionner tous les secteurs d'activités" onClick={this.unselectedAllNaf}>Tout déselectionner</button> : null}
                     </div>
-                    <ul className="list-unstyled">
+                    <ul className="list-unstyled gtm-filter-businessSector">
                         {toArray(this.state.nafValues).map(naf => this.renderNaf(naf[1], naf[0]))}
                     </ul>
 
