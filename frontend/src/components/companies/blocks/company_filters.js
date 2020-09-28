@@ -291,7 +291,7 @@ export class CompanyFilters extends Component {
                     <div className="filter-title">
                         <h3>Rayon de recherche</h3>
                     </div>
-                    <ul className="distance-chooser list-unstyled inline-list">
+                    <ul className="distance-chooser list-unstyled inline-list gtm-filter-distance">
                         <li>
                             <input onChange={this.distanceSelected} id="value-10" type="radio" name="distance" value="10" />
                             <label htmlFor="value-10">10 km</label>
