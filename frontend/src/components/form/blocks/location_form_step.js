@@ -295,7 +295,7 @@ export class LocationFormStep extends Component {
 
                 {this.renderSuggestions()}
                 <div className="distance">dans un rayon de</div>
-                <ul className="distance-chooser unstyled-list list-inline">
+                <ul className="distance-chooser unstyled-list list-inline gtm-filter-distance">
                     <li>
                         <input checked={this.renderDistanceSelected(10)} onChange={this.distanceSelected} id="value-10" type="radio" name="distance" value="10" />
                         <label htmlFor="value-10">10 km</label>
