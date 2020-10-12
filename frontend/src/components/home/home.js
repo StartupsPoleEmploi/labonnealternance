@@ -81,7 +81,7 @@ export default class Home extends Component {
                                 </div>
                                 <div className="img-left">
                                     <div className="diagramme"><img src="/static/s.png" className="lazyload" data-src="/static/img/how-it-works/home-diagramme.svg" alt="" /></div>
-                                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br/>recrutements des 5 dernières années pour vous proposer les <br/>entreprises qui recrutent régulièrement en alternance (contrat <br/> d'apprentissage ou contrat de professionnalisation).</p>
+                                    <p>Notre algorithme La Bonne Alternance analyse les offres et les <br/>recrutements des 6 dernières années pour vous proposer les <br/>entreprises qui recrutent régulièrement en alternance (contrat <br/> d'apprentissage ou contrat de professionnalisation).</p>
                                 </div>
                                 <div className="img-right">
                                     <p>Pour une meilleure lisibilité, les résultats sont affichés sur une <br/>carte et en liste. Vous pouvez affiner la liste des entreprises par <br/>taille, métier et domaine. En cliquant sur une entreprise, vous <br/>accédez à sa description, à ses coordonnées ainsi qu'à des conseils pour postuler.</p>
