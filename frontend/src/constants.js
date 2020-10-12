@@ -8,6 +8,7 @@ export const constants = {
     GET_HIDDEN_MARKET_COMPANIES_URL: '/api/labonneboite/get_hidden_market_companies?',
     GET_VISIBLE_MARKET_COMPANIES_URL: '/api/labonneboite/get_visible_market_companies?',
     GET_COMPANY_DETAILS_LBB_URL: '/api/labonneboite/company_details?siret=',
+    GET_TRIGGERS: '/api/triggers/get_triggers?',
     GET_JOB_SLUG_INFORMATIONS: '/api/labonneboite/job_slug?job-slug=',
     GET_CITY_SLUG_INFORMATIONS: '/api/labonneboite/city_slug?city-slug=',
     GET_CITY_SLUG_FROM_CITY_CODE: '/api/labonneboite/city_slug_from_city_code?city-code=',

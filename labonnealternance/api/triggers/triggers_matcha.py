@@ -20,7 +20,7 @@ def get_triggers_matcha(location, romes):
         city_romes = MATCHA.get(city[0])
         found_romes = [rome for rome in city_romes if rome in romes]
         return {
-            'type': 'hj',
+            'type': 'hotjar',
             'name': 'matcha',
         }
     return None
