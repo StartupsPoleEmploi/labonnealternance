@@ -1,5 +1,11 @@
 import { constants } from '../constants';
 
+/**
+ * Call the triggers/ API route
+ * Retrieve the triggers to be executed
+ * @see labonnealternance/api/triggers/views.py
+ * TODO: pass more generic GET params when more triggers are needed
+ */
 export async function getTriggers(city, romes) {
     try {
         const romeArg = `&romes=${romes.join('&romes=')}`;
@@ -12,6 +18,9 @@ export async function getTriggers(city, romes) {
     return null;
 }
 
+/**
+ * Get the triggers and "execute" them
+ */
 export async function execTriggers(city, romes) {
     const triggers = await getTriggers(city, romes);
     if(triggers) triggers.forEach(trigger => {
@@ -28,5 +37,5 @@ export async function execTriggers(city, romes) {
         }
         // Always resolve, triggers are not imprtant
         return Promise.resolve();
-    })
+    });
 }
