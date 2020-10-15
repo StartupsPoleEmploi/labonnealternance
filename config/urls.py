@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/labonneboite/', include("labonnealternance.api.labonneboite.urls")),
     path('api/match/', include("labonnealternance.api.match.urls")),
     path('api/entreprises/', include("labonnealternance.api.entreprises.urls")),
+    path('api/triggers/', include("labonnealternance.api.triggers.urls")),
 
     path('favorites/', include("labonnealternance.favorites.urls")),
     path('recruiter/', include("labonnealternance.recruiter.urls")),

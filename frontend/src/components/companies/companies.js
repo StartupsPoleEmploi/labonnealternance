@@ -21,6 +21,7 @@ import { SoftSkillsService } from '../../services/soft_skills/soft_skills.servic
 import { Job } from '../../services/search_form/job';
 import { formatString, unSlug, getParameterByName } from '../../services/helpers';
 import { constants } from '../../constants';
+import { execTriggers } from '../../services/triggers';
 
 import './companies.css';
 
@@ -155,11 +156,17 @@ class Companies extends Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.cityName !== prevState.cityName || this.state.jobs !== prevState.jobs) {
+            execTriggers(this.state.cityName, this.state.jobs.map(j => j.rome));
+        }
+    }
     componentWillMount() {
         // Set SEO Values title
         this.setSEOValues();
 
         // Listen to resize event
+        // FIXME: bind will create a new function every time, so this will add a listener every time, which will never be removed
         window.addEventListener('resize', this.updateDimensions.bind(this));
 
         // Listen to goBack/goForward event
@@ -223,6 +230,7 @@ class Companies extends Component {
 
     componentWillUnmount() {
         // Unlisten to resize event
+        // FIXME: bind will create a new function every time, so this will add a listener every time, which will never be removed
         window.removeEventListener('resize', this.updateDimensions.bind(this));
 
         // Unsubscribe to listeners
