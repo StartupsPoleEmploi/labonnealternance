@@ -4,7 +4,6 @@ import { constants } from '../constants';
  * Call the triggers/ API route
  * Retrieve the triggers to be executed
  * @see labonnealternance/api/triggers/views.py
- * TODO: pass more generic GET params when more triggers are needed
  */
 export async function getTriggers(city, romes) {
     try {
@@ -26,7 +25,6 @@ export async function execTriggers(city, romes) {
     if(triggers) triggers.forEach(trigger => {
         switch(trigger.type) {
             case 'hotjar':
-                console.log('TRIGGER HOTJAR', trigger.name);
                 if(window.hj) {
                     return window.hj('trigger', trigger.name);
                 }
