@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const browserStackCredentials = require("./browserstack.credentials.js");
-const path = require('path');
 
 var Nightwatch = require('nightwatch');
 var browserstack = require('browserstack-local');

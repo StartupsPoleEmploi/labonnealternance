@@ -5,7 +5,7 @@ module.exports = {
 
         client
             // Get search results
-            .url('localhost:8000/entreprises/maconnerie/nantes-44000/maçon?distance=60')
+            .url('http://localhost:8000/entreprises/maconnerie/metz-57000/ma%C3%A7on?distance=60')
 
             // Wait for a first result to be visible
             .waitForElementPresent('#results .company-list-item:first-child', 40000)
